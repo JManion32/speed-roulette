@@ -1,0 +1,25 @@
+# Node.js
+node_modules/
+dist/
+.vite/
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS/IDE clutter
+.DS_Store
+.vscode/
+.idea/
+
+# Go
+*.out
+*.exe
+*.test
+backend/server/
+
+# Misc
+*.local
