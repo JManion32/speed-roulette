@@ -14,17 +14,21 @@ Speed Roulette is a real-time browser game that blends competitive speed chess w
 
 ### Requirements
 - [Go 1.21+](https://go.dev/dl/)
+- 
 - [Node.js 18+](https://nodejs.org/)
+- 
 - npm or yarn
 
 ### 1. Clone the repository
 
 git clone https://github.com/JManion32/speed-roulette.git
+
 cd speed-roulette
 
 ### 2. Start the backend
 
 cd backend
+
 go run main.go
 
 ### 3. Start the frontend
@@ -32,7 +36,7 @@ go run main.go
 In a new terminal / window:
 
 cd frontend
-npm install
-npm run dev
 
-All pull requests are welcome!
+npm install
+
+npm run dev
