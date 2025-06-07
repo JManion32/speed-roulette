@@ -1,0 +1,41 @@
+/* Contains all custom colors used in this project */
+
+:root {
+    /*========== Master ==========*/
+    --sr-dark: #111827; /*gray-900*/
+
+    /*========== Standard ==========*/
+    --standard-black: black;
+    --standard-white: white;
+    --utility-lm: ;
+    --utility-hover-lm: ;
+    --utility-dm: ;
+    --utility-hover-dm: ;
+    --standard-submit-lm: ;
+    --standard-submit-dm: ;
+    --standard-modal-bg-dm: ;
+
+    /*========== Home ==========*/
+    --player-textfield-lm: ;
+    --player-textfield-dm: ;
+
+
+    /*========== Game ==========*/
+    --roulette-red: red;
+    --roulette-green: green;
+    /* Chip Colors */
+    --chip-50-cent: #6b7280; /*bg-gray-500*/
+    --chip-1: ;
+    --chip-2: ;
+    --chip-5: ;
+    --chip-10: ;
+    --chip-20: ;
+    --chip-50: ;
+    --chip-100: ;
+    --chip-500: ;
+
+    /*========== Leaderboard ==========*/
+
+
+    /*========== Stats ==========*/
+}
