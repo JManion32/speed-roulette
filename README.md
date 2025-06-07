@@ -14,9 +14,7 @@ Speed Roulette is a real-time browser game that blends competitive speed chess w
 
 ### Requirements
 - [Go 1.21+](https://go.dev/dl/)
-- 
 - [Node.js 18+](https://nodejs.org/)
-- 
 - npm or yarn
 
 ### 1. Clone the repository
