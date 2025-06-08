@@ -19,9 +19,10 @@ Speed Roulette is a real-time browser game that blends competitive speed chess w
 
 ### 1. Clone the repository
 
+```bash
 git clone https://github.com/JManion32/speed-roulette.git
-
 cd speed-roulette
+```
 
 ### 2. Start the backend
 
