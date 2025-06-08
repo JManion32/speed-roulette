@@ -25,16 +25,17 @@ cd speed-roulette
 
 ### 2. Start the backend
 
+```bash
 cd backend
-
 go run main.go
+```
 
 ### 3. Start the frontend
 
 In a new terminal / window:
 
+```bash
 cd frontend
-
 npm install
-
 npm run dev
+```
