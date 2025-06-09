@@ -6,7 +6,23 @@
 
 ## 🚀 About
 
-Speed Roulette is a real-time browser game that blends competitive speed chess with randomized roulette mechanics to create high-stakes, unpredictable rounds. Built with a Vite-powered React frontend and a Go backend, the app is lightweight, fast, and open-source under the MIT License.
+Speed Roulette is a real-time browser game that blends competitive speed chess with randomized roulette mechanics to create high-stakes, unpredictable rounds. Starting with $20, 10 possible spins, and a minute on the clock, earn a spot on the leaderboard by making as much as you can!
+
+---
+
+## 🧰 Tech Stack
+
+**Frontend**  
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+**Backend**  
+![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+
+**Database**  
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ---
 
