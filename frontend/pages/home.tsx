@@ -1,22 +1,18 @@
 import '../css/index.css'
-import sun from "../assets/sun.png";
-import moon_white from "../assets/moon_white.png";
 import stats from "../assets/stats.png";
 import trophy from "../assets/trophy.png";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+// Contexts
+import { useDarkMode } from "../contexts/DarkModeContext";
+
+// Components
+import DarkModeToggle from "../components/DarkModeToggle";
+
 function Home() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
-  }, [isDarkMode]);
-
+  const { isDarkMode } = useDarkMode();
   const [showModal, setShowModal] = useState(false);   // State of the modal (open or closed)
   const [isClosing, setIsClosing] = useState(false);
   const [activeTab, setActiveTab] = useState('about'); // about / rules / contact
@@ -44,12 +40,7 @@ function Home() {
         <div className="p-4 flex top-0">
           <p className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
-          <button 
-            className={`absolute right-6 rounded-full w-15 h-15 transition-transform transform hover:scale-110 ${isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'}`}
-            onClick={() => setIsDarkMode(!isDarkMode)}
-          >
-            <img src={isDarkMode ? moon_white : sun} alt={isDarkMode ? "Sun" : "Moon"}/>
-          </button>
+          <DarkModeToggle />
         </div>
   
         {/* Center content - using absolute positioning */}

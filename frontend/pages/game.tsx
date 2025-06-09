@@ -1,11 +1,14 @@
 // frontend/pages/game.tsx
 import '../css/index.css'
-import sun from "../assets/sun.png";
-import home from "../assets/home.png";
-import moon_white from "../assets/moon_white.png";
-import home_white from "../assets/home_white.png";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+// Contexts
+import { useDarkMode } from "../contexts/DarkModeContext";
+
+// Components
+import DarkModeToggle from "../components/DarkModeToggle";
+import HomeButton from "../components/HomeButton";
 
 // Define chip types
 interface Chip {
@@ -29,21 +32,13 @@ interface BetAction {
 }
 
 function Game() {
+  const { isDarkMode } = useDarkMode();
 
   // Nickname state, uses local storage
   const [nickname, setNickname] = useState<string>("");
   useEffect(() => {
     setNickname(localStorage.getItem("nickname") ?? "");
   }, []);
-
-  // Dark mode state
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-      return saved !== null ? JSON.parse(saved) : true;
-  });
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
-  }, [isDarkMode]);
   
   // Timer states
   const [timeLeft, setTimeLeft] = useState<number>(60); // Start timer at 60 seconds
@@ -405,17 +400,8 @@ const formatBetValue = (value: number): string => {
             );
           })}
         </span>
-        <button 
-          className={`absolute right-6 rounded-full w-15 h-15 transition-transform transform hover:scale-110 ${isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'}`}
-          onClick={() => setIsDarkMode(!isDarkMode)}>
-          <img src={isDarkMode ? moon_white : sun} alt={isDarkMode ? "Sun" : "Moon"}/>
-        </button>
-          <Link to="/" className="inline-block">
-            <button 
-              className={`absolute right-24 rounded-full w-15 h-15 flex justify-center items-center transition-transform transform hover:scale-110 ${isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'}`}>
-              <img src={isDarkMode ? home_white : home} alt="Home" className="w-12 h-12" />
-            </button>
-          </Link>
+        <DarkModeToggle />
+        <HomeButton />
       </div>
       {/*Body: Everything*/}
       <div className="absolute top-2/17 w-full">
