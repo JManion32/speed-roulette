@@ -6,7 +6,28 @@
 
 ## 🚀 About
 
-Speed Roulette is a real-time browser game that blends competitive speed chess with randomized roulette mechanics to create high-stakes, unpredictable rounds. Built with a Vite-powered React frontend and a Go backend, the app is lightweight, fast, and open-source under the MIT License.
+Speed Roulette is a real-time browser game that blends competitive speed chess with randomized roulette mechanics to create high-stakes, unpredictable rounds. Starting with $20, 10 possible spins, and a minute on the clock, earn a spot on the leaderboard by making as much as you can!
+
+---
+
+## 🧰 Tech Stack
+
+**Frontend**  
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+**Backend**  
+![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+
+**Database**  
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+
+**Tooling / Dev Dependencies**  
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=for-the-badge&logo=stylelint&logoColor=white)
+![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black)
 
 ---
 
@@ -19,22 +40,24 @@ Speed Roulette is a real-time browser game that blends competitive speed chess w
 
 ### 1. Clone the repository
 
+```bash
 git clone https://github.com/JManion32/speed-roulette.git
-
 cd speed-roulette
+```
 
 ### 2. Start the backend
 
+```bash
 cd backend
-
 go run main.go
+```
 
 ### 3. Start the frontend
 
 In a new terminal / window:
 
+```bash
 cd frontend
-
 npm install
-
 npm run dev
+```
