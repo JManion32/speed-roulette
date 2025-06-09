@@ -1,0 +1,115 @@
+// src/components/Modal.tsx
+import { useDarkMode } from "../contexts/DarkModeContext";
+
+type ModalProps = {
+  isOpen: boolean;
+  isClosing: boolean;
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  closeModal: () => void;
+  handleOutsideClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+};
+
+export default function AboutModal({
+  isOpen,
+  isClosing,
+  activeTab,
+  setActiveTab,
+  closeModal,
+  handleOutsideClick
+}: ModalProps) {
+  const { isDarkMode } = useDarkMode();
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80" onClick={handleOutsideClick}>
+      <div className={`
+        ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} 
+        rounded-3xl p-8 w-[800px] h-[550px] max-w-[90%] relative 
+        ${isClosing ? 'slide-down' : 'slide-up'}`}
+      >
+        <button 
+          className="absolute right-4 top-4 bg-red-600 hover:bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold"
+          onClick={closeModal}>
+          X
+        </button>
+
+        <div className="border-b border-gray-700 mb-8">
+          {['about', 'rules', 'contact'].map((tab) => (
+            <button
+              key={tab}
+              className={`py-2 px-6 text-[28px] ${activeTab === tab ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        <div className="max-h-[500px] overflow-y-auto text-[20px]">
+          {activeTab === 'about' && (
+            <>
+              <p className="mb-6">
+                Speed Roulette is a fast-paced browser game created by Justin Manion, a Junior computer science student at Rensselaer Polytechnic Institute. Inspired by speed chess, Speed Roulette puts a twist on the beloved high-stakes casino game.
+              </p>
+              <p className="font-bold mb-4">Note from the developer:</p>
+              <p>
+                I hope you enjoy this website! It has been a dream come true to create this. Remember: anything is possible if you put your mind to it. Best of luck!
+              </p>
+            </>
+          )}
+
+          {activeTab === 'rules' && (
+            <>
+              <p className="mb-4">
+                <span className="font-bold">Standard Roulette Rules:</span><br />
+                Bet on what the winning number will be by placing chips on the betting table.
+              </p>
+              <div className="mb-4 space-y-1 pl-12">
+                <div className="flex justify-between w-full"><span>Single numbers:</span><span className="font-bold">35:1</span></div>
+                <div className="flex justify-between w-full"><span>Red/Black | Even/Odd | Low/High:</span><span className="font-bold">1:1</span></div>
+                <div className="flex justify-between w-full"><span>Rows | Dozens:</span><span className="font-bold">2:1</span></div>
+              </div>
+              <p className="mb-4">
+                You can also bet on multiple buttons at a time with one chip (e.g., half on 7, half on 10). For more details, see the{" "}
+                <a href="https://en.wikipedia.org/wiki/Roulette#Types_of_bets" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                  Wikipedia Roulette Types of Bets page
+                </a>.
+              </p>
+              <p>
+                <span className="font-bold">Speed Roulette Twist:</span><br />
+                <ul className="list-disc pl-8 mb-6">
+                  <li>Start with $20, 10 spins, and 1 minute on the clock.</li>
+                  <li>The timer begins when you place your first bet.</li>
+                  <li>Each spin auto-triggers a 2.5s pause before the next round.</li>
+                </ul>
+                <i>Make as much as you can before you run out of <b>time</b>, <b>spins</b>, or <b>money</b>!</i>
+              </p>
+            </>
+          )}
+
+          {activeTab === 'contact' && (
+            <>
+              <p className="text-[32px] mb-10">
+                <span className="font-bold">Inquiries:</span> jman32@speedroulette.io
+              </p>
+              <button 
+                className="h-25 w-150 bg-red-500 hover:bg-red-400 font-bold text-[64px] text-white rounded-md mb-10"
+                onClick={() => window.open('https://youtube.com/@jmancodes?si=ZgYwDV3Fj49Z4-uH', '_blank')}
+              >
+                YouTube
+              </button><br />
+              <button 
+                className="h-25 w-150 bg-blue-500 hover:bg-blue-400 font-bold text-[64px] text-white rounded-md"
+                onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
+              >
+                LinkedIn
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
