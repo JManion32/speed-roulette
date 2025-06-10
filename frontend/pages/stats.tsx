@@ -1,7 +1,5 @@
 // frontend/pages/leaderboard.tsx
 import '../css/index.css'
-import home from "../assets/home.png";
-import home_white from "../assets/home_white.png";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 

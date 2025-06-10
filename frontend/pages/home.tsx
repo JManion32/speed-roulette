@@ -14,26 +14,9 @@ import AboutModal from "../components/AboutModal";
 
 function Home() {
   const { isDarkMode } = useDarkMode();
-  const [showModal, setShowModal] = useState(false);   // State of the modal (open or closed)
-  const [isClosing, setIsClosing] = useState(false);
-  const [activeTab, setActiveTab] = useState('about'); // about / rules / contact
+  const [showModal, setShowModal] = useState(false);
   const [nickname, setNickname] = useState<string>("");
   const navigate = useNavigate();
-
-  const closeModal = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setShowModal(false);
-      setIsClosing(false);
-    }, 300); // match slide-down duration
-  };
-
-  // Close modal when clicking outside - fixed with proper type
-  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if ((e.target as HTMLElement).classList.contains('modal-overlay')) {
-      setShowModal(false);
-    }
-  };
   
     return (
       <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
@@ -103,14 +86,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <AboutModal
-          isOpen={showModal}
-          isClosing={isClosing}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          closeModal={closeModal}
-          handleOutsideClick={handleOutsideClick}
-        />
+        <AboutModal isOpen={showModal} onClose={() => setShowModal(false)} />
   
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">

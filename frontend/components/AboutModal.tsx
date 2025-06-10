@@ -1,24 +1,39 @@
-// src/components/Modal.tsx
+// src/components/AboutModal.tsx
 import { useDarkMode } from "../contexts/DarkModeContext";
+import { useState, useEffect } from "react";
 
 type ModalProps = {
   isOpen: boolean;
-  isClosing: boolean;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-  closeModal: () => void;
-  handleOutsideClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClose: () => void;
 };
 
-export default function AboutModal({
-  isOpen,
-  isClosing,
-  activeTab,
-  setActiveTab,
-  closeModal,
-  handleOutsideClick
-}: ModalProps) {
+export default function AboutModal({ isOpen, onClose }: ModalProps) {
   const { isDarkMode } = useDarkMode();
+  const [activeTab, setActiveTab] = useState("about");
+  const [isClosing, setIsClosing] = useState(false);
+
+  // Handle modal close with animation
+  const closeModal = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsClosing(false);
+      onClose();
+    }, 300); // Match slide-down duration
+  };
+
+  // Close on outside click
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).classList.contains("modal-overlay")) {
+      closeModal();
+    }
+  };
+
+  // Reset tab when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setActiveTab("about");
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
