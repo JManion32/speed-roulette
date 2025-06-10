@@ -459,9 +459,6 @@ const formatBetValue = (value: number): string => {
           </div>
         </div>
 
-
-
-
             {/* Controls section */}
             <div className="flex flex-wrap gap-2 justify-center mb-5">
               {/* Chip buttons */}

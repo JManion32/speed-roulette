@@ -47,7 +47,7 @@ export default function AboutModal({
           ))}
         </div>
 
-        <div className="max-h-[500px] overflow-y-auto text-[20px]">
+        <div className="max-h-[500px] overflow-y-auto text-[18px]">
           {activeTab === 'about' && (
             <>
               <p className="mb-6">
@@ -67,9 +67,9 @@ export default function AboutModal({
                 Bet on what the winning number will be by placing chips on the betting table.
               </p>
               <div className="mb-4 space-y-1 pl-12">
-                <div className="flex justify-between w-full"><span>Single numbers:</span><span className="font-bold">35:1</span></div>
-                <div className="flex justify-between w-full"><span>Red/Black | Even/Odd | Low/High:</span><span className="font-bold">1:1</span></div>
-                <div className="flex justify-between w-full"><span>Rows | Dozens:</span><span className="font-bold">2:1</span></div>
+                <div className="flex justify-between w-5/8"><span>Single numbers:</span><span className="font-bold">35:1</span></div>
+                <div className="flex justify-between w-5/8"><span>Red/Black | Even/Odd | Low/High:</span><span className="font-bold">1:1</span></div>
+                <div className="flex justify-between w-5/8"><span>Rows | Dozens:</span><span className="font-bold">2:1</span></div>
               </div>
               <p className="mb-4">
                 You can also bet on multiple buttons at a time with one chip (e.g., half on 7, half on 10). For more details, see the{" "}
