@@ -9,12 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-standard",
-      "stylelint-config-tailwindcss"
-    ]
-  },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
