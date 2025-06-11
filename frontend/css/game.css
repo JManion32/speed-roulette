@@ -9,10 +9,11 @@
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px 2px rgba(255, 255, 0, 0.6);
+    box-shadow: 0 0 5px 2px rgb(255 255 0 / 60%);
   }
+
   50% {
-    box-shadow: 0 0 20px 5px rgba(255, 255, 0, 1);
+    box-shadow: 0 0 20px 5px rgb(255 255 0 / 100%);
   }
 }
 
@@ -22,10 +23,11 @@
 
 @keyframes glowPulseLight {
   0%, 100% {
-    box-shadow: 0 0 0px rgba(155, 129, 0, 0.4); /* darker gold base */
+    box-shadow: 0 0 0 rgb(155 129 0 / 40%); /* darker gold base */
   }
+
   50% {
-    box-shadow: 0 0 12px 3px rgba(155, 129, 0, 0.7); /* more pronounced */
+    box-shadow: 0 0 12px 3px rgb(155 129 0 / 70%); /* more pronounced */
   }
 }
 
@@ -35,17 +37,18 @@
 
 @keyframes glowPulseDark {
   0%, 100% {
-    box-shadow: 0 0 0px rgba(255, 255, 0, 0.1); /* soft yellow */
+    box-shadow: 0 0 0 rgb(255 255 0 / 10%); /* soft yellow */
   }
+
   50% {
-    box-shadow: 0 0 12px rgba(255, 255, 0, 0.7);
+    box-shadow: 0 0 12px rgb(255 255 0 / 70%);
   }
 }
 
 .constant-glow {
   text-shadow:
-    0 0 6px rgba(255, 255, 255, 0.4),
-    0 0 10px rgba(255, 255, 255, 0.2);
+    0 0 6px rgb(255 255 255 / 40%),
+    0 0 10px rgb(255 255 255 / 20%);
 }
 
 @keyframes slide-up {
@@ -53,6 +56,7 @@
     transform: translateY(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -68,6 +72,7 @@
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100%);
     opacity: 0;
@@ -126,8 +131,6 @@
 
 .green-num {
   background-color: var(--roulette-green);
-  width: 100%;
-  height: 50%;
   transition: all 0.5s ease; 
   width: 86px;
   height: 129px;

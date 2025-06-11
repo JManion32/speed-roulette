@@ -1,13 +1,13 @@
 :root {
-    /*========== Master ==========*/
-    --sr-master-dark: #111827; /*gray-900*/
+    /* ========== Master ========== */
+    --sr-master-dark: #111827; /* gray-900 */
 
-    /*========== Standard ==========*/
-    --standard-black: #000000;
-    --standard-white: #ffffff;
+    /* ========== Standard ========== */
+    --standard-black: #000;
+    --standard-white: #fff;
     --gray-350: #b7bcc5;
 
-    /*========== Game ==========*/
+    /* ========== Game ========== */
     --roulette-red: red;
     --roulette-green: green;
     --winning-number: #FFD700;
