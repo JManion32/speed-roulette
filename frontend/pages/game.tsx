@@ -11,6 +11,9 @@ import { useDarkMode } from "../contexts/DarkModeContext";
 import DarkModeToggle from "../components/DarkModeToggle";
 import HomeButton from "../components/HomeButton";
 
+// Hooks
+import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
+
 // Define chip types
 interface Chip {
   value: number;
@@ -35,7 +38,7 @@ interface BetAction {
 function Game() {
   const { isDarkMode } = useDarkMode();
 
-  // Nickname state, uses local storage
+  // Nickname state
   const [nickname, setNickname] = useState<string>("");
   useEffect(() => {
     setNickname(localStorage.getItem("nickname") ?? "");
@@ -71,56 +74,19 @@ function Game() {
       setIsClosing(false);
     }, 300); // match slide-down duration
   };
+
+  //Grid Stuff
   const [showGrid, setShowGrid] = useState(false);   // grid visibility
   const [gridBlock, setGridBlock] = useState(false);   // grid interactability
-
-  // States for
-  const [isSelected, setIsSelected] = useState(false);   // grid interactability
+  const [isSelected, setIsSelected] = useState(false);
   
   // Chip selection and bet tracking state
   const [selectedChip, setSelectedChip] = useState<Chip | null>(null);
   const [bets, setBets] = useState<Bet[]>([]);
   const [betActions, setBetActions] = useState<BetAction[]>([]);
   const [userBalance, setUserBalance] = useState<number>(20);
-  
-  const [animatedBalance, setAnimatedBalance] = useState<number>(20);
-  const [balanceChangeDirection, setBalanceChangeDirection] = useState<'up' | 'down' | null>(null);
-  useEffect(() => {
-    const duration = 750;
-    const frameRate = 60;
-    const totalFrames = (duration / 1000) * frameRate;
 
-    let frame = 0;
-    const start = animatedBalance;
-    const end = userBalance;
-    const diff = end - start;
-
-    // Set direction right away before animation starts
-    if (diff > 0) {
-      setBalanceChangeDirection('up');
-    } else if (diff < 0) {
-      setBalanceChangeDirection('down');
-    } else {
-      setBalanceChangeDirection(null);
-    }
-
-    const animate = () => {
-      frame++;
-      const progress = frame / totalFrames;
-      const easedProgress = progress < 1 ? progress : 1;
-
-      setAnimatedBalance(start + diff * easedProgress);
-
-      if (frame < totalFrames) {
-        requestAnimationFrame(animate);
-      } else {
-        setAnimatedBalance(end);
-        setBalanceChangeDirection(null); // Reset highlight after animation ends
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [userBalance]);
+  const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
 
   const [totalBet, setTotalBet] = useState<number>(0);
 
