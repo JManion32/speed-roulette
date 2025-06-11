@@ -1,5 +1,6 @@
 // frontend/pages/game.tsx
 import '../css/index.css'
+import '../css/game.css'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -178,16 +179,17 @@ function Game() {
     }
   };
 
-const formatBetValue = (value: number): string => {
-  if (value >= 100000) return `${Math.floor(value / 1000)}k`;
+  // To prevent text overflow on the chip
+  const formatBetValue = (value: number): string => {
+    if (value >= 100000) return `${Math.floor(value / 1000)}k`;
 
-  if (value >= 1000) {
-    const valueInK = value / 1000;
-    return valueInK % 1 < 0.1 ? `${Math.floor(valueInK)}k` : `${valueInK.toFixed(1)}k`;
-  }
+    if (value >= 1000) {
+      const valueInK = value / 1000;
+      return valueInK % 1 < 0.1 ? `${Math.floor(valueInK)}k` : `${valueInK.toFixed(1)}k`;
+    }
 
-  return value % 1 === 0 ? value.toString() : value.toFixed(1).replace(/^0+/, '');
-};
+    return value % 1 === 0 ? value.toString() : value.toFixed(1).replace(/^0+/, '');
+  };
 
   // Handling grid cell clicks
   const handleGridCellClick = (index: number, gridId: string) => {
@@ -374,7 +376,7 @@ const formatBetValue = (value: number): string => {
   }
 
 
-// END OF LOGIC, START OF DISPLAY =============================================================
+// END OF STATE SOUP, START OF UI =============================================================
 
   return (
     <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
@@ -674,53 +676,53 @@ const formatBetValue = (value: number): string => {
                   <tr>
                       <td rowSpan={3} className="p-0 border-0">
                       <div className="flex flex-col h-full">
-                          <button className={`green-num bg-green w-full h-1/2 transition duration-500 text-white ${isWinning("0") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>0</button>
-                          <button className={`green-num bg-green w-full h-1/2 transition duration-500 text-white ${isWinning("00") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>00</button>
+                          <button className={`green-num ${isWinning("0") ? 'winning-glow-effect' : ''}`}>0</button>
+                          <button className={`green-num ${isWinning("00") ? 'winning-glow-effect' : ''}`}>00</button>
                       </div>
                       </td>
-                      <td><button className={`roulette-num bg-red  transition duration-500 text-white ${isWinning("3") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>3</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("6") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>6</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("9") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>9</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("12") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>12</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("15") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>15</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("18") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>18</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("21") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>21</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("24") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>24</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("27") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>27</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("30") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>30</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("33") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>33</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("36") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>36</button></td>
-                      <td><button className="roulette-num bg-green text-white">Row</button></td>
+                      <td><button className={`red-num ${isWinning("3") ? 'winning-glow-effect' : ''}`}>3</button></td>
+                      <td><button className={`black-num ${isWinning("6") ? 'winning-glow-effect' : ''}`}>6</button></td>
+                      <td><button className={`red-num ${isWinning("9") ? 'winning-glow-effect' : ''}`}>9</button></td>
+                      <td><button className={`red-num ${isWinning("12") ? 'winning-glow-effect' : ''}`}>12</button></td>
+                      <td><button className={`black-num ${isWinning("15") ? 'winning-glow-effect' : ''}`}>15</button></td>
+                      <td><button className={`red-num ${isWinning("18") ? 'winning-glow-effect' : ''}`}>18</button></td>
+                      <td><button className={`red-num ${isWinning("21") ? 'winning-glow-effect' : ''}`}>21</button></td>
+                      <td><button className={`black-num ${isWinning("24") ? 'winning-glow-effect' : ''}`}>24</button></td>
+                      <td><button className={`red-num ${isWinning("27") ? 'winning-glow-effect' : ''}`}>27</button></td>
+                      <td><button className={`red-num ${isWinning("30") ? 'winning-glow-effect' : ''}`}>30</button></td>
+                      <td><button className={`black-num ${isWinning("33") ? 'winning-glow-effect' : ''}`}>33</button></td>
+                      <td><button className={`red-num ${isWinning("36") ? 'winning-glow-effect' : ''}`}>36</button></td>
+                      <td><button className="outside-row">Row</button></td>
                   </tr>
                   <tr>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("2") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>2</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("5") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>5</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("8") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>8</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("11") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>11</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("14") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>14</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("17") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>17</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("20") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>20</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("23") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>23</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("26") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>26</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("29") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>29</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("32") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>32</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("35") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>35</button></td>
-                      <td><button className="roulette-num bg-green text-white">Row</button></td>
+                      <td><button className={`black-num ${isWinning("2") ? 'winning-glow-effect' : ''}`}>2</button></td>
+                      <td><button className={`red-num ${isWinning("5") ? 'winning-glow-effect' : ''}`}>5</button></td>
+                      <td><button className={`black-num ${isWinning("8") ? 'winning-glow-effect' : ''}`}>8</button></td>
+                      <td><button className={`black-num ${isWinning("11") ? 'winning-glow-effect' : ''}`}>11</button></td>
+                      <td><button className={`red-num ${isWinning("14") ? 'winning-glow-effect' : ''}`}>14</button></td>
+                      <td><button className={`black-num ${isWinning("17") ? 'winning-glow-effect' : ''}`}>17</button></td>
+                      <td><button className={`black-num ${isWinning("20") ? 'winning-glow-effect' : ''}`}>20</button></td>
+                      <td><button className={`red-num ${isWinning("23") ? 'winning-glow-effect' : ''}`}>23</button></td>
+                      <td><button className={`black-num ${isWinning("26") ? 'winning-glow-effect' : ''}`}>26</button></td>
+                      <td><button className={`black-num ${isWinning("29") ? 'winning-glow-effect' : ''}`}>29</button></td>
+                      <td><button className={`red-num ${isWinning("32") ? 'winning-glow-effect' : ''}`}>32</button></td>
+                      <td><button className={`black-num ${isWinning("35") ? 'winning-glow-effect' : ''}`}>35</button></td>
+                      <td><button className="outside-row">Row</button></td>
                   </tr>
                   <tr>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("1") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>1</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("4") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>4</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("7") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>7</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("10") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>10</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("13") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>13</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("16") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>16</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("19") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>19</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("22") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>22</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("25") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>25</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("28") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>28</button></td>
-                      <td><button className={`roulette-num bg-black transition duration-500 text-white ${isWinning("31") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>31</button></td>
-                      <td><button className={`roulette-num bg-red transition duration-500 text-white ${isWinning("34") ? 'bg-winning transition duration-500 glow-effect' : ''}`}>34</button></td>
-                      <td><button className="roulette-num bg-green text-white">Row</button></td>
+                      <td><button className={`red-num ${isWinning("1") ? 'winning-glow-effect' : ''}`}>1</button></td>
+                      <td><button className={`black-num ${isWinning("4") ? 'winning-glow-effect' : ''}`}>4</button></td>
+                      <td><button className={`red-num ${isWinning("7") ? 'winning-glow-effect' : ''}`}>7</button></td>
+                      <td><button className={`black-num ${isWinning("10") ? 'winning-glow-effect' : ''}`}>10</button></td>
+                      <td><button className={`black-num ${isWinning("13") ? 'winning-glow-effect' : ''}`}>13</button></td>
+                      <td><button className={`red-num ${isWinning("16") ? 'winning-glow-effect' : ''}`}>16</button></td>
+                      <td><button className={`red-num ${isWinning("19") ? 'winning-glow-effect' : ''}`}>19</button></td>
+                      <td><button className={`black-num ${isWinning("22") ? 'winning-glow-effect' : ''}`}>22</button></td>
+                      <td><button className={`red-num ${isWinning("25") ? 'winning-glow-effect' : ''}`}>25</button></td>
+                      <td><button className={`black-num ${isWinning("28") ? 'winning-glow-effect' : ''}`}>28</button></td>
+                      <td><button className={`black-num ${isWinning("31") ? 'winning-glow-effect' : ''}`}>31</button></td>
+                      <td><button className={`red-num ${isWinning("34") ? 'winning-glow-effect' : ''}`}>34</button></td>
+                      <td><button className="outside-row">Row</button></td>
                   </tr>
                   
                   {/* Dozen bets */}
