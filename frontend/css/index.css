@@ -2,22 +2,24 @@
 @import "./colors.css";
 
 @theme {
-  --color-green: var(--roulette-green);
-  --color-red:  var(--roulette-red);
-  --color-winning: var(--winning-number);
-  --color-gray-350: var(--gray-350);
+    --color-green: var(--roulette-green);
+    --color-red: var(--roulette-red);
+    --color-winning: var(--winning-number);
+    --color-gray-350: var(--gray-350);
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--sr-master-dark); /* same as Tailwind's bg-gray-900 */
+    background-color: var(
+        --sr-master-dark
+    ); /* same as Tailwind's bg-gray-900 */
 }

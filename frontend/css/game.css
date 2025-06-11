@@ -2,168 +2,178 @@
 
 /* Winning number styles / animations */
 .winning-glow-effect {
-  color: var(--standard-black) !important;
-  background: var(--winning-number) !important;
-  animation: glow 0.85s ease-in-out 4;
+    color: var(--standard-black) !important;
+    background: var(--winning-number) !important;
+    animation: glow 0.85s ease-in-out 4;
 }
 
 @keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 5px 2px rgb(255 255 0 / 60%);
-  }
+    0%,
+    100% {
+        box-shadow: 0 0 5px 2px rgb(255 255 0 / 60%);
+    }
 
-  50% {
-    box-shadow: 0 0 20px 5px rgb(255 255 0 / 100%);
-  }
+    50% {
+        box-shadow: 0 0 20px 5px rgb(255 255 0 / 100%);
+    }
 }
 
 .glow-pulse-light {
-  animation: glowPulseLight 1s linear infinite;
+    animation: glowPulseLight 1s linear infinite;
 }
 
 @keyframes glowPulseLight {
-  0%, 100% {
-    box-shadow: 0 0 0 rgb(155 129 0 / 40%); /* darker gold base */
-  }
+    0%,
+    100% {
+        box-shadow: 0 0 0 rgb(155 129 0 / 40%); /* darker gold base */
+    }
 
-  50% {
-    box-shadow: 0 0 12px 3px rgb(155 129 0 / 70%); /* more pronounced */
-  }
+    50% {
+        box-shadow: 0 0 12px 3px rgb(155 129 0 / 70%); /* more pronounced */
+    }
 }
 
 .glow-pulse-dark {
-  animation: glowPulseDark 1s linear infinite;
+    animation: glowPulseDark 1s linear infinite;
 }
 
 @keyframes glowPulseDark {
-  0%, 100% {
-    box-shadow: 0 0 0 rgb(255 255 0 / 10%); /* soft yellow */
-  }
+    0%,
+    100% {
+        box-shadow: 0 0 0 rgb(255 255 0 / 10%); /* soft yellow */
+    }
 
-  50% {
-    box-shadow: 0 0 12px rgb(255 255 0 / 70%);
-  }
+    50% {
+        box-shadow: 0 0 12px rgb(255 255 0 / 70%);
+    }
 }
 
 .constant-glow {
-  text-shadow:
-    0 0 6px rgb(255 255 255 / 40%),
-    0 0 10px rgb(255 255 255 / 20%);
+    text-shadow:
+        0 0 6px rgb(255 255 255 / 40%),
+        0 0 10px rgb(255 255 255 / 20%);
 }
 
 @keyframes slide-up {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
 
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .slide-up {
-  animation: slide-up 0.4s ease-out;
+    animation: slide-up 0.4s ease-out;
 }
 
 @keyframes slide-down {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
 }
 
 .slide-down {
-  animation: slide-down 0.3s ease-in forwards;
+    animation: slide-down 0.3s ease-in forwards;
 }
 
 .chip-button {
-  color: var(--standard-white);
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-width: 2px;
-  transition: background-color 0.2s;
-  font-size: 32px;
-  cursor: pointer;
-  user-select: none;
+    color: var(--standard-white);
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    transition: background-color 0.2s;
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
 }
 
 /* All buttons on the roulette board */
-.red-num, .black-num, .outside-row,
-.green-num, .button-third, .button-bottom-green,
-.button-bottom-red, .button-bottom-black {
-  border-color: var(--standard-white);
-  color: var(--standard-white);
-  font-size: 28px;
-  font-weight: bold;
-  border-width: 2px;
+.red-num,
+.black-num,
+.outside-row,
+.green-num,
+.button-third,
+.button-bottom-green,
+.button-bottom-red,
+.button-bottom-black {
+    border-color: var(--standard-white);
+    color: var(--standard-white);
+    font-size: 28px;
+    font-weight: bold;
+    border-width: 2px;
 }
 
 /* Square nums: black, red, and row */
-.red-num, .black-num, .outside-row { 
-  width: 86px;
-  height: 86px;
-  transition: all 0.5s ease;
+.red-num,
+.black-num,
+.outside-row {
+    width: 86px;
+    height: 86px;
+    transition: all 0.5s ease;
 }
 
 .red-num {
-  background-color: var(--roulette-red);
+    background-color: var(--roulette-red);
 }
 
 .black-num {
-  background-color: var(--standard-black);
+    background-color: var(--standard-black);
 }
 
 .outside-row {
-  background-color: var(--roulette-green);
+    background-color: var(--roulette-green);
 }
 
 .green-num {
-  background-color: var(--roulette-green);
-  transition: all 0.5s ease; 
-  width: 86px;
-  height: 129px;
+    background-color: var(--roulette-green);
+    transition: all 0.5s ease;
+    width: 86px;
+    height: 129px;
 }
 
 .button-third {
-  background: var(--roulette-green);
-  width: 344px;
-  height: 65px;
+    background: var(--roulette-green);
+    width: 344px;
+    height: 65px;
 }
 
 .button-bottom-green {
-  background: var(--roulette-green);
-  width: 172px;
-  height: 65px;
+    background: var(--roulette-green);
+    width: 172px;
+    height: 65px;
 }
 
 .button-bottom-red {
-  background: var(--roulette-red);
-  width: 172px;
-  height: 65px;
+    background: var(--roulette-red);
+    width: 172px;
+    height: 65px;
 }
 
 .button-bottom-black {
-  background: var(--standard-black);
-  width: 172px;
-  height: 65px;
+    background: var(--standard-black);
+    width: 172px;
+    height: 65px;
 }
 
 .board-grid {
-  font-size: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
