@@ -14,6 +14,10 @@ import HomeButton from "../components/HomeButton";
 // Hooks
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 
+// Utils
+import { getColorClass } from '../utils/recentNumColor';
+import { updateChipColor, formatBetValue } from '../utils/chipFormatting';
+
 // Define chip types
 interface Chip {
   value: number;
@@ -114,49 +118,6 @@ function Game() {
     }
   };
 
-  // Decides what color the betting chip should be based on amount
-  const updateColor = (bet: number) => {
-    if(bet >= 500) {
-      return '#F97316'; // orange-500
-    }
-    else if(bet >= 100) {
-      return '#EAB308'; // yellow-500
-    }
-    else if(bet >= 50) {
-      return '#10B981'; // emerald-500
-    }
-    else if(bet >= 20) {
-      return '#06B6D4'; // cyan-500
-    }
-    else if(bet >= 10) {
-      return '#EC4899'; // pink-500
-    }
-    else if(bet >= 5) {
-      return '#A855F7'; // purple-500
-    }
-    else if(bet >= 2) {
-      return '#3B82F6'; // blue-500
-    }
-    else if(bet >= 1) {
-      return '#6366F1'; // indigo-500
-    }
-    else {
-      return '#6B7280'; // gray-500
-    }
-  };
-
-  // To prevent text overflow on the chip
-  const formatBetValue = (value: number): string => {
-    if (value >= 100000) return `${Math.floor(value / 1000)}k`;
-
-    if (value >= 1000) {
-      const valueInK = value / 1000;
-      return valueInK % 1 < 0.1 ? `${Math.floor(valueInK)}k` : `${valueInK.toFixed(1)}k`;
-    }
-
-    return value % 1 === 0 ? value.toString() : value.toFixed(1).replace(/^0+/, '');
-  };
-
   // Handling grid cell clicks
   const handleGridCellClick = (index: number, gridId: string) => {
     if (!selectedChip || userBalance < selectedChip.value) return; // No chip selected, no action taken
@@ -199,7 +160,7 @@ function Game() {
         updatedBet.chipValue += selectedChip.value;
         
         // Update color based on new total
-        updatedBet.chipColor = updateColor(updatedBet.chipValue);
+        updatedBet.chipColor = updateChipColor(updatedBet.chipValue);
         
         // Replace the old bet with the updated one
         newBets[existingBetIndex] = updatedBet;
@@ -260,16 +221,14 @@ function Game() {
         
         // Subtract the chip value
         bet.chipValue -= lastAction.chipValue;
-        console.log(`Bet value updated: ${oldValue} -> ${bet.chipValue}`);
         
         // If the bet value is now zero or less, remove it
         if (bet.chipValue <= 0) {
-          console.log("Removing bet entirely");
           return newBets.filter((_, i) => i !== betIndex);
         }
         
         // Otherwise update the color and replace the bet
-        bet.chipColor = updateColor(bet.chipValue);
+        bet.chipColor = updateChipColor(bet.chipValue);
         newBets[betIndex] = bet;
         
         return newBets;
@@ -338,7 +297,6 @@ function Game() {
     });
 
     const data = await res.json();
-    console.log("Your rank:", data.rank);
   }
 
 
@@ -579,8 +537,6 @@ function Game() {
 
                     result = data.number;
 
-                    console.log("The result here is: ", result)
-
                     const displayResult = result === 37 ? "00" : result.toString();
                     setWinningNumber(displayResult);
                   } catch (error) {
@@ -601,12 +557,7 @@ function Game() {
                     });
 
                     const payoutData = await payoutRes.json();
-                    console.log("Payout:", payoutData.payout);
                     const newBalance = userBalance + payoutData.payout;
-
-                    console.log("Remaining Spins:", remSpins);
-                    console.log("Time left:", timeLeft);
-                    console.log("User balance:", userBalance);
                     
                     // Delay next actions for 2.5 seconds
                     setTimeout(() => {
@@ -883,8 +834,6 @@ function Game() {
           </div>
         </div>
 
-
-
       {/* ======================= Result Modal =============================*/}
       {showModal && (
         <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80">
@@ -946,20 +895,3 @@ function Game() {
 }
     
 export default Game;
-
-const isRed = new Set([
-  "1", "3", "5", "7", "9", "12", "14", "16", "18", 
-  "19", "21", "23", "25", "27", "30", "32", "34", "36"
-]);
-
-const isBlack = new Set([
-  "2", "4", "6", "8", "10", "11", "13", "15", "17", 
-  "20", "22", "24", "26", "28", "29", "31", "33", "35"
-]);
-
-const getColorClass = (num: string) => {
-  if (num === "0" || num === "00") return "bg-green text-white";
-  if (isRed.has(num)) return "bg-red text-white";
-  if (isBlack.has(num)) return "bg-black text-white";
-  return "bg-gray-400"; // fallback for unexpected inputs
-};
