@@ -282,24 +282,6 @@ function Game() {
     return bets.find(bet => bet.gridIndex === index && bet.gridId === gridId);
   };
 
-  async function makeFinalCall() {
-    const res = await fetch("/api/finish_game", {
-      method: "POST",
-      body: JSON.stringify({
-        nickname: "jmancodes",
-        finalBalance: userBalance,
-        turnsUsed: 10,
-        timeUsed: 60,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
-  }
-
-
 // END OF STATE SOUP, START OF UI =============================================================
 
   return (
@@ -562,7 +544,6 @@ function Game() {
                     // Delay next actions for 2.5 seconds
                     setTimeout(() => {
                       if (remSpins === 1 || timeLeft === 0 || newBalance === 0) {
-                        //makeFinalCall();
                         setShowModal(true);
                         setWinningNumber(null);
                         setUserBalance(newBalance);
