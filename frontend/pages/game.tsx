@@ -13,6 +13,7 @@ import HomeButton from "../components/HomeButton";
 
 // Hooks
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
+import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 
 // Utils
 import { getColorClass } from '../utils/recentNumColor';
@@ -47,26 +48,15 @@ function Game() {
   useEffect(() => {
     setNickname(localStorage.getItem("nickname") ?? "");
   }, []);
-  
-  // Timer states
-  const [timeLeft, setTimeLeft] = useState<number>(60); // Start timer at 60 seconds
-  const [isPaused, setIsPaused] = useState<boolean>(true);
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      handleClearBets();
-      setShowModal(true);
-      return;
-    }
-    if (isPaused) {
-      return;
-    }
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
-  
-    return () => clearInterval(timer);
-  }, [timeLeft, isPaused]);
-  
+
+  const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(
+      () => {
+          handleClearBets();
+          setShowModal(true);
+      }
+  );
+
+  const { remSpins, setRemSpins } = useRemSpins();
 
   // states
   const [showModal, setShowModal] = useState(false); // State of the modal (start off closed, toggled by utility button)
@@ -94,7 +84,6 @@ function Game() {
 
   const [totalBet, setTotalBet] = useState<number>(0);
 
-  const [remSpins, setRemSpins] = useState<number>(10); // make sure modal comes up after rem spins = 0
   const [winningNumber, setWinningNumber] = useState<string | null>(null);
   const isWinning = (num: string) => winningNumber === num;
 
