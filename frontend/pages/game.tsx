@@ -13,7 +13,7 @@ import HomeButton from "../components/HomeButton";
 
 // Hooks
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
-import { useTimer, useRemSpins } from '../hooks/useGameFlow';
+import { useTimer, useRemSpins, useResultModal } from '../hooks/useGameFlow';
 
 // Types
 import type { Chip, Bet, BetAction } from '../types/chips';
@@ -41,20 +41,12 @@ function Game() {
 
   const { remSpins, setRemSpins } = useRemSpins();
 
-  // states
-  const [showModal, setShowModal] = useState(false); // State of the modal (start off closed, toggled by utility button)
-  const [isClosing, setIsClosing] = useState(false);
-  const closeModal = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setShowModal(false);
-      setIsClosing(false);
-    }, 300); // match slide-down duration
-  };
+  const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
 
   //Grid Stuff
   const [showGrid, setShowGrid] = useState(false);   // grid visibility
   const [gridBlock, setGridBlock] = useState(false);   // grid interactability
+
   const [isSelected, setIsSelected] = useState(false);
   
   // Chip selection and bet tracking state
@@ -235,10 +227,10 @@ function Game() {
   // Render a chip component for the grid
   const renderChip = (bet: Bet) => (
     <div 
-      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
-      justify-center text-white text-[20px] font-bold z-20"
-      style={{ width: '40px', height: '40px', backgroundColor: bet.chipColor}}>
-      {formatBetValue(bet.chipValue)}
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
+        justify-center text-white text-[20px] font-bold z-20"
+        style={{ width: '40px', height: '40px', backgroundColor: bet.chipColor}}>
+        {formatBetValue(bet.chipValue)}
     </div>
   );
 

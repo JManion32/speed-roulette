@@ -21,10 +21,25 @@ export function useTimer(
         return () => clearInterval(timer);
     }, [timeLeft, isPaused]);
 
-    return { timeLeft, isPaused, setTimeLeft, setIsPaused };
+    return { timeLeft, setTimeLeft, isPaused, setIsPaused };
 }
 
 export function useRemSpins() {
     const [remSpins, setRemSpins] = useState<number>(10);
     return { remSpins, setRemSpins };
+}
+
+export function useResultModal() {
+    const [showModal, setShowModal] = useState(false);
+    const [isClosing, setIsClosing] = useState(false); // private
+
+    const closeModal = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowModal(false);
+            setIsClosing(false);
+        }, 300);
+    };
+
+    return { showModal, setShowModal, isClosing, closeModal };
 }
