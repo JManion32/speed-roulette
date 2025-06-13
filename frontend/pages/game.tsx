@@ -15,30 +15,12 @@ import HomeButton from "../components/HomeButton";
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 
+// Types
+import type { Chip, Bet, BetAction } from '../types/chips';
+
 // Utils
 import { getColorClass } from '../utils/recentNumColor';
 import { updateChipColor, formatBetValue } from '../utils/chipFormatting';
-
-// Define chip types
-interface Chip {
-  value: number;
-  color: string;
-}
-
-// Define Bet
-interface Bet {
-  gridIndex: number;
-  gridId: string;
-  chipValue: number;
-  chipColor: string;
-}
-
-// Track each individual bet action for better undo functionality
-interface BetAction {
-  gridIndex: number;
-  gridId: string;
-  chipValue: number;
-}
 
 function Game() {
   const { isDarkMode } = useDarkMode();
