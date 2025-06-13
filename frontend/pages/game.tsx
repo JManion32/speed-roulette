@@ -17,6 +17,7 @@ import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 
 // Types
 import type { Chip, Bet, BetAction } from '../types/chips';
+import type { ResultNum } from '../types/WinningNum';
 
 // Utils
 import { getColorClass } from '../utils/recentNumColor';
@@ -68,8 +69,6 @@ function Game() {
 
   const [winningNumber, setWinningNumber] = useState<string | null>(null);
   const isWinning = (num: string) => winningNumber === num;
-
-  type ResultNum = string;
 
   const [resultNums, setResultNums] = useState<ResultNum[]>([]);
 
