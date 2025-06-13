@@ -13,11 +13,12 @@ import HomeButton from "../components/HomeButton";
 
 // Hooks
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
-import { useTimer, useRemSpins, useResultModal } from '../hooks/useGameFlow';
+import { useTimer, useRemSpins } from '../hooks/useGameFlow';
+import { useResultModal } from '../hooks/useResultModal';
+import { useResultNums } from '../hooks/useResultNums';
 
 // Types
 import type { Chip, Bet, BetAction } from '../types/chips';
-import type { ResultNum } from '../types/WinningNum';
 
 // Utils
 import { getColorClass } from '../utils/recentNumColor';
@@ -43,6 +44,9 @@ function Game() {
 
   const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
 
+  const { winningNumber, setWinningNumber, isWinning,
+        resultNums, setResultNums, addResultNum } = useResultNums();
+
   //Grid Stuff
   const [showGrid, setShowGrid] = useState(false);   // grid visibility
   const [gridBlock, setGridBlock] = useState(false);   // grid interactability
@@ -58,18 +62,6 @@ function Game() {
   const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
 
   const [totalBet, setTotalBet] = useState<number>(0);
-
-  const [winningNumber, setWinningNumber] = useState<string | null>(null);
-  const isWinning = (num: string) => winningNumber === num;
-
-  const [resultNums, setResultNums] = useState<ResultNum[]>([]);
-
-  const addResultNum = (num: ResultNum) => {
-      setResultNums(prev => {
-          const updated = [num, ...prev]; // newest result on the left
-          return updated.slice(0, 9); // keep only the 9 most recent
-      });
-  };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -133,14 +125,6 @@ function Game() {
       }
   };
 
-  // Clear all bets
-  const handleClearBets = () => {
-      setBets([]);
-      setBetActions([]);
-      setUserBalance(prev => prev + totalBet);
-      setTotalBet(0);
-  };
-
   // Undo last bet action
   const handleUndoBet = () => {
       if (betActions.length === 0) {
@@ -197,6 +181,14 @@ function Game() {
               return newBets;
           });
       }
+  };
+
+    // Clear all bets
+  const handleClearBets = () => {
+      setBets([]);
+      setBetActions([]);
+      setUserBalance(prev => prev + totalBet);
+      setTotalBet(0);
   };
 
   // In between rounds of a match
