@@ -1,7 +1,6 @@
-// frontend/pages/game.tsx
+import { useState, useEffect } from 'react';
 import '../css/index.css'
 import '../css/game.css'
-import { useState, useEffect } from 'react';
 
 // Contexts
 import { useDarkMode } from "../contexts/DarkModeContext";
@@ -26,169 +25,165 @@ import type { Chip, Bet, BetAction } from '../types/chips';
 
 // Utils
 import { getColorClass } from '../utils/recentNumColor';
-import { updateChipColor, formatBetValue } from '../utils/chipFormatting';
+import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
-  const { isDarkMode } = useDarkMode();
+    const { isDarkMode } = useDarkMode();
 
-  // Nickname state
-  const [nickname, setNickname] = useState<string>("");
-  useEffect(() => {
-      setNickname(localStorage.getItem("nickname") ?? "");
-  }, []);
+    // Nickname state
+    const [nickname, setNickname] = useState<string>("");
+    useEffect(() => {
+        setNickname(localStorage.getItem("nickname") ?? "");
+    }, []);
 
-  const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(
-      () => {
-          handleClearBets();
-          setShowModal(true);
-      }
-  );
+    const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(
+        () => {
+            handleClearBets();
+            setShowModal(true);
+        }
+    );
 
-  const { remSpins, setRemSpins } = useRemSpins();
+    const { remSpins, setRemSpins } = useRemSpins();
 
-  const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
+    const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
 
-  const { winningNumber, setWinningNumber, isWinning,
+    const { winningNumber, setWinningNumber, isWinning,
         resultNums, setResultNums, addResultNum } = useResultNums();
 
-  //Grid Stuff
-  const [showGrid, setShowGrid] = useState(false);   // grid visibility
-  const [gridBlock, setGridBlock] = useState(false);   // grid interactability
+    //Grid Stuff
+    const [showGrid, setShowGrid] = useState(false);   // grid visibility
+    const [gridBlock, setGridBlock] = useState(false);   // grid interactability
 
-  const [isSelected, setIsSelected] = useState(false);
+    const [isSelected, setIsSelected] = useState(false);
 
-  const {
-      selectedChip, setSelectedChip,
-      bets, betActions,
-      userBalance, totalBet,
-      handleChipSelect, handleGridCellClick, handleUndoBet,
-      hasBet, getBet,
-      setUserBalance, setTotalBet, setBets, setBetActions,
-  } = useBetting({ setIsPaused });
+    const {
+        selectedChip, setSelectedChip,
+        bets, betActions,
+        userBalance, totalBet,
+        handleChipSelect, handleGridCellClick, handleUndoBet,
+        hasBet, getBet,
+        setUserBalance, setTotalBet, setBets, setBetActions,
+    } = useBetting({ setIsPaused });
 
-  const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
+    const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Clear all bets
-  const handleClearBets = () => {
-      setBets([]);
-      setBetActions([]);
-      setUserBalance(prev => prev + totalBet);
-      setTotalBet(0);
-  };
+    const handleClearBets = () => {
+        setBets([]);
+        setBetActions([]);
+        setUserBalance(prev => prev + totalBet);
+        setTotalBet(0);
+    };
 
-  // In between rounds of a match
-  const resetTable = () => {
-      setTotalBet(0);
-      setBetActions([]);
-      setIsSubmitting(true);
-      setTimeout(() => {
-          setBets([]);
-          setIsSubmitting(false);
-      }, 50);
-  };
+    // In between rounds of a match
+    const resetTable = () => {
+        setTotalBet(0);
+        setBetActions([]);
+        setIsSubmitting(true);
+        setTimeout(() => {
+            setBets([]);
+            setIsSubmitting(false);
+        }, 50);
+    };
 
-  // When the user selects "Play Again"
-  const newGame = () => {
-      setBets([]);
-      setBetActions([]);
-      setUserBalance(20);
-      setTotalBet(0);
-      setRemSpins(10);
-      setTimeLeft(60);
-      setResultNums([]);
-      setWinningNumber(null);
-      setGridBlock(false);
-      setIsSelected(false);
-      setSelectedChip(null);
-  };
+    // When the user selects "Play Again"
+    const newGame = () => {
+        setBets([]);
+        setBetActions([]);
+        setUserBalance(20);
+        setTotalBet(0);
+        setRemSpins(10);
+        setTimeLeft(60);
+        setResultNums([]);
+        setWinningNumber(null);
+        setGridBlock(false);
+        setIsSelected(false);
+        setSelectedChip(null);
+    };
 
-  // Render a chip component for the grid
-  const renderChip = (bet: Bet) => (
-    <div 
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
-        justify-center text-white text-[20px] font-bold z-20"
-        style={{ width: '40px', height: '40px', backgroundColor: bet.chipColor}}>
-        {formatBetValue(bet.chipValue)}
-    </div>
-  );
-
-  return (
-    <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
-      {/*Header: Light/Dark Mode Toggle*/}
-      <ResultHeader
-        nickname={nickname}
-        resultNums={resultNums}
-        isDarkMode={isDarkMode}
-        getColorClass={getColorClass}
-      />
-
-      {/*Body: Everything*/}
-      <div className="absolute top-2/17 w-full">
-        {/* Main container with flex-col to stack elements vertically */}
-        <div className="flex flex-col items-center gap-4">
-
-        <GameStatsBar
-          totalBet={totalBet}
-          timeLeft={timeLeft}
-          remSpins={remSpins}
-          animatedBalance={animatedBalance}
-          balanceChangeDirection={balanceChangeDirection}
-        />
-
-        <BettingChips
-            selectedChip={selectedChip}
-            userBalance={userBalance}
-            isSelected={isSelected}
-            handleChipSelect={handleChipSelect}
-            setIsSelected={setIsSelected}
-        />
-
-        <ActionButtons
-            bets={bets}
-            remSpins={remSpins}
-            isPaused={isPaused}
-            isSubmitting={isSubmitting}
-            gridBlock={gridBlock}
-            timeLeft={timeLeft}
-            userBalance={userBalance}
-            betActions={betActions}
-            setIsPaused={setIsPaused}
-            setRemSpins={setRemSpins}
-            setGridBlock={setGridBlock}
-            setShowModal={setShowModal}
-            setWinningNumber={setWinningNumber}
-            setUserBalance={setUserBalance}
-            resetTable={resetTable}
-            addResultNum={addResultNum}
-            handleClearBets={handleClearBets}
-            handleUndoBet={handleUndoBet}
-        />
-
-        <RouletteBoard
-            isWinning={isWinning}
-            remSpins={remSpins}
-            gridBlock={gridBlock}
-            showGrid={showGrid}
-            handleGridCellClick={handleGridCellClick}
-            hasBet={hasBet}
-            getBet={getBet}
-            renderChip={renderChip}
-        />
-          </div>
+    // Render a chip component for the grid
+    const renderChip = (bet: Bet) => (
+        <div 
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
+            justify-center text-white text-[20px] font-bold z-20"
+            style={{ width: '40px', height: '40px', backgroundColor: bet.chipColor}}>
+            {formatBetValue(bet.chipValue)}
         </div>
-      <ResultModal
-          showModal={showModal}
-          isClosing={isClosing}
-          timeLeft={timeLeft}
-          remSpins={remSpins}
-          userBalance={userBalance}
-          closeModal={closeModal}
-          newGame={newGame}
-      />
-    </div>
-  );
+    );
+
+    return (
+        <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+            <ResultHeader
+                nickname={nickname}
+                resultNums={resultNums}
+                isDarkMode={isDarkMode}
+                getColorClass={getColorClass}
+            />
+
+        <div className="absolute top-2/17 w-full">
+            <div className="flex flex-col items-center gap-4">
+
+                <GameStatsBar
+                    totalBet={totalBet}
+                    timeLeft={timeLeft}
+                    remSpins={remSpins}
+                    animatedBalance={animatedBalance}
+                    balanceChangeDirection={balanceChangeDirection}
+                />
+
+                <BettingChips
+                    selectedChip={selectedChip}
+                    userBalance={userBalance}
+                    isSelected={isSelected}
+                    handleChipSelect={handleChipSelect}
+                    setIsSelected={setIsSelected}
+                />
+
+                <ActionButtons
+                    bets={bets}
+                    remSpins={remSpins}
+                    isPaused={isPaused}
+                    isSubmitting={isSubmitting}
+                    gridBlock={gridBlock}
+                    timeLeft={timeLeft}
+                    userBalance={userBalance}
+                    betActions={betActions}
+                    setIsPaused={setIsPaused}
+                    setRemSpins={setRemSpins}
+                    setGridBlock={setGridBlock}
+                    setShowModal={setShowModal}
+                    setWinningNumber={setWinningNumber}
+                    setUserBalance={setUserBalance}
+                    resetTable={resetTable}
+                    addResultNum={addResultNum}
+                    handleClearBets={handleClearBets}
+                    handleUndoBet={handleUndoBet}
+                />
+
+                <RouletteBoard
+                    isWinning={isWinning}
+                    remSpins={remSpins}
+                    gridBlock={gridBlock}
+                    showGrid={showGrid}
+                    handleGridCellClick={handleGridCellClick}
+                    hasBet={hasBet}
+                    getBet={getBet}
+                    renderChip={renderChip}
+                />
+            </div>
+        </div>
+          <ResultModal
+              showModal={showModal}
+              isClosing={isClosing}
+              timeLeft={timeLeft}
+              remSpins={remSpins}
+              userBalance={userBalance}
+              closeModal={closeModal}
+              newGame={newGame}
+          />
+        </div>
+    );
 }
     
 export default Game;
