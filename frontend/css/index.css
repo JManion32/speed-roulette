@@ -18,6 +18,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
     background-color: var(
         --sr-master-dark

@@ -88,16 +88,16 @@
 
 .chip-button {
     color: var(--standard-white);
-    width: 75px;
-    height: 75px;
+    width: 4.6875rem;
+    height: 4.6875rem;
     border-radius: 50%;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-width: 2px;
+    border-width: 0.125rem;
     transition: background-color 0.2s;
-    font-size: 32px;
+    font-size: 2rem;
     cursor: pointer;
     user-select: none;
 }
@@ -113,17 +113,17 @@
 .button-bottom-black {
     border-color: var(--standard-white);
     color: var(--standard-white);
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: bold;
-    border-width: 2px;
+    border-width: 0.125rem;
 }
 
 /* Square nums: black, red, and row */
 .red-num,
 .black-num,
 .outside-row {
-    width: 86px;
-    height: 86px;
+    width: 5.375rem;
+    height: 5.375rem;
     transition: all 0.5s ease;
 }
 
@@ -142,36 +142,37 @@
 .green-num {
     background-color: var(--roulette-green);
     transition: all 0.5s ease;
-    width: 86px;
-    height: 129px;
+    width: 5.375rem;
+    height: 8.0625rem;
 }
 
 .button-third {
     background: var(--roulette-green);
-    width: 344px;
-    height: 65px;
+    width: 21.5rem;
+    height: 4.0625rem;
+}
+
+.button-bottom-green,
+.button-bottom-red,
+.button-bottom-black {
+    width: 10.75rem;
+    height: 4.0625rem;
 }
 
 .button-bottom-green {
     background: var(--roulette-green);
-    width: 172px;
-    height: 65px;
 }
 
 .button-bottom-red {
     background: var(--roulette-red);
-    width: 172px;
-    height: 65px;
 }
 
 .button-bottom-black {
     background: var(--standard-black);
-    width: 172px;
-    height: 65px;
 }
 
 .board-grid {
-    font-size: 12px;
+    font-size: 0.75rem;
     cursor: pointer;
     display: flex;
     align-items: center;
