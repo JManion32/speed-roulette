@@ -2,13 +2,14 @@
 import '../css/index.css'
 import '../css/game.css'
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 // Contexts
 import { useDarkMode } from "../contexts/DarkModeContext";
 
 // Components
+import BettingChips from '../components/BettingChips';
 import DarkModeToggle from "../components/DarkModeToggle";
+import GameStatsBar from "../components/GameStatsBar";
 import HomeButton from "../components/HomeButton";
 import ResultModal from "../components/ResultModal";
 
@@ -143,170 +144,22 @@ function Game() {
       <div className="absolute top-2/17 w-full">
         {/* Main container with flex-col to stack elements vertically */}
         <div className="flex flex-col items-center gap-4">
-          {/* Timer and spins section */}
-          <div className="flex justify-center mb-5 w-full space-x-16">
-          <div className="flex justify-center mb-5 w-full space-x-12">
-            {/* Balance */}
-            <div className="flex items-center min-w-[200px] whitespace-nowrap">
-              <p className="text-[24px] font-bold mr-2">Balance:</p>
-              <button 
-                className={`h-10 px-3 rounded-md font-bold text-[20px] pointer-events-none transition-colors duration-300
-                  ${balanceChangeDirection === 'up'
-                    ? 'bg-green-400'
-                    : balanceChangeDirection === 'down'
-                    ? 'bg-red-400'
-                    : isDarkMode
-                    ? '!bg-gray-600'
-                    : '!bg-gray-200'}`}
-              >
-                ${animatedBalance.toFixed(2)}
-              </button>
-            </div>
 
-            {/* Bet */}
-            <div className="flex items-center min-w-[150px] whitespace-nowrap">
-              <p className="text-[24px] font-bold mr-2">Bet:</p>
-              <button 
-                className={`h-10 px-3 rounded-md font-bold text-[20px] pointer-events-none ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}
-              >
-                ${totalBet.toFixed(2)}
-              </button>
-            </div>
+        <GameStatsBar
+          totalBet={totalBet}
+          timeLeft={timeLeft}
+          remSpins={remSpins}
+          animatedBalance={animatedBalance}
+          balanceChangeDirection={balanceChangeDirection}
+        />
 
-            {/* Timer */}
-            <div className="flex items-center min-w-[150px] whitespace-nowrap">
-              <p className="text-[24px] font-bold mr-2">Time:</p>
-              <button 
-                className={`h-10 px-3 rounded-md font-bold text-[20px] pointer-events-none ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}
-              >
-                {timeLeft}
-              </button>
-            </div>
-
-            {/* Spins */}
-            <div className="flex items-center min-w-[100px] whitespace-nowrap">
-              <p className="text-[24px] font-bold mr-2">Spins:</p>
-              <button 
-                className={`h-10 px-3 rounded-md font-bold text-[20px] pointer-events-none ${isDarkMode ? 'bg-gray-600' : 'bg-gray-200'}`}
-              >
-                {remSpins}
-              </button>
-            </div>
-          </div>
-        </div>
-
-            {/* Controls section */}
-            <div className="flex flex-wrap gap-2 justify-center mb-5">
-              {/* Chip buttons */}
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === .50 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 0.5 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < .5 ?  'bg-gray-900 cursor-not-allowed' : 'bg-gray-500 hover:bg-gray-400 border-gray-400'}`}
-                onClick={() => {
-                  handleChipSelect(.50, '#6B7280');
-                  setIsSelected(true);
-                }}
-              >
-                .50
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 1 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 1 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 1 ?  'bg-gray-900 cursor-not-allowed' : 'bg-indigo-500 hover:bg-indigo-400 border-indigo-400'}`}
-                onClick={() => {
-                  handleChipSelect(1, '#6366F1');
-                  setIsSelected(true);
-                }}
-              >
-                1
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 2 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 2 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 2 ?  'bg-gray-900 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-400 border-blue-400'}`}
-                onClick={() => {
-                  handleChipSelect(2, '#3B82F6');
-                  setIsSelected(true);
-              ``}}
-              >
-                2
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 5 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 5 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 5 ?  'bg-gray-900 cursor-not-allowed' : 'bg-purple-500 hover:bg-purple-400 border-purple-400'}`}
-                onClick={() => {
-                  handleChipSelect(5, '#A855F7')
-                  setIsSelected(true);
-                }}
-              >
-                5
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 10 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 10 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 10 ?  'bg-gray-900 cursor-not-allowed' : 'bg-pink-500 hover:bg-pink-400 border-pink-400'}`}
-                onClick={() => {
-                  handleChipSelect(10, '#EC4899')
-                  setIsSelected(true);
-                }}
-              >
-                10
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 20 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 20 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 20 ?  'bg-gray-900 cursor-not-allowed' : 'bg-cyan-500 hover:bg-cyan-400 border-cyan-400'}`}
-                onClick={() => {
-                  handleChipSelect(20, '#06B6D4')
-                  setIsSelected(true);
-                }}
-              >
-                20
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 50 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 50 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 50 ?  'bg-gray-900 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-400 border-emerald-400'}`}
-                onClick={() => {
-                  handleChipSelect(50, '#10B981')
-                  setIsSelected(true);
-                }}
-              >
-                50
-              </button>
-              <button 
-                className={`chip-button mr-2
-                  ${selectedChip?.value === 100 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 100 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 100 ?  'bg-gray-900 cursor-not-allowed' : 'bg-yellow-500 hover:bg-yellow-400 border-yellow-400'}`}
-                onClick={() => {
-                  handleChipSelect(100, '#EAB308')
-                  setIsSelected(true);
-                }}
-              >
-                100
-              </button>
-              <button 
-                className={`chip-button
-                  ${selectedChip?.value === 500 ?  isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500' : ''}
-                  ${!isSelected && userBalance >= 500 ? isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light' : ''}
-                  ${userBalance < 500 ?  'bg-gray-900 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-400 border-orange-400'}`}
-                onClick={() => {
-                  handleChipSelect(500, '#F97316')
-                  setIsSelected(true);
-                }}
-              >
-                500
-              </button>
-            </div>
+        <BettingChips
+            selectedChip={selectedChip}
+            userBalance={userBalance}
+            isSelected={isSelected}
+            handleChipSelect={handleChipSelect}
+            setIsSelected={setIsSelected}
+        />
 
             {/* Action buttons section */}
             <div className="flex gap-2 justify-center w-full mb-5">
