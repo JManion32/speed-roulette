@@ -16,6 +16,7 @@ import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 import { useResultModal } from '../hooks/useResultModal';
 import { useResultNums } from '../hooks/useResultNums';
+import { useBetting } from '../hooks/useBetting';
 
 // Types
 import type { Chip, Bet, BetAction } from '../types/chips';
@@ -52,136 +53,19 @@ function Game() {
   const [gridBlock, setGridBlock] = useState(false);   // grid interactability
 
   const [isSelected, setIsSelected] = useState(false);
-  
-  // Chip selection and bet tracking state
-  const [selectedChip, setSelectedChip] = useState<Chip | null>(null);
-  const [bets, setBets] = useState<Bet[]>([]);
-  const [betActions, setBetActions] = useState<BetAction[]>([]);
-  const [userBalance, setUserBalance] = useState<number>(20);
+
+  const {
+      selectedChip, setSelectedChip,
+      bets, betActions,
+      userBalance, totalBet,
+      handleChipSelect, handleGridCellClick, handleUndoBet,
+      hasBet, getBet,
+      setUserBalance, setTotalBet, setBets, setBetActions,
+  } = useBetting({ setIsPaused });
 
   const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
 
-  const [totalBet, setTotalBet] = useState<number>(0);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Handling chip selection
-  const handleChipSelect = (value: number, color: string) => {
-      if(userBalance >= value) {
-          setSelectedChip({ value, color });
-      }
-  };
-
-  // Handling grid cell clicks
-  const handleGridCellClick = (index: number, gridId: string) => {
-      if (!selectedChip || userBalance < selectedChip.value) return; // No chip selected, no action taken
-    
-      setIsPaused(false); // only for first round
-
-      // Record this bet action for undo functionality
-      setBetActions(prev => [...prev, {
-          gridIndex: index,
-          gridId,
-          chipValue: selectedChip.value
-      }]);
-
-      setTotalBet(prev => prev + selectedChip.value);
-      setUserBalance(prev => prev - selectedChip.value);
-    
-      // Check if there's already a bet at this position
-      const existingBetIndex = bets.findIndex(bet => 
-          bet.gridIndex === index && bet.gridId === gridId
-      );
-    
-      if (existingBetIndex === -1) {
-          // No existing bet, add a new one
-          setBets(prevBets => [
-          ...prevBets,
-              {
-                  gridIndex: index,
-                  gridId,
-                  chipValue: selectedChip.value,
-                  chipColor: selectedChip.color
-              }
-          ]);
-      }
-      else {
-          // Update existing bet
-          setBets(prevBets => {
-              const newBets = [...prevBets];
-              const updatedBet = { ...newBets[existingBetIndex] }; // Create a copy to avoid direct mutation
-          
-              // Add to existing bet value
-              updatedBet.chipValue += selectedChip.value;
-          
-              // Update color based on new total
-              updatedBet.chipColor = updateChipColor(updatedBet.chipValue);
-          
-              // Replace the old bet with the updated one
-              newBets[existingBetIndex] = updatedBet;
-          
-              return newBets;
-          });
-      }
-  };
-
-  // Undo last bet action
-  const handleUndoBet = () => {
-      if (betActions.length === 0) {
-          return;
-      }
-    
-      // Get the last bet action
-      const lastAction = betActions[betActions.length - 1];
-    
-      // Remove that action from the history
-      setBetActions(prev => {
-          const newActions = prev.slice(0, -1);
-          return newActions;
-      });
-    
-      // Update total bet amount
-      setUserBalance(prev => {
-          const newBalance = prev + lastAction.chipValue;
-          return newBalance;
-      });
-
-      // Update total bet amount
-      setTotalBet(prev => {
-          const newTotal = prev - lastAction.chipValue;
-          return newTotal;
-      });
-    
-      // Find the bet to update
-      const betIndex = bets.findIndex(bet => 
-          bet.gridIndex === lastAction.gridIndex && bet.gridId === lastAction.gridId
-      );
-    
-      if (betIndex !== -1) {
-          setBets(prevBets => {
-              // Create a copy of the bets array
-              const newBets = [...prevBets];
-        
-              // Get the specific bet to update (but don't mutate it yet)
-              const bet = {...newBets[betIndex]};
-              const oldValue = bet.chipValue;
-        
-              // Subtract the chip value
-              bet.chipValue -= lastAction.chipValue;
-        
-              // If the bet value is now zero or less, remove it
-              if (bet.chipValue <= 0) {
-                  return newBets.filter((_, i) => i !== betIndex);
-              }
-        
-              // Otherwise update the color and replace the bet
-              bet.chipColor = updateChipColor(bet.chipValue);
-              newBets[betIndex] = bet;
-        
-              return newBets;
-          });
-      }
-  };
 
     // Clear all bets
   const handleClearBets = () => {
@@ -226,18 +110,6 @@ function Game() {
         {formatBetValue(bet.chipValue)}
     </div>
   );
-
-  // Helper function to check if a cell has a bet
-  const hasBet = (index: number, gridId: string) => {
-      return bets.some(bet => bet.gridIndex === index && bet.gridId === gridId);
-  };
-
-  // Helper to get bet for a cell
-  const getBet = (index: number, gridId: string) => {
-      return bets.find(bet => bet.gridIndex === index && bet.gridId === gridId);
-  };
-
-// END OF STATE SOUP, START OF UI =============================================================
 
   return (
     <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>

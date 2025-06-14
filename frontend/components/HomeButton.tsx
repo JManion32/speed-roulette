@@ -1,7 +1,5 @@
-// src/components/HomeButton.tsx
-
 import { Link } from 'react-router-dom';
-import { useDarkMode } from '../contexts/DarkModeContext'; // ✅ Make sure this is imported
+import { useDarkMode } from '../contexts/DarkModeContext';
 import home from '../assets/home.png';
 import home_white from '../assets/home_white.png';
 
