@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react';
 import { useDarkMode } from "../contexts/DarkModeContext";
 
 // Components
+import ActionButtons from '../components/ActionButtons';
 import BettingChips from '../components/BettingChips';
-import DarkModeToggle from "../components/DarkModeToggle";
 import GameStatsBar from "../components/GameStatsBar";
-import HomeButton from "../components/HomeButton";
+import ResultHeader from "../components/ResultHeader";
 import ResultModal from "../components/ResultModal";
 import RouletteBoard from '../components/RouletteBoard';
 
@@ -117,30 +117,13 @@ function Game() {
   return (
     <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
       {/*Header: Light/Dark Mode Toggle*/}
-      <div className="p-4 flex top-0">
-        <p className={`absolute top-7 left-8 font-bold text-[24px] ${isDarkMode ? 'text-white' : 'text-black'}`}>
-          {nickname}
-        </p>
-        <span className="absolute top-7 right-44 flex flex-row">
-          {[...Array(9)].map((_, i) => {
-            const result = resultNums[i];
-            return (
-              <button
-                key={i}
-                className={`h-10 w-10 ml-2 rounded-md font-bold border-white border-2 transition duration-200 ${
-                  result !== undefined 
-                    ? getColorClass(result) 
-                    : (isDarkMode ? 'bg-gray-700' : 'bg-gray-300')
-                }`}
-              >
-                {result ?? ''}
-              </button>
-            );
-          })}
-        </span>
-        <DarkModeToggle />
-        <HomeButton />
-      </div>
+      <ResultHeader
+        nickname={nickname}
+        resultNums={resultNums}
+        isDarkMode={isDarkMode}
+        getColorClass={getColorClass}
+      />
+
       {/*Body: Everything*/}
       <div className="absolute top-2/17 w-full">
         {/* Main container with flex-col to stack elements vertically */}
@@ -162,101 +145,37 @@ function Game() {
             setIsSelected={setIsSelected}
         />
 
-            {/* Action buttons section */}
-            <div className="flex gap-2 justify-center w-full mb-5">
-              <button 
-                className={`h-12 w-45 rounded-md font-bold text-[20px] mr-25 transition-transform transform hover:scale-105
-                  ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-200 hover:bg-gray-300'}`}
-                onClick={gridBlock ? undefined : handleClearBets}
-              >
-                Clear
-              </button>
-              <button 
-                className={`h-12 w-45 rounded-md font-bold text-[20px] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-200 hover:bg-gray-300'}`}
-                onClick={gridBlock ? undefined : handleUndoBet}
-                disabled={betActions.length === 0}
-              >
-                Undo
-              </button>
-              <button 
-                className={`h-12 w-45 rounded-md font-bold text-[20px] transition duration-200 ${
-                  // Listener so user can only submit if they have a placed bet
-                  bets.length === 0 || remSpins === 0 || isPaused || isSubmitting
-                    ? isDarkMode ? 'bg-gray-600 text-gray-500 cursor-not-allowed' : 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                    : isDarkMode ? 'bg-green-500 hover:bg-green-400 transition-transform transform hover:scale-105' : 'bg-green-200 hover:bg-green-300 transition-transform transform hover:scale-105'
-                }`}
-                onClick={async () => {
-                  if (bets.length === 0 || remSpins === 0 || isPaused) return;
-                  
-                  setIsPaused(true);
-                  setRemSpins(prev => prev - 1);
-                  setGridBlock(true);
+        <ActionButtons
+            bets={bets}
+            remSpins={remSpins}
+            isPaused={isPaused}
+            isSubmitting={isSubmitting}
+            gridBlock={gridBlock}
+            timeLeft={timeLeft}
+            userBalance={userBalance}
+            betActions={betActions}
+            setIsPaused={setIsPaused}
+            setRemSpins={setRemSpins}
+            setGridBlock={setGridBlock}
+            setShowModal={setShowModal}
+            setWinningNumber={setWinningNumber}
+            setUserBalance={setUserBalance}
+            resetTable={resetTable}
+            addResultNum={addResultNum}
+            handleClearBets={handleClearBets}
+            handleUndoBet={handleUndoBet}
+        />
 
-                  let result: number = -1; // initialized to prevent use issues
-
-                  // http request for the random number
-                  try {
-                    const res = await fetch('http://localhost:8080/api/spin');
-                    const data = await res.json();
-
-                    result = data.number;
-
-                    const displayResult = result === 37 ? "00" : result.toString();
-                    setWinningNumber(displayResult);
-                  } catch (error) {
-                    console.error("Spin error:", error);
-                  }
-                  
-                  // http request for the payout
-                  try {
-                    const payoutRes = await fetch("http://localhost:8080/api/payout", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        bets: bets,
-                        result: result,
-                      }),
-                    });
-
-                    const payoutData = await payoutRes.json();
-                    const newBalance = userBalance + payoutData.payout;
-                    
-                    // Delay next actions for 2.5 seconds
-                    setTimeout(() => {
-                      if (remSpins === 1 || timeLeft === 0 || newBalance === 0) {
-                        setShowModal(true);
-                        setWinningNumber(null);
-                        setUserBalance(newBalance);
-                        return;
-                      }
-                      resetTable();
-                      const displayResult = result === 37 ? "00" : result.toString();
-                      addResultNum(displayResult);
-                      setWinningNumber("");
-                      setIsPaused(false);
-                      setGridBlock(false);
-                      setUserBalance(newBalance);
-                    }, 2500);
-                  } catch (error) {
-                    console.error("Payout error:", error);
-                  }
-                }}
-              >
-                Submit Bets
-              </button>
-            </div>
-            <RouletteBoard
-                isWinning={isWinning}
-                remSpins={remSpins}
-                gridBlock={gridBlock}
-                showGrid={showGrid}
-                handleGridCellClick={handleGridCellClick}
-                hasBet={hasBet}
-                getBet={getBet}
-                renderChip={renderChip}
-            />
+        <RouletteBoard
+            isWinning={isWinning}
+            remSpins={remSpins}
+            gridBlock={gridBlock}
+            showGrid={showGrid}
+            handleGridCellClick={handleGridCellClick}
+            hasBet={hasBet}
+            getBet={getBet}
+            renderChip={renderChip}
+        />
           </div>
         </div>
       <ResultModal
