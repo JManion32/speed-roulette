@@ -51,7 +51,7 @@ function Leaderboard() {
         </div>
         {/*Body: Leaderboard and Table*/}
         <div  className="absolute top-40 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[64px] font-bold">Leaderboard</h1>
+          <h1 className="text-[4rem] font-bold">Leaderboard</h1>
         </div>
       </div>
     );

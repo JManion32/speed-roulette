@@ -22,7 +22,7 @@ function Stats() {
         </div>
         {/*Body: Statistics Table*/}
         <div  className="absolute top-1/6 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[64px] font-bold">Cool Statistics</h1>
+          <h1 className="text-[4rem] font-bold">Cool Statistics</h1>
         </div>
       </div>
     );

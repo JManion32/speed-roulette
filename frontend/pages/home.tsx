@@ -29,7 +29,7 @@ function Home() {
   
         {/* Center content - using absolute positioning */}
         <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[96px] mb-8 whitespace-nowrap font-bold constant-glow">Speed Roulette</h1>
+          <h1 className="text-[6rem] mb-8 whitespace-nowrap font-bold constant-glow">Speed Roulette</h1>
           <div className="flex flex-col items-center">
             <input 
               type="text" 
@@ -69,7 +69,7 @@ function Home() {
             </Link>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-500 ' : 'bg-gray-300 hover:bg-gray-350 text-purple-900'} text-[80px] font-bold w-30 h-30 rounded-full flex justify-center mr-10 transition-transform transform hover:scale-110`}
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-500 ' : 'bg-gray-300 hover:bg-gray-350 text-purple-900'} text-[5rem] font-bold w-30 h-30 rounded-full flex justify-center mr-10 transition-transform transform hover:scale-110`}
               onClick={() => setShowModal(true)}>
                   ?
               </button>
