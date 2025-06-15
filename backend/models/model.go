@@ -1,7 +1,5 @@
 package models
 
-// Shared data structures used by both bet and game
-
 // Bet represents a bet placed on the roulette table
 type Bet struct {
     GridIndex int     `json:"gridIndex"`

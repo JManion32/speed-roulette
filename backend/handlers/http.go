@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"speed-roulette/backend/db"
 	"speed-roulette/backend/models"
+	"speed-roulette/backend/game"
 )
 
 func HandleSpin(w http.ResponseWriter, r *http.Request) {
@@ -17,7 +18,7 @@ func HandleSpin(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  result := models.GenerateNum()
+  result := game.GenerateNum()
   //go models.SaveRound(result)
   json.NewEncoder(w).Encode(map[string]int{"number": result})
 }
@@ -53,7 +54,7 @@ func HandlePayout(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payout := models.Payout(req.Bets, req.Result)
+	payout := game.Payout(req.Bets, req.Result)
 
 	resp := PayoutResponse{Payout: payout}
 	json.NewEncoder(w).Encode(resp)
