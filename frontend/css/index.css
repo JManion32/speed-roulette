@@ -18,12 +18,56 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  font-size: 16px;
-}
-
 body {
     background-color: var(
         --sr-master-dark
     ); /* same as Tailwind's bg-gray-900 */
 }
+
+/* Scaling based on screen size */
+html {
+  font-size: 16px; /* Base: 1080p */
+}
+
+@media (max-width: 30rem) { /* 480px */
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 40rem) { /* 640px */
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 48rem) { /* 768px */
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 135rem) { /* 2160px */
+  html {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 160rem) { /* 2560px (2K) */
+  html {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 200rem) { /* 3200px */
+  html {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 240rem) { /* 3840px (4K) */
+  html {
+    font-size: 40px;
+  }
+}
+

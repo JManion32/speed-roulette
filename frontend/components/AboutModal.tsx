@@ -41,7 +41,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80" onClick={handleOutsideClick}>
       <div className={`
         ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} 
-        rounded-3xl p-8 w-[800px] h-[550px] max-w-[90%] relative 
+        rounded-3xl p-8 w-[50rem] h-[34.375rem] max-w-[90%] relative 
         ${isClosing ? 'slide-down' : 'slide-up'}`}
       >
         <button 
@@ -54,7 +54,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {['about', 'rules', 'contact'].map((tab) => (
             <button
               key={tab}
-              className={`py-2 px-6 text-[28px] ${activeTab === tab ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
+              className={`py-2 px-6 text-[1.75rem] ${activeTab === tab ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
               onClick={() => setActiveTab(tab)}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -62,7 +62,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           ))}
         </div>
 
-        <div className="max-h-[500px] overflow-y-auto text-[18px]">
+        <div className="max-h-[31.25rem] overflow-y-auto text-[1.125rem]">
           {activeTab === 'about' && (
             <>
               <p className="mb-6">
@@ -106,17 +106,17 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
 
           {activeTab === 'contact' && (
             <>
-              <p className="text-[32px] mb-10">
+              <p className="text-[2rem] mb-10">
                 <span className="font-bold">Inquiries:</span> jman32@speedroulette.io
               </p>
               <button 
-                className="h-25 w-150 bg-red-500 hover:bg-red-400 font-bold text-[64px] text-white rounded-md mb-10"
+                className="h-25 w-150 bg-red-500 hover:bg-red-400 font-bold text-[4rem] text-white rounded-md mb-10"
                 onClick={() => window.open('https://youtube.com/@jmancodes?si=ZgYwDV3Fj49Z4-uH', '_blank')}
               >
                 YouTube
               </button><br />
               <button 
-                className="h-25 w-150 bg-blue-500 hover:bg-blue-400 font-bold text-[64px] text-white rounded-md"
+                className="h-25 w-150 bg-blue-500 hover:bg-blue-400 font-bold text-[4rem] text-white rounded-md"
                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
               >
                 LinkedIn
