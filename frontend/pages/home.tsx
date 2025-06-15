@@ -1,4 +1,5 @@
 import '../css/index.css'
+import '../css/home.css'
 import stats from "../assets/stats.png";
 import trophy from "../assets/trophy.png";
 import { useState, useEffect } from 'react';
@@ -29,7 +30,7 @@ function Home() {
   
         {/* Center content - using absolute positioning */}
         <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[6rem] mb-8 whitespace-nowrap font-bold constant-glow">Speed Roulette</h1>
+          <h1 className="text-[6rem] mb-8 whitespace-nowrap font-bold constant-glow fade-in">Speed Roulette</h1>
           <div className="flex flex-col items-center">
             <input 
               type="text" 
