@@ -109,11 +109,11 @@ export default function RouletteBoard({
                 className="absolute top-0"
                 style={{ 
                   display: 'grid', // Always display the grid for bet placement
-                  gridTemplateColumns: '66px repeat(10, 20px 66px) 20px 77px',
-                  gridTemplateRows: '75px 20px 66px 20px 66px 20px',
+                  gridTemplateColumns: '4.125rem repeat(10, 1.25rem 4.125rem) 1.25rem 4.8125rem',
+                  gridTemplateRows: '4.6875rem 1.25rem 4.125rem 1.25rem 4.125rem 1.25rem',
                   gap: '0px',
                   zIndex: 1,
-                  left: '95px'
+                  left: '5.9375rem'
                 }}
               >
                 {Array(23 * 6).fill(null).map((_, index) => (
@@ -137,10 +137,10 @@ export default function RouletteBoard({
                 className="absolute top-0 left-0"
                 style={{ 
                   display: 'grid', // Always display the grid for bet placement
-                  gridTemplateColumns: '20px',
-                  gridTemplateRows: '75px 20px 24px 20px 24px 20px 65px 19px',
+                  gridTemplateColumns: '1.25rem',
+                  gridTemplateRows: '4.6875rem 1.25rem 1.5rem 1.25rem 1.5rem 1.25rem 4.0625rem 1.1875rem',
                   gap: '0px',
-                  left: '75px',
+                  left: '4.6875rem',
                   zIndex: 2
                 }}
               >
@@ -165,8 +165,8 @@ export default function RouletteBoard({
                 className="absolute top-0"
                 style={{ 
                   display: 'grid', // Always display the grid for bet placement
-                  gridTemplateColumns: '75px',
-                  gridTemplateRows: '119px 20px 119px',
+                  gridTemplateColumns: '4.6875rem',
+                  gridTemplateRows: '7.4375rem 1.25rem 7.4375rem',
                   gap: '0px',
                 }}
               >
@@ -191,11 +191,11 @@ export default function RouletteBoard({
                 className="absolute"
                 style={{ 
                   display: 'grid', // Always display the grid for bet placement
-                  gridTemplateColumns: '344px 344px 344px',
-                  gridTemplateRows: '65px',
+                  gridTemplateColumns: '21.5rem 21.5rem 21.5rem',
+                  gridTemplateRows: '4.0625rem',
                   gap: '0px',
-                  left: '86px',
-                  top: '258px'
+                  left: '5.375rem',
+                  top: '16.125rem'
                 }}
               >
                 {Array(3 * 1).fill(null).map((_, index) => (
@@ -219,10 +219,10 @@ export default function RouletteBoard({
                 className="absolute top-0"
                 style={{ 
                   display: 'grid', // Always display the grid for bet placement
-                  gridTemplateColumns: '86px',
-                  gridTemplateRows: '86px 86px 86px',
+                  gridTemplateColumns: '5.375rem',
+                  gridTemplateRows: '5.375rem 5.375rem 5.375rem',
                   gap: '0px',
-                  left: '1118px'
+                  left: '69.875rem'
                 }}
               >
                 {Array(1 * 3).fill(null).map((_, index) => (
@@ -246,11 +246,11 @@ export default function RouletteBoard({
                 className="absolute"
                 style={{ 
                   display: 'grid', // Always display the grid for bet placement
-                  gridTemplateColumns: 'repeat(6, 172px)',
-                  gridTemplateRows: '65px',
+                  gridTemplateColumns: 'repeat(6, 10.75rem)',
+                  gridTemplateRows: '4.0625rem',
                   gap: '0px',
-                  left: '86px',
-                  top: '323px'
+                  left: '5.375rem',
+                  top: '20.1875rem'
                 }}
               >
                 {Array(6 * 1).fill(null).map((_, index) => (
