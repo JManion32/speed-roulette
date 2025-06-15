@@ -1,5 +1,6 @@
 import '../css/index.css'
 import '../css/home.css'
+import about from "../assets/about.png";
 import stats from "../assets/stats.png";
 import trophy from "../assets/trophy.png";
 import { useState, useEffect } from 'react';
@@ -70,9 +71,9 @@ function Home() {
             </Link>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-500 ' : 'border-2 border-black hover:bg-gray-350 text-purple-900'} text-[5rem] font-bold w-30 h-30 rounded-full flex justify-center mr-10 transition-transform transform hover:scale-110`}
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}
               onClick={() => setShowModal(true)}>
-                  ?
+                  <img src={about} alt="About" className="w-20 h-20"/>
               </button>
               <Link to="/leaderboard" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
