@@ -49,14 +49,14 @@ export default function ActionButtons({
       {/* Action buttons section */}
       <div className="flex gap-2 justify-center w-full mb-5">
         <button 
-          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-white hover:bg-gray-300'}`}
+          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
           onClick={gridBlock ? undefined : handleClearBets}
         >
           Clear
         </button>
 
         <button 
-          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-white hover:bg-gray-300'}`}
+          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
           onClick={gridBlock ? undefined : handleUndoBet}
           disabled={betActions.length === 0}
         >
