@@ -40,7 +40,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80" onClick={handleOutsideClick}>
       <div className={`
-        ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} 
+        ${isDarkMode ? 'bg-gray-800' : 'bg-gray-300'} 
         rounded-3xl p-8 w-[50rem] h-[34.375rem] max-w-[90%] relative 
         ${isClosing ? 'slide-down' : 'slide-up'}`}
       >
@@ -54,7 +54,15 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {['about', 'rules', 'contact'].map((tab) => (
             <button
               key={tab}
-              className={`py-2 px-6 text-[1.75rem] ${activeTab === tab ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
+              className={`py-2 px-6 text-[1.75rem] ${
+                activeTab === tab
+                  ? isDarkMode
+                    ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
+                    : 'text-yellow-700 font-bold border-b-2 border-yellow-700'
+                  : isDarkMode
+                    ? 'hover:text-yellow-500'
+                    : 'hover:text-yellow-700'
+              }`}
               onClick={() => setActiveTab(tab)}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}

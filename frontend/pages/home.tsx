@@ -20,7 +20,7 @@ function Home() {
   const navigate = useNavigate();
   
     return (
-      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-300 text-black'}`}>
         {/* Header */}
         <div className="p-4 flex top-0">
           <p className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
@@ -30,7 +30,7 @@ function Home() {
   
         {/* Center content - using absolute positioning */}
         <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[6rem] mb-8 whitespace-nowrap font-bold constant-glow fade-in">Speed Roulette</h1>
+          <h1 className={`text-[6rem] mb-8 whitespace-nowrap font-bold fade-in ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
           <div className="flex flex-col items-center">
             <input 
               type="text" 
@@ -44,7 +44,7 @@ function Home() {
                 }
               }}
               maxLength={50}
-              className={`pl-4 ${isDarkMode ? 'bg-indigo-950 text-white border-1 border-white-100' : 'bg-gray-200 text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
+              className={`pl-4 ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-gray-200 text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
             />
 
@@ -61,7 +61,7 @@ function Home() {
                       : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     : isDarkMode
                       ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
-                      : 'bg-green-300 hover:bg-green-400 transform hover:scale-105'
+                      : 'bg-green-300 hover:bg-green-400 transform hover:scale-105 border-2'
                 }`}
                 disabled={nickname === ""}
               >
@@ -70,17 +70,17 @@ function Home() {
             </Link>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-500 ' : 'bg-gray-300 hover:bg-gray-350 text-purple-900'} text-[5rem] font-bold w-30 h-30 rounded-full flex justify-center mr-10 transition-transform transform hover:scale-110`}
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-yellow-500 ' : 'border-2 border-black hover:bg-gray-350 text-purple-900'} text-[5rem] font-bold w-30 h-30 rounded-full flex justify-center mr-10 transition-transform transform hover:scale-110`}
               onClick={() => setShowModal(true)}>
                   ?
               </button>
               <Link to="/leaderboard" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
                   <img src={trophy} alt="Trophy" className="w-20 h-20"/>
                 </button>
               </Link>
               <Link to="/stats" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center transition-transform transform hover:scale-110`}>
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center transition-transform transform hover:scale-110`}>
                   <img src={stats} alt="Statistics" className="w-20 h-20"/>
                 </button>
               </Link>

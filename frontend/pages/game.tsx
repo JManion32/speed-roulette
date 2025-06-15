@@ -113,7 +113,7 @@ function Game() {
     );
 
     return (
-        <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+        <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-300 text-black'}`}>
             <ResultHeader
                 nickname={nickname}
                 resultNums={resultNums}

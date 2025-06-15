@@ -29,7 +29,7 @@ export default function ResultHeader({
               className={`h-10 w-10 ml-2 rounded-md font-bold border-white border-2 transition duration-200 ${
                 result !== undefined 
                   ? getColorClass(result) 
-                  : (isDarkMode ? 'bg-gray-700' : 'bg-gray-300')
+                  : (isDarkMode ? 'bg-gray-700' : 'bg-gray-400')
               }`}
             >
               {result ?? ''}

@@ -13,6 +13,14 @@
   animation: fadeIn 1s ease-out forwards;
 }
 
+.light-glow {
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.25),         /* strong base shadow */
+    0 0 10px rgba(0, 0, 0, 0.2),             /* outer glow */
+    3px 5px 20px rgba(0, 0, 0, 0.15),        /* long soft shadow */
+    0 0 12px rgba(255, 255, 255, 0.6);       /* white ambient glow for contrast */
+}
+
 .constant-glow {
     text-shadow:
         0 0 6px rgb(255 255 255 / 40%),
