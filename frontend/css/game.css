@@ -48,12 +48,6 @@
     }
 }
 
-.constant-glow {
-    text-shadow:
-        0 0 6px rgb(255 255 255 / 40%),
-        0 0 10px rgb(255 255 255 / 20%);
-}
-
 @keyframes slide-up {
     0% {
         transform: translateY(100%);
