@@ -21,10 +21,10 @@ function Home() {
   const navigate = useNavigate();
   
     return (
-      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-300 text-black'}`}>
+      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
         {/* Header */}
         <div className="p-4 flex top-0">
-          <p className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
+          <p className={`font-bold ${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
           <DarkModeToggle />
         </div>
@@ -45,7 +45,7 @@ function Home() {
                 }
               }}
               maxLength={50}
-              className={`pl-4 ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-gray-200 text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
+              className={`pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
             />
 
@@ -59,7 +59,7 @@ function Home() {
                   nickname === ""
                     ? isDarkMode
                       ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : 'bg-gray-300 text-gray-400 cursor-not-allowed'
                     : isDarkMode
                       ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
                       : 'bg-green-300 hover:bg-green-400 transform hover:scale-105 border-2'
@@ -71,17 +71,17 @@ function Home() {
             </Link>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}
               onClick={() => setShowModal(true)}>
                   <img src={about} alt="About" className="w-20 h-20"/>
               </button>
               <Link to="/leaderboard" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
                   <img src={trophy} alt="Trophy" className="w-20 h-20"/>
                 </button>
               </Link>
               <Link to="/stats" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black hover:bg-gray-350'} w-30 h-30 rounded-full flex justify-center items-center transition-transform transform hover:scale-110`}>
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center transition-transform transform hover:scale-110`}>
                   <img src={stats} alt="Statistics" className="w-20 h-20"/>
                 </button>
               </Link>
@@ -92,7 +92,7 @@ function Home() {
   
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
-          <p className="text-purple-700 hover:text-purple-500">Privacy</p>
+          <p className="font-bold text-purple-700 hover:text-purple-500">Privacy</p>
         </div>
       </div>
     )

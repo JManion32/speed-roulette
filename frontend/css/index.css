@@ -2,6 +2,7 @@
 @import "./colors.css";
 
 @theme {
+    --color-light-mode: var(--sr-master-light);
     --color-green: var(--roulette-green);
     --color-red: var(--roulette-red);
     --color-winning: var(--winning-number);
@@ -19,9 +20,7 @@
 }
 
 body {
-    background-color: var(
-        --sr-master-dark
-    ); /* same as Tailwind's bg-gray-900 */
+    background-color: var(--sr-master-dark); /* same as Tailwind's bg-gray-900 */
 }
 
 /* Scaling based on screen size */

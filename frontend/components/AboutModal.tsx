@@ -40,7 +40,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80" onClick={handleOutsideClick}>
       <div className={`
-        ${isDarkMode ? 'bg-gray-800' : 'bg-gray-300'} 
+        ${isDarkMode ? 'bg-gray-800' : 'bg-light-mode'} 
         rounded-3xl p-8 w-[50rem] h-[34.375rem] max-w-[90%] relative 
         ${isClosing ? 'slide-down' : 'slide-up'}`}
       >

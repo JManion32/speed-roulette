@@ -27,12 +27,14 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[12.5rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Balance:</p>
             <button
-            className={`h-10 px-3 rounded-md font-bold text-[1.25rem] text-white pointer-events-none transition-colors duration-300
-              ${balanceChangeDirection === 'up'
-                ? 'bg-green-400'
-                : balanceChangeDirection === 'down'
-                ? 'bg-red-400'
-                : '!bg-gray-600'}`}
+              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none transition-colors duration-300
+                ${balanceChangeDirection === 'up'
+                  ? 'bg-green-400'
+                  : balanceChangeDirection === 'down'
+                  ? 'bg-red-400'
+                  : isDarkMode
+                  ? '!bg-gray-600'
+                  : '!bg-white'}`}
             >
               ${animatedBalance.toFixed(2)}
             </button>
@@ -42,7 +44,8 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[9.375rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Bet:</p>
             <button
-              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] text-white bg-gray-600 pointer-events-none`}
+              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
+                isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
             >
               ${totalBet.toFixed(2)}
             </button>
@@ -52,7 +55,8 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[9.375rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Time:</p>
             <button
-              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] text-white bg-gray-600 pointer-events-none`}
+              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
+                isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
             >
               {timeLeft}
             </button>
@@ -62,7 +66,8 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[6.25rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Spins:</p>
             <button
-              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] text-white bg-gray-600 pointer-events-none `}
+              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
+                isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
             >
               {remSpins}
             </button>

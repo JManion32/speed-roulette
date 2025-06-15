@@ -17,7 +17,7 @@ function Leaderboard() {
 
     return (
       // Header, includes home and mode toggle buttons
-      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-300 text-gray-900'}`}>
+      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
         <div className="p-4 flex top-0">
           <HomeButton />
           {/* Tabs */}

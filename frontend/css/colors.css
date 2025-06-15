@@ -1,5 +1,6 @@
 :root {
     /* ========== Master ========== */
+    --sr-master-light: #e9eef3; /* Source: neetcode.io in light mode */
     --sr-master-dark: #111827; /* gray-900 */
 
     /* ========== Standard ========== */

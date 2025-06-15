@@ -41,10 +41,14 @@ export default function ChipControls({
         return (
           <button
             key={value}
-            className={`chip-button mr-2
-              ${isCurrent ? (isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''}
-              ${!isSelected && canAfford ? (isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light') : ''}
-              ${!canAfford ? 'bg-gray-900 cursor-not-allowed' : bg}`}
+            disabled={!canAfford}
+            className={`chip-button mr-2 ${
+              isCurrent ? (isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''
+            } ${
+              !isSelected && canAfford ? (isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light') : ''
+            } ${
+              !canAfford ? (isDarkMode ? 'bg-gray-900' : 'bg-gray-400') + ' cursor-not-allowed opacity-50' : bg
+            }`}
             onClick={() => {
               handleChipSelect(value, color);
               setIsSelected(true);

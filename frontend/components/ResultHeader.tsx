@@ -26,11 +26,13 @@ export default function ResultHeader({
           return (
             <button
               key={i}
-              className={`h-10 w-10 ml-2 rounded-md font-bold border-white border-2 transition duration-200 ${
-                result !== undefined 
-                  ? getColorClass(result) 
-                  : (isDarkMode ? 'bg-gray-700' : 'bg-gray-400')
-              }`}
+              className={`h-10 w-10 ml-2 rounded-md font-bold border-2 transition duration-200 ${
+              isDarkMode ? 'border-white' : 'border-black'
+              } ${
+              result !== undefined 
+                ? getColorClass(result) 
+                : (isDarkMode ? 'bg-gray-700' : 'bg-gray-300')
+            }`}
             >
               {result ?? ''}
             </button>

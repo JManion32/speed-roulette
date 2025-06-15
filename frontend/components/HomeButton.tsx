@@ -15,7 +15,7 @@ export default function HomeButton() {
           transition-transform transform hover:scale-110
           ${isDarkMode 
             ? 'bg-gray-800 hover:bg-gray-700' 
-            : 'bg-gray-300 hover:bg-gray-350 border-2 border-black'}
+            : 'bg-white hover:bg-gray-300 border-2 border-black'}
         `}
       >
         <img

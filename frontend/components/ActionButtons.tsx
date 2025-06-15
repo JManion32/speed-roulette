@@ -49,14 +49,14 @@ export default function ActionButtons({
       {/* Action buttons section */}
       <div className="flex gap-2 justify-center w-full mb-5">
         <button 
-          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 text-white bg-gray-600 ${isDarkMode ? 'hover:bg-gray-500' : 'hover:bg-gray-700'}`}
+          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-white hover:bg-gray-300'}`}
           onClick={gridBlock ? undefined : handleClearBets}
         >
           Clear
         </button>
 
         <button 
-          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 text-white bg-gray-600 ${isDarkMode ? 'hover:bg-gray-500' : 'hover:bg-gray-700'}`}
+          className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-white hover:bg-gray-300'}`}
           onClick={gridBlock ? undefined : handleUndoBet}
           disabled={betActions.length === 0}
         >
@@ -66,8 +66,8 @@ export default function ActionButtons({
         <button 
           className={`h-12 w-45 rounded-md font-bold text-[1.25rem] transition duration-200 ${
             bets.length === 0 || remSpins === 0 || isPaused || isSubmitting
-              ? 'bg-gray-600 text-gray-500 cursor-not-allowed'
-              : `bg-green-500 text-white transition-transform transform hover:scale-105 ${isDarkMode ? 'hover:bg-green-400' : 'hover:bg-green-600'}`
+              ? `cursor-not-allowed ${isDarkMode ? 'bg-gray-600 text-gray-500' : 'bg-gray-300 text-gray-400 cursor-not-allowed'}`
+              : `transition-transform transform hover:scale-105 ${isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-300 hover:bg-green-400'}`
           }`}
           onClick={async () => {
             if (bets.length === 0 || remSpins === 0 || isPaused) return;
