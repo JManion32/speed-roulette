@@ -21,32 +21,28 @@ function Leaderboard() {
         <div className="p-4 flex top-0">
           <HomeButton />
           {/* Tabs */}
-            <div className="flex justify-center border-b border-gray-700 absolute left-50 top-10 mb-8">
-              <button 
-                className={`py-2 px-6 text-xl ${activeTab === 'today' ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
-                onClick={() => setActiveTab('today')}
+          <div className="flex justify-center border-b border-gray-700 absolute left-50 top-10 mb-8">
+            {['today', 'week', 'month', 'allTime'].map((tabKey) => (
+              <button
+                key={tabKey}
+                className={`py-2 px-6 text-xl ${
+                  activeTab === tabKey
+                    ? isDarkMode
+                      ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
+                      : 'text-yellow-700 font-bold border-b-2 border-yellow-700'
+                    : isDarkMode
+                      ? 'hover:text-yellow-500'
+                      : 'hover:text-yellow-700'
+                }`}
+                onClick={() => setActiveTab(tabKey)}
               >
-                Today
+                {tabKey === 'today' && 'Today'}
+                {tabKey === 'week' && 'This Week'}
+                {tabKey === 'month' && 'This Month'}
+                {tabKey === 'allTime' && 'All Time'}
               </button>
-              <button 
-                className={`py-2 px-6 text-xl ${activeTab === 'week' ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
-                onClick={() => setActiveTab('week')}
-              >
-                This Week
-              </button>
-              <button 
-                className={`py-2 px-6 text-xl ${activeTab === 'month' ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
-                onClick={() => setActiveTab('month')}
-              >
-                This Month
-              </button>
-              <button 
-                className={`py-2 px-6 text-xl ${activeTab === 'allTime' ? 'text-yellow-500 font-bold border-b-2 border-yellow-500' : 'hover:text-yellow-500'}`}
-                onClick={() => setActiveTab('allTime')}
-              >
-                All Time
-              </button>
-            </div>
+            ))}
+          </div>
           <DarkModeToggle />
         </div>
         {/*Body: Leaderboard and Table*/}
