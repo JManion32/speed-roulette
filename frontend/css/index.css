@@ -25,7 +25,7 @@ body {
 
 /* Scaling based on screen size */
 html {
-  font-size: 16px; /* Base: 1080p */
+  font-size: 16px; /* Base: 1920px */
 }
 
 @media (max-width: 30rem) { /* 480px */
@@ -48,25 +48,25 @@ html {
 
 @media (min-width: 135rem) { /* 2160px */
   html {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 
 @media (min-width: 160rem) { /* 2560px (2K) */
   html {
-    font-size: 28px;
+    font-size: 20px;
   }
 }
 
 @media (min-width: 200rem) { /* 3200px */
   html {
-    font-size: 34px;
+    font-size: 22px;
   }
 }
 
 @media (min-width: 240rem) { /* 3840px (4K) */
   html {
-    font-size: 40px;
+    font-size: 24px;
   }
 }
 
