@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"log"
 
-	//"speed-roulette/backend/models"
-
 	_ "github.com/lib/pq"
 )
 
@@ -50,12 +48,11 @@ func InitDB() {
 	createGamesTable := `
 	CREATE TABLE IF NOT EXISTS games (
 		game_id SERIAL PRIMARY KEY,
-		nickname VARCHAR(50) NOT NULL,
-		end_time TIMESTAMP,
-		game_date DATE DEFAULT CURRENT_DATE,
+	    nickname VARCHAR(50) NOT NULL,
 		final_balance DECIMAL(12,2) NOT NULL,
 		spins_used INTEGER NOT NULL,
-		time_used INTEGER NOT NULL
+		time_used INTEGER NOT NULL,
+		game_date_time DATE DEFAULT CURRENT_DATE,
 	);`
 
 	createRoundsTable := `
@@ -77,7 +74,6 @@ func InitDB() {
 		is_top_row BOOLEAN,
 		is_middle_row BOOLEAN,
 		is_bottom_row BOOLEAN,
-		time_remaining INTEGER NOT NULL
 	);`
 
 	if _, err := db.Exec(createGamesTable); err != nil {
@@ -122,30 +118,3 @@ func GetPlayerRank(balance float64) (int, error) {
 	`, balance).Scan(&rank)
 	return rank, err
 }
-
-/*
-func LogRound(r models.Round) error {
-	db, err := Connect()
-	if err != nil {
-		return err
-	}
-	defer db.Close()
-
-	_, err = db.Exec(`
-		INSERT INTO rounds (
-			result_number, is_red, is_black, is_green,
-			is_even, is_odd, is_low, is_high,
-			is_first_dozen, is_second_dozen, is_third_dozen,
-			is_top_row, is_middle_row, is_bottom_row,
-			time_remaining
-		)
-		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
-	`, r.ResultNumber, r.IsRed, r.IsBlack, r.IsGreen,
-		r.IsEven, r.IsOdd, r.IsLow, r.IsHigh,
-		r.IsFirstDozen, r.IsSecondDozen, r.IsThirdDozen,
-		r.IsTopRow, r.IsMiddleRow, r.IsBottomRow,
-		r.TimeRemaining)
-
-	return err
-}
-*/

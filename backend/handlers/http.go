@@ -23,8 +23,6 @@ func HandleSpin(w http.ResponseWriter, r *http.Request) {
   json.NewEncoder(w).Encode(map[string]int{"number": result})
 }
 
-
-
 //===================================================================
 
 type PayoutRequest struct {
@@ -65,36 +63,4 @@ func HandleFinishGame(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-
-	type FinishGameRequest struct {
-		Nickname     string  `json:"nickname"`
-		FinalBalance float64 `json:"finalBalance"`
-		TurnsUsed    int     `json:"turnsUsed"`
-		TimeUsed     int     `json:"timeUsed"`
-	}
-
-	var req FinishGameRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
-		return
-	}
-
-	// Insert game and get game ID
-	gameID, err := db.InsertGame(req.Nickname, req.FinalBalance, req.TurnsUsed, req.TimeUsed)
-	if err != nil {
-		http.Error(w, "DB error", http.StatusInternalServerError)
-		return
-	}
-
-	// Get rank
-	rank, err := db.GetPlayerRank(req.FinalBalance)
-	if err != nil {
-		http.Error(w, "Rank error", http.StatusInternalServerError)
-		return
-	}
-
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"game_id": gameID,
-		"rank":    rank,
-	})
 }
