@@ -46,27 +46,51 @@ html {
   }
 }
 
-@media (min-width: 135rem) { /* 2160px */
+/* Fluid increase steps */
+@media (min-width: 127.5rem) {  /* ~2040px */
+  html {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 135rem) {  /* 2160px */
   html {
     font-size: 18px;
   }
 }
 
-@media (min-width: 160rem) { /* 2560px (2K) */
+@media (min-width: 147.5rem) {  /* ~2360px */
+  html {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 160rem) {  /* 2560px (2K) */
   html {
     font-size: 20px;
   }
 }
 
-@media (min-width: 200rem) { /* 3200px */
+@media (min-width: 180rem) {  /* ~2880px */
+  html {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 200rem) {  /* 3200px */
   html {
     font-size: 22px;
   }
 }
 
-@media (min-width: 240rem) { /* 3840px (4K) */
+@media (min-width: 220rem) {  /* ~3520px */
+  html {
+    font-size: 23px;
+  }
+}
+
+@media (min-width: 240rem) {  /* 3840px (4K) */
   html {
     font-size: 24px;
   }
 }
-

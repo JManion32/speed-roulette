@@ -14,7 +14,7 @@ export default function HomeButton() {
           flex justify-center items-center 
           transition-transform transform hover:scale-110
           ${isDarkMode 
-            ? 'bg-gray-800 hover:bg-gray-700' 
+            ? 'bg-gray-700 hover:bg-gray-600' 
             : 'bg-white hover:bg-gray-300 border-2 border-black'}
         `}
       >
