@@ -46,13 +46,13 @@ func InitDB() {
 	defer db.Close()
 
 	createGamesTable := `
-	CREATE TABLE IF NOT EXISTS games (
+		CREATE TABLE IF NOT EXISTS games (
 		game_id SERIAL PRIMARY KEY,
-	    nickname VARCHAR(50) NOT NULL,
-		final_balance DECIMAL(12,2) NOT NULL,
+		nickname VARCHAR(50) NOT NULL,
+		final_balance NUMERIC(12,2) NOT NULL,
 		spins_used INTEGER NOT NULL,
 		time_used INTEGER NOT NULL,
-		game_date_time DATE DEFAULT CURRENT_DATE
+		game_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- More precise than just DATE
 	);`
 
 	createRoundsTable := `
