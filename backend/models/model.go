@@ -52,3 +52,10 @@ type Round struct {
 	IsBottomRow    bool
 	TimeRemaining  int
 }
+
+type GameRequest struct {
+    Nickname     string  `json:"nickname"`
+    FinalBalance float64 `json:"final_balance"`
+    SpinsUsed    int     `json:"spins_used"`
+    TimeUsed     int     `json:"time_used"`
+}
