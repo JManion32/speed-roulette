@@ -71,10 +71,13 @@ function Leaderboard() {
         <DarkModeToggle />
       </div>
 
+      <div className="absolute top-1/6 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-center">
+          <h1 className="text-[4rem] font-bold">Leaderboard</h1>
+      </div>
+
       {/* Body: Leaderboard */}
-      <div className="absolute top-40 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        <h1 className="text-[4rem] font-bold mb-4">Leaderboard</h1>
-        <div className="max-h-[30rem] overflow-y-auto">
+      <div className="absolute top-50 left-50 transform">
+        <div className="max-h-[30rem]">
           {leaderboard.length > 0 ? (
             <table className="w-full text-left border-collapse mt-4">
               <thead>
