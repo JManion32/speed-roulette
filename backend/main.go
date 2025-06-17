@@ -23,6 +23,8 @@ func main() {
 	mux.HandleFunc("/api/game", handlers.HandleGame)
 	mux.HandleFunc("/api/round", handlers.HandleRound)
 	mux.HandleFunc("/api/rank", handlers.HandleGetRank)
+	mux.HandleFunc("/api/leaderboard", handlers.HandleLeaderboard)
+
 
 	// Enable CORS
 	handler := cors.Default().Handler(mux)
