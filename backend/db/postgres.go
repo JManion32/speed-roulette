@@ -96,11 +96,51 @@ func InsertGame(nickname string, balance float64, turnsUsed, timeUsed int) (int,
 
 	var gameID int
 	err = db.QueryRow(`
-		INSERT INTO games (nickname, final_balance, turns_used, time_used)
+		INSERT INTO games (nickname, final_balance, spins_used, time_used)
 		VALUES ($1, $2, $3, $4)
 		RETURNING game_id
 	`, nickname, balance, turnsUsed, timeUsed).Scan(&gameID)
+
 	return gameID, err
+}
+
+func InsertRound(
+	gameID int,
+	roundNumber int,
+	resultNumber int,
+	isRed, isBlack, isGreen bool,
+	isEven, isOdd, isLow, isHigh bool,
+	isFirstDozen, isSecondDozen, isThirdDozen bool,
+	isTopRow, isMiddleRow, isBottomRow bool,
+	) error {
+	db, err := Connect()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	_, err = db.Exec(`
+		INSERT INTO rounds (
+		game_id, round_number, result_number,
+		is_red, is_black, is_green,
+		is_even, is_odd, is_low, is_high,
+		is_first_dozen, is_second_dozen, is_third_dozen,
+		is_top_row, is_middle_row, is_bottom_row
+		) VALUES (
+		$1, $2, $3,
+		$4, $5, $6,
+		$7, $8, $9, $10,
+		$11, $12, $13,
+		$14, $15, $16
+		)`,
+		gameID, roundNumber, resultNumber,
+		isRed, isBlack, isGreen,
+		isEven, isOdd, isLow, isHigh,
+		isFirstDozen, isSecondDozen, isThirdDozen,
+		isTopRow, isMiddleRow, isBottomRow,
+	)
+
+	return err
 }
 
 func GetPlayerRank(balance float64) (int, error) {

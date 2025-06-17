@@ -19,7 +19,6 @@ func HandleSpin(w http.ResponseWriter, r *http.Request) {
   }
 
   result := game.GenerateNum()
-  //go models.SaveRound(result)
   json.NewEncoder(w).Encode(map[string]int{"number": result})
 }
 
@@ -63,4 +62,22 @@ func HandleFinishGame(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
+
+	var req models.GameRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid request: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	gameID, err := db.InsertGame(req.Nickname, req.FinalBalance, req.SpinsUsed, req.TimeUsed)
+	if err != nil {
+		http.Error(w, "Failed to save game: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]any{
+		"status":  "success",
+		"game_id": gameID,
+	})
 }
