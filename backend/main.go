@@ -20,8 +20,9 @@ func main() {
 	mux.HandleFunc("/ws", handlers.WsEndpoint)
 	mux.HandleFunc("/api/spin", handlers.HandleSpin)
 	mux.HandleFunc("/api/payout", handlers.HandlePayout)
-	http.HandleFunc("/api/game", handlers.HandleGame)
-	http.HandleFunc("/api/round", handlers.HandleRound)
+	mux.HandleFunc("/api/game", handlers.HandleGame)
+	mux.HandleFunc("/api/round", handlers.HandleRound)
+	mux.HandleFunc("/api/rank", handlers.HandleGetRank)
 
 	// Enable CORS
 	handler := cors.Default().Handler(mux)
@@ -33,4 +34,3 @@ func main() {
 		log.Fatalf("Server failed to start: %v", err)
 	}
 }
-

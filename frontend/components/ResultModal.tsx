@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { useEffect, useState } from 'react';
 
 interface ResultModalProps {
   showModal: boolean;
@@ -22,7 +23,46 @@ export default function ResultModal({
 }: ResultModalProps) {
   const { isDarkMode } = useDarkMode();
 
-  if (!showModal) return null;
+  const nickname = localStorage.getItem("nickname");
+
+  const [rank, setRank] = useState<number | null>(null);
+  const [gameLogged, setGameLogged] = useState(false);
+
+  useEffect(() => {
+    if (!showModal || gameLogged || userBalance <= 0) return;
+
+    const logGameAndFetchRank = async () => {
+      try {
+        // Save the game
+        const res = await fetch("http://localhost:8080/api/game", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nickname: nickname,
+            final_balance: userBalance,
+            spins_used: 20 - remSpins,
+            time_used: 60 - timeLeft,
+          }),
+        });
+
+        const data = await res.json();
+        setGameLogged(true);
+
+        // Fetch the rank
+        const rankRes = await fetch(`http://localhost:8080/api/rank?balance=${userBalance}`);
+        const rankData = await rankRes.json();
+        setRank(rankData.rank);
+      } catch (err) {
+        console.error("Failed to log game or fetch rank:", err);
+      }
+    };
+
+    logGameAndFetchRank();
+  }, [showModal, gameLogged, userBalance, remSpins, timeLeft]);
+
+    if (!showModal) return null;
 
   return (
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80">
@@ -51,10 +91,10 @@ export default function ResultModal({
               ${userBalance.toFixed(2)}
             </button>
 
-            <p className="text-[1.875rem] font-bold mt-6">Rank (Today):</p>
-            <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}>
-              N/A
-            </button>
+          <p className="text-[1.875rem] font-bold mt-6">Rank (Today):</p>
+          <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}>
+            {userBalance > 0 && rank !== null ? `#${rank}` : "N/A"}
+          </button>
           </div>
 
           <div className="flex flex-row items-center mt-12">
