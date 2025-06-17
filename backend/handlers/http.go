@@ -3,7 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
-	"speed-roulette/backend/db"
+	//"speed-roulette/backend/db"
 	"speed-roulette/backend/models"
 	"speed-roulette/backend/game"
 )

@@ -13,7 +13,7 @@ const (
 	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
-	password = "your-password"
+	password = "(Postgres2025)"
 	dbname   = "roulette"
 )
 
@@ -52,7 +52,7 @@ func InitDB() {
 		final_balance DECIMAL(12,2) NOT NULL,
 		spins_used INTEGER NOT NULL,
 		time_used INTEGER NOT NULL,
-		game_date_time DATE DEFAULT CURRENT_DATE,
+		game_date_time DATE DEFAULT CURRENT_DATE
 	);`
 
 	createRoundsTable := `
@@ -73,7 +73,7 @@ func InitDB() {
 		is_third_dozen BOOLEAN,
 		is_top_row BOOLEAN,
 		is_middle_row BOOLEAN,
-		is_bottom_row BOOLEAN,
+		is_bottom_row BOOLEAN
 	);`
 
 	if _, err := db.Exec(createGamesTable); err != nil {
@@ -84,7 +84,7 @@ func InitDB() {
 		log.Fatal("Failed to create rounds table:", err)
 	}
 
-	log.Println("✅ Database initialized successfully.")
+	log.Println("Database initialized successfully.")
 }
 
 func InsertGame(nickname string, balance float64, turnsUsed, timeUsed int) (int, error) {

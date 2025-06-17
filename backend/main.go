@@ -5,32 +5,30 @@ import (
 	"log"
 	"net/http"
 
-	//"speed-roulette/backend/db"
+	"github.com/rs/cors"
+	"speed-roulette/backend/db"
 	"speed-roulette/backend/handlers"
 )
 
 func main() {
 	fmt.Println("Starting Speed Roulette backend server...")
 
-	// Initialize DB
-	//db.InitDB()
+	db.InitDB()
 
-	// Register handlers
-	http.HandleFunc("/ws", handlers.WsEndpoint)
-	http.HandleFunc("/api/spin", handlers.HandleSpin)
-	http.HandleFunc("/api/payout", handlers.HandlePayout)
-	//http.HandleFunc("/api/finish_game", handlers.HandleFinishGame)
+	// Create a new mux
+	mux := http.NewServeMux()
+	mux.HandleFunc("/ws", handlers.WsEndpoint)
+	mux.HandleFunc("/api/spin", handlers.HandleSpin)
+	mux.HandleFunc("/api/payout", handlers.HandlePayout)
 
-	// Print registered routes
-	fmt.Println("Registered routes:")
-	fmt.Println("- /ws (WebSocket endpoint)")
-	fmt.Println("- /api/spin")
+	// Enable CORS
+	handler := cors.Default().Handler(mux)
 
-	// Start server with additional logging
+	// Start server
 	addr := ":8080"
 	fmt.Printf("Server starting on %s\n", addr)
-
-	if err := http.ListenAndServe(addr, nil); err != nil {
+	if err := http.ListenAndServe(addr, handler); err != nil {
 		log.Fatalf("Server failed to start: %v", err)
 	}
 }
+
