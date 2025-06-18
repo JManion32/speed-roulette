@@ -14,6 +14,9 @@ import { useDarkMode } from "../contexts/DarkModeContext";
 import DarkModeToggle from "../components/DarkModeToggle";
 import AboutModal from "../components/AboutModal";
 
+// Utils
+import { checkName } from '../utils/checkName';
+
 function Home() {
   const { isDarkMode } = useDarkMode();
   const [showModal, setShowModal] = useState(false);
@@ -31,17 +34,26 @@ function Home() {
   
         {/* Center content - using absolute positioning */}
         <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className={`text-[6rem] mb-8 whitespace-nowrap font-bold fade-in ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
+          <h1 className={`text-[6rem] mb-6 whitespace-nowrap font-bold fade-in ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
           <div className="flex flex-col items-center">
+            <p className="text-red-500 font-bold font-size: 4rem mb-1" id="profanity-error">Please choose a clean nickname!</p>
             <input 
               type="text" 
+              id="nickname-enter-form"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && nickname) {
                   e.preventDefault();
-                  localStorage.setItem("nickname", nickname);
-                  navigate('/game');
+                  if (!checkName(nickname)) {
+                      localStorage.setItem("nickname", nickname);
+                      navigate("/game");
+                      document.getElementById("profanity-error")!.style.visibility = "hidden";
+                  } else {
+                      document.getElementById("profanity-error")!.style.visibility = "visible";
+                      localStorage.removeItem("nickname");
+                      setNickname("");
+                  }
                 }
               }}
               maxLength={50}
@@ -49,26 +61,31 @@ function Home() {
               placeholder="Enter Nickname"
             />
 
-            <Link to="/game" className="inline-block">
-              <button
-                onClick={() => {
-                  localStorage.setItem("nickname", nickname);
-                  navigate('/game');
-                }}
-                className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${
-                  nickname === ""
-                    ? isDarkMode
-                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-gray-300 text-gray-400 cursor-not-allowed'
-                    : isDarkMode
-                      ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
-                      : 'bg-green-300 hover:bg-green-400 transform hover:scale-105 border-2'
-                }`}
-                disabled={nickname === ""}
-              >
-                Play
-              </button>
-            </Link>
+            <button
+              onClick={() => {
+                if (!checkName(nickname)) {
+                    localStorage.setItem("nickname", nickname);
+                    navigate("/game");
+                    document.getElementById("profanity-error")!.style.visibility = "hidden";
+                } else {
+                    document.getElementById("profanity-error")!.style.visibility = "visible";
+                    localStorage.removeItem("nickname");
+                    setNickname("");
+                }
+              }}
+              className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${
+                nickname === ""
+                  ? isDarkMode
+                    ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-300 text-gray-400 cursor-not-allowed'
+                  : isDarkMode
+                    ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
+                    : 'bg-green-300 hover:bg-green-400 transform hover:scale-105 border-2'
+              }`}
+              disabled={nickname === ""}
+            >
+              Play
+            </button>
 
             <div className="flex justify-center gap-4">
               <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}

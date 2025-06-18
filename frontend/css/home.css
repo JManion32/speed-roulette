@@ -26,3 +26,7 @@
         0 0 6px rgb(255 255 255 / 40%),
         0 0 10px rgb(255 255 255 / 20%);
 }
+
+#profanity-error {
+    visibility: hidden;
+}
