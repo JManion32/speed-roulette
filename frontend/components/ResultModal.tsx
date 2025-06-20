@@ -26,43 +26,45 @@ export default function ResultModal({
   const nickname = localStorage.getItem("nickname");
 
   const [rank, setRank] = useState<number | null>(null);
-  const [gameLogged, setGameLogged] = useState(false);
 
   useEffect(() => {
-    if (!showModal || gameLogged || userBalance <= 0) return;
+    if (!showModal) return;
 
-    const logGameAndFetchRank = async () => {
+    const nickname = localStorage.getItem("nickname");
+    if (!nickname || userBalance <= 0) return;
+
+    // prevent duplicate logging if re-renders happen
+    let alreadyLogged = false;
+
+    const logGame = async () => {
+      if (alreadyLogged) return;
+      alreadyLogged = true;
+
       try {
-        // Save the game
         const res = await fetch("http://localhost:8080/api/game", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             nickname: nickname,
             final_balance: userBalance,
-            spins_used: 20 - remSpins,
-            time_used: 60 - timeLeft,
+            spins_used: remSpins,
+            time_used: timeLeft,
           }),
         });
 
         const data = await res.json();
-        setGameLogged(true);
-
-        // Fetch the rank
         const rankRes = await fetch(`http://localhost:8080/api/rank?balance=${userBalance}`);
         const rankData = await rankRes.json();
         setRank(rankData.rank);
       } catch (err) {
-        console.error("Failed to log game or fetch rank:", err);
+        console.error("Failed to log game:", err);
       }
     };
 
-    logGameAndFetchRank();
-  }, [showModal, gameLogged, userBalance, remSpins, timeLeft]);
+    logGame();
+  }, [showModal]);
 
-    if (!showModal) return null;
+   if (!showModal) return null;
 
   return (
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80">
