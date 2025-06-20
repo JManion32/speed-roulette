@@ -45,12 +45,14 @@ func GetMultiplier(bet models.Bet, result int) float64 {
 		}
 	} else {
 		if bet.GridIndex%2 == 0 {
+			// -22 gives the index in the bottom right of the avenue
 			index = GetNum(bet.GridIndex - 22)
-			if index == result || index-1 == result || index-2 == result ||
-				index-3 == result || index-4 == result || index-5 == result {
+			if index == result || index+1 == result || index+2 == result ||
+				index-1 == result || index-2 == result || index-3 == result {
 				return 6
 			}
 		} else {
+			// -23 gives the index at the bottom of the street
 			index = GetNum(bet.GridIndex - 23)
 			if index == result || index+1 == result || index+2 == result {
 				return 12
