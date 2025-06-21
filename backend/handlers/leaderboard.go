@@ -6,9 +6,17 @@ import (
 	"net/http"
 
 	"speed-roulette/backend/db"
+	"speed-roulette/backend/utils"
 )
 
 func HandleLeaderboard(w http.ResponseWriter, r *http.Request) {
+
+	ip := utils.GetClientIP(r)
+	if err := utils.CheckIPLeaderboardLimit(ip); err != nil {
+		http.Error(w, err.Error(), http.StatusTooManyRequests)
+		return
+	}
+
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return

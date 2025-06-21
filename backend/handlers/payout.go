@@ -39,6 +39,11 @@ func HandlePayout(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if err := utils.CheckRateLimit(token); err != nil {
+		http.Error(w, err.Error(), http.StatusTooManyRequests)
+		return
+	}
+
 	payout := game.Payout(req.Bets, req.Result)
 	newBalance := balance - totalBet + payout
 	redis.Client.Set(redis.Ctx, "balance:"+token, newBalance, 0)

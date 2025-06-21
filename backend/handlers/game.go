@@ -68,7 +68,8 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Invalidate balance token (prevent replay attack)
+	// Invalidate tokens to prevent replay attacks
+	_ = redis.Client.Del(redis.Ctx, "token:"+token)
 	_ = redis.Client.Del(redis.Ctx, "balance:"+token)
 
 	json.NewEncoder(w).Encode(map[string]any{

@@ -10,6 +10,13 @@ import (
 )
 
 func HandleRegister(w http.ResponseWriter, r *http.Request) {
+
+	ip := utils.GetClientIP(r)
+	if err := utils.CheckIPRateLimit(ip); err != nil {
+		http.Error(w, err.Error(), http.StatusTooManyRequests)
+		return
+	}
+
 	type request struct {
 		Nickname string `json:"nickname"`
 	}

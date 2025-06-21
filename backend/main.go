@@ -26,6 +26,7 @@ func main() {
 	mux.HandleFunc("/api/spin", middleware.RequireAuth(handlers.HandleSpin))
 	mux.HandleFunc("/api/payout", middleware.RequireAuth(handlers.HandlePayout))
 	mux.HandleFunc("/api/game", middleware.RequireAuth(handlers.HandleGame))
+	mux.HandleFunc("/api/logout", middleware.RequireAuth(handlers.HandleLogout))
 	mux.HandleFunc("/api/round", middleware.RequireAuth(handlers.HandleRound))
 	mux.HandleFunc("/api/rank", middleware.RequireAuth(handlers.HandleGetRank))
 
