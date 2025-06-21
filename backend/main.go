@@ -8,12 +8,14 @@ import (
 	"github.com/rs/cors"
 	"speed-roulette/backend/db"
 	"speed-roulette/backend/handlers"
+	"speed-roulette/backend/redis"
 )
 
 func main() {
 	fmt.Println("Starting Speed Roulette backend server...")
 
 	db.InitDB()
+	redis.InitRedis()
 
 	// Create a new mux
 	mux := http.NewServeMux()
