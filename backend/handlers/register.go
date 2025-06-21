@@ -22,9 +22,15 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 
 	token := utils.GenerateToken(16)
 
-	err := redis.Client.Set(redis.Ctx, "token:"+token, req.Nickname, 24*time.Hour).Err()
-	if err != nil {
+	// Set nickname token
+	if err := redis.Client.Set(redis.Ctx, "token:"+token, req.Nickname, 24*time.Hour).Err(); err != nil {
 		http.Error(w, "Could not save token", http.StatusInternalServerError)
+		return
+	}
+
+	// Set balance token
+	if err := redis.Client.Set(redis.Ctx, "balance:"+token, 20.0, 10*time.Minute).Err(); err != nil {
+		http.Error(w, "Could not save balance", http.StatusInternalServerError)
 		return
 	}
 
