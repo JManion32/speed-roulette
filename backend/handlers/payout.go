@@ -3,8 +3,11 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+
 	"speed-roulette/backend/game"
 	"speed-roulette/backend/models"
+	"speed-roulette/backend/redis"
+	"speed-roulette/backend/utils"
 )
 
 type PayoutRequest struct {
@@ -17,10 +20,7 @@ type PayoutResponse struct {
 }
 
 func HandlePayout(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-
+	utils.SetupCORS(&w, r)
 	if r.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusOK)
 		return
@@ -32,8 +32,16 @@ func HandlePayout(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payout := game.Payout(req.Bets, req.Result)
+	totalBet := utils.SumBets(req.Bets)
+	token, balance, err := utils.ValidateAndGetBalance(r, totalBet)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusForbidden)
+		return
+	}
 
-	resp := PayoutResponse{Payout: payout}
-	json.NewEncoder(w).Encode(resp)
+	payout := game.Payout(req.Bets, req.Result)
+	newBalance := balance - totalBet + payout
+	redis.Client.Set(redis.Ctx, "balance:"+token, newBalance, 0)
+
+	json.NewEncoder(w).Encode(PayoutResponse{Payout: payout})
 }

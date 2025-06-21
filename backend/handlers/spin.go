@@ -4,12 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 	"speed-roulette/backend/game"
+	"speed-roulette/backend/utils"
 )
 
 func HandleSpin(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	utils.SetupCORS(&w, r)
 
 	if r.Method == "OPTIONS" {
 		w.WriteHeader(http.StatusOK)

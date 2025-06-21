@@ -29,8 +29,6 @@ func main() {
 	mux.HandleFunc("/api/round", middleware.RequireAuth(handlers.HandleRound))
 	mux.HandleFunc("/api/rank", middleware.RequireAuth(handlers.HandleGetRank))
 
-	mux.HandleFunc("/ws", middleware.RequireAuth(handlers.WsEndpoint))
-
 	// Enable CORS
 	handler := cors.Default().Handler(mux)
 

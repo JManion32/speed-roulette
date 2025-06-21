@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useEffect, useState } from 'react';
+import { secureFetch } from "../utils/secureFetch";
 
 interface ResultModalProps {
   showModal: boolean;
@@ -41,11 +42,11 @@ export default function ResultModal({
       alreadyLogged = true;
 
       try {
-        const res = await fetch("/api/game", {
+        const res = await secureFetch("/api/game", {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json" },
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify({
             nickname: nickname,
             final_balance: userBalance,
@@ -53,12 +54,11 @@ export default function ResultModal({
             time_used: timeLeft,
           }),
         });
-        const rankRes = await fetch(`/api/rank?balance=${userBalance}`, {
+
+        const rankRes = await secureFetch(`/api/rank?balance=${userBalance}`, {
           method: "GET",
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`,
-          },
         });
+
         const rankData = await rankRes.json();
         setRank(rankData.rank);
       } catch (err) {
@@ -108,10 +108,30 @@ export default function ResultModal({
             <button
               className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 ${
                 isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-300 hover:bg-green-400'} transition-transform transform hover:scale-105`}
-              onClick={() => {
-                closeModal();
-                newGame();
-              }}
+              onClick={async () => {
+                  const nickname = localStorage.getItem("nickname");
+
+                  if (!nickname) {
+                    alert("Nickname missing. Please reload the page.");
+                    return;
+                  }
+                  try {
+                    const res = await secureFetch("/api/register", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ nickname }),
+                    });
+
+                    const { token } = await res.json();
+                    localStorage.setItem("token", token);
+                  } catch (err) {
+                    console.error("Error during re-registration:", err);
+                    alert("Could not start new game. Try refreshing the page.");
+                    return;
+                  }
+                  closeModal();
+                  newGame();
+                }}
             >
               Play Again
             </button>

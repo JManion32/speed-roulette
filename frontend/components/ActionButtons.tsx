@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { secureFetch } from "../utils/secureFetch";
 
 interface ActionButtonsProps {
   bets: any[];
@@ -77,13 +78,11 @@ export default function ActionButtons({
             setGridBlock(true);
 
             let result: number = -1;
+            let criticalError = false;
 
             try {
-              const res = await fetch('/api/spin', {
+              const res = await secureFetch('/api/spin', {
                 method: "GET",
-                headers: {
-                  "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                },
               });
 
               const data = await res.json();
@@ -91,20 +90,16 @@ export default function ActionButtons({
               const displayResult = result === 37 ? "00" : result.toString();
               setWinningNumber(displayResult);
             } catch (error) {
+              criticalError = true;
               console.error("Spin error:", error);
             }
 
+            if (criticalError) return;
+
             try {
-              const payoutRes = await fetch("/api/payout", {
+              const payoutRes = await secureFetch("/api/payout", {
                 method: "POST",
-                headers: {
-                  "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  bets: bets,
-                  result: result,
-                }),
+                body: JSON.stringify({ bets, result }),
               });
               const payoutData = await payoutRes.json();
               const newBalance = userBalance + payoutData.payout;
