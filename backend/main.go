@@ -17,16 +17,18 @@ func main() {
 	db.InitDB()
 	redis.InitRedis()
 
-	// Create a new mux
 	mux := http.NewServeMux()
-	mux.HandleFunc("/ws", handlers.WsEndpoint)
-	mux.HandleFunc("/api/spin", handlers.HandleSpin)
-	mux.HandleFunc("/api/payout", handlers.HandlePayout)
-	mux.HandleFunc("/api/game", handlers.HandleGame)
-	mux.HandleFunc("/api/round", handlers.HandleRound)
-	mux.HandleFunc("/api/rank", handlers.HandleGetRank)
+	mux.HandleFunc("/api/register", handlers.HandleRegister)
 	mux.HandleFunc("/api/leaderboard", handlers.HandleLeaderboard)
 
+	// Protected routes
+	mux.HandleFunc("/api/spin", middleware.RequireAuth(handlers.HandleSpin))
+	mux.HandleFunc("/api/payout", middleware.RequireAuth(handlers.HandlePayout))
+	mux.HandleFunc("/api/game", middleware.RequireAuth(handlers.HandleGame))
+	mux.HandleFunc("/api/round", middleware.RequireAuth(handlers.HandleRound))
+	mux.HandleFunc("/api/rank", middleware.RequireAuth(handlers.HandleGetRank))
+
+	mux.HandleFunc("/ws", middleware.RequireAuth(handlers.WsEndpoint))
 
 	// Enable CORS
 	handler := cors.Default().Handler(mux)
