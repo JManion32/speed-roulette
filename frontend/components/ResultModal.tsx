@@ -41,9 +41,11 @@ export default function ResultModal({
       alreadyLogged = true;
 
       try {
-        const res = await fetch("http://localhost:8080/api/game", {
+        const res = await fetch("/api/game", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json" },
           body: JSON.stringify({
             nickname: nickname,
             final_balance: userBalance,
@@ -51,9 +53,12 @@ export default function ResultModal({
             time_used: timeLeft,
           }),
         });
-
-        const data = await res.json();
-        const rankRes = await fetch(`http://localhost:8080/api/rank?balance=${userBalance}`);
+        const rankRes = await fetch(`/api/rank?balance=${userBalance}`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         const rankData = await rankRes.json();
         setRank(rankData.rank);
       } catch (err) {

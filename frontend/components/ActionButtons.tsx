@@ -79,7 +79,13 @@ export default function ActionButtons({
             let result: number = -1;
 
             try {
-              const res = await fetch('http://localhost:8080/api/spin');
+              const res = await fetch('/api/spin', {
+                method: "GET",
+                headers: {
+                  "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                },
+              });
+
               const data = await res.json();
               result = data.number;
               const displayResult = result === 37 ? "00" : result.toString();
@@ -89,9 +95,10 @@ export default function ActionButtons({
             }
 
             try {
-              const payoutRes = await fetch("http://localhost:8080/api/payout", {
+              const payoutRes = await fetch("/api/payout", {
                 method: "POST",
                 headers: {
+                  "Authorization": `Bearer ${localStorage.getItem("token")}`,
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
@@ -99,7 +106,6 @@ export default function ActionButtons({
                   result: result,
                 }),
               });
-
               const payoutData = await payoutRes.json();
               const newBalance = userBalance + payoutData.payout;
               

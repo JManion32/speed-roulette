@@ -25,7 +25,7 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/api/leaderboard?range=${activeTab}`);
+        const res = await fetch(`/api/leaderboard?range=${activeTab}`);
         const data = await res.json();
         if (Array.isArray(data)) {
           setLeaderboard(data);
