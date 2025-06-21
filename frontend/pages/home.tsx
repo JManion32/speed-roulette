@@ -5,7 +5,6 @@ import stats from "../assets/stats.png";
 import trophy from "../assets/trophy.png";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 // Contexts
 import { useDarkMode } from "../contexts/DarkModeContext";
@@ -14,14 +13,15 @@ import { useDarkMode } from "../contexts/DarkModeContext";
 import DarkModeToggle from "../components/DarkModeToggle";
 import AboutModal from "../components/AboutModal";
 
-// Utils
-import { checkName } from '../utils/checkName';
+// Hooks
+import { useStartGame } from "../hooks/useStartGame"; // adjust path if needed
 
 function Home() {
   const { isDarkMode } = useDarkMode();
   const [showModal, setShowModal] = useState(false);
-  const [nickname, setNickname] = useState<string>("");
-  const navigate = useNavigate();
+
+  const [nickname, setNickname] = useState("");
+  const startGame = useStartGame(nickname, setNickname);
   
     return (
       <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
@@ -43,17 +43,9 @@ function Home() {
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && nickname) {
+                if (e.key === "Enter" && nickname) {
                   e.preventDefault();
-                  if (!checkName(nickname)) {
-                      localStorage.setItem("nickname", nickname);
-                      navigate("/game");
-                      document.getElementById("profanity-error")!.style.visibility = "hidden";
-                  } else {
-                      document.getElementById("profanity-error")!.style.visibility = "visible";
-                      localStorage.removeItem("nickname");
-                      setNickname("");
-                  }
+                  startGame();
                 }
               }}
               maxLength={50}
@@ -62,16 +54,8 @@ function Home() {
             />
 
             <button
-              onClick={() => {
-                if (!checkName(nickname)) {
-                    localStorage.setItem("nickname", nickname);
-                    navigate("/game");
-                    document.getElementById("profanity-error")!.style.visibility = "hidden";
-                } else {
-                    document.getElementById("profanity-error")!.style.visibility = "visible";
-                    localStorage.removeItem("nickname");
-                    setNickname("");
-                }
+              onClick={(e) => {
+                startGame();
               }}
               className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${
                 nickname === ""

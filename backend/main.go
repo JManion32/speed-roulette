@@ -8,6 +8,7 @@ import (
 	"github.com/rs/cors"
 	"speed-roulette/backend/db"
 	"speed-roulette/backend/handlers"
+	"speed-roulette/backend/middleware"
 	"speed-roulette/backend/redis"
 )
 
