@@ -9,12 +9,15 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import HomeButton from "../components/HomeButton";
 
 // Hooks
-import { useLeaderboardData, LeaderboardEntry } from '../hooks/useLeaderboardData';
+import { useAllLeaderboards, LeaderboardEntry } from '../hooks/useLeaderboardData';
 
 function Leaderboard() {
   const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState('today');
-  const leaderboard = useLeaderboardData(activeTab);
+  const allLeaderboards = useAllLeaderboards();
+
+  const leaderboard: LeaderboardEntry[] = allLeaderboards[activeTab as keyof typeof allLeaderboards] || [];
+
 
   return (
     <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>

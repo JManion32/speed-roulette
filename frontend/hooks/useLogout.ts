@@ -15,8 +15,7 @@ export function useLogout() {
         console.error("Token cleanup failed:", err);
       }
 
-      // No longer need nickname or token in local storage
-      localStorage.removeItem("nickname");
+      // No longer need token in local storage
       localStorage.removeItem("token");
     }
   };

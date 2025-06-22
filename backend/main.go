@@ -20,7 +20,8 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/register", handlers.HandleRegister)
-	mux.HandleFunc("/api/leaderboard", handlers.HandleLeaderboard)
+    mux.HandleFunc("/api/leaderboards", handlers.HandleAllLeaderboards)
+
 
 	// Protected routes
 	mux.HandleFunc("/api/spin", middleware.RequireAuth(handlers.HandleSpin))

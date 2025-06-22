@@ -9,14 +9,22 @@ export interface LeaderboardEntry {
   played_at?: string;
 }
 
-export function useLeaderboardData(range: string) {
-  const [data, setData] = useState<LeaderboardEntry[]>([]);
+type Range = 'today' | 'week' | 'month' | 'allTime';
+
+// No parameter since it loads all at once
+export function useAllLeaderboards() {
+  const [allData, setAllData] = useState<Record<Range, LeaderboardEntry[]>>({
+    today: [],
+    week: [],
+    month: [],
+    allTime: [],
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchLeaderboard = async () => {
+    const fetchAllLeaderboards = async () => {
       try {
-        const res = await fetch(`/api/leaderboard?range=${range}`);
+        const res = await fetch('/api/leaderboards');
 
         if (res.status === 429) {
           alert("You're making requests too quickly. Please wait a moment.");
@@ -24,25 +32,25 @@ export function useLeaderboardData(range: string) {
           return;
         }
 
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
         const result = await res.json();
 
-        if (Array.isArray(result)) {
-          setData(result);
-        } else {
-          setData([]);
+        if (typeof result === 'object' && result !== null) {
+          setAllData({
+            today: result.today ?? [],
+            week: result.week ?? [],
+            month: result.month ?? [],
+            allTime: result.allTime ?? [],
+          });
         }
       } catch (err) {
-        console.error("Failed to fetch leaderboard:", err);
-        setData([]);
+        console.error("Failed to fetch all leaderboards:", err);
       }
     };
 
-    fetchLeaderboard();
-  }, [range]);
+    fetchAllLeaderboards();
+  }, []);
 
-  return data;
+  return allData;
 }

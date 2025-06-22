@@ -44,10 +44,10 @@ func CheckIPRateLimit(ip string) error {
 func CheckIPLeaderboardLimit(ip string) error {
 	key := "rate:leaderboard:" + ip
 
-	// Simple fixed-window rate limiting: max 10 requests per 10 seconds
+	// Allow up to 10 requests per 2 seconds
 	count, _ := redis.Client.Incr(redis.Ctx, key).Result()
 	if count == 1 {
-		redis.Client.Expire(redis.Ctx, key, 10*time.Second)
+		redis.Client.Expire(redis.Ctx, key, 2*time.Second)
 	}
 	if count > 10 {
 		return errors.New("Too many leaderboard requests. Try again shortly.")
@@ -55,4 +55,5 @@ func CheckIPLeaderboardLimit(ip string) error {
 
 	return nil
 }
+
 

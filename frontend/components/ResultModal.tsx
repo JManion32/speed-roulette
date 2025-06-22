@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useLogGame } from '../hooks/useLogGame';
 import { useLogout } from '../hooks/useLogout';
@@ -26,6 +26,7 @@ export default function ResultModal({
 }: ResultModalProps) {
   const { isDarkMode } = useDarkMode();
   const { rank, logGame } = useLogGame();
+  const navigate = useNavigate();
   const nickname = localStorage.getItem("nickname");
 
   const logout = useLogout();
@@ -35,7 +36,7 @@ useEffect(() => {
       if (userBalance > 0) {
         await logGame(nickname, userBalance, remSpins, timeLeft);
       }
-      await logout(); // ✅ Await this too
+      await logout();
     })();
   }
 }, [showModal]);
@@ -99,12 +100,15 @@ useEffect(() => {
             >
               Play Again
             </button>
-
-            <Link to="/" className="inline-block">
-              <button className={`h-12 w-45 rounded-md font-bold text-[1.25rem] transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black hover:bg-gray-300'}`}>
-                Home
-              </button>
-            </Link>
+            <button
+              className={`h-12 w-45 rounded-md font-bold text-[1.25rem] transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black hover:bg-gray-300'}`}
+              onClick={() => {
+                localStorage.removeItem("nickname");
+                navigate("/");
+              }}
+            >
+              Home
+            </button>
           </div>
         </div>
       </div>

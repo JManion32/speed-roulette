@@ -10,8 +10,9 @@ export default function HomeButton() {
   const navigate = useNavigate();
 
   const handleClick = async () => {
-    await logout();      // log the user out
-    navigate('/');       // then navigate home
+    await logout();
+    localStorage.removeItem("nickname");
+    navigate('/');
   };
 
   return (
