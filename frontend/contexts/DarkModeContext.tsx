@@ -8,9 +8,9 @@ type DarkModeContextType = {
 const DarkModeContext = createContext<DarkModeContextType | null>(null);
 
 export function DarkModeProvider({ children }: { children: React.ReactNode }) {
+  // Use the class on the <html> tag as source of truth for initial state
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem("darkMode");
-    return saved !== null ? JSON.parse(saved) : true;
+    return document.documentElement.classList.contains("dark");
   });
 
   useEffect(() => {

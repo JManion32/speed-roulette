@@ -1,11 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Speed Roulette</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speed Roulette</title>
+
+  <!-- Prevent white flash before React loads -->
+  <script>
+    try {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const stored = localStorage.getItem('darkMode');
+      const isDark = stored === 'true' || (stored === null && prefersDark);
+      if (isDark) document.documentElement.classList.add('dark');
+    } catch (_) {}
+  </script>
+
+  <!-- Paint background color immediately -->
+  <style>
+    html {
+      background-color: #111;
+      color: white;
+    }
+    html:not(.dark) {
+      background-color: #fafafa;
+      color: black;
+    }
+  </style>
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="/main.tsx"></script>
