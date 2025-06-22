@@ -1,6 +1,5 @@
-import '../css/index.css'
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import '../css/index.css';
+import { useState } from 'react';
 
 // Contexts
 import { useDarkMode } from "../contexts/DarkModeContext";
@@ -9,43 +8,19 @@ import { useDarkMode } from "../contexts/DarkModeContext";
 import DarkModeToggle from "../components/DarkModeToggle";
 import HomeButton from "../components/HomeButton";
 
-interface LeaderboardEntry {
-  nickname?: string;
-  final_balance?: number;
-  time_used?: number;
-  spins_used?: number;
-  played_at?: string;
-}
+// Hooks
+import { useLeaderboardData, LeaderboardEntry } from '../hooks/useLeaderboardData';
 
 function Leaderboard() {
   const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState('today');
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        const res = await fetch(`/api/leaderboard?range=${activeTab}`);
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setLeaderboard(data);
-        } else {
-          setLeaderboard([]);
-        }
-      } catch (err) {
-        console.error("Failed to fetch leaderboard:", err);
-        setLeaderboard([]);
-      }
-    };
-
-    fetchLeaderboard();
-  }, [activeTab]);
+  const leaderboard = useLeaderboardData(activeTab);
 
   return (
     <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
       <div className="p-4 flex top-0">
         <HomeButton />
-        {/* Tabs */}
+
         <div className="flex justify-center border-b border-gray-700 absolute left-50 top-10 mb-8">
           {['today', 'week', 'month', 'allTime'].map((tabKey) => (
             <button
@@ -68,14 +43,14 @@ function Leaderboard() {
             </button>
           ))}
         </div>
+
         <DarkModeToggle />
       </div>
 
       <div className="absolute top-1/6 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[4rem] font-bold">Leaderboard</h1>
+        <h1 className="text-[4rem] font-bold">Leaderboard</h1>
       </div>
 
-      {/* Body: Leaderboard */}
       <div className="absolute top-50 left-50 transform">
         <div className="max-h-[30rem]">
           {leaderboard.length > 0 ? (

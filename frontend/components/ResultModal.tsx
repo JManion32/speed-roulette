@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import { useEffect, useState } from 'react';
-import { secureFetch } from "../utils/secureFetch";
+import { useLogGame } from '../hooks/useLogGame';
+import { usePlayAgain } from '../hooks/usePlayAgain';
 
 interface ResultModalProps {
   showModal: boolean;
@@ -23,57 +24,20 @@ export default function ResultModal({
   newGame,
 }: ResultModalProps) {
   const { isDarkMode } = useDarkMode();
-
+  const { rank, logGame } = useLogGame();
   const nickname = localStorage.getItem("nickname");
 
-  const [rank, setRank] = useState<number | null>(null);
-
   useEffect(() => {
-    if (!showModal) return;
-
-    const nickname = localStorage.getItem("nickname");
-    if (!nickname || userBalance <= 0) return;
-
-    // prevent duplicate logging if re-renders happen
-    let alreadyLogged = false;
-
-    const logGame = async () => {
-      if (alreadyLogged) return;
-      alreadyLogged = true;
-
-      try {
-        const res = await secureFetch("/api/game", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            nickname: nickname,
-            final_balance: userBalance,
-            spins_used: remSpins,
-            time_used: timeLeft,
-          }),
-        });
-
-        const rankRes = await secureFetch(`/api/rank?balance=${userBalance}`, {
-          method: "GET",
-        });
-
-        const rankData = await rankRes.json();
-        setRank(rankData.rank);
-      } catch (err) {
-        console.error("Failed to log game:", err);
-      }
-    };
-
-    logGame();
+    if (showModal && nickname && userBalance > 0) {
+      logGame(nickname, userBalance, remSpins, timeLeft);
+    }
   }, [showModal]);
 
-   if (!showModal) return null;
+  if (!showModal) return null;
 
   return (
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80">
-      <div className={` 
+      <div className={`
         ${isDarkMode ? 'bg-gray-800' : 'bg-light-mode'} 
         rounded-3xl p-8 w-[43.75rem] h-[37.5rem] max-w-[90%] relative flex flex-col items-center 
         ${isClosing ? 'slide-down' : 'slide-up'}
@@ -82,6 +46,7 @@ export default function ResultModal({
           <h1 className={`text-[4.25rem] font-bold flex justify-center mb-8 ${isDarkMode ? 'text-yellow-500' : 'text-yellow-700'}`}>
             ROUND FINISHED!
           </h1>
+
           <div className="grid grid-cols-[12.5rem_1fr] gap-x-24 gap-y-6 mb-5">
             <p className="text-[1.5rem] font-bold">Time Remaining:</p>
             <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}>
@@ -98,40 +63,32 @@ export default function ResultModal({
               ${userBalance.toFixed(2)}
             </button>
 
-          <p className="text-[1.875rem] font-bold mt-6">Rank (Today):</p>
-          <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}>
-            {userBalance > 0 && rank !== null ? `#${rank}` : "N/A"}
-          </button>
+            <p className="text-[1.875rem] font-bold mt-6">Rank (Today):</p>
+            <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}>
+              {userBalance > 0 && rank !== null ? `#${rank}` : "N/A"}
+            </button>
           </div>
 
           <div className="flex flex-row items-center mt-12">
             <button
-              className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 ${
-                isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-300 hover:bg-green-400'} transition-transform transform hover:scale-105`}
+              className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${
+                isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-300 hover:bg-green-400'
+              }`}
               onClick={async () => {
-                  const nickname = localStorage.getItem("nickname");
+                if (!nickname) {
+                  alert("Nickname missing. Please reload the page.");
+                  return;
+                }
 
-                  if (!nickname) {
-                    alert("Nickname missing. Please reload the page.");
-                    return;
-                  }
-                  try {
-                    const res = await secureFetch("/api/register", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ nickname }),
-                    });
+                const token = await usePlayAgain(nickname);
+                if (!token) {
+                  alert("Could not start new game. Try refreshing the page.");
+                  return;
+                }
 
-                    const { token } = await res.json();
-                    localStorage.setItem("token", token);
-                  } catch (err) {
-                    console.error("Error during re-registration:", err);
-                    alert("Could not start new game. Try refreshing the page.");
-                    return;
-                  }
-                  closeModal();
-                  newGame();
-                }}
+                closeModal();
+                newGame();
+              }}
             >
               Play Again
             </button>

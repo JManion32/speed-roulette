@@ -65,6 +65,7 @@ func parseBalance(balanceStr string) (float64, error) {
 	return val, err
 }
 
+// When we get the balance, make sure it is valid
 func ValidateAndGetBalance(r *http.Request, totalBet float64) (string, float64, error) {
 	token, err := ExtractToken(r)
 	if err != nil {

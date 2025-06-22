@@ -40,6 +40,7 @@ func CheckIPRateLimit(ip string) error {
 	return nil
 }
 
+// Rate Limit for viewing the leaderboard page
 func CheckIPLeaderboardLimit(ip string) error {
 	key := "rate:leaderboard:" + ip
 

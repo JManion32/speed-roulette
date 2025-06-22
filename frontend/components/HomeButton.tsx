@@ -1,36 +1,15 @@
-import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { useLogoutToHome } from '../hooks/useLogout';
 import home from '../assets/home.png';
 import home_white from '../assets/home_white.png';
 
 export default function HomeButton() {
-  const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
-
-  const handleClick = async () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        await fetch("/api/logout", {
-          method: "DELETE",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        });
-      } catch (err) {
-        console.error("Token cleanup failed:", err);
-      }
-
-      localStorage.removeItem("token");
-    }
-
-    navigate("/");
-  };
+  const logoutAndRedirect = useLogoutToHome();
 
   return (
     <button
-      onClick={handleClick}
+      onClick={logoutAndRedirect}
       className={`
         absolute right-24 rounded-full w-15 h-15 
         flex justify-center items-center 
