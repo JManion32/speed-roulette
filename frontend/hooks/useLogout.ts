@@ -1,9 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+export function useLogout() {
 
-export function useLogoutToHome() {
-  const navigate = useNavigate();
-
-  return async function logoutAndRedirect() {
+  return async function logout() {
     const token = localStorage.getItem("token");
 
     if (token) {
@@ -18,9 +15,9 @@ export function useLogoutToHome() {
         console.error("Token cleanup failed:", err);
       }
 
+      // No longer need nickname or token in local storage
+      localStorage.removeItem("nickname");
       localStorage.removeItem("token");
     }
-
-    navigate("/");
   };
 }

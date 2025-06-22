@@ -78,7 +78,7 @@ export default function ActionButtons({
             setGridBlock(true);
 
             let result: number = -1;
-            let criticalError = false;
+            let criticalError = false; // for StrictMode, not necessary when deployed
 
             try {
               const res = await secureFetch('/api/spin', {
@@ -90,11 +90,11 @@ export default function ActionButtons({
               const displayResult = result === 37 ? "00" : result.toString();
               setWinningNumber(displayResult);
             } catch (error) {
-              criticalError = true;
+              criticalError = true; // StrictMode
               console.error("Spin error:", error);
             }
 
-            if (criticalError) return;
+            if (criticalError) return; // StrictMode
 
             try {
               const payoutRes = await secureFetch("/api/payout", {

@@ -1,15 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import { useLogoutToHome } from '../hooks/useLogout';
+import { useLogout } from '../hooks/useLogout';
 import home from '../assets/home.png';
 import home_white from '../assets/home_white.png';
 
 export default function HomeButton() {
   const { isDarkMode } = useDarkMode();
-  const logoutAndRedirect = useLogoutToHome();
+  const logout = useLogout();
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+    await logout();      // log the user out
+    navigate('/');       // then navigate home
+  };
 
   return (
     <button
-      onClick={logoutAndRedirect}
+      onClick={handleClick}
       className={`
         absolute right-24 rounded-full w-15 h-15 
         flex justify-center items-center 

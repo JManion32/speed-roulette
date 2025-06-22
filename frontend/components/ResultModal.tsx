@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useLogGame } from '../hooks/useLogGame';
+import { useLogout } from '../hooks/useLogout';
 import { usePlayAgain } from '../hooks/usePlayAgain';
 
 interface ResultModalProps {
@@ -27,11 +28,17 @@ export default function ResultModal({
   const { rank, logGame } = useLogGame();
   const nickname = localStorage.getItem("nickname");
 
-  useEffect(() => {
-    if (showModal && nickname && userBalance > 0) {
-      logGame(nickname, userBalance, remSpins, timeLeft);
-    }
-  }, [showModal]);
+  const logout = useLogout();
+useEffect(() => {
+  if (showModal && nickname) {
+    (async () => {
+      if (userBalance > 0) {
+        await logGame(nickname, userBalance, remSpins, timeLeft);
+      }
+      await logout(); // ✅ Await this too
+    })();
+  }
+}, [showModal]);
 
   if (!showModal) return null;
 

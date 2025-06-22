@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"speed-roulette/backend/db"
-	"speed-roulette/backend/redis"
 	"speed-roulette/backend/utils"
 )
 
@@ -20,13 +19,6 @@ type GameRequest struct {
 func HandleGame(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
-	// Get token
-	token, err := utils.ExtractToken(r)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	}
 
@@ -67,10 +59,6 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Database error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-	// Invalidate tokens to prevent replay attacks
-	_ = redis.Client.Del(redis.Ctx, "token:"+token)
-	_ = redis.Client.Del(redis.Ctx, "balance:"+token)
 
 	json.NewEncoder(w).Encode(map[string]any{
 		"status":  "success",
