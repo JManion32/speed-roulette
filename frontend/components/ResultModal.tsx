@@ -71,9 +71,9 @@ useEffect(() => {
               ${userBalance.toFixed(2)}
             </button>
 
-            <p className="text-[1.875rem] font-bold mt-6">Rank (Today):</p>
+            <p className="text-[1.875rem] font-bold mt-6">Daily Rank:</p>
             <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}>
-              {userBalance > 0 && rank !== null ? `#${rank}` : "N/A"}
+              {userBalance > 0 && rank !== null ? `#${rank}` : "Unranked"}
             </button>
           </div>
 

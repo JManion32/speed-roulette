@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"time"
 
 	_ "github.com/lib/pq"
 )
@@ -150,11 +151,17 @@ func GetPlayerRank(balance float64) (int, error) {
 	}
 	defer db.Close()
 
+	today := time.Now().Truncate(24 * time.Hour).Format("2006-01-02")
+
 	var rank int
 	err = db.QueryRow(`
 		SELECT COUNT(*) + 1 AS rank
 		FROM games
 		WHERE final_balance > $1
-	`, balance).Scan(&rank)
+		AND final_balance > 0
+		AND game_date_time >= $2
+	`, balance, today).Scan(&rank)
+
 	return rank, err
 }
+
