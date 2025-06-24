@@ -51,6 +51,7 @@ function Leaderboard() {
       <div className="absolute top-64 left-50 transform">
         <div className="max-h-[30rem]">
           {leaderboard.length > 0 ? (
+            <>
             <table className="w-full text-left border-collapse mt-4">
               <thead>
                 <tr className="text-xl">
@@ -116,6 +117,8 @@ function Leaderboard() {
                 ))}
               </tbody>
             </table>
+            <div className="h-16"></div> {/* For spacing between table and bottom of page */}
+            </>
           ) : (
             <p className="text-xl">No entries yet.</p>
           )}
