@@ -48,7 +48,7 @@ function Home() {
                   startGame();
                 }
               }}
-              maxLength={50}
+              maxLength={20}
               className={`pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
             />

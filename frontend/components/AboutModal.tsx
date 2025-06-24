@@ -74,7 +74,9 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {activeTab === 'about' && (
             <>
               <p className="mb-6">
-                Speed Roulette is a fast-paced browser game created by Justin Manion, a Junior computer science student at Rensselaer Polytechnic Institute. Inspired by speed chess, Speed Roulette puts a twist on the beloved high-stakes casino game.
+                  Speed Roulette is a fast-paced browser game created by Justin Manion, a Junior computer science student at Rensselaer Polytechnic Institute. 
+                  Inspired by speed chess, Speed Roulette puts a twist on the beloved high-stakes casino game. Designed as a solo experience with daily 
+                  leaderboards, the game challenges players to balance risk and speed in just 60 seconds.
               </p>
               <p className="font-bold mb-4">Note from the developer:</p>
               <p>
