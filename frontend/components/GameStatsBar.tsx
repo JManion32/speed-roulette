@@ -63,7 +63,7 @@ export default function GameStatsBar({
           </div>
 
           {/* Spins */}
-          <div className="flex items-center min-w-[6.25rem] whitespace-nowrap">
+          <div className="flex items-center min-w-[8rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Spins:</p>
             <button
               className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${

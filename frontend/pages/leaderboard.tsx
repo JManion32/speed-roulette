@@ -14,10 +14,17 @@ import { useAllLeaderboards, LeaderboardEntry } from '../hooks/useLeaderboardDat
 function Leaderboard() {
   const { isDarkMode } = useDarkMode();
   const [activeTab, setActiveTab] = useState('today');
-  const allLeaderboards = useAllLeaderboards();
 
-  const leaderboard: LeaderboardEntry[] = allLeaderboards[activeTab as keyof typeof allLeaderboards] || [];
+  const { data: allLeaderboards, loading } = useAllLeaderboards();
+  const leaderboard = allLeaderboards[activeTab] || [];
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-40">
+        <div className="w-10 h-10 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className={`p-4 flex top-0 h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>

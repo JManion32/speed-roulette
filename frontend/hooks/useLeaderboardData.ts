@@ -12,13 +12,17 @@ export interface LeaderboardEntry {
 type Range = 'today' | 'week' | 'month' | 'allTime';
 
 // No parameter since it loads all at once
-export function useAllLeaderboards() {
+export function useAllLeaderboards(): {
+  data: Record<Range, LeaderboardEntry[]>;
+  loading: boolean;
+} {
   const [allData, setAllData] = useState<Record<Range, LeaderboardEntry[]>>({
     today: [],
     week: [],
     month: [],
     allTime: [],
   });
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,11 +50,13 @@ export function useAllLeaderboards() {
         }
       } catch (err) {
         console.error("Failed to fetch all leaderboards:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchAllLeaderboards();
   }, []);
 
-  return allData;
+  return { data: allData, loading };
 }
