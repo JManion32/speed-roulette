@@ -30,16 +30,16 @@ export default function ResultModal({
   const nickname = localStorage.getItem("nickname");
 
   const logout = useLogout();
-useEffect(() => {
-  if (showModal && nickname) {
-    (async () => {
-      if (userBalance > 0) {
-        await logGame(nickname, userBalance, remSpins, timeLeft);
-      }
-      await logout();
-    })();
-  }
-}, [showModal]);
+  useEffect(() => {
+    if (showModal && nickname) {
+      (async () => {
+        if (userBalance > 0) {
+          await logGame(nickname, userBalance, remSpins, timeLeft);
+        }
+        await logout();
+      })();
+    }
+  }, [showModal]);
 
   if (!showModal) return null;
 

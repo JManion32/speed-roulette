@@ -1,4 +1,4 @@
-package game
+package utils
 import "speed-roulette/backend/models"
 
 // Indexes of each number in the grid starting from index [1] ([0] is not a number, [1] = 92, [2] = 46, etc)

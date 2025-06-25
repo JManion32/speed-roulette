@@ -1,4 +1,4 @@
-package game
+package utils
 import "speed-roulette/backend/models"
 
 //import "speed-roulette/backend/logproxy"

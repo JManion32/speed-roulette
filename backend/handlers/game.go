@@ -16,20 +16,23 @@ type GameRequest struct {
 	TimeUsed     int     `json:"time_used"`
 }
 
+type GameResponse struct {
+	Status string `json:"status"`
+	Rank   int    `json:"rank"`
+}
+
 func HandleGame(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	// Get nickname
 	nickname, err := utils.GetNicknameFromToken(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	}
 
-	// Decode incoming request
 	var req GameRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
@@ -41,7 +44,6 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Validate final balance
 	balance, err := utils.GetBalanceFromToken(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -53,15 +55,19 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Save to DB
-	gameID, err := db.InsertGame(nickname, balance, req.SpinsUsed, req.TimeUsed)
-	if err != nil {
+	if _, err := db.InsertGame(nickname, balance, req.SpinsUsed, req.TimeUsed); err != nil {
 		http.Error(w, "Database error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]any{
-		"status":  "success",
-		"game_id": gameID,
+	rank, err := db.GetPlayerRank(balance)
+	if err != nil {
+		http.Error(w, "Failed to get rank: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(GameResponse{
+		Status: "success",
+		Rank:   rank,
 	})
 }

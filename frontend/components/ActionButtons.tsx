@@ -72,38 +72,25 @@ export default function ActionButtons({
           }`}
           onClick={async () => {
             if (bets.length === 0 || remSpins === 0 || isPaused) return;
-            
+
             setIsPaused(true);
             setRemSpins(prev => prev - 1);
             setGridBlock(true);
 
-            let result: number = -1;
-            let criticalError = false; // for StrictMode, not necessary when deployed
-
             try {
-              const res = await secureFetch('/api/spin', {
-                method: "GET",
+              const res = await secureFetch('/api/round', {
+                method: "POST",
+                body: JSON.stringify({ bets }),
               });
 
               const data = await res.json();
-              result = data.number;
+              const result = data.number;
+              const payout = data.payout;
+
+              const newBalance = userBalance + payout;
               const displayResult = result === 37 ? "00" : result.toString();
               setWinningNumber(displayResult);
-            } catch (error) {
-              criticalError = true; // StrictMode
-              console.error("Spin error:", error);
-            }
 
-            if (criticalError) return; // StrictMode
-
-            try {
-              const payoutRes = await secureFetch("/api/payout", {
-                method: "POST",
-                body: JSON.stringify({ bets, result }),
-              });
-              const payoutData = await payoutRes.json();
-              const newBalance = userBalance + payoutData.payout;
-              
               setTimeout(() => {
                 if (remSpins === 1 || timeLeft === 0 || newBalance === 0) {
                   setShowModal(true);
@@ -112,7 +99,6 @@ export default function ActionButtons({
                   return;
                 }
                 resetTable();
-                const displayResult = result === 37 ? "00" : result.toString();
                 addResultNum(displayResult);
                 setWinningNumber("");
                 setIsPaused(false);
@@ -120,7 +106,7 @@ export default function ActionButtons({
                 setUserBalance(newBalance);
               }, 2500);
             } catch (error) {
-              console.error("Payout error:", error);
+              console.error("Round error:", error);
             }
           }}
         >

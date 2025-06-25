@@ -3,56 +3,59 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
-	"speed-roulette/backend/db"
+
+	"speed-roulette/backend/models"
+	"speed-roulette/backend/redis"
+	"speed-roulette/backend/utils"
 )
 
-type RoundRequest struct {
-	GameID         int  `json:"game_id"`
-	RoundNumber    int  `json:"round_number"`
-	ResultNumber   int  `json:"result_number"`
-	IsRed          bool `json:"is_red"`
-	IsBlack        bool `json:"is_black"`
-	IsGreen        bool `json:"is_green"`
-	IsEven         bool `json:"is_even"`
-	IsOdd          bool `json:"is_odd"`
-	IsLow          bool `json:"is_low"`
-	IsHigh         bool `json:"is_high"`
-	IsFirstDozen   bool `json:"is_first_dozen"`
-	IsSecondDozen  bool `json:"is_second_dozen"`
-	IsThirdDozen   bool `json:"is_third_dozen"`
-	IsTopRow       bool `json:"is_top_row"`
-	IsMiddleRow    bool `json:"is_middle_row"`
-	IsBottomRow    bool `json:"is_bottom_row"`
+type PayoutRequest struct {
+	Bets   []models.Bet `json:"bets"`
+	Result int          `json:"result"`
+}
+
+type PayoutResponse struct {
+	Payout float64 `json:"payout"`
 }
 
 func HandleRound(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	utils.SetupCORS(&w, r)
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
 		return
 	}
 
-	var req RoundRequest
+	var req struct {
+		Bets []models.Bet `json:"bets"`
+	}
+
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
+		http.Error(w, "Invalid request", http.StatusBadRequest)
 		return
 	}
 
-	err := db.InsertRound(
-		req.GameID,
-		req.RoundNumber,
-		req.ResultNumber,
-		req.IsRed, req.IsBlack, req.IsGreen,
-		req.IsEven, req.IsOdd,
-		req.IsLow, req.IsHigh,
-		req.IsFirstDozen, req.IsSecondDozen, req.IsThirdDozen,
-		req.IsTopRow, req.IsMiddleRow, req.IsBottomRow,
-	)
-
+	totalBet := utils.SumBets(req.Bets)
+	token, balance, err := utils.ValidateAndGetBalance(r, totalBet)
 	if err != nil {
-		http.Error(w, "Failed to insert round: "+err.Error(), http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusForbidden)
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"status":"round logged"}`))
+	if err := utils.CheckRateLimit(token); err != nil {
+		http.Error(w, err.Error(), http.StatusTooManyRequests)
+		return
+	}
+
+	result := utils.GenerateNum()
+	payout := utils.Payout(req.Bets, result)
+	newBalance := balance - totalBet + payout
+	redis.Client.Set(redis.Ctx, "balance:"+token, newBalance, 0)
+
+	json.NewEncoder(w).Encode(struct {
+		Number int     `json:"number"`
+		Payout float64 `json:"payout"`
+	}{
+		Number: result,
+		Payout: payout,
+	})
 }

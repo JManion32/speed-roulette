@@ -18,8 +18,7 @@ export function useLogGame() {
     }
 
     try {
-      // 1. Log game result
-      await secureFetch("/api/game", {
+      const res = await secureFetch("/api/game", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,19 +32,10 @@ export function useLogGame() {
         }),
       });
 
-      // 2. Get player's rank
-      const rankRes = await secureFetch(`/api/rank?balance=${userBalance}`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      });
-
-      const rankData = await rankRes.json();
-      setRank(rankData.rank);
-      
+      const data = await res.json();
+      setRank(data.rank);
     } catch (err) {
-      console.error("Failed to log game, fetch rank, or logout:", err);
+      console.error("Failed to log game and get rank:", err);
     }
   };
 
