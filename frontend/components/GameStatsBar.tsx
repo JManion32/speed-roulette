@@ -41,7 +41,7 @@ export default function GameStatsBar({
           </div>
 
           {/* Bet */}
-          <div className="flex items-center min-w-[9.375rem] whitespace-nowrap">
+          <div className="flex items-center min-w-[10rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Bet:</p>
             <button
               className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
@@ -52,7 +52,7 @@ export default function GameStatsBar({
           </div>
 
           {/* Timer */}
-          <div className="flex items-center min-w-[9.375rem] whitespace-nowrap">
+          <div className="flex items-center min-w-[9rem] whitespace-nowrap">
             <p className="text-[1.5rem] font-bold mr-2">Time:</p>
             <button
               className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${

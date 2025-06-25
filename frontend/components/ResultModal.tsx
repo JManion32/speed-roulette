@@ -101,7 +101,7 @@ useEffect(() => {
               Play Again
             </button>
             <button
-              className={`h-12 w-45 rounded-md font-bold text-[1.25rem] transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black hover:bg-gray-300'}`}
+              className={`h-12 w-45 rounded-md font-bold text-[1.25rem] transition-transform transform hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'bg-white text-black hover:bg-gray-300'}`}
               onClick={() => {
                 localStorage.removeItem("nickname");
                 navigate("/");
