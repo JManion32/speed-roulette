@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 export interface LeaderboardEntry {
   nickname?: string;
   final_balance?: number;
-  time_used?: number;
-  spins_used?: number;
+  rem_time?: number;
+  rem_spins?: number;
   played_at?: string;
 }
 

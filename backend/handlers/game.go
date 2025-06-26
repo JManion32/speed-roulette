@@ -12,8 +12,8 @@ import (
 type GameRequest struct {
 	Nickname     string  `json:"nickname"`
 	FinalBalance float64 `json:"final_balance"`
-	SpinsUsed    int     `json:"spins_used"`
-	TimeUsed     int     `json:"time_used"`
+	RemSpins     int     `json:"rem_spins"`
+	RemTime      int     `json:"rem_time"`
 }
 
 type GameResponse struct {
@@ -55,7 +55,7 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if _, err := db.InsertGame(nickname, balance, req.SpinsUsed, req.TimeUsed); err != nil {
+	if _, err := db.InsertGame(nickname, balance, req.RemSpins, req.RemTime); err != nil {
 		http.Error(w, "Database error: "+err.Error(), http.StatusInternalServerError)
 		return
 	}

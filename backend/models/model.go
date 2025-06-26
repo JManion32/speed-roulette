@@ -56,6 +56,6 @@ type Round struct {
 type GameRequest struct {
     Nickname     string  `json:"nickname"`
     FinalBalance float64 `json:"final_balance"`
-    SpinsUsed    int     `json:"spins_used"`
-    TimeUsed     int     `json:"time_used"`
+    SpinsUsed    int     `json:"rem_spins"`
+    TimeUsed     int     `json:"rem_time"`
 }

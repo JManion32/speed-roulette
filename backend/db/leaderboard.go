@@ -7,11 +7,11 @@ import (
 )
 
 type LeaderboardEntry struct {
-	Nickname     string    `json:"nickname"`
-	FinalBalance float64   `json:"final_balance"`
-	TimeUsed     int       `json:"time_used"`
-	SpinsUsed    int       `json:"spins_used"`
-	PlayedAt     time.Time `json:"played_at"`
+	Nickname     string 	`json:"nickname"`
+	FinalBalance float64	`json:"final_balance"`
+	RemTime      int        `json:"rem_time"`
+	RemSpins     int        `json:"rem_spins"`
+	PlayedAt     time.Time  `json:"played_at"`
 }
 
 func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
@@ -26,7 +26,7 @@ func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
 	switch rangeParam {
 	case "today":
 		query = fmt.Sprintf(`
-			SELECT nickname, final_balance, game_date_time
+			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
 			FROM games
 			WHERE final_balance > 0 AND game_date_time >= '%s'
 			ORDER BY final_balance DESC
@@ -35,7 +35,7 @@ func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
 	case "week":
 		weekStart := today.AddDate(0, 0, -int(today.Weekday()))
 		query = fmt.Sprintf(`
-			SELECT nickname, final_balance, game_date_time
+			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
 			FROM games
 			WHERE final_balance > 0 AND game_date_time >= '%s'
 			ORDER BY final_balance DESC
@@ -44,7 +44,7 @@ func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
 	case "month":
 		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, time.Local)
 		query = fmt.Sprintf(`
-			SELECT nickname, final_balance, game_date_time
+			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
 			FROM games
 			WHERE final_balance > 0 AND game_date_time >= '%s'
 			ORDER BY final_balance DESC
@@ -52,7 +52,7 @@ func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
 		`, monthStart.Format("2006-01-02"))
 	case "allTime":
 		query = `
-			SELECT nickname, final_balance, game_date_time
+			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
 			FROM games
 			WHERE final_balance > 0
 			ORDER BY final_balance DESC
@@ -70,7 +70,7 @@ func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
 	var results []LeaderboardEntry
 	for rows.Next() {
 		var entry LeaderboardEntry
-		if err := rows.Scan(&entry.Nickname, &entry.FinalBalance, &entry.PlayedAt); err != nil {
+		if err := rows.Scan(&entry.Nickname, &entry.FinalBalance, &entry.RemTime, &entry.RemSpins, &entry.PlayedAt); err != nil {
 			return nil, err
 		}
 		results = append(results, entry)

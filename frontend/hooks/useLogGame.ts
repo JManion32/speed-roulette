@@ -27,8 +27,8 @@ export function useLogGame() {
         body: JSON.stringify({
           nickname,
           final_balance: userBalance,
-          spins_used: remSpins,
-          time_used: timeLeft,
+          rem_spins: remSpins,
+          rem_time: timeLeft,
         }),
       });
 

@@ -65,8 +65,8 @@ function Leaderboard() {
                   <th className="pl-6 pr-20 py-2">#</th>
                   <th className="pr-10 py-2">Nickname</th>
                   <th className="pr-16 py-2">Balance</th>
-                  <th className="pr-10 py-2">Time Rem</th>
-                  <th className="pr-10 py-2">Spins Rem</th>
+                  <th className="pr-10 py-2">Time Used</th>
+                  <th className="pr-10 py-2">Spins Used</th>
                   <th className="pr-16 py-2">Date</th>
                   <th className="pr-24 py-2">Time</th>
                 </tr>
@@ -101,13 +101,13 @@ function Leaderboard() {
                         : '—'}
                     </td>
                     <td className="pr-10 py-2">
-                      {typeof entry.time_used === 'number'
-                        ? `${60 - entry.time_used}s`
+                      {typeof entry.rem_time === 'number'
+                        ? `${60 - entry.rem_time}s`
                         : '—'}
                     </td>
                     <td className="pr-10 py-2">
-                      {typeof entry.spins_used === 'number'
-                        ? `${20 - entry.spins_used}`
+                      {typeof entry.rem_spins === 'number'
+                        ? `${10 - entry.rem_spins}`
                         : '—'}
                     </td>
                     <td className="pr-16 py-2">
