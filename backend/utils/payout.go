@@ -69,11 +69,11 @@ func Payout(bets []models.Bet, result int) float64 {
 				payout += bet.ChipValue * 36
 			}
 		case "dozens":
-			if bet.GridIndex == GetDozen(result) {
+			if bet.GridIndex == GetDozenNum(result) {
 				payout += bet.ChipValue * 3
 			}
 		case "rows":
-			if bet.GridIndex == GetRow(result) {
+			if bet.GridIndex == GetRowNum(result) {
 				payout += bet.ChipValue * 3
 			}
 		case "outer":

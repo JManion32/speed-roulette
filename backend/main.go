@@ -21,6 +21,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/register", handlers.HandleRegister)
     mux.HandleFunc("/api/leaderboards", handlers.HandleAllLeaderboards)
+	mux.HandleFunc("/api/stats", handlers.HandleAllStats)
 
 	// Protected routes
 	mux.HandleFunc("/api/round", middleware.RequireAuth(handlers.HandleRound)) // Each spin

@@ -94,7 +94,7 @@ func IsHigh(number int) bool {
 	return number >= 19 && number <= 36
 }
 
-func GetDozen(number int) int {
+func GetDozenNum(number int) int {
 	if number >= 1 && number <= 12 {
 		return 0
 	} else if number >= 13 && number <= 24 {
@@ -105,7 +105,7 @@ func GetDozen(number int) int {
 	return -1
 }
 
-func GetRow(number int) int {
+func GetRowNum(number int) int {
 	if number == 0 || number == 37 {
 		return -1
 	}

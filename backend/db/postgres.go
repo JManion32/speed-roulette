@@ -48,19 +48,52 @@ func InitDB() {
 
 	createGamesTable := `
 		CREATE TABLE IF NOT EXISTS games (
-		game_id SERIAL PRIMARY KEY,
-		nickname VARCHAR(50) NOT NULL,
-		final_balance NUMERIC(12,2) NOT NULL,
-		rem_spins INTEGER NOT NULL,
-		rem_time INTEGER NOT NULL,
-		game_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-	);`
+			game_id SERIAL PRIMARY KEY,
+			nickname VARCHAR(50) NOT NULL,
+			final_balance NUMERIC(12,2) NOT NULL,
+			rem_spins INTEGER NOT NULL,
+			rem_time INTEGER NOT NULL,
+			game_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		);`
+
+	createRoundsTable := `
+		CREATE TABLE IF NOT EXISTS rounds (
+			round_id SERIAL PRIMARY KEY,
+			number INTEGER NOT NULL,
+			color VARCHAR(10),
+			parity VARCHAR(10),
+			half VARCHAR(10),
+			dozen VARCHAR(10),
+			row VARCHAR(10),
+			round_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		);`
 
 	if _, err := db.Exec(createGamesTable); err != nil {
 		log.Fatal("Failed to create games table:", err)
 	}
 
+	if _, err := db.Exec(createRoundsTable); err != nil {
+		log.Fatal("Failed to create rounds table:", err)
+	}
+
 	log.Println("Database initialized successfully.")
+}
+
+func InsertRound(num int, color, parity, half, dozen, row string) (error) {
+	db, err := Connect()
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	var roundID int
+	err = db.QueryRow(`
+		INSERT INTO rounds (number, color, parity, half, dozen, row)
+		VALUES ($1, $2, $3, $4, $5, $6)
+		RETURNING round_id
+	`, num, color, parity, half, dozen, row).Scan(&roundID)
+
+	return err
 }
 
 func InsertGame(nickname string, balance float64, remSpins int, remTime int) (int, error) {

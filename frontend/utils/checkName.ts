@@ -23,7 +23,6 @@ function normalize(nickname: string): string {
  */
 export function checkName(nickname: string): boolean {
   const cleaned = normalize(nickname);
-
   for (const word of allBannedWords) {
     if (cleaned.includes(word)) {
       return true;
