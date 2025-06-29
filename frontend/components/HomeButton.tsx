@@ -31,6 +31,7 @@ export default function HomeButton() {
         src={isDarkMode ? home_white : home}
         alt="Home"
         className="w-12 h-12"
+        draggable="false"
       />
     </button>
   );

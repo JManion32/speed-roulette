@@ -74,16 +74,28 @@ function Home() {
             <div className="flex justify-center gap-4">
               <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}
               onClick={() => setShowModal(true)}>
-                  <img src={about} alt="About" className="w-20 h-20"/>
+                  <img
+                    src={about}
+                    alt="About"
+                    className="w-20 h-20"
+                    draggable="false"/>
               </button>
               <Link to="/leaderboard" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
-                  <img src={trophy} alt="Trophy" className="w-20 h-20"/>
+                  <img
+                    src={trophy}
+                    alt="Trophy"
+                    className="w-20 h-20"
+                    draggable="false"/>
                 </button>
               </Link>
               <Link to="/stats" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center transition-transform transform hover:scale-110`}>
-                  <img src={stats} alt="Statistics" className="w-20 h-20"/>
+                  <img
+                    src={stats}
+                    alt="Statistics"
+                    className="w-20 h-20"
+                    draggable="false"/>
                 </button>
               </Link>
             </div>
