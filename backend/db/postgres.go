@@ -53,7 +53,7 @@ func InitDB() {
 			final_balance NUMERIC(12,2) NOT NULL,
 			rem_spins INTEGER NOT NULL,
 			rem_time INTEGER NOT NULL,
-			game_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+			game_date_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 		);`
 
 	createRoundsTable := `
@@ -65,7 +65,7 @@ func InitDB() {
 			half VARCHAR(10),
 			dozen VARCHAR(10),
 			row VARCHAR(10),
-			round_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+			round_date_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 		);`
 
 	if _, err := db.Exec(createGamesTable); err != nil {
@@ -79,7 +79,7 @@ func InitDB() {
 	log.Println("Database initialized successfully.")
 }
 
-func InsertRound(num int, color, parity, half, dozen, row string) (error) {
+func InsertRound(num int, color, parity, half, dozen, row string) error {
 	db, err := Connect()
 	if err != nil {
 		return err

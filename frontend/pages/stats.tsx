@@ -101,7 +101,7 @@ function RoundDisplay() {
               <div className="h-16"></div>
             </>
           ) : (
-            <p className="text-xl">No rounds yet.</p>
+            <p className="text-xl mt-2">No rounds yet.</p>
           )}
         </div>
       </div>

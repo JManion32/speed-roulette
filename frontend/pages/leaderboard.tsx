@@ -9,7 +9,7 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import HomeButton from "../components/HomeButton";
 
 // Hooks
-import { useAllLeaderboards, LeaderboardEntry } from '../hooks/useLeaderboardData';
+import { useAllLeaderboards } from '../hooks/useLeaderboardData';
 
 function Leaderboard() {
   const { isDarkMode } = useDarkMode();
@@ -127,7 +127,7 @@ function Leaderboard() {
             <div className="h-16"></div> {/* For spacing between table and bottom of page */}
             </>
           ) : (
-            <p className="text-xl">No entries yet.</p>
+            <p className="text-xl mt-2">No entries yet.</p>
           )}
         </div>
       </div>
