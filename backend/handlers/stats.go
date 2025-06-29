@@ -11,7 +11,7 @@ import (
 
 func HandleAllStats(w http.ResponseWriter, r *http.Request) {
 	ip := utils.GetClientIP(r)
-	if err := utils.CheckIPLeaderboardLimit(ip); err != nil {
+	if err := utils.CheckIPStatsLimit(ip); err != nil {
 		http.Error(w, err.Error(), http.StatusTooManyRequests)
 		return
 	}

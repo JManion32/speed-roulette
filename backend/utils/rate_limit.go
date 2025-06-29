@@ -56,4 +56,18 @@ func CheckIPLeaderboardLimit(ip string) error {
 	return nil
 }
 
+// Rate Limit for viewing the stats page
+func CheckIPStatsLimit(ip string) error {
+	key := "rate:stats:" + ip
 
+	// Allow up to 10 requests per 2 seconds
+	count, _ := redis.Client.Incr(redis.Ctx, key).Result()
+	if count == 1 {
+		redis.Client.Expire(redis.Ctx, key, 2*time.Second)
+	}
+	if count > 10 {
+		return errors.New("Too many stats requests. Try again shortly.")
+	}
+
+	return nil
+}
