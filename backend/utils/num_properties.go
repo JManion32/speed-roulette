@@ -1,15 +1,11 @@
 package utils
 
-type NumProperties struct {
-	Color  string
-	Parity string
-	Half   string
-	Dozen  string
-	Row    string
-}
+import (
+	"speed-roulette/backend/models"
+)
 
-func GetNumProperties(num int) NumProperties {
-	return NumProperties{
+func GetNumProperties(num int) models.NumProperties {
+	return models.NumProperties{
 		Color:  GetColor(num),
 		Parity: GetParity(num),
 		Half:   GetHalf(num),

@@ -4,17 +4,11 @@ package db
 import (
 	"fmt"
 	"time"
+
+	"speed-roulette/backend/models"
 )
 
-type LeaderboardEntry struct {
-	Nickname     string 	`json:"nickname"`
-	FinalBalance float64	`json:"final_balance"`
-	RemTime      int        `json:"rem_time"`
-	RemSpins     int        `json:"rem_spins"`
-	PlayedAt     time.Time  `json:"played_at"`
-}
-
-func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
+func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 	db, err := Connect()
 	if err != nil {
 		return nil, err
@@ -67,9 +61,9 @@ func GetLeaderboard(rangeParam string) ([]LeaderboardEntry, error) {
 	}
 	defer rows.Close()
 
-	var results []LeaderboardEntry
+	var results []models.LeaderboardEntry
 	for rows.Next() {
-		var entry LeaderboardEntry
+		var entry models.LeaderboardEntry
 		if err := rows.Scan(&entry.Nickname, &entry.FinalBalance, &entry.RemTime, &entry.RemSpins, &entry.PlayedAt); err != nil {
 			return nil, err
 		}

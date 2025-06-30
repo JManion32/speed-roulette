@@ -4,20 +4,11 @@ package db
 import (
 	"fmt"
 	"time"
+
+	"speed-roulette/backend/models"
 )
 
-type RoundEntry struct {
-	RoundID   int       `json:"round_id"`
-	Number    int       `json:"number"`
-	Color     string    `json:"color"`
-	Parity    string    `json:"parity"`
-	Half      string    `json:"half"`
-	Dozen     string    `json:"dozen"`
-	Row       string    `json:"row"`
-	PlayedAt  time.Time `json:"played_at"`
-}
-
-func GetRounds(rangeParam string) ([]RoundEntry, error) {
+func GetRounds(rangeParam string) ([]models.RoundEntry, error) {
 	db, err := Connect()
 	if err != nil {
 		return nil, err
@@ -69,9 +60,9 @@ func GetRounds(rangeParam string) ([]RoundEntry, error) {
 	}
 	defer rows.Close()
 
-	var results []RoundEntry
+	var results []models.RoundEntry
 	for rows.Next() {
-		var entry RoundEntry
+		var entry models.RoundEntry
 		if err := rows.Scan(&entry.RoundID, &entry.Number, &entry.Color, &entry.Parity, &entry.Half, &entry.Dozen, &entry.Row, &entry.PlayedAt); err != nil {
 			return nil, err
 		}
@@ -79,4 +70,25 @@ func GetRounds(rangeParam string) ([]RoundEntry, error) {
 	}
 
 	return results, nil
+}
+
+func GetPlayerRank(balance float64) (int, error) {
+	db, err := Connect()
+	if err != nil {
+		return 0, err
+	}
+	defer db.Close()
+
+	today := time.Now().Truncate(24 * time.Hour).Format("2006-01-02")
+
+	var rank int
+	err = db.QueryRow(`
+		SELECT COUNT(*) + 1 AS rank
+		FROM games
+		WHERE final_balance > $1
+		AND final_balance > 0
+		AND game_date_time >= $2
+	`, balance, today).Scan(&rank)
+
+	return rank, err
 }

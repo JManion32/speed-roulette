@@ -5,13 +5,13 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"speed-roulette/backend/auth"
 	"speed-roulette/backend/db"
-	"speed-roulette/backend/utils"
 )
 
 func HandleAllStats(w http.ResponseWriter, r *http.Request) {
-	ip := utils.GetClientIP(r)
-	if err := utils.CheckIPStatsLimit(ip); err != nil {
+	ip := auth.GetClientIP(r)
+	if err := auth.CheckIPStatsLimit(ip); err != nil {
 		http.Error(w, err.Error(), http.StatusTooManyRequests)
 		return
 	}

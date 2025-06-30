@@ -12,8 +12,8 @@ var Client *redis.Client
 
 func InitRedis() {
 	Client = redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379", // Change if using Docker or different host
-		Password: "",               // Add password if needed
+		Addr:     "localhost:6379",
+		Password: "",
 		DB:       0,
 	})
 

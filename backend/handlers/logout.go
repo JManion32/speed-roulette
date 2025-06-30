@@ -2,19 +2,21 @@ package handlers
 
 import (
 	"net/http"
+	
+	"speed-roulette/backend/auth"
 	"speed-roulette/backend/redis"
-	"speed-roulette/backend/utils"
+	"speed-roulette/backend/middleware"
 )
 
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
-	utils.SetupCORS(&w, r)
+	middleware.SetupCORS(&w, r)
 
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	token, err := utils.ExtractToken(r)
+	token, err := auth.ExtractToken(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return

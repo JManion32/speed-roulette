@@ -5,21 +5,10 @@ import (
 	"math"
 	"net/http"
 
+	"speed-roulette/backend/auth"
 	"speed-roulette/backend/db"
-	"speed-roulette/backend/utils"
+	"speed-roulette/backend/models"
 )
-
-type GameRequest struct {
-	Nickname     string  `json:"nickname"`
-	FinalBalance float64 `json:"final_balance"`
-	RemSpins     int     `json:"rem_spins"`
-	RemTime      int     `json:"rem_time"`
-}
-
-type GameResponse struct {
-	Status string `json:"status"`
-	Rank   int    `json:"rank"`
-}
 
 func HandleGame(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -27,13 +16,13 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	nickname, err := utils.GetNicknameFromToken(r)
+	nickname, err := auth.GetNicknameFromToken(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	}
 
-	var req GameRequest
+	var req models.GameRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Invalid JSON: "+err.Error(), http.StatusBadRequest)
 		return
@@ -44,7 +33,7 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	balance, err := utils.GetBalanceFromToken(r)
+	balance, err := auth.GetBalanceFromToken(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -66,7 +55,7 @@ func HandleGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(GameResponse{
+	json.NewEncoder(w).Encode(models.GameResponse{
 		Status: "success",
 		Rank:   rank,
 	})

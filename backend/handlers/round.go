@@ -5,23 +5,16 @@ import (
 	"net/http"
 	"log"
 
+	"speed-roulette/backend/auth"
 	"speed-roulette/backend/db" 
 	"speed-roulette/backend/models"
+	"speed-roulette/backend/middleware"
 	"speed-roulette/backend/redis"
 	"speed-roulette/backend/utils"
 )
 
-type PayoutRequest struct {
-	Bets   []models.Bet `json:"bets"`
-	Result int          `json:"result"`
-}
-
-type PayoutResponse struct {
-	Payout float64 `json:"payout"`
-}
-
 func HandleRound(w http.ResponseWriter, r *http.Request) {
-	utils.SetupCORS(&w, r)
+	middleware.SetupCORS(&w, r)
 	if r.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusOK)
 		return
@@ -37,13 +30,13 @@ func HandleRound(w http.ResponseWriter, r *http.Request) {
 	}
 
 	totalBet := utils.SumBets(req.Bets)
-	token, balance, err := utils.ValidateAndGetBalance(r, totalBet)
+	token, balance, err := auth.ValidateAndGetBalance(r, totalBet)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusForbidden)
 		return
 	}
 
-	if err := utils.CheckRateLimit(token); err != nil {
+	if err := auth.CheckRateLimit(token); err != nil {
 		http.Error(w, err.Error(), http.StatusTooManyRequests)
 		return
 	}

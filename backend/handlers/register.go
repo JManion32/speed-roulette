@@ -5,29 +5,26 @@ import (
 	"net/http"
 	"time"
 
+	"speed-roulette/backend/auth"
 	"speed-roulette/backend/redis"
-	"speed-roulette/backend/utils"
+	"speed-roulette/backend/models"
 )
 
 func HandleRegister(w http.ResponseWriter, r *http.Request) {
 
-	ip := utils.GetClientIP(r)
-	if err := utils.CheckIPRateLimit(ip); err != nil {
+	ip := auth.GetClientIP(r)
+	if err := auth.CheckIPRateLimit(ip); err != nil {
 		http.Error(w, err.Error(), http.StatusTooManyRequests)
 		return
 	}
 
-	type request struct {
-		Nickname string `json:"nickname"`
-	}
-
-	var req request
+	var req models.Request
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil || req.Nickname == "" {
 		http.Error(w, "Invalid nickname", http.StatusBadRequest)
 		return
 	}
 
-	token := utils.GenerateToken(16)
+	token := auth.GenerateToken(16)
 
 	// Set nickname token with 3 minute expiration
 	if err := redis.Client.Set(redis.Ctx, "token:"+token, req.Nickname, 3 * time.Minute).Err(); err != nil {

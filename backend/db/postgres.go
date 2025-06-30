@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"time"
 
 	_ "github.com/lib/pq"
 )
@@ -56,6 +55,10 @@ func InitDB() {
 			game_date_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 		);`
 
+	if _, err := db.Exec(createGamesTable); err != nil {
+		log.Fatal("Failed to create games table:", err)
+	}
+
 	createRoundsTable := `
 		CREATE TABLE IF NOT EXISTS rounds (
 			round_id SERIAL PRIMARY KEY,
@@ -67,13 +70,28 @@ func InitDB() {
 			row VARCHAR(10),
 			round_date_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 		);`
-
-	if _, err := db.Exec(createGamesTable); err != nil {
-		log.Fatal("Failed to create games table:", err)
-	}
-
+	
 	if _, err := db.Exec(createRoundsTable); err != nil {
 		log.Fatal("Failed to create rounds table:", err)
+	}
+
+	createNumbersTable := `
+		CREATE TABLE IF NOT EXISTS numbers (
+			number INTEGER PRIMARY KEY
+		);`
+	
+	if _, err := db.Exec(createNumbersTable); err != nil {
+		log.Fatal("Failed to create numbers table:", err)
+	}
+
+	populateNumbers := `
+		INSERT INTO numbers (number)
+		SELECT i FROM generate_series(0, 37) AS s(i)
+		ON CONFLICT DO NOTHING;
+	`
+
+	if _, err := db.Exec(populateNumbers); err != nil {
+		log.Fatal("Failed to populate numbers table:", err)
 	}
 
 	log.Println("Database initialized successfully.")
@@ -111,25 +129,4 @@ func InsertGame(nickname string, balance float64, remSpins int, remTime int) (in
 	`, nickname, balance, remSpins, remTime).Scan(&gameID)
 
 	return gameID, err
-}
-
-func GetPlayerRank(balance float64) (int, error) {
-	db, err := Connect()
-	if err != nil {
-		return 0, err
-	}
-	defer db.Close()
-
-	today := time.Now().Truncate(24 * time.Hour).Format("2006-01-02")
-
-	var rank int
-	err = db.QueryRow(`
-		SELECT COUNT(*) + 1 AS rank
-		FROM games
-		WHERE final_balance > $1
-		AND final_balance > 0
-		AND game_date_time >= $2
-	`, balance, today).Scan(&rank)
-
-	return rank, err
 }
