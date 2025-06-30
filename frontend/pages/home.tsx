@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom';
 import { useDarkMode } from "../contexts/DarkModeContext";
 
 // Components
-import DarkModeToggle from "../components/DarkModeToggle";
 import AboutModal from "../components/AboutModal";
+import DarkModeToggle from "../components/DarkModeToggle";
+import PrivacyModal from "../components/PrivacyModal";
 
 // Hooks
 import { useStartGame } from "../hooks/useStartGame"; // adjust path if needed
@@ -19,6 +20,7 @@ import { useStartGame } from "../hooks/useStartGame"; // adjust path if needed
 function Home() {
   const { isDarkMode } = useDarkMode();
   const [showModal, setShowModal] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   const [nickname, setNickname] = useState("");
   const startGame = useStartGame(nickname, setNickname);
@@ -105,8 +107,14 @@ function Home() {
   
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
-          <p className="font-bold text-purple-700 hover:text-purple-500">Privacy</p>
+            <p
+              className="font-bold text-purple-700 hover:text-purple-500"
+              onClick={() => setShowPrivacy(true)}
+            >
+              Privacy
+            </p>
         </div>
+        <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       </div>
     )
   }
