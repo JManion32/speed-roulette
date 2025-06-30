@@ -27,13 +27,20 @@ function Leaderboard() {
   }
 
   return (
-    <div className={`p-4 flex top-0 h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
+    <div
+      className={`p-4 flex flex-col items-center justify-start min-h-screen transition duration-200 select-none ${
+        isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
+      }`}
+      style={{ scrollbarGutter: 'stable' }}
+    >
+      <div className="w-full flex justify-between px-4 mb-4">
         <HomeButton />
         <DarkModeToggle />
-        <div className="absolute top-26 left-97 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[4rem] font-bold">Leaderboard</h1>
-        </div>
-        <div className="flex justify-center border-b border-gray-700 absolute left-50 top-48 mb-8">
+      </div>
+      <div className="w-full max-w-6xl mx-auto">
+        <h1 className="text-[4rem] font-bold mt-10 mb-8">Leaderboard</h1>
+
+        <div className="flex border-b border-gray-700 mb-6 space-x-6">
           {['today', 'week', 'month', 'allTime'].map((tabKey) => (
             <button
               key={tabKey}
@@ -54,11 +61,10 @@ function Leaderboard() {
               {tabKey === 'allTime' && 'All Time'}
             </button>
           ))}
-      </div>
-      <div className="absolute top-64 left-50 transform">
-        <div className="max-h-[30rem]">
+        </div>
+
+        <div className="w-full max-w-6xl overflow-x-auto">
           {leaderboard.length > 0 ? (
-            <>
             <table className="w-full text-left border-collapse mt-4">
               <thead>
                 <tr className="text-xl">
@@ -89,8 +95,12 @@ function Leaderboard() {
                           ? 'bg-orange-900'
                           : 'bg-orange-200'
                         : isDarkMode
-                        ? (i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800')
-                        : (i % 2 === 0 ? 'bg-light-mode' : 'bg-gray-100')
+                        ? i % 2 === 0
+                          ? 'bg-gray-900'
+                          : 'bg-gray-800'
+                        : i % 2 === 0
+                        ? 'bg-light-mode'
+                        : 'bg-gray-100'
                     }`}
                   >
                     <td className="pl-6 pr-20 font-bold">{i + 1}</td>
@@ -117,20 +127,23 @@ function Leaderboard() {
                     </td>
                     <td className="pr-24 py-2">
                       {entry.played_at
-                        ? new Date(entry.played_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        ? new Date(entry.played_at).toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })
                         : '—'}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="h-16"></div> {/* For spacing between table and bottom of page */}
-            </>
           ) : (
-            <p className="text-xl mt-2">No entries yet.</p>
+            <p className="text-xl mt-4 text-center">No entries yet.</p>
           )}
         </div>
       </div>
+
+      <div className="h-16"></div>
     </div>
   );
 }
