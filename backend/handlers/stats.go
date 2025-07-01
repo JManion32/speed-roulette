@@ -11,7 +11,7 @@ import (
 
 func HandleAllStats(w http.ResponseWriter, r *http.Request) {
 	ip := auth.GetClientIP(r)
-	if err := auth.CheckIPStatsLimit(ip); err != nil {
+	if err := auth.CheckIPLeaderboardLimit(ip); err != nil {
 		http.Error(w, err.Error(), http.StatusTooManyRequests)
 		return
 	}
@@ -21,13 +21,13 @@ func HandleAllStats(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	today, err1 := db.GetRounds("today")
-	week, err2 := db.GetRounds("week")
-	month, err3 := db.GetRounds("month")
-	allTime, err4 := db.GetRounds("allTime")
+	today, err1 := db.GetRoundsStats("today")
+	week, err2 := db.GetRoundsStats("week")
+	month, err3 := db.GetRoundsStats("month")
+	allTime, err4 := db.GetRoundsStats("allTime")
 
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
-		http.Error(w, "Failed to load round statistics", http.StatusInternalServerError)
+		http.Error(w, "Failed to load round stats", http.StatusInternalServerError)
 		return
 	}
 
