@@ -8,24 +8,24 @@
    Theme Variables
 ──────────────────────────────── */
 @theme {
-  --color-light-mode: var(--sr-master-light);
-  --color-green: var(--roulette-green);
-  --color-red: var(--roulette-red);
-  --color-winning: var(--winning-number);
-  --color-gray-350: var(--gray-350);
+    --color-light-mode: var(--sr-master-light);
+    --color-green: var(--roulette-green);
+    --color-red: var(--roulette-red);
+    --color-winning: var(--winning-number);
+    --color-gray-350: var(--gray-350);
 }
 
 /* ───────────────────────────────
    Base Font & Smoothing
 ──────────────────────────────── */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ───────────────────────────────
@@ -34,25 +34,25 @@
 
 /* Set html fallback background early */
 html {
-  font-size: 16px; /* Base: 1920px */
-  background-color: var(--color-light-mode);
+    font-size: 16px; /* Base: 1920px */
+    background-color: var(--color-light-mode);
 }
 
 /* Dark mode html background override */
 html.dark {
-  background-color: var(--sr-master-dark);
+    background-color: var(--sr-master-dark);
 }
 
 /* Light mode body styles */
 body {
-  background-color: var(--color-light-mode);
-  color: black;
+    background-color: var(--color-light-mode);
+    color: black;
 }
 
 /* Dark mode body override */
 html.dark body {
-  background-color: var(--sr-master-dark);
-  color: white;
+    background-color: var(--sr-master-dark);
+    color: white;
 }
 
 /* ───────────────────────────────
@@ -61,48 +61,70 @@ html.dark body {
 
 /* Scale down for smaller screens */
 @media (max-width: 30rem) {
-  html { font-size: 10px; }
+    html {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 40rem) {
-  html { font-size: 12px; }
+    html {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 48rem) {
-  html { font-size: 14px; }
+    html {
+        font-size: 14px;
+    }
 }
 
 /* Fluid scale up for larger screens */
 @media (min-width: 127.5rem) {
-  html { font-size: 17px; }
+    html {
+        font-size: 17px;
+    }
 }
 
 @media (min-width: 135rem) {
-  html { font-size: 18px; }
+    html {
+        font-size: 18px;
+    }
 }
 
 @media (min-width: 147.5rem) {
-  html { font-size: 19px; }
+    html {
+        font-size: 19px;
+    }
 }
 
 @media (min-width: 160rem) {
-  html { font-size: 20px; }
+    html {
+        font-size: 20px;
+    }
 }
 
 @media (min-width: 180rem) {
-  html { font-size: 21px; }
+    html {
+        font-size: 21px;
+    }
 }
 
 @media (min-width: 200rem) {
-  html { font-size: 22px; }
+    html {
+        font-size: 22px;
+    }
 }
 
 @media (min-width: 220rem) {
-  html { font-size: 23px; }
+    html {
+        font-size: 23px;
+    }
 }
 
 @media (min-width: 240rem) {
-  html { font-size: 24px; }
+    html {
+        font-size: 24px;
+    }
 }
 
 /* ───────────────────────────────
@@ -110,10 +132,13 @@ html.dark body {
 ──────────────────────────────── */
 
 .glow-hot-header {
-  text-shadow: 0 0 1.5px #fb923c, 0 0 3px #f97316;
+    text-shadow:
+        0 0 1.5px #fb923c,
+        0 0 3px #f97316;
 }
 
 .glow-cold-header {
-  text-shadow: 0 0 1.5px #67e8f9, 0 0 3px #22d3ee;
+    text-shadow:
+        0 0 1.5px #67e8f9,
+        0 0 3px #22d3ee;
 }
-

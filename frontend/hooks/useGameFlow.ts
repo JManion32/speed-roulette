@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export function useTimer(
-    onTimerEnd: () => void = () => {}
-) {
+export function useTimer(onTimerEnd: () => void = () => {}) {
     const [timeLeft, setTimeLeft] = useState<number>(60);
     const [isPaused, setIsPaused] = useState<boolean>(true);
 
@@ -17,7 +15,7 @@ export function useTimer(
         const timer = setInterval(() => {
             setTimeLeft((prev) => prev - 1);
         }, 1000);
-    
+
         return () => clearInterval(timer);
     }, [timeLeft, isPaused]);
 

@@ -1,24 +1,24 @@
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px); /* optional slide-up effect */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* optional slide-up effect */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-out forwards;
+    animation: fadeIn 1s ease-out forwards;
 }
 
 .light-glow {
-  text-shadow:
-    2px 2px 4px rgba(0, 0, 0, 0.25),         /* strong base shadow */
-    0 0 10px rgba(0, 0, 0, 0.2),             /* outer glow */
-    3px 5px 20px rgba(0, 0, 0, 0.15),        /* long soft shadow */
-    0 0 12px rgba(255, 255, 255, 0.6);       /* white ambient glow for contrast */
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.25),
+        /* strong base shadow */ 0 0 10px rgba(0, 0, 0, 0.2),
+        /* outer glow */ 3px 5px 20px rgba(0, 0, 0, 0.15),
+        /* long soft shadow */ 0 0 12px rgba(255, 255, 255, 0.6); /* white ambient glow for contrast */
 }
 
 .constant-glow {
