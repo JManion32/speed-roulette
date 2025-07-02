@@ -2,7 +2,9 @@
 
 /* Winning number styles / animations */
 .winning-glow-effect {
+    /* stylelint-disable-next-line declaration-no-important */
     color: var(--standard-black) !important;
+    /* stylelint-disable-next-line declaration-no-important */
     background: var(--winning-number) !important;
     animation: glow 0.85s ease-in-out 4;
 }
