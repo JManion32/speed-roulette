@@ -104,3 +104,16 @@ html.dark body {
 @media (min-width: 240rem) {
   html { font-size: 24px; }
 }
+
+/* ───────────────────────────────
+   Stats Page
+──────────────────────────────── */
+
+.glow-hot-header {
+  text-shadow: 0 0 1.5px #fb923c, 0 0 3px #f97316;
+}
+
+.glow-cold-header {
+  text-shadow: 0 0 1.5px #67e8f9, 0 0 3px #22d3ee;
+}
+

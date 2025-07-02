@@ -3,7 +3,6 @@ package db
 
 import (
 	"fmt"
-	"sort"
 	"time"
 
 	//"speed-roulette/backend/models"
@@ -31,29 +30,35 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 	}
 	defer db.Close()
 
-	var timeCondition string
+	var timeBoundary string
 	today := time.Now().Truncate(24 * time.Hour)
 
 	switch rangeParam {
 	case "today":
-		timeCondition = fmt.Sprintf("WHERE round_date_time >= '%s'", today.Format("2006-01-02"))
+		timeBoundary = today.Format("2006-01-02")
 	case "week":
 		weekStart := today.AddDate(0, 0, -int(today.Weekday()))
-		timeCondition = fmt.Sprintf("WHERE round_date_time >= '%s'", weekStart.Format("2006-01-02"))
+		timeBoundary = weekStart.Format("2006-01-02")
 	case "month":
 		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, time.Local)
-		timeCondition = fmt.Sprintf("WHERE round_date_time >= '%s'", monthStart.Format("2006-01-02"))
+		timeBoundary = monthStart.Format("2006-01-02")
 	case "allTime":
-		timeCondition = ""
+		timeBoundary = ""
 	default:
 		return nil, fmt.Errorf("invalid range value")
+	}
+
+	// For non-"allTime" cases, apply WHERE filter to raw stats query
+	var statsTimeCondition string
+	if timeBoundary != "" {
+		statsTimeCondition = fmt.Sprintf("WHERE round_date_time >= '%s'", timeBoundary)
 	}
 
 	query := fmt.Sprintf(`
 		SELECT number, color, parity, half, dozen, row
 		FROM rounds
 		%s;
-	`, timeCondition)
+	`, statsTimeCondition)
 
 	rows, err := db.Query(query)
 	if err != nil {
@@ -88,20 +93,83 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 		numCounts[number]++
 	}
 
-	// Sort numbers by frequency
-	var sorted []NumberCount
-	for number, count := range numCounts {
-		sorted = append(sorted, NumberCount{Number: number, Count: count})
+	// Step 1: Get hottest numbers
+	var hottestQuery string
+	if timeBoundary == "" {
+		hottestQuery = `
+			SELECT n.number, COUNT(r.number) AS count
+			FROM numbers n
+			LEFT JOIN rounds r ON n.number = r.number
+			GROUP BY n.number
+			ORDER BY count DESC, n.number ASC
+			LIMIT 5;
+		`
+	} else {
+		hottestQuery = fmt.Sprintf(`
+			SELECT n.number, COUNT(r.number) AS count
+			FROM numbers n
+			LEFT JOIN rounds r ON n.number = r.number AND r.round_date_time >= '%s'
+			GROUP BY n.number
+			ORDER BY count DESC, n.number ASC
+			LIMIT 5;
+		`, timeBoundary)
 	}
-	sort.Slice(sorted, func(i, j int) bool {
-		return sorted[i].Count > sorted[j].Count
-	})
 
-	for i := 0; i < 5 && i < len(sorted); i++ {
-		stats.HottestNumbers = append(stats.HottestNumbers, sorted[i])
+	rows, err = db.Query(hottestQuery)
+	if err != nil {
+		return nil, err
 	}
-	for i := len(sorted) - 1; i >= 0 && len(stats.ColdestNumbers) < 5; i-- {
-		stats.ColdestNumbers = append(stats.ColdestNumbers, sorted[i])
+	defer rows.Close()
+
+	hottestSet := make(map[int]bool)
+	for rows.Next() {
+		var number, count int
+		if err := rows.Scan(&number, &count); err != nil {
+			return nil, err
+		}
+		stats.HottestNumbers = append(stats.HottestNumbers, NumberCount{Number: number, Count: count})
+		hottestSet[number] = true
+	}
+	rows.Close()
+
+	// Step 2: Coldest numbers (excluding hottest)
+	var coldestQuery string
+	if timeBoundary == "" {
+		coldestQuery = `
+			SELECT n.number, COUNT(r.number) AS count
+			FROM numbers n
+			LEFT JOIN rounds r ON n.number = r.number
+			GROUP BY n.number
+			ORDER BY count ASC, n.number ASC;
+		`
+	} else {
+		coldestQuery = fmt.Sprintf(`
+			SELECT n.number, COUNT(r.number) AS count
+			FROM numbers n
+			LEFT JOIN rounds r ON n.number = r.number AND r.round_date_time >= '%s'
+			GROUP BY n.number
+			ORDER BY count ASC, n.number ASC;
+		`, timeBoundary)
+	}
+
+	rows, err = db.Query(coldestQuery)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var number, count int
+		if err := rows.Scan(&number, &count); err != nil {
+			return nil, err
+		}
+		if hottestSet[number] {
+			continue
+		}
+		stats.ColdestNumbers = append(stats.ColdestNumbers, NumberCount{Number: number, Count: count})
+		if len(stats.ColdestNumbers) == 5 {
+			break
+		}
 	}
 
 	return stats, nil

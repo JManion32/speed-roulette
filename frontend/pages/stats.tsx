@@ -4,6 +4,7 @@ import { useDarkMode } from "../contexts/DarkModeContext";
 import DarkModeToggle from "../components/DarkModeToggle";
 import HomeButton from "../components/HomeButton";
 import { useStatData } from '../hooks/useStatData';
+import { getColorClass } from '../utils/recentNumColor';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -13,12 +14,16 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 import {
   createStackedBarData,
   stackedBarOptions,
-} from '../utils/chartUtils'; // ✅ renamed import to match your message
+} from '../utils/chartUtils';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartDataLabels);
+
 
 function StatDisplay() {
   const { isDarkMode } = useDarkMode();
@@ -45,79 +50,110 @@ function StatDisplay() {
         <HomeButton />
         <DarkModeToggle />
       </div>
+      <div className="w-full max-w-5xl mx-auto">
+        <h1 className="text-[4rem] font-bold mt-10 mb-8">Site Statistics</h1>
 
-      <h1 className="text-[3rem] font-bold text-center mt-4 mb-6">Cool Statistics</h1>
+        <div className="flex border-b border-gray-700 mb-8 space-x-6">
+          {['today', 'week', 'month', 'allTime'].map((tabKey) => (
+            <button
+              key={tabKey}
+              className={`py-2 px-6 text-xl ${
+                activeTab === tabKey
+                  ? isDarkMode
+                    ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
+                    : 'text-yellow-700 font-bold border-b-2 border-yellow-700'
+                  : isDarkMode
+                  ? 'hover:text-yellow-500'
+                  : 'hover:text-yellow-700'
+              }`}
+              onClick={() => setActiveTab(tabKey as typeof activeTab)}
+            >
+              {tabKey === 'today' && 'Today'}
+              {tabKey === 'week' && 'This Week'}
+              {tabKey === 'month' && 'This Month'}
+              {tabKey === 'allTime' && 'All Time'}
+            </button>
+          ))}
+        </div>
 
-      <div className="flex justify-center border-b border-gray-700 mb-8 space-x-6">
-        {['today', 'week', 'month', 'allTime'].map((tabKey) => (
-          <button
-            key={tabKey}
-            className={`py-2 px-6 text-xl ${
-              activeTab === tabKey
-                ? isDarkMode
-                  ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
-                  : 'text-yellow-700 font-bold border-b-2 border-yellow-700'
-                : isDarkMode
-                ? 'hover:text-yellow-500'
-                : 'hover:text-yellow-700'
-            }`}
-            onClick={() => setActiveTab(tabKey as typeof activeTab)}
-          >
-            {tabKey === 'today' && 'Today'}
-            {tabKey === 'week' && 'This Week'}
-            {tabKey === 'month' && 'This Month'}
-            {tabKey === 'allTime' && 'All Time'}
-          </button>
-        ))}
+        <div className="w-full max-w-5xl space-y-12">
+          <div className="space-y-8">
+            <div className="space-y-8">
+              
+        <div className="flex items-center gap-6">
+          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap text-orange-400 glow-hot-header">
+            🔥 Hottest Numbers:
+          </h2>
+          <div className="flex flex-wrap gap-4 ml-12">
+            {stats.hottestNumbers.map((n, i) => (
+              <div
+                key={i}
+                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow-md fire-button-glow ${
+                  getColorClass(n.number === 37 ? '00' : n.number.toString())
+                }`}
+              >
+                <div className="absolute top-1/45 right-1/45 text-[10px] text-yellow-300 font-bold px-1 translate-x-[-2px] translate-y-[-2px]">
+                  ×{n.count ?? 0}
+                </div>
+                {n.number === 37 ? '00' : n.number}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-6">
+          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap text-cyan-300 glow-cold-header">
+            ❄️ Coldest Numbers:
+          </h2>
+          <div className="flex flex-wrap gap-4 ml-12">
+            {stats.coldestNumbers.map((n, i) => (
+              <div
+                key={i}
+                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow-md frozen-button-glow ${
+                  getColorClass(n.number === 37 ? '00' : n.number.toString())
+                }`}
+              >
+                <div className="absolute top-1/45 right-1/45 text-[10px] text-yellow-300 font-bold px-1 translate-x-[-2px] translate-y-[-2px]">
+                  ×{n.count ?? 0}
+                </div>
+                {n.number === 37 ? '00' : n.number}
+              </div>
+            ))}
+          </div>
+        </div>
+        </div>
+          </div>
+          <div>
+            <div className="h-12">
+              <Bar data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black'])} options={stackedBarOptions} />
+            </div>
+          </div>
+
+          <div>
+            <div className="h-12">
+              <Bar data={createStackedBarData(stats.parityCounts, ['even', 'neither', 'odd'])} options={stackedBarOptions} />
+            </div>
+          </div>
+
+          <div>
+            <div className="h-12">
+              <Bar data={createStackedBarData(stats.halfCounts, ['low', 'neither', 'high'])} options={stackedBarOptions} />
+            </div>
+          </div>
+
+          <div>
+            <div className="h-12">
+              <Bar data={createStackedBarData(stats.dozenCounts, ['first', 'second', 'third', 'neither'])} options={stackedBarOptions} />
+            </div>
+          </div>
+
+          <div>
+            <div className="h-12">
+              <Bar data={createStackedBarData(stats.rowCounts, ['top', 'middle', 'bottom', 'neither'])} options={stackedBarOptions} />
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="w-full max-w-4xl space-y-12">
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Top 5 Hottest Numbers</h2>
-          <p className="text-lg">{stats.hottestNumbers.join(', ')}</p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Top 5 Coldest Numbers</h2>
-          <p className="text-lg">{stats.coldestNumbers.join(', ')}</p>
-        </div>
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Color Distribution</h2>
-          <div className="h-8">
-            <Bar data={createStackedBarData(stats.colorCounts)} options={stackedBarOptions} />
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Parity Distribution</h2>
-          <div className="h-8">
-            <Bar data={createStackedBarData(stats.parityCounts)} options={stackedBarOptions} />
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">High/Low Distribution</h2>
-          <div className="h-8">
-            <Bar data={createStackedBarData(stats.halfCounts)} options={stackedBarOptions} />
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Dozen Distribution</h2>
-          <div className="h-8">
-            <Bar data={createStackedBarData(stats.dozenCounts)} options={stackedBarOptions} />
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Row Distribution</h2>
-          <div className="h-8">
-            <Bar data={createStackedBarData(stats.rowCounts)} options={stackedBarOptions} />
-          </div>
-        </div>
-      </div>
-
-      <div className="h-20" />
     </div>
   );
 }
