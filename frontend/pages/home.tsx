@@ -3,7 +3,7 @@ import '../css/home.css'
 import about from "../assets/about.png";
 import stats from "../assets/stats.png";
 import trophy from "../assets/trophy.png";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Contexts
@@ -56,7 +56,7 @@ function Home() {
             />
 
             <button
-              onClick={(e) => {
+              onClick={() => {
                 startGame();
               }}
               className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${

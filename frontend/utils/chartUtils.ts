@@ -105,8 +105,6 @@ export const stackedBarOptions = {
             align: "center" as const,
             formatter: (_value: number, context: any) => {
                 const label = context.dataset.label;
-                const percentage = context.dataset.data[0];
-
                 if (label === "neither" || label === "green") return "";
                 return label.toUpperCase();
             },

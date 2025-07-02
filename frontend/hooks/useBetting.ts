@@ -2,10 +2,6 @@ import { useState, useCallback } from "react";
 import type { Bet, BetAction, Chip } from "../types/chips";
 import { updateChipColor } from "../utils/chipFormatting";
 
-interface UseBettingParams {
-    setIsPaused?: (val: boolean) => void;
-}
-
 export function useBetting({
     setIsPaused,
 }: {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function useResultModal() {
     const [showModal, setShowModal] = useState(false);

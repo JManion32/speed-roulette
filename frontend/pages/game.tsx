@@ -21,7 +21,7 @@ import { useResultNums } from '../hooks/useResultNums';
 import { useBetting } from '../hooks/useBetting';
 
 // Types
-import type { Chip, Bet, BetAction } from '../types/chips';
+import type { Bet } from '../types/chips';
 
 // Utils
 import { getColorClass } from '../utils/recentNumColor';
@@ -47,11 +47,11 @@ function Game() {
 
     const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
 
-    const { winningNumber, setWinningNumber, isWinning,
+    const { setWinningNumber, isWinning,
         resultNums, setResultNums, addResultNum } = useResultNums();
 
-    //Grid Stuff
-    const [showGrid, setShowGrid] = useState(false);   // grid visibility
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [showGrid, setShowGrid] = useState();   // grid visibility
     const [gridBlock, setGridBlock] = useState(false);   // grid interactability
 
     const [isSelected, setIsSelected] = useState(false);
