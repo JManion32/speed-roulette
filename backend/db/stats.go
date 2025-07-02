@@ -102,7 +102,7 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			LEFT JOIN rounds r ON n.number = r.number
 			GROUP BY n.number
 			ORDER BY count DESC, n.number ASC
-			LIMIT 5;
+			LIMIT 7;
 		`
 	} else {
 		hottestQuery = fmt.Sprintf(`
@@ -111,7 +111,7 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			LEFT JOIN rounds r ON n.number = r.number AND r.round_date_time >= '%s'
 			GROUP BY n.number
 			ORDER BY count DESC, n.number ASC
-			LIMIT 5;
+			LIMIT 7;
 		`, timeBoundary)
 	}
 
@@ -167,7 +167,7 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			continue
 		}
 		stats.ColdestNumbers = append(stats.ColdestNumbers, NumberCount{Number: number, Count: count})
-		if len(stats.ColdestNumbers) == 5 {
+		if len(stats.ColdestNumbers) == 7 {
 			break
 		}
 	}

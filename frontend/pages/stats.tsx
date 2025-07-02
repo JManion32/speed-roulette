@@ -42,7 +42,7 @@ function StatDisplay() {
 
   return (
     <div
-      className={`p-4 flex flex-col items-center transition duration-200 select-none ${
+      className={`p-4 flex flex-col items-center transition duration-200 select-none h-screen ${
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
       }`}
     >
@@ -81,18 +81,18 @@ function StatDisplay() {
             <div className="space-y-8">
               
         <div className="flex items-center gap-6">
-          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap text-orange-400 glow-hot-header">
+          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap glow-hot-header">
             🔥 Hottest Numbers:
           </h2>
           <div className="flex flex-wrap gap-4 ml-12">
             {stats.hottestNumbers.map((n, i) => (
               <div
                 key={i}
-                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow-md fire-button-glow ${
+                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold ${
                   getColorClass(n.number === 37 ? '00' : n.number.toString())
                 }`}
               >
-                <div className="absolute top-1/45 right-1/45 text-[10px] text-yellow-300 font-bold px-1 translate-x-[-2px] translate-y-[-2px]">
+                <div className="absolute top-0 right-0 text-[12px] text-yellow-300 font-extrabold px-1 translate-x-[-2px] translate-y-[-2px]">
                   ×{n.count ?? 0}
                 </div>
                 {n.number === 37 ? '00' : n.number}
@@ -102,18 +102,18 @@ function StatDisplay() {
         </div>
 
         <div className="flex items-center gap-6">
-          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap text-cyan-300 glow-cold-header">
+          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap glow-cold-header">
             ❄️ Coldest Numbers:
           </h2>
           <div className="flex flex-wrap gap-4 ml-12">
             {stats.coldestNumbers.map((n, i) => (
               <div
                 key={i}
-                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow-md frozen-button-glow ${
+                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold ${
                   getColorClass(n.number === 37 ? '00' : n.number.toString())
                 }`}
               >
-                <div className="absolute top-1/45 right-1/45 text-[10px] text-yellow-300 font-bold px-1 translate-x-[-2px] translate-y-[-2px]">
+                <div className="absolute top-0 right-0 text-[12px] text-yellow-300 font-extrabold px-1 translate-x-[-2px] translate-y-[-2px]">
                   ×{n.count ?? 0}
                 </div>
                 {n.number === 37 ? '00' : n.number}
@@ -153,6 +153,7 @@ function StatDisplay() {
             </div>
           </div>
         </div>
+        <div className="h-16"></div>
       </div>
     </div>
   );

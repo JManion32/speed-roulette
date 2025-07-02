@@ -9,7 +9,7 @@
     --gray-350: #b7bcc5;
 
     /* ========== Game ========== */
-    --roulette-red: red;
-    --roulette-green: green;
+    --roulette-red: #ff0000;
+    --roulette-green: #008000;
     --winning-number: #ffd700;
 }
