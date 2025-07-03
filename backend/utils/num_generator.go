@@ -1,12 +1,15 @@
 package utils
 
 import (
-    "math/rand"
-    "time"
+	"crypto/rand"
+	"math/big"
 )
 
-// GenerateNum generates a random roulette result
 func GenerateNum() int {
-    rand.Seed(time.Now().UnixNano())
-    return rand.Intn(38) // 0-37 where 37 represents 00
+	max := big.NewInt(38)
+	n, err := rand.Int(rand.Reader, max)
+	if err != nil {
+		panic(err)
+	}
+	return int(n.Int64())
 }

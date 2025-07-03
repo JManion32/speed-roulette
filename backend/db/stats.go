@@ -101,7 +101,8 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			FROM numbers n
 			LEFT JOIN rounds r ON n.number = r.number
 			GROUP BY n.number
-			ORDER BY count DESC, n.number ASC
+			ORDER BY count DESC,
+         		CASE WHEN n.number = 37 THEN -1 ELSE n.number END ASC
 			LIMIT 7;
 		`
 	} else {
@@ -110,7 +111,8 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			FROM numbers n
 			LEFT JOIN rounds r ON n.number = r.number AND r.round_date_time >= '%s'
 			GROUP BY n.number
-			ORDER BY count DESC, n.number ASC
+			ORDER BY count DESC,
+         		CASE WHEN n.number = 37 THEN -1 ELSE n.number END ASC
 			LIMIT 7;
 		`, timeBoundary)
 	}
@@ -140,7 +142,9 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			FROM numbers n
 			LEFT JOIN rounds r ON n.number = r.number
 			GROUP BY n.number
-			ORDER BY count ASC, n.number ASC;
+			ORDER BY count ASC,
+        		CASE WHEN n.number = 37 THEN -1 ELSE n.number END ASC
+
 		`
 	} else {
 		coldestQuery = fmt.Sprintf(`
@@ -148,7 +152,8 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 			FROM numbers n
 			LEFT JOIN rounds r ON n.number = r.number AND r.round_date_time >= '%s'
 			GROUP BY n.number
-			ORDER BY count ASC, n.number ASC;
+			ORDER BY count ASC,
+        		CASE WHEN n.number = 37 THEN -1 ELSE n.number END ASC
 		`, timeBoundary)
 	}
 
