@@ -76,7 +76,7 @@ function StatDisplay() {
           ))}
         </div>
 
-        <div className="w-full max-w-5xl space-y-12">
+        <div className="w-full max-w-5xl space-y-10">
           <div className="space-y-8">
             <div className="space-y-8">
               

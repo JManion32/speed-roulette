@@ -14,11 +14,11 @@ export const createStackedBarData = (
         high: "#8b5cf6",
         low: "#33b78c",
         first: "#069ab1",
-        second: "#d3ae38",
+        second: "#c1a038",
         third: "#f472b6",
         top: "#7c3aed",
         middle: "#f87171",
-        bottom: "#009336",
+        bottom: "#0ca947",
         zero: "#14b8a6",
         neither: "#9ca3af",
     };
