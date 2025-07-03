@@ -51,7 +51,7 @@ function StatDisplay() {
         <DarkModeToggle />
       </div>
       <div className="w-full max-w-5xl mx-auto">
-        <h1 className="text-[4rem] font-bold mt-10 mb-8">Site Statistics</h1>
+        <h1 className="text-[4rem] font-bold mt-8 mb-8">Site Statistics</h1>
 
         <div className="flex border-b border-gray-700 mb-8 space-x-6">
           {['today', 'week', 'month', 'allTime'].map((tabKey) => (
@@ -153,7 +153,7 @@ function StatDisplay() {
             </div>
           </div>
         </div>
-        <div className="h-16"></div>
+        <div className="h-14"></div>
       </div>
     </div>
   );

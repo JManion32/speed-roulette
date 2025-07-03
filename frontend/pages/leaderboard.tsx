@@ -38,7 +38,7 @@ function Leaderboard() {
         <DarkModeToggle />
       </div>
       <div className="w-full max-w-6xl mx-auto">
-        <h1 className="text-[4rem] font-bold mt-10 mb-8">Leaderboard</h1>
+        <h1 className="text-[4rem] font-bold mt-8 mb-8">Leaderboard</h1>
 
         <div className="flex border-b border-gray-700 mb-6 space-x-6">
           {['today', 'week', 'month', 'allTime'].map((tabKey) => (
