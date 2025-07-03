@@ -10,11 +10,11 @@ import (
 
 // Connection parameters - replace with environment variables in production
 const (
-	host     = "localhost"
+	host     = "db"
 	port     = 5432
-	user     = "postgres"
-	password = "(Postgres2025)"
-	dbname   = "roulette"
+	user     = "user"
+	password = "pass"
+	dbname   = "speed-roulette"
 )
 
 // Connect establishes a connection to the PostgreSQL database

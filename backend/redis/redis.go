@@ -12,7 +12,7 @@ var Client *redis.Client
 
 func InitRedis() {
 	Client = redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "redis:6379",
 		Password: "",
 		DB:       0,
 	})
