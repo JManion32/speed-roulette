@@ -1,8 +1,10 @@
+var totalCount;
+
 export const createStackedBarData = (
     counts: Record<string, number>,
     customOrder?: string[],
 ) => {
-    const totalCount = Object.values(counts).reduce((sum, val) => sum + val, 0);
+    totalCount = Object.values(counts).reduce((sum, val) => sum + val, 0);
     const order = customOrder ?? Object.keys(counts);
 
     const colors: Record<string, string> = {
@@ -45,7 +47,7 @@ export const createStackedBarData = (
             categoryPercentage: 1.0,
             borderRadius:
                 order.length === 1
-                    ? 6 // If it's the only one, round all
+                    ? 6
                     : label === order[0]
                       ? {
                             topLeft: 6,
@@ -105,8 +107,10 @@ export const stackedBarOptions = {
             align: "center" as const,
             formatter: (_value: number, context: any) => {
                 const label = context.dataset.label;
+                if (label === "neither" && _value == 100) { return "No data available"};
                 if (label === "neither" || label === "green") return "";
-                return label.toUpperCase();
+                if (_value !== 0) return label.toUpperCase();
+                return null;
             },
             clip: true,
         },

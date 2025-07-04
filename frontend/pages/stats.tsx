@@ -125,7 +125,7 @@ function StatDisplay() {
           </div>
           <div>
             <div className="h-12">
-              <Bar data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black'])} options={stackedBarOptions} />
+              <Bar data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black', 'neither'])} options={stackedBarOptions} />
             </div>
           </div>
 
