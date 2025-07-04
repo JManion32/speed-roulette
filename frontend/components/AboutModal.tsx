@@ -41,7 +41,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
     <div className="modal-overlay fixed inset-0 flex items-center justify-center z-50 bg-gray-900/80" onClick={handleOutsideClick}>
       <div className={`
         ${isDarkMode ? 'bg-gray-800' : 'bg-light-mode'} 
-        rounded-3xl p-8 w-[50rem] h-[34.375rem] max-w-[90%] relative 
+        rounded-3xl p-8 w-[50rem] h-[36.2rem] max-w-[90%] relative 
         ${isClosing ? 'slide-down' : 'slide-up'}`}
       >
         <button 
@@ -74,9 +74,10 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {activeTab === 'about' && (
             <>
               <p className="mb-6">
-                  Speed Roulette is a fast-paced browser game created by Justin Manion, a Junior computer science student at Rensselaer Polytechnic Institute. 
-                  Inspired by speed chess, Speed Roulette puts a twist on the beloved high-stakes casino game. Designed as a solo experience with daily 
-                  leaderboards, the game challenges players to balance risk and speed in just 60 seconds.
+                  Inspired by the intensity of speed chess, Speed Roulette puts an interesting twist on the beloved high-stakes casino game. Players start with 
+                  20 dollars, 10 possible spins, and just 60 seconds on the clock. When bets are submitted, the winning number is revealed, earnings are paid out, and 
+                  the clock starts ticking again 2.5 seconds later. Compete for a spot on the daily leaderboard by making quick decisions, taking bold risks, and hitting 
+                  big payouts.
               </p>
               <p className="font-bold mb-4">Note from the developer:</p>
               <p>
@@ -105,9 +106,9 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               <p>
                 <span className="font-bold">Speed Roulette Twist:</span><br />
                 <ul className="list-disc pl-8 mb-6">
-                  <li>Start with $20, 10 spins, and 1 minute on the clock.</li>
+                  <li>Start with $20, 10 spins, and 60 seconds on the clock.</li>
                   <li>The timer begins when you place your first bet.</li>
-                  <li>Each spin auto-triggers a 2.5s pause before the next round.</li>
+                  <li>When bets are submitted, there is a 2.5s pause before the next round where the number is revealed, and winnings are paid out.</li>
                 </ul>
                 <i>Make as much as you can before you run out of <b>time</b>, <b>spins</b>, or <b>money</b>!</i>
               </p>

@@ -56,35 +56,35 @@ export default function PrivacyModal({ isOpen, onClose }: ModalProps) {
 
         <div className="mx-auto w-[90%] max-w-[40rem] text-[1.125rem] space-y-6 leading-relaxed">
           <div>
-            <h2 className="font-semibold mb-1">1. No Personal Information Collected</h2>
+            <h2 className="font-bold mb-1">1. No Personal Information Collected</h2>
             <p>
               Speed Roulette does not collect any personally identifiable information (PII) such as your name, email address, IP address, or payment details.
             </p>
           </div>
 
           <div>
-            <h2 className="font-semibold mb-1">2. Nicknames and Leaderboard</h2>
+            <h2 className="font-bold mb-1">2. Nicknames and Leaderboard</h2>
             <p>
               For leaderboard purposes, a nickname you enter is temporarily stored and associated with your in-game performance. This nickname is not connected to any external identity.
             </p>
           </div>
 
           <div>
-            <h2 className="font-semibold mb-1">3. Cookies & Session Data</h2>
+            <h2 className="font-bold mb-1">3. Cookies & Session Data</h2>
             <p>
               Temporary cookies or session data may be stored strictly for gameplay functionality (e.g., authentication, token validation, and game state tracking). This data is never used for analytics or marketing.
             </p>
           </div>
 
           <div>
-            <h2 className="font-semibold mb-1">4. No Third-Party Sharing</h2>
+            <h2 className="font-bold mb-1">4. No Third-Party Sharing</h2>
             <p>
-              We do not share, sell, or transfer any user data to third parties. The game is intended solely for entertainment, learning, and portfolio demonstration.
+              Speed Roulette does not share, sell, or transfer any user data to third parties. The game is intended solely for entertainment, learning, and portfolio demonstration.
             </p>
           </div>
 
           <div>
-            <h2 className="font-semibold mb-1">5. Acceptance of Policy</h2>
+            <h2 className="font-bold mb-1">5. Acceptance of Policy</h2>
             <p>
               By playing Speed Roulette, you agree to the terms of this privacy policy. If you have any concerns, please email <a href="mailto:jman32@speedroulette.io" className="text-blue-500 hover:underline">jman32@speedroulette.io</a>.
             </p>
