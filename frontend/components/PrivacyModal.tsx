@@ -52,7 +52,7 @@ export default function PrivacyModal({ isOpen, onClose }: ModalProps) {
           X
         </button>
 
-        <h1 className="text-[2rem] font-bold mb-6 text-center">Privacy Policy</h1>
+        <h1 className="text-[2rem] font-bold mb-6 text-center">PRIVACY POLICY</h1>
 
         <div className="mx-auto w-[90%] max-w-[40rem] text-[1.125rem] space-y-6 leading-relaxed">
           <div>
@@ -92,7 +92,7 @@ export default function PrivacyModal({ isOpen, onClose }: ModalProps) {
         </div>
 
         <div className="mt-6 text-center text-sm text-gray-400">
-          Last updated: June 29, 2025
+          Last updated: 2025-07-02
         </div>
       </div>
     </div>
