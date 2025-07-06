@@ -1,4 +1,6 @@
 import React from 'react';
+import type { Bet } from "../types/chips";
+import { JSX } from 'react';
 
 interface RouletteBoardProps {
     isWinning: (num: string) => boolean;
@@ -7,8 +9,8 @@ interface RouletteBoardProps {
     showGrid: boolean;
     handleGridCellClick: (index: number, gridId: string) => void;
     hasBet: (index: number, gridId: string) => boolean;
-    getBet: (index: number, gridId: string) => any;
-    renderChip: (bet: any) => any;
+    getBet: (index: number, gridId: string) => Bet | undefined;
+    renderChip: (bet: Bet) => JSX.Element;
 }
 
 export default function RouletteBoard({

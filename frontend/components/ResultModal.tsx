@@ -28,8 +28,9 @@ export default function ResultModal({
   const { rank, logGame } = useLogGame();
   const navigate = useNavigate();
   const nickname = localStorage.getItem("nickname");
-
+  const playAgain = usePlayAgain();
   const logout = useLogout();
+
   useEffect(() => {
     if (showModal && nickname) {
       (async () => {
@@ -88,7 +89,7 @@ export default function ResultModal({
                   return;
                 }
 
-                const token = await usePlayAgain(nickname);
+                const token = await playAgain(nickname);
                 if (!token) {
                   alert("Could not start new game. Try refreshing the page.");
                   return;

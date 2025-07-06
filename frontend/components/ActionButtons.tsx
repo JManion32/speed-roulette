@@ -1,16 +1,17 @@
 import React from 'react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { secureFetch } from "../utils/secureFetch";
+import type { Bet, BetAction } from "../types/chips";
 
 interface ActionButtonsProps {
-  bets: any[];
+  bets: Bet[];
   remSpins: number;
   isPaused: boolean;
   isSubmitting: boolean;
   gridBlock: boolean;
   timeLeft: number;
   userBalance: number;
-  betActions: any[];
+  betActions: BetAction[];
   setIsPaused: (v: boolean) => void;
   setRemSpins: React.Dispatch<React.SetStateAction<number>>;
   setGridBlock: (v: boolean) => void;

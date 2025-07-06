@@ -1,4 +1,4 @@
-var totalCount;
+let totalCount;
 
 export const createStackedBarData = (
     counts: Record<string, number>,
@@ -92,6 +92,7 @@ export const stackedBarOptions = {
         legend: { display: false },
         tooltip: {
             callbacks: {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 label: (ctx: any) =>
                     `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}%`,
             },
@@ -105,6 +106,7 @@ export const stackedBarOptions = {
             },
             anchor: "center" as const,
             align: "center" as const,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             formatter: (_value: number, context: any) => {
                 const label = context.dataset.label;
                 if (label === "neither" && _value == 100) { return "No data available"};

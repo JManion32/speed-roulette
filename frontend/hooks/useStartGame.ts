@@ -36,8 +36,9 @@ export function useStartGame(
             errorEl!.style.visibility = "hidden";
 
             navigate("/game");
-        } catch (err: any) {
-            console.error("Error registering user:", err.message || err);
+        } catch (err) {
+            const error = err as Error;
+            console.error("Error registering user:", error.message || error);
             alert("There was a problem starting your game. Try again.");
         }
     };

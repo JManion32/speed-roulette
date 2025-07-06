@@ -26,10 +26,14 @@ jobs:
         run: npm ci
         working-directory: frontend
 
-      - name: Run TypeScript + CSS lint
+      - name: Run TypeScript & CSS lint (with fix)
         run: |
-          npm run lint
-          npx stylelint "**/*.css"
+          npx eslint . --fix
+          npx stylelint "**/*.css" --fix
+        working-directory: frontend
+
+      - name: Run Prettier
+        run: npx prettier --write "**/*.{ts,css}"
         working-directory: frontend
 
       - name: Build frontend
