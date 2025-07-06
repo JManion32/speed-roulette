@@ -1,6 +1,6 @@
 # ♟️ Speed Roulette
 
-**A fast-paced browser game that puts a fast-paced twist on classic casino roulette.**
+**A fast-paced browser game that puts a twist on classic casino roulette.**
 
 ---
 
