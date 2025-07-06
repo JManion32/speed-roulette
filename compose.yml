@@ -3,9 +3,9 @@ services:
     image: postgres:latest
     container_name: postgres
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: speed-roulette
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
     ports:
       - "5432:5432"
     volumes:
@@ -22,15 +22,29 @@ services:
     container_name: backend
     ports:
       - '8080:8080'
+    environment:
+      - ENV=${ENV}
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB_NAME=${POSTGRES_DB_NAME}
+      - POSTGRES_DB_HOST=${POSTGRES_DB_HOST}
+      - POSTGRES_DB_PORT=${POSTGRES_DB_PORT}
+      - REDIS_ADDRESS=${REDIS_ADDRESS}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DB=${REDIS_DB}
     depends_on:
       - db
       - redis
 
   frontend:
-    build: /frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        BUILD_MODE: ${BUILD_MODE}
     container_name: frontend
     ports:
-      - '5173:5173'
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     depends_on:
       - backend
 

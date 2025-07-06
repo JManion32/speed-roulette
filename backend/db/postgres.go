@@ -4,21 +4,25 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 
 	_ "github.com/lib/pq"
 )
 
-// Connection parameters - replace with environment variables in production
-const (
-	host     = "db"
-	port     = 5432
-	user     = "user"
-	password = "pass"
-	dbname   = "speed-roulette"
-)
-
 // Connect establishes a connection to the PostgreSQL database
 func Connect() (*sql.DB, error) {
+	host := os.Getenv("POSTGRES_DB_HOST")
+	portStr := os.Getenv("POSTGRES_DB_PORT")
+	user := os.Getenv("POSTGRES_USERNAME")
+	password := os.Getenv("POSTGRES_PASSWORD")
+	dbname := os.Getenv("POSTGRES_DB_NAME")
+
+	port, err := strconv.Atoi(portStr)
+	if err != nil {
+		return nil, fmt.Errorf("invalid DB_PORT: %s", portStr)
+	}
+
 	connStr := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname,
