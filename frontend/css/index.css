@@ -13,6 +13,8 @@
     --color-red: var(--roulette-red);
     --color-winning: var(--winning-number);
     --color-gray-350: var(--gray-350);
+    --color-github: var(--github-color);
+    --color-github-h: var(--github-color-hover);
 }
 
 /* ───────────────────────────────

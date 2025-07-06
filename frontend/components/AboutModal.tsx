@@ -134,6 +134,12 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               >
                 LinkedIn
               </button>
+              <button 
+                className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md mt-10"
+                onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
+              >
+                GitHub
+              </button>
             </>
           )}
         </div>
