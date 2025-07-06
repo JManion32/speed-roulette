@@ -118,7 +118,8 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {activeTab === 'contact' && (
             <>
               <p className="text-[2rem] mb-10">
-                <span className="font-bold">Inquiries:</span> jman32@speedroulette.io
+                <span className="font-bold">Inquiries:</span>{' '}
+                <a href="mailto:jman32@speedroulette.io" className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}>jman32@speedroulette.io</a>
               </p>
               {/*
               <button 
@@ -129,15 +130,18 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               </button><br />
               */}
               <button 
-                className="h-25 w-150 bg-blue-500 hover:bg-blue-400 font-bold text-[4rem] text-white rounded-md"
+                className="h-25 w-150 bg-linkedin hover:bg-linkedin-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8"
                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
               >
+                <img src="/assets/linkedin-white.png" alt="LinkedIn" className="w-16 h-16" />
                 LinkedIn
               </button>
+
               <button 
-                className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md mt-10"
+                className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8 mt-10"
                 onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
               >
+                <img src="/assets/github-white.png" alt="GitHub" className="w-16 h-16" />
                 GitHub
               </button>
             </>

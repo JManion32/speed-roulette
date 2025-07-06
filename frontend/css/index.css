@@ -15,6 +15,8 @@
     --color-gray-350: var(--gray-350);
     --color-github: var(--github-color);
     --color-github-h: var(--github-color-hover);
+    --color-linkedin: var(--linkedin-color);
+    --color-linkedin-h: var(--linkedin-color-hover);
 }
 
 /* ───────────────────────────────
