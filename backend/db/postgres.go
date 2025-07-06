@@ -49,6 +49,10 @@ func InitDB() {
 	}
 	defer db.Close()
 
+	if _, err := db.Exec(`SET TIME ZONE 'America/New_York'`); err != nil {
+		log.Fatal("Failed to set time zone:", err)
+	}
+
 	createGamesTable := `
 		CREATE TABLE IF NOT EXISTS games (
 			game_id SERIAL PRIMARY KEY,

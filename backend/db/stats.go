@@ -31,19 +31,25 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 	defer db.Close()
 
 	var timeBoundary string
-	today := time.Now().Truncate(24 * time.Hour)
+	now := time.Now()
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 
 	switch rangeParam {
 	case "today":
 		timeBoundary = today.Format("2006-01-02")
+
 	case "week":
-		weekStart := today.AddDate(0, 0, -int(today.Weekday()))
+		offset := (int(today.Weekday()) + 6) % 7 // Monday = 0
+		weekStart := today.AddDate(0, 0, -offset)
 		timeBoundary = weekStart.Format("2006-01-02")
+
 	case "month":
-		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, time.Local)
+		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, today.Location())
 		timeBoundary = monthStart.Format("2006-01-02")
+
 	case "allTime":
 		timeBoundary = ""
+
 	default:
 		return nil, fmt.Errorf("invalid range value")
 	}
@@ -187,7 +193,8 @@ func GetPlayerRank(balance float64) (int, error) {
 	}
 	defer db.Close()
 
-	today := time.Now().Truncate(24 * time.Hour).Format("2006-01-02")
+	now := time.Now()
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location()).Format("2006-01-02")
 
 	var rank int
 	err = db.QueryRow(`
@@ -200,3 +207,4 @@ func GetPlayerRank(balance float64) (int, error) {
 
 	return rank, err
 }
+

@@ -16,7 +16,9 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 	defer db.Close()
 
 	var query string
-	today := time.Now().Truncate(24 * time.Hour)
+	now := time.Now()
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
+
 	switch rangeParam {
 	case "today":
 		query = fmt.Sprintf(`
@@ -26,8 +28,11 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 			ORDER BY final_balance DESC
 			LIMIT 100;
 		`, today.Format("2006-01-02"))
+
 	case "week":
-		weekStart := today.AddDate(0, 0, -int(today.Weekday()))
+		// Start week on Monday
+		offset := (int(today.Weekday()) + 6) % 7
+		weekStart := today.AddDate(0, 0, -offset)
 		query = fmt.Sprintf(`
 			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
 			FROM games
@@ -35,8 +40,9 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 			ORDER BY final_balance DESC
 			LIMIT 100;
 		`, weekStart.Format("2006-01-02"))
+
 	case "month":
-		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, time.Local)
+		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, today.Location())
 		query = fmt.Sprintf(`
 			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
 			FROM games
@@ -44,6 +50,7 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 			ORDER BY final_balance DESC
 			LIMIT 100;
 		`, monthStart.Format("2006-01-02"))
+
 	case "allTime":
 		query = `
 			SELECT nickname, final_balance, rem_time, rem_spins, game_date_time
@@ -51,6 +58,7 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 			WHERE final_balance > 0
 			ORDER BY final_balance DESC
 			LIMIT 100;`
+
 	default:
 		return nil, fmt.Errorf("invalid range value")
 	}
@@ -72,3 +80,4 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 
 	return results, nil
 }
+

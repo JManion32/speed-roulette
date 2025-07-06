@@ -120,12 +120,14 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               <p className="text-[2rem] mb-10">
                 <span className="font-bold">Inquiries:</span> jman32@speedroulette.io
               </p>
+              {/*
               <button 
                 className="h-25 w-150 bg-red-500 hover:bg-red-400 font-bold text-[4rem] text-white rounded-md mb-10"
                 onClick={() => window.open('https://youtube.com/@jmancodes?si=ZgYwDV3Fj49Z4-uH', '_blank')}
               >
                 YouTube
               </button><br />
+              */}
               <button 
                 className="h-25 w-150 bg-blue-500 hover:bg-blue-400 font-bold text-[4rem] text-white rounded-md"
                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
