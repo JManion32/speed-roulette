@@ -1,6 +1,5 @@
 package db
 
-// Import pq driver anonymously so its init() registers it with database/sql
 import (
 	"database/sql"
 	"fmt"
@@ -8,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	_ "github.com/lib/pq"
+	_ "github.com/lib/pq" // Import pq driver anonymously so its init() registers it with database/sql
 )
 
 // Connect establishes a connection to the PostgreSQL database

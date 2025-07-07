@@ -3,10 +3,24 @@ package db
 import (
 	"fmt"
 	"time"
-
-	"speed-roulette/backend/models"
 )
 
+type NumberCount struct {
+	Number int `json:"number"`
+	Count  int `json:"count"`
+}
+
+type RoundStats struct {
+	ColorCounts    map[string]int `json:"colorCounts"`
+	ParityCounts   map[string]int `json:"parityCounts"`
+	HalfCounts     map[string]int `json:"halfCounts"`
+	DozenCounts    map[string]int `json:"dozenCounts"`
+	RowCounts      map[string]int `json:"rowCounts"`
+	HottestNumbers []NumberCount  `json:"hottestNumbers"`
+	ColdestNumbers []NumberCount  `json:"coldestNumbers"`
+}
+
+// GetRoundsStats queries all numbers and their properties within each range (Today, This Week, This Month, This Year)
 func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 	db, err := Connect()
 	if err != nil {
@@ -170,6 +184,7 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 	return stats, nil
 }
 
+// GetPlayerRank returns the player's daily rank
 func GetPlayerRank(balance float64) (int, error) {
 	db, err := Connect()
 	if err != nil {

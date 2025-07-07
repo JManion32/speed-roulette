@@ -1,4 +1,3 @@
-// handlers/stats.go
 package handlers
 
 import (
@@ -9,6 +8,7 @@ import (
 	"speed-roulette/backend/db"
 )
 
+// HandleAllStats handles the rate limiting and display of the Site Stats page
 func HandleAllStats(w http.ResponseWriter, r *http.Request) {
 	ip := auth.GetClientIP(r)
 	if err := auth.CheckIPStatsLimit(ip); err != nil {

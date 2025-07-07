@@ -10,6 +10,7 @@ import (
 	"speed-roulette/backend/models"
 )
 
+// HandleGame manages the validation and logging of the game when it is completed
 func HandleGame(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)

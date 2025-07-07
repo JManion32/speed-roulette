@@ -13,6 +13,7 @@ import (
 	"speed-roulette/backend/utils"
 )
 
+// HandleRound handles the logging, validation, rate limiting, and payouts for each round
 func HandleRound(w http.ResponseWriter, r *http.Request) {
 	middleware.SetupCORS(&w, r)
 	if r.Method == http.MethodOptions {

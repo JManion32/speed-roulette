@@ -7,6 +7,7 @@ import (
 	"speed-roulette/backend/redis"
 )
 
+// RequireAuth protects API endpoints in the game by ensuring tokens are valid
 func RequireAuth(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("Authorization")
@@ -23,7 +24,6 @@ func RequireAuth(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		// (Optional) Store nickname in header for handlers to use
 		r.Header.Set("X-Nickname", nickname)
 
 		next(w, r)

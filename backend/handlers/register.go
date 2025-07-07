@@ -10,6 +10,7 @@ import (
 	"speed-roulette/backend/models"
 )
 
+// HandleRegister generates a user token and sets its expiration
 func HandleRegister(w http.ResponseWriter, r *http.Request) {
 
 	ip := auth.GetClientIP(r)

@@ -8,6 +8,7 @@ import (
 	"speed-roulette/backend/middleware"
 )
 
+// HandleLogout ensures token and balance associated with the user is cleared
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
 	middleware.SetupCORS(&w, r)
 

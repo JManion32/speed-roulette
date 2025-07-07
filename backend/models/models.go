@@ -62,18 +62,3 @@ type LeaderboardEntry struct {
 	RemSpins     int        `json:"rem_spins"`
 	PlayedAt     time.Time  `json:"played_at"`
 }
-
-type NumberCount struct {
-	Number int `json:"number"`
-	Count  int `json:"count"`
-}
-
-type RoundStats struct {
-	ColorCounts    map[string]int `json:"colorCounts"`
-	ParityCounts   map[string]int `json:"parityCounts"`
-	HalfCounts     map[string]int `json:"halfCounts"`
-	DozenCounts    map[string]int `json:"dozenCounts"`
-	RowCounts      map[string]int `json:"rowCounts"`
-	HottestNumbers []NumberCount  `json:"hottestNumbers"`
-	ColdestNumbers []NumberCount  `json:"coldestNumbers"`
-}

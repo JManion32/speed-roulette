@@ -1,4 +1,3 @@
-// handlers/leaderboard.go
 package handlers
 
 import (
@@ -9,6 +8,7 @@ import (
 	  "speed-roulette/backend/db"
 )
 
+// HandleAllLeaderboards handles rate limiting and displaying the leaderboard page
 func HandleAllLeaderboards(w http.ResponseWriter, r *http.Request) {
     ip := auth.GetClientIP(r)
     if err := auth.CheckIPLeaderboardLimit(ip); err != nil {
