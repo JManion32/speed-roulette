@@ -57,6 +57,12 @@ jobs:
         run: go mod download
         working-directory: backend
 
+      - name: Run Go lint
+        run: |
+          go install golang.org/x/lint/golint@latest
+          golint ./...
+        working-directory: backend
+
       - name: Check Go Formatting
         run: |
           fmt_out=$(gofmt -s -l .)
@@ -65,12 +71,6 @@ jobs:
             echo "$fmt_out"
             exit 1
           fi
-        working-directory: backend
-
-      - name: Run Go lint
-        run: |
-          go install golang.org/x/lint/golint@latest
-          golint ./...
         working-directory: backend
 
       - name: Run Go Unit Tests
