@@ -1,5 +1,6 @@
 package db
 
+// Import pq driver anonymously so its init() registers it with database/sql
 import (
 	"database/sql"
 	"fmt"
@@ -122,6 +123,7 @@ func InitDB() {
 	log.Println("Database initialized successfully.")
 }
 
+// InsertRound adds the round to the rounds table (a round is the spin of a num)
 func InsertRound(num int, color, parity, half, dozen, row string) error {
 	db, err := Connect()
 	if err != nil {
@@ -139,6 +141,7 @@ func InsertRound(num int, color, parity, half, dozen, row string) error {
 	return err
 }
 
+// InsertGame adds the game result to the games table (for leaderboard)
 func InsertGame(nickname string, balance float64, remSpins int, remTime int) (int, error) {
 	db, err := Connect()
 	if err != nil {

@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Extracts client IP even behind a proxy
+// GetClientIP extracts client IP even behind a proxy
 func GetClientIP(r *http.Request) string {
 	// Check X-Forwarded-For first (used by proxies)
 	if forwarded := r.Header.Get("X-Forwarded-For"); forwarded != "" {

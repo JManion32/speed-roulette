@@ -8,7 +8,7 @@ import (
 	"speed-roulette/backend/redis"
 )
 
-// Extracts and returns the token string from the Authorization header.
+// ExtractToken extracts and returns the token string from the Authorization header.
 func ExtractToken(r *http.Request) (string, error) {
 	authHeader := r.Header.Get("Authorization")
 	if authHeader == "" {
@@ -23,7 +23,7 @@ func ExtractToken(r *http.Request) (string, error) {
 	return strings.TrimSpace(parts[1]), nil
 }
 
-// Gets nickname from Redis using the token
+// GetNicknameFromToken gets nickname from Redis using the token
 func GetNicknameFromToken(r *http.Request) (string, error) {
 	token, err := ExtractToken(r)
 	if err != nil {
@@ -38,7 +38,7 @@ func GetNicknameFromToken(r *http.Request) (string, error) {
 	return nickname, nil
 }
 
-// Gets balance from Redis using the token
+// GetBalanceFromToken gets balance from Redis using the token
 func GetBalanceFromToken(r *http.Request) (float64, error) {
 	token, err := ExtractToken(r)
 	if err != nil {
@@ -65,7 +65,7 @@ func parseBalance(balanceStr string) (float64, error) {
 	return val, err
 }
 
-// When we get the balance, make sure it is valid
+// ValidateAndGetBalance prevents invalid balances that could give the user an unfair advantage
 func ValidateAndGetBalance(r *http.Request, totalBet float64) (string, float64, error) {
 	token, err := ExtractToken(r)
 	if err != nil {

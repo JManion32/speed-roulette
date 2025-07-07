@@ -26,14 +26,14 @@ jobs:
         run: npm ci
         working-directory: frontend
 
-      - name: Run TypeScript & CSS lint (with fix)
+      - name: Run TypeScript & CSS lint (check only)
         run: |
-          npx eslint . --fix
-          npx stylelint "**/*.css" --fix
+          npx eslint .
+          npx stylelint "**/*.css"
         working-directory: frontend
 
       - name: Run Prettier
-        run: npx prettier --write "**/*.{ts,css}"
+        run: npx prettier --check "**/*.{ts,css}"
         working-directory: frontend
 
       - name: Build frontend
@@ -57,12 +57,6 @@ jobs:
         run: go mod download
         working-directory: backend
 
-      - name: Run Go lint
-        run: |
-          go install golang.org/x/lint/golint@latest
-          golint ./...
-        working-directory: backend
-
       - name: Check Go Formatting
         run: |
           fmt_out=$(gofmt -s -l .)
@@ -71,6 +65,12 @@ jobs:
             echo "$fmt_out"
             exit 1
           fi
+        working-directory: backend
+
+      - name: Run Go lint
+        run: |
+          go install golang.org/x/lint/golint@latest
+          golint ./...
         working-directory: backend
 
       - name: Run Go Unit Tests

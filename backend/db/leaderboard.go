@@ -1,4 +1,3 @@
-// db/leaderboard.go
 package db
 
 import (
@@ -8,6 +7,7 @@ import (
 	"speed-roulette/backend/models"
 )
 
+// GetLeaderboard returns a query for each date range (Today, This Week, This Month, This Year)
 func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 	db, err := Connect()
 	if err != nil {

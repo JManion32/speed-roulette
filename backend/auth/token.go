@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 )
 
+// GenerateToken gives the user a unique token to validate their session
 func GenerateToken(length int) string {
 	bytes := make([]byte, length)
 	_, err := rand.Read(bytes)

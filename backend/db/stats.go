@@ -1,27 +1,11 @@
-// db/stats.go
 package db
 
 import (
 	"fmt"
 	"time"
 
-	//"speed-roulette/backend/models"
+	"speed-roulette/backend/models"
 )
-
-type NumberCount struct {
-	Number int `json:"number"`
-	Count  int `json:"count"`
-}
-
-type RoundStats struct {
-	ColorCounts    map[string]int `json:"colorCounts"`
-	ParityCounts   map[string]int `json:"parityCounts"`
-	HalfCounts     map[string]int `json:"halfCounts"`
-	DozenCounts    map[string]int `json:"dozenCounts"`
-	RowCounts      map[string]int `json:"rowCounts"`
-	HottestNumbers []NumberCount  `json:"hottestNumbers"`
-	ColdestNumbers []NumberCount  `json:"coldestNumbers"`
-}
 
 func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 	db, err := Connect()

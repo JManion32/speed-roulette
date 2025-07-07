@@ -9,6 +9,7 @@ import (
 
 const rateLimitTTL = 2 * time.Second
 
+// CheckRateLimit rate limits round insertions
 func CheckRateLimit(token string) error {
 	key := "rate:" + token
 
@@ -25,6 +26,7 @@ func CheckRateLimit(token string) error {
 	return nil
 }
 
+// CheckIPRateLimit rate limits game registrations
 func CheckIPRateLimit(ip string) error {
 	key := "rate:ip:" + ip
 
@@ -34,13 +36,13 @@ func CheckIPRateLimit(ip string) error {
 		redis.Client.Expire(redis.Ctx, key, 10*time.Second) // Reset every 10s
 	}
 	if count > 20 {
-		return errors.New("Too many registrations from your network. Try again shortly.")
+		return errors.New("too many registrations from your network, try again shortly")
 	}
 
 	return nil
 }
 
-// Rate Limit for viewing the leaderboard page
+// CheckIPLeaderboardLimit rate limits the leaderboard page
 func CheckIPLeaderboardLimit(ip string) error {
 	key := "rate:leaderboard:" + ip
 
@@ -50,13 +52,13 @@ func CheckIPLeaderboardLimit(ip string) error {
 		redis.Client.Expire(redis.Ctx, key, 2*time.Second)
 	}
 	if count > 10 {
-		return errors.New("Too many leaderboard requests. Try again shortly.")
+		return errors.New("too many leaderboard requests, try again shortly")
 	}
 
 	return nil
 }
 
-// Rate Limit for viewing the stats page
+// CheckIPStatsLimit rate limits the stats page
 func CheckIPStatsLimit(ip string) error {
 	key := "rate:stats:" + ip
 
@@ -66,7 +68,7 @@ func CheckIPStatsLimit(ip string) error {
 		redis.Client.Expire(redis.Ctx, key, 2*time.Second)
 	}
 	if count > 10 {
-		return errors.New("Too many stats requests. Try again shortly.")
+		return errors.New("too many stats requests., ry again shortly")
 	}
 
 	return nil
