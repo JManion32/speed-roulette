@@ -30,7 +30,6 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 		`, today.Format("2006-01-02"))
 
 	case "week":
-		// Start week on Monday
 		offset := (int(today.Weekday()) + 6) % 7
 		weekStart := today.AddDate(0, 0, -offset)
 		query = fmt.Sprintf(`
