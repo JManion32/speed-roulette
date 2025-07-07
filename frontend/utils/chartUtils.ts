@@ -109,7 +109,9 @@ export const stackedBarOptions = {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             formatter: (_value: number, context: any) => {
                 const label = context.dataset.label;
-                if (label === "neither" && _value == 100) { return "No data available"};
+                if (label === "neither" && _value == 100) {
+                    return "No data available";
+                }
                 if (label === "neither" || label === "green") return "";
                 if (_value !== 0) return label.toUpperCase();
                 return null;

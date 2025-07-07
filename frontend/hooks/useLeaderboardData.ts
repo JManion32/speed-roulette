@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LeaderboardEntry } from '../types/leaderboard';
-
+import { LeaderboardEntry } from "../types/leaderboard";
 
 type Range = "today" | "week" | "month" | "allTime";
 
