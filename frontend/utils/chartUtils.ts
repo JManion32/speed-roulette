@@ -1,4 +1,4 @@
-let totalCount;
+let totalCount: number = 0;
 
 export const createStackedBarData = (
     counts: Record<string, number>,

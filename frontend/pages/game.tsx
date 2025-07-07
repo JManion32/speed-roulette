@@ -50,9 +50,8 @@ function Game() {
     const { setWinningNumber, isWinning,
         resultNums, setResultNums, addResultNum } = useResultNums();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [showGrid, setShowGrid] = useState();   // grid visibility
-    const [gridBlock, setGridBlock] = useState(false);   // grid interactability
+    const [showGrid] = useState();
+    const [gridBlock, setGridBlock] = useState(false);
 
     const [isSelected, setIsSelected] = useState(false);
 
@@ -165,7 +164,7 @@ function Game() {
                     isWinning={isWinning}
                     remSpins={remSpins}
                     gridBlock={gridBlock}
-                    showGrid={showGrid}
+                    showGrid={!!showGrid}
                     handleGridCellClick={handleGridCellClick}
                     hasBet={hasBet}
                     getBet={getBet}

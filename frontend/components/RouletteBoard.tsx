@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Bet } from "../types/chips";
 import { JSX } from 'react';
 

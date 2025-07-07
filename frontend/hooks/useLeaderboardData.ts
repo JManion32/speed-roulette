@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LeaderboardEntry } from '../types/leaderboard';
 
-export interface LeaderboardEntry {
-    nickname?: string;
-    final_balance?: number;
-    rem_time?: number;
-    rem_spins?: number;
-    played_at?: string;
-}
 
 type Range = "today" | "week" | "month" | "allTime";
 

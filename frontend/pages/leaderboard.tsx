@@ -11,12 +11,16 @@ import HomeButton from "../components/HomeButton";
 // Hooks
 import { useAllLeaderboards } from '../hooks/useLeaderboardData';
 
+// Types
+type Range = 'today' | 'week' | 'month' | 'allTime';
+import { LeaderboardEntry } from '../types/leaderboard';
+
 function Leaderboard() {
   const { isDarkMode } = useDarkMode();
-  const [activeTab, setActiveTab] = useState('today');
+  const [activeTab, setActiveTab] = useState<Range>('today');
 
   const { data: allLeaderboards, loading } = useAllLeaderboards();
-  const leaderboard = allLeaderboards[activeTab] || [];
+  const leaderboard: LeaderboardEntry[] = allLeaderboards[activeTab] || [];
 
   if (loading) {
     return (
@@ -41,7 +45,7 @@ function Leaderboard() {
         <h1 className="text-[4rem] font-bold mt-8 mb-8">Leaderboard</h1>
 
         <div className="flex border-b border-gray-700 mb-6 space-x-6">
-          {['today', 'week', 'month', 'allTime'].map((tabKey) => (
+          {(['today', 'week', 'month', 'allTime'] as Range[]).map((tabKey) => (
             <button
               key={tabKey}
               className={`py-2 px-6 text-xl ${

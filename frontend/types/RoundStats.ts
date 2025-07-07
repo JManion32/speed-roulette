@@ -4,6 +4,6 @@ export interface RoundStats {
     halfCounts: Record<string, number>;
     dozenCounts: Record<string, number>;
     rowCounts: Record<string, number>;
-    hottestNumbers: number[];
-    coldestNumbers: number[];
+    hottestNumbers: { number: number; count: number }[];
+    coldestNumbers: { number: number; count: number }[];
 }
