@@ -63,6 +63,7 @@ Create a `.env` file in the root directory:
 ENV=development
 BUILD_MODE=devserver
 FRONTEND_PORT=5173
+CORS_ORIGIN=http://localhost:5173 
 
 # PostgreSQL
 POSTGRES_USERNAME=user
