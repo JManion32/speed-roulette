@@ -63,8 +63,18 @@ jobs:
           golint ./...
         working-directory: backend
 
-      - name: Run Go unit tests
-        run: go test ./...
+      - name: Check Go Formatting
+        run: |
+          fmt_out=$(gofmt -s -l .)
+          if [ -n "$fmt_out" ]; then
+            echo "Go files not properly formatted:"
+            echo "$fmt_out"
+            exit 1
+          fi
+        working-directory: backend
+
+      - name: Run Go Unit Tests
+        run: go test -v ./...
         working-directory: backend
  
   cypress:
