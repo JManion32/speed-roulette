@@ -1,7 +1,6 @@
 package utils
-import "speed-roulette/backend/models"
 
-//import "speed-roulette/backend/logproxy"
+import "speed-roulette/backend/models"
 
 // Payout determines the payout based on the result num and the betting placements on the grid
 func Payout(bets []models.Bet, result int) float64 {
@@ -79,27 +78,27 @@ func Payout(bets []models.Bet, result int) float64 {
 		case "outer":
 			switch bet.GridIndex {
 			case 0:
-				if IsLow(result) {
+				if GetHalf(result) == "low" {
 					payout += bet.ChipValue * 2
 				}
 			case 1:
-				if IsEven(result) {
+				if GetParity(result) == "even" {
 					payout += bet.ChipValue * 2
 				}
 			case 2:
-				if IsRed(result) {
+				if GetColor(result) == "red" {
 					payout += bet.ChipValue * 2
 				}
 			case 3:
-				if IsBlack(result) {
+				if GetColor(result) == "black" {
 					payout += bet.ChipValue * 2
 				}
 			case 4:
-				if IsOdd(result) {
+				if GetParity(result) == "odd" {
 					payout += bet.ChipValue * 2
 				}
 			case 5:
-				if IsHigh(result) {
+				if GetHalf(result) == "high" {
 					payout += bet.ChipValue * 2
 				}
 			}

@@ -63,37 +63,8 @@ func GetMultiplier(bet models.Bet, result int) float64 {
 	return 0
 }
 
-// Red/Black/Even/Odd/Half/Dozen/Row Helpers
 
-func IsRed(number int) bool {
-	redNumbers := map[int]bool{
-		1: true, 3: true, 5: true, 7: true, 9: true, 12: true,
-		14: true, 16: true, 18: true, 19: true, 21: true, 23: true,
-		25: true, 27: true, 30: true, 32: true, 34: true, 36: true,
-	}
-	return redNumbers[number]
-}
-
-func IsBlack(number int) bool {
-	return number > 0 && number <= 36 && !IsRed(number)
-}
-
-func IsEven(number int) bool {
-	return number > 0 && number <= 36 && number%2 == 0
-}
-
-func IsOdd(number int) bool {
-	return number > 0 && number <= 36 && number%2 == 1
-}
-
-func IsLow(number int) bool {
-	return number >= 1 && number <= 18
-}
-
-func IsHigh(number int) bool {
-	return number >= 19 && number <= 36
-}
-
+// GetDozenNum finds which dozen the number is in, and returns the number associated with it on the grid
 func GetDozenNum(number int) int {
 	if number >= 1 && number <= 12 {
 		return 0
@@ -105,6 +76,7 @@ func GetDozenNum(number int) int {
 	return -1
 }
 
+// GetRowNum finds which row the number is in, and returns the number associated with it on the grid
 func GetRowNum(number int) int {
 	if number == 0 || number == 37 {
 		return -1
