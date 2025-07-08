@@ -79,4 +79,3 @@ func GetLeaderboard(rangeParam string) ([]models.LeaderboardEntry, error) {
 
 	return results, nil
 }
-

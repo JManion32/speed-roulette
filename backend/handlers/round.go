@@ -2,13 +2,13 @@ package handlers
 
 import (
 	"encoding/json"
-	"net/http"
 	"log"
+	"net/http"
 
 	"speed-roulette/backend/auth"
-	"speed-roulette/backend/db" 
-	"speed-roulette/backend/models"
+	"speed-roulette/backend/db"
 	"speed-roulette/backend/middleware"
+	"speed-roulette/backend/models"
 	"speed-roulette/backend/redis"
 	"speed-roulette/backend/utils"
 )

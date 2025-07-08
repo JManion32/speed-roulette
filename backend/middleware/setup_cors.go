@@ -1,7 +1,7 @@
 package middleware
 
 import (
-    "net/http"
+	"net/http"
 	"os"
 )
 

@@ -1,4 +1,5 @@
 package utils
+
 import "speed-roulette/backend/models"
 
 // Indexes of each number in the grid starting from index [1] ([0] is not a number, [1] = 92, [2] = 46, etc)
@@ -62,7 +63,6 @@ func GetMultiplier(bet models.Bet, result int) float64 {
 
 	return 0
 }
-
 
 // GetDozenNum finds which dozen the number is in, and returns the number associated with it on the grid
 func GetDozenNum(number int) int {

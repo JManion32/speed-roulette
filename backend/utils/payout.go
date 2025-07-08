@@ -60,10 +60,10 @@ func Payout(bets []models.Bet, result int) float64 {
 			// 0
 			if bet.GridIndex == 0 && result == 0 {
 				payout += bet.ChipValue * 36
-			// 0, 00
+				// 0, 00
 			} else if bet.GridIndex == 1 && (result == 0 || result == 37) {
 				payout += bet.ChipValue * 18
-			// 00
+				// 00
 			} else if bet.GridIndex == 2 && result == 37 {
 				payout += bet.ChipValue * 36
 			}

@@ -2,10 +2,10 @@ package auth
 
 import (
 	"errors"
-	"net/http"
-	"strings"
 	"fmt"
+	"net/http"
 	"speed-roulette/backend/redis"
+	"strings"
 )
 
 // ExtractToken extracts and returns the token string from the Authorization header.

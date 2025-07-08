@@ -2,8 +2,8 @@ package tests
 
 import (
 	"fmt"
-	"testing"
 	"speed-roulette/backend/utils"
+	"testing"
 )
 
 func TestGenerateNumCoversAll(t *testing.T) {

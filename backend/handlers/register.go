@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"speed-roulette/backend/auth"
-	"speed-roulette/backend/redis"
 	"speed-roulette/backend/models"
+	"speed-roulette/backend/redis"
 )
 
 // HandleRegister generates a user token and sets its expiration
@@ -28,13 +28,13 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	token := auth.GenerateToken(16)
 
 	// Set nickname token with 3 minute expiration
-	if err := redis.Client.Set(redis.Ctx, "token:"+token, req.Nickname, 3 * time.Minute).Err(); err != nil {
+	if err := redis.Client.Set(redis.Ctx, "token:"+token, req.Nickname, 3*time.Minute).Err(); err != nil {
 		http.Error(w, "Could not save token", http.StatusInternalServerError)
 		return
 	}
 
 	// Set balance token with 3 minute expiration
-	if err := redis.Client.Set(redis.Ctx, "balance:"+token, 20.0, 3 * time.Minute).Err(); err != nil {
+	if err := redis.Client.Set(redis.Ctx, "balance:"+token, 20.0, 3*time.Minute).Err(); err != nil {
 		http.Error(w, "Could not save balance", http.StatusInternalServerError)
 		return
 	}

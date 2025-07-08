@@ -78,7 +78,7 @@ func InitDB() {
 			row VARCHAR(10),
 			round_date_time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 		);`
-	
+
 	if _, err := db.Exec(createRoundsTable); err != nil {
 		log.Fatal("Failed to create rounds table:", err)
 	}
@@ -87,7 +87,7 @@ func InitDB() {
 		CREATE TABLE IF NOT EXISTS numbers (
 			number INTEGER PRIMARY KEY
 		);`
-	
+
 	if _, err := db.Exec(createNumbersTable); err != nil {
 		log.Fatal("Failed to create numbers table:", err)
 	}

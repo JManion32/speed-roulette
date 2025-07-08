@@ -20,12 +20,12 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/register", handlers.HandleRegister)
-    mux.HandleFunc("/api/leaderboards", handlers.HandleAllLeaderboards)
+	mux.HandleFunc("/api/leaderboards", handlers.HandleAllLeaderboards)
 	mux.HandleFunc("/api/stats", handlers.HandleAllStats)
 
 	// Protected routes
-	mux.HandleFunc("/api/round", middleware.RequireAuth(handlers.HandleRound)) // Each spin
-	mux.HandleFunc("/api/game", middleware.RequireAuth(handlers.HandleGame)) // End of game
+	mux.HandleFunc("/api/round", middleware.RequireAuth(handlers.HandleRound))   // Each spin
+	mux.HandleFunc("/api/game", middleware.RequireAuth(handlers.HandleGame))     // End of game
 	mux.HandleFunc("/api/logout", middleware.RequireAuth(handlers.HandleLogout)) // User returns home or end of game
 
 	// Enable CORS

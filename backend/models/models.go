@@ -6,17 +6,17 @@ import (
 
 // Bet represents a bet placed on the roulette table
 type Bet struct {
-    GridIndex int     `json:"gridIndex"`
-    GridID    string  `json:"gridId"`
-    ChipValue float64 `json:"chipValue"`
+	GridIndex int     `json:"gridIndex"`
+	GridID    string  `json:"gridId"`
+	ChipValue float64 `json:"chipValue"`
 }
 
 // GameRequest contains all game data that will be stored in the leaderboard
 type GameRequest struct {
-    Nickname     string  `json:"nickname"`
-    FinalBalance float64 `json:"final_balance"`
-    RemSpins    int      `json:"rem_spins"`
-    RemTime     int      `json:"rem_time"`
+	Nickname     string  `json:"nickname"`
+	FinalBalance float64 `json:"final_balance"`
+	RemSpins     int     `json:"rem_spins"`
+	RemTime      int     `json:"rem_time"`
 }
 
 // NumProperties contains all the properties of a roulette number
@@ -41,23 +41,23 @@ type GameResponse struct {
 
 // RoundEntry is what is entered into the stats table in the db
 type RoundEntry struct {
-	RoundID   int       `json:"round_id"`
-	Number    int       `json:"number"`
-	Color     string    `json:"color"`
-	Parity    string    `json:"parity"`
-	Half      string    `json:"half"`
-	Dozen     string    `json:"dozen"`
-	Row       string    `json:"row"`
-	PlayedAt  time.Time `json:"played_at"`
+	RoundID  int       `json:"round_id"`
+	Number   int       `json:"number"`
+	Color    string    `json:"color"`
+	Parity   string    `json:"parity"`
+	Half     string    `json:"half"`
+	Dozen    string    `json:"dozen"`
+	Row      string    `json:"row"`
+	PlayedAt time.Time `json:"played_at"`
 }
 
 // LeaderboardEntry is what is entered into the games table in the db
 type LeaderboardEntry struct {
-	Nickname     string 	`json:"nickname"`
-	FinalBalance float64	`json:"final_balance"`
-	RemTime      int        `json:"rem_time"`
-	RemSpins     int        `json:"rem_spins"`
-	PlayedAt     time.Time  `json:"played_at"`
+	Nickname     string    `json:"nickname"`
+	FinalBalance float64   `json:"final_balance"`
+	RemTime      int       `json:"rem_time"`
+	RemSpins     int       `json:"rem_spins"`
+	PlayedAt     time.Time `json:"played_at"`
 }
 
 // NumberCount stores the number and how many times it has occurred

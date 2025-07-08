@@ -2,10 +2,10 @@ package handlers
 
 import (
 	"net/http"
-	
+
 	"speed-roulette/backend/auth"
-	"speed-roulette/backend/redis"
 	"speed-roulette/backend/middleware"
+	"speed-roulette/backend/redis"
 )
 
 // HandleLogout ensures token and balance associated with the user is cleared

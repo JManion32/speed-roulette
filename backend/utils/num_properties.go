@@ -69,7 +69,6 @@ func GetRow(num int) string {
 	return "none"
 }
 
-
 // =-=-=-=-=-=-=-=-=-=-
 // Helper functions
 // =-=-=-=-=-=-=-=-=-=-
@@ -115,4 +114,3 @@ func isBottomRow(number int) bool {
 	}
 	return bottomRow[number]
 }
-

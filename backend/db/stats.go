@@ -193,4 +193,3 @@ func GetPlayerRank(balance float64) (int, error) {
 
 	return rank, err
 }
-
