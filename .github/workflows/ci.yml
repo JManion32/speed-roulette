@@ -96,7 +96,7 @@ jobs:
         working-directory: frontend
 
       - name: Start app with Docker Compose
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Wait for frontend
         uses: jakejarvis/wait-action@master
@@ -122,4 +122,4 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker Compose stack
-        run: docker compose -f docker-compose.yml build
+        run: docker compose -f compose.yml build

@@ -8,12 +8,12 @@ var indexes [38]int = [38]int{
 	104, 58, 12, 106, 60, 14, 108, 62, 16, 110, 64, 18, 112, 66, 20, 114, 68, 22,
 }
 
-// Returns what is at the grid index
+// GetGridIndex returns the grid number for each roulette number
 func GetGridIndex(result int) int {
 	return indexes[result]
 }
 
-// Returns i of array containing grid indexes
+// GetNums returns i of array containing grid indexes
 func GetNum(index int) int {
 	for i := range indexes {
 		if indexes[i] == index {
@@ -23,7 +23,7 @@ func GetNum(index int) int {
 	return -1
 }
 
-// For all non-exact inner bets (ex: chip placed between 7 and 10)
+// GetMultiplier is for all non-exact inner bets (ex: chip placed between 7 and 10)
 func GetMultiplier(bet models.Bet, result int) float64 {
 	var index int
 
