@@ -3,7 +3,7 @@ import "speed-roulette/backend/models"
 
 //import "speed-roulette/backend/logproxy"
 
-// Corner rules and multiple grids make this especially difficult, need a system
+// Payout determines the payout based on the result num and the betting placements on the grid
 func Payout(bets []models.Bet, result int) float64 {
 	var payout float64 = 0
 	for _, bet := range bets {

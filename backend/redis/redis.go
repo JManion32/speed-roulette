@@ -10,9 +10,13 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+// Ctx is the global context used for Redis operations.
 var Ctx = context.Background()
+
+// Client is the Redis client instance shared across the application.
 var Client *redis.Client
 
+// InitRedis initializes and connects the global Redis client using environment configuration.
 func InitRedis() {
 	addr := os.Getenv("REDIS_ADDRESS")
 	pass := os.Getenv("REDIS_PASSWORD")

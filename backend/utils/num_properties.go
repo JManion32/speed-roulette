@@ -4,6 +4,7 @@ import (
 	"speed-roulette/backend/models"
 )
 
+// GetNumProperties returns the properties of the number in model form
 func GetNumProperties(num int) models.NumProperties {
 	return models.NumProperties{
 		Color:  GetColor(num),
@@ -14,6 +15,7 @@ func GetNumProperties(num int) models.NumProperties {
 	}
 }
 
+// GetColor returns the color of the roulette number that is passed in (red, black, or green)
 func GetColor(num int) string {
 	if isRed(num) {
 		return "red"
@@ -23,6 +25,7 @@ func GetColor(num int) string {
 	return "green"
 }
 
+// GetParity determines if the number is even, odd, or neither (0/00)
 func GetParity(num int) string {
 	if num >= 2 && num <= 36 && num%2 == 0 {
 		return "even"
@@ -32,6 +35,7 @@ func GetParity(num int) string {
 	return "none"
 }
 
+// GetHalf determines if the number is in the 1-18, or 19-36 range (or 0/00)
 func GetHalf(num int) string {
 	if num >= 1 && num <= 18 {
 		return "low"
@@ -41,6 +45,7 @@ func GetHalf(num int) string {
 	return "none"
 }
 
+// GetDozen determines if the number is in the 1-12, 13-24, of 25-36 range (or 0/00)
 func GetDozen(num int) string {
 	if num >= 1 && num <= 12 {
 		return "first"
@@ -52,6 +57,7 @@ func GetDozen(num int) string {
 	return "none"
 }
 
+// GetRow determines which roulette row the number is in (or 0/00)
 func GetRow(num int) string {
 	if isTopRow(num) {
 		return "top"

@@ -3,25 +3,12 @@ package db
 import (
 	"fmt"
 	"time"
+
+	"speed-roulette/backend/models"
 )
 
-type NumberCount struct {
-	Number int `json:"number"`
-	Count  int `json:"count"`
-}
-
-type RoundStats struct {
-	ColorCounts    map[string]int `json:"colorCounts"`
-	ParityCounts   map[string]int `json:"parityCounts"`
-	HalfCounts     map[string]int `json:"halfCounts"`
-	DozenCounts    map[string]int `json:"dozenCounts"`
-	RowCounts      map[string]int `json:"rowCounts"`
-	HottestNumbers []NumberCount  `json:"hottestNumbers"`
-	ColdestNumbers []NumberCount  `json:"coldestNumbers"`
-}
-
 // GetRoundsStats queries all numbers and their properties within each range (Today, This Week, This Month, This Year)
-func GetRoundsStats(rangeParam string) (*RoundStats, error) {
+func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
 	db, err := Connect()
 	if err != nil {
 		return nil, err
@@ -70,14 +57,14 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 	}
 	defer rows.Close()
 
-	stats := &RoundStats{
+	stats := &models.RoundStats{
 		ColorCounts:    make(map[string]int),
 		ParityCounts:   make(map[string]int),
 		HalfCounts:     make(map[string]int),
 		DozenCounts:    make(map[string]int),
 		RowCounts:      make(map[string]int),
-		HottestNumbers: []NumberCount{},
-		ColdestNumbers: []NumberCount{},
+		HottestNumbers: []models.NumberCount{},
+		ColdestNumbers: []models.NumberCount{},
 	}
 
 	numCounts := make(map[int]int)
@@ -133,7 +120,7 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 		if err := rows.Scan(&number, &count); err != nil {
 			return nil, err
 		}
-		stats.HottestNumbers = append(stats.HottestNumbers, NumberCount{Number: number, Count: count})
+		stats.HottestNumbers = append(stats.HottestNumbers, models.NumberCount{Number: number, Count: count})
 		hottestSet[number] = true
 	}
 	rows.Close()
@@ -175,7 +162,7 @@ func GetRoundsStats(rangeParam string) (*RoundStats, error) {
 		if hottestSet[number] {
 			continue
 		}
-		stats.ColdestNumbers = append(stats.ColdestNumbers, NumberCount{Number: number, Count: count})
+		stats.ColdestNumbers = append(stats.ColdestNumbers, models.NumberCount{Number: number, Count: count})
 		if len(stats.ColdestNumbers) == 7 {
 			break
 		}
