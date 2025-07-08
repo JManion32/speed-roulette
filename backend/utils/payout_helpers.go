@@ -13,7 +13,7 @@ func GetGridIndex(result int) int {
 	return indexes[result]
 }
 
-// GetNums returns i of array containing grid indexes
+// GetNum returns i of array containing grid indexes
 func GetNum(index int) int {
 	for i := range indexes {
 		if indexes[i] == index {
