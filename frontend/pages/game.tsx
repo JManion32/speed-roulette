@@ -104,14 +104,15 @@ function Game() {
     // Render a chip component for the grid
     const renderChip = (bet: Bet) => (
         <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center text-white text-[20px] font-bold z-20"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
+            justify-center text-white text-[20px] font-bold z-20"
             style={{ width: '40px', height: '40px', backgroundColor: bet.chipColor}}>
             {formatBetValue(bet.chipValue)}
         </div>
     );
 
     return (
-        <div className={`h-screen transition-color select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
+        <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
             <ResultHeader
                 nickname={nickname}
                 resultNums={resultNums}

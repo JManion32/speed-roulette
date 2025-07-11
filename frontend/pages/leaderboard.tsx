@@ -32,7 +32,7 @@ function Leaderboard() {
 
   return (
     <div
-      className={`p-4 flex flex-col items-center justify-start min-h-screen transition-color select-none ${
+      className={`p-4 flex flex-col items-center justify-start min-h-screen transition duration-200 select-none ${
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
       }`}
       style={{ scrollbarGutter: 'stable' }}
@@ -42,13 +42,13 @@ function Leaderboard() {
         <DarkModeToggle />
       </div>
       <div className="w-full max-w-6xl mx-auto">
-        <h1 className="transition-color text-[4rem] font-bold mt-8 mb-8">Leaderboard</h1>
+        <h1 className="text-[4rem] font-bold mt-8 mb-8">Leaderboard</h1>
 
-        <div className="transition-color flex border-b border-gray-700 mb-6 space-x-6">
+        <div className="flex border-b border-gray-700 mb-6 space-x-6">
           {(['today', 'week', 'month', 'allTime'] as Range[]).map((tabKey) => (
             <button
               key={tabKey}
-              className={`transition-color py-2 px-6 text-xl ${
+              className={`py-2 px-6 text-xl ${
                 activeTab === tabKey
                   ? isDarkMode
                     ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
@@ -85,7 +85,7 @@ function Leaderboard() {
                 {leaderboard.map((entry, i) => (
                   <tr
                     key={i}
-                    className={`text-lg border-t transition-color ${
+                    className={`text-lg border-t ${
                       i === 0
                         ? isDarkMode
                           ? 'bg-yellow-800'

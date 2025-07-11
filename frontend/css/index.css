@@ -25,34 +25,6 @@
 @plugin 'tailwind-scrollbar';
 
 /* ───────────────────────────────
-   Layers
-──────────────────────────────── */
-/* ——— Animation tokens ——— */
-@layer base {
-  :root {
-    --dur-color: 250ms;
-    --dur-scale: 200ms;
-  }
-}
-
-/* ——— Reusable transition helpers ——— */
-@layer utilities {
-  /* Only colour-related properties */
-  .transition-color {
-    transition: background-color var(--dur-color) ease,
-                color            var(--dur-color) ease,
-                fill             var(--dur-color) ease,
-                stroke           var(--dur-color) ease;
-  }
-
-  /* Only transform (scale, rotate, etc.) */
-  .transition-scale {
-    transition: transform var(--dur-scale) cubic-bezier(.4,0,.2,1);
-  }
-}
-
-
-/* ───────────────────────────────
    Base Font & Smoothing
 ──────────────────────────────── */
 :root {
