@@ -42,13 +42,13 @@ function Leaderboard() {
         <DarkModeToggle />
       </div>
       <div className="w-full max-w-6xl mx-auto">
-        <h1 className="text-[4rem] font-bold mt-8 mb-8">Leaderboard</h1>
+        <h1 className="text-[4rem] font-bold mt-8 mb-8 transition duration-200">Leaderboard</h1>
 
         <div className="flex border-b border-gray-700 mb-6 space-x-6">
           {(['today', 'week', 'month', 'allTime'] as Range[]).map((tabKey) => (
             <button
               key={tabKey}
-              className={`py-2 px-6 text-xl ${
+              className={`py-2 px-6 text-xl transition duration-200 ${
                 activeTab === tabKey
                   ? isDarkMode
                     ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
@@ -69,9 +69,9 @@ function Leaderboard() {
 
         <div className="w-full max-w-6xl overflow-x-auto">
           {leaderboard.length > 0 ? (
-            <table className="w-full text-left border-collapse mt-4">
+            <table className="w-full text-left border-collapse mt-4 transition duration-200">
               <thead>
-                <tr className="text-xl">
+                <tr className="text-xl transition duration-200">
                   <th className="pl-6 pr-20 py-2">#</th>
                   <th className="pr-10 py-2">Nickname</th>
                   <th className="pr-16 py-2">Balance</th>
@@ -85,7 +85,7 @@ function Leaderboard() {
                 {leaderboard.map((entry, i) => (
                   <tr
                     key={i}
-                    className={`text-lg border-t ${
+                    className={`text-lg border-t transition duration-200 ${
                       i === 0
                         ? isDarkMode
                           ? 'bg-yellow-800'
@@ -142,7 +142,7 @@ function Leaderboard() {
               </tbody>
             </table>
           ) : (
-            <p className="text-xl mt-4 text-center">No entries yet.</p>
+            <p className="text-xl mt-4 text-center transition duration-200">No entries yet.</p>
           )}
         </div>
       </div>

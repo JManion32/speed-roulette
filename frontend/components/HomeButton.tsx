@@ -19,6 +19,7 @@ export default function HomeButton() {
     <button
       onClick={handleClick}
       className={`
+        transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease]
         absolute right-24 rounded-full w-15 h-15 
         flex justify-center items-center 
         transition-transform transform hover:scale-110

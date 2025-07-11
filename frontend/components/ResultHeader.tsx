@@ -16,7 +16,7 @@ export default function ResultHeader({
 }: ResultHeaderProps) {
   return (
     <div className="p-4 flex top-0">
-      <p className={`absolute top-7 left-8 font-bold text-[1.5rem] ${isDarkMode ? 'text-white' : 'text-black'}`}>
+      <p className={`transition duration-200 absolute top-7 left-8 font-bold text-[1.5rem] ${isDarkMode ? 'text-white' : 'text-black'}`}>
         {nickname}
       </p>
       <span className="absolute top-7 right-44 flex flex-row">

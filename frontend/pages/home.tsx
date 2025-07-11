@@ -29,14 +29,14 @@ function Home() {
       <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
         {/* Header */}
         <div className="p-4 flex top-0">
-          <p className={`font-bold ${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
+          <p className={`font-bold transition duration-200 ${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
           <DarkModeToggle />
         </div>
   
         {/* Center content - using absolute positioning */}
         <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className={`text-[6.5rem] mb-4 whitespace-nowrap font-bold fade-in ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
+          <h1 className={`text-[6.5rem] mb-4 whitespace-nowrap font-bold fade-in transition duration-200 ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
           <div className="flex flex-col items-center">
             <p className="text-red-500 font-bold font-size: 4rem mb-1" id="profanity-error">Please choose a clean nickname!</p>
             <input 
@@ -51,7 +51,7 @@ function Home() {
                 }
               }}
               maxLength={20}
-              className={`pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
+              className={`transition duration-200 pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
             />
 
@@ -74,7 +74,8 @@ function Home() {
             </button>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'}
+              w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease] hover:scale-110`}
               onClick={() => setShowModal(true)}>
                   <img
                     src={about}
@@ -83,7 +84,8 @@ function Home() {
                     draggable="false"/>
               </button>
               <Link to="/leaderboard" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-transform transform hover:scale-110`}>
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'}
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease] hover:scale-110`}>
                   <img
                     src={trophy}
                     alt="Trophy"
@@ -92,7 +94,8 @@ function Home() {
                 </button>
               </Link>
               <Link to="/stats" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'} w-30 h-30 rounded-full flex justify-center items-center transition-transform transform hover:scale-110`}>
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'border-2 border-black bg-white hover:bg-gray-300'}
+                w-30 h-30 rounded-full flex justify-center items-center transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease] hover:scale-110`}>
                   <img
                     src={stats}
                     alt="Statistics"
