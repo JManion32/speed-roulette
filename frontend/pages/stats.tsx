@@ -42,7 +42,7 @@ function StatDisplay() {
 
   return (
     <div
-      className={`p-4 flex flex-col items-center transition duration-200 select-none h-screen ${
+      className={`transition-color p-4 flex flex-col items-center transition duration-200 select-none h-screen ${
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
       }`}
     >
@@ -51,13 +51,13 @@ function StatDisplay() {
         <DarkModeToggle />
       </div>
       <div className="w-full max-w-5xl mx-auto">
-        <h1 className="text-[4rem] font-bold mt-8 mb-8">Site Statistics</h1>
+        <h1 className="transition-color text-[4rem] font-bold mt-8 mb-8">Site Statistics</h1>
 
         <div className="flex border-b border-gray-700 mb-8 space-x-6">
           {['today', 'week', 'month', 'allTime'].map((tabKey) => (
             <button
               key={tabKey}
-              className={`py-2 px-6 text-xl ${
+              className={`transition-color py-2 px-6 text-xl ${
                 activeTab === tabKey
                   ? isDarkMode
                     ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
@@ -81,7 +81,7 @@ function StatDisplay() {
             <div className="space-y-8">
               
         <div className="flex items-center gap-6">
-          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap glow-hot-header">
+          <h2 className="transition-color w-48 text-2xl font-semibold whitespace-nowrap glow-hot-header">
             🔥 Hottest Numbers:
           </h2>
           <div className="flex flex-wrap gap-4 ml-12">
@@ -102,7 +102,7 @@ function StatDisplay() {
         </div>
 
         <div className="flex items-center gap-6">
-          <h2 className="w-48 text-2xl font-semibold whitespace-nowrap glow-cold-header">
+          <h2 className="transition-color w-48 text-2xl font-semibold whitespace-nowrap glow-cold-header">
             ❄️ Coldest Numbers:
           </h2>
           <div className="flex flex-wrap gap-4 ml-12">

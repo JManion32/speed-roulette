@@ -16,7 +16,7 @@ export default function ResultHeader({
 }: ResultHeaderProps) {
   return (
     <div className="p-4 flex top-0">
-      <p className={`absolute top-7 left-8 font-bold text-[1.5rem] ${isDarkMode ? 'text-white' : 'text-black'}`}>
+      <p className={`transition-color absolute top-7 left-8 font-bold text-[1.5rem] ${isDarkMode ? 'text-white' : 'text-black'}`}>
         {nickname}
       </p>
       <span className="absolute top-7 right-44 flex flex-row">
@@ -25,7 +25,7 @@ export default function ResultHeader({
           return (
             <button
               key={i}
-              className={`h-10 w-10 ml-2 rounded-md font-bold border-2 transition duration-200 ${
+              className={`transition-color h-10 w-10 ml-2 rounded-md font-bold border-2 transition duration-200 ${
               isDarkMode ? 'border-white' : 'border-black'
               } ${
               result !== undefined 
