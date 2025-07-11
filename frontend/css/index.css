@@ -68,72 +68,12 @@ html.dark body {
    Responsive Font Scaling
 ──────────────────────────────── */
 
-/* Scale down for smaller screens */
-@media (max-width: 30rem) {
-    html {
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 40rem) {
-    html {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 48rem) {
-    html {
-        font-size: 14px;
-    }
-}
-
-/* Fluid scale up for larger screens */
-@media (min-width: 127.5rem) {
-    html {
-        font-size: 17px;
-    }
-}
-
-@media (min-width: 135rem) {
-    html {
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 147.5rem) {
-    html {
-        font-size: 19px;
-    }
-}
-
-@media (min-width: 160rem) {
-    html {
-        font-size: 20px;
-    }
-}
-
-@media (min-width: 180rem) {
-    html {
-        font-size: 21px;
-    }
-}
-
-@media (min-width: 200rem) {
-    html {
-        font-size: 22px;
-    }
-}
-
-@media (min-width: 220rem) {
-    html {
-        font-size: 23px;
-    }
-}
-
-@media (min-width: 240rem) {
-    html {
-        font-size: 24px;
-    }
+html {
+  font-size: clamp(
+    9px,
+    calc(0.79rem + 1.08vw),
+    21.6px
+  );
 }
 
 /* ───────────────────────────────
