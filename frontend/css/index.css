@@ -69,7 +69,7 @@ html.dark body {
 ──────────────────────────────── */
 
 html {
-    font-size: clamp(9px, calc(0.79rem + 1.08vw), 21.6px);
+  font-size: clamp(8px, calc(0.6rem + 0.52vw), 17px);
 }
 
 /* ───────────────────────────────
