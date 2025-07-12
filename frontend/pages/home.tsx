@@ -54,38 +54,41 @@ function Home() {
               className={`transition duration-200 pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
             />
-
-            <button
-              onClick={() => {
-                startGame();
-              }}
-              className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${
-                nickname === ""
-                  ? isDarkMode
-                    ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : 'bg-gray-300 text-gray-400 cursor-not-allowed'
-                  : isDarkMode
-                    ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
-                    : 'bg-green-300 hover:bg-green-400 transform hover:scale-105 border-2'
-              }`}
-              disabled={nickname === ""}
-            >
-              Play
-            </button>
+            <Link to="">
+              <button
+                onClick={() => {
+                  startGame();
+                }}
+                className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${
+                  nickname === ""
+                    ? isDarkMode
+                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                      : 'bg-gray-300 text-gray-400 cursor-not-allowed'
+                    : isDarkMode
+                      ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
+                      : 'bg-green-250 hover:bg-green-350 transform hover:scale-105 border-2'
+                }`}
+                disabled={nickname === ""}
+              >
+                Play
+              </button>
+            </Link>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-              w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease] hover:scale-110`}
-              onClick={() => setShowModal(true)}>
-                  <img
-                    src={about}
-                    alt="About"
-                    className="w-20 h-20"
-                    draggable="false"/>
-              </button>
+              <Link to="" className="inline-block"> {/*This link has no functiomality, however, the dark mode transition is different from the other buttons without it*/}
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}
+                onClick={() => setShowModal(true)}>
+                    <img
+                      src={about}
+                      alt="About"
+                      className="w-20 h-20"
+                      draggable="false"/>
+                </button>
+              </Link>
               <Link to="/leaderboard" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease] hover:scale-110`}>
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}>
                   <img
                     src={trophy}
                     alt="Trophy"
@@ -95,7 +98,7 @@ function Home() {
               </Link>
               <Link to="/stats" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center transition-[background-color_200ms_ease,border-color_0ms,transform_200ms_ease] hover:scale-110`}>
+                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110`}>
                   <img
                     src={stats}
                     alt="Statistics"
@@ -111,7 +114,7 @@ function Home() {
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
             <p
-              className="font-bold text-purple-700 hover:text-purple-500"
+              className="font-bold text-purple-700 hover:text-purple-500 duration-200"
               onClick={() => setShowPrivacy(true)}
             >
               Privacy

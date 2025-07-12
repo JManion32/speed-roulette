@@ -81,7 +81,7 @@ export default function ResultModal({
           <div className="flex flex-row items-center mt-12">
             <button
               className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${
-                isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-300 hover:bg-green-400'
+                isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-250 hover:bg-green-350'
               }`}
               onClick={async () => {
                 if (!nickname) {
