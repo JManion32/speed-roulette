@@ -76,64 +76,14 @@ jobs:
       - name: Run Go Unit Tests
         run: go test -v ./...
         working-directory: backend
- 
-  cypress:
-    name: E2E Tests (Cypress)
+
+  docker-cypress:
+    name: Docker + Cypress
     runs-on: ubuntu-latest
     needs: [frontend, backend]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      # -------- Front-end deps (same as in the frontend job) --------
-      - name: Install frontend deps
-        run: npm ci
-        working-directory: frontend
-
-      # -------- Generate the .env file for docker -------
-      - name: Generate dev .env
-        run: |
-          cat > .env <<'EOF'
-          POSTGRES_USERNAME=postgres
-          POSTGRES_PASSWORD=postgres
-          POSTGRES_DB_NAME=speedroulette
-          POSTGRES_DB_HOST=db
-          POSTGRES_DB_PORT=5432
-          REDIS_ADDRESS=redis:6379
-          REDIS_PASSWORD=
-          REDIS_DB=0
-          ENV=development
-          BUILD_MODE=nginxserver
-          FRONTEND_PORT=5173
-          EOF
-
-      # -------- Bring up the backend & db containers ---------------
-      - name: Start backend stack
-        run: docker compose up -d db redis backend
-
-      # -------- Run Cypress --------------
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: frontend
-          start: npm run dev
-          wait-on: 'http://localhost:5173'
-          wait-on-timeout: 90
-
-  docker:
-    name: Docker Build Check
-    runs-on: ubuntu-latest
-    needs: [frontend, backend]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -151,9 +101,19 @@ jobs:
           REDIS_DB=0
           ENV=development
           BUILD_MODE=nginxserver
-          FRONTEND_PORT=80
+          FRONTEND_PORT=5173
+          VITE_BACKEND_URL=http://backend:8080
           EOF
 
-      - name: Build Docker Compose stack
-        working-directory: ${{ github.workspace }}
+      - name: Build images
         run: docker compose -f compose.yml build
+
+      - name: Start stack
+        run: docker compose -f compose.yml up -d backend frontend-dev
+
+      - name: Run Cypress specs
+        run: docker compose -f compose.yml run --rm cypress
+
+      - name: Stop stack
+        if: always()
+        run: docker compose -f compose.yml down --volumes
