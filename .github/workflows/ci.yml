@@ -108,42 +108,50 @@ jobs:
       - name: Build images
         run: docker compose -f compose.yml build
 
-  cypress:
-    name: Cypress E2E
-    runs-on: ubuntu-latest
-    needs: docker-build
+cypress:
+  name: Cypress E2E
+  runs-on: ubuntu-latest
+  needs: docker-build
 
-    steps:
-      - uses: actions/checkout@v4
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with: { node-version: '22' }
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
+    - name: Install Cypress & deps
+      run: npm ci
+      working-directory: frontend
 
-      - name: Install Cypress & deps
-        run: npm ci
-        working-directory: frontend
+    - name: Generate dev .env
+      run: |
+        cat > .env <<'EOF'
+        POSTGRES_USERNAME=postgres
+        POSTGRES_PASSWORD=postgres
+        POSTGRES_DB_NAME=speedroulette
+        POSTGRES_DB_HOST=db
+        POSTGRES_DB_PORT=5432
+        REDIS_ADDRESS=redis:6379
+        REDIS_PASSWORD=
+        REDIS_DB=0
+        ENV=development
+        BUILD_MODE=nginxserver
+        FRONTEND_PORT=5173
+        VITE_BACKEND_URL=http://backend:8080
+        EOF
 
-      - name: Copy .env from previous step
-        run: cp ../.env .
+    - name: Start stack
+      run: docker compose -f compose.yml up -d
 
-      - name: Start stack
-        run: docker compose -f compose.yml up -d
+    - name: Wait for frontend
+      uses: jakejarvis/wait-action@master
+      with: { url: http://localhost:5173, timeout: 60 }
 
-      - name: Wait for frontend
-        uses: jakejarvis/wait-action@master
-        with:
-          url: http://localhost:5173
-          timeout: 60
+    - name: Run Cypress specs
+      uses: cypress-io/github-action@v6
+      with: { working-directory: frontend }
 
-      - name: Run Cypress specs
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: frontend
-
-      - name: Stop stack
-        if: always()
-        run: docker compose -f compose.yml down --volumes
+    - name: Stop stack
+      if: always()
+      run: docker compose -f compose.yml down --volumes
 
 
