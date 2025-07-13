@@ -109,7 +109,7 @@ jobs:
         run: docker compose -f compose.yml build
 
       - name: Start stack
-        run: docker compose -f compose.yml up -d backend frontend-dev
+        run: docker compose -f compose.yml up -d backend frontend
 
       - name: Run Cypress specs
         run: docker compose -f compose.yml run --rm cypress
