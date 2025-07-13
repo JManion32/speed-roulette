@@ -50,7 +50,7 @@ function Game() {
     const { setWinningNumber, isWinning,
         resultNums, setResultNums, addResultNum } = useResultNums();
 
-    const [showGrid] = useState();
+    const [showGrid] = useState(true);
     const [gridBlock, setGridBlock] = useState(false);
 
     const [isSelected, setIsSelected] = useState(false);
