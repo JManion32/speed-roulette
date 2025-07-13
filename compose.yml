@@ -18,7 +18,7 @@ services:
       - "6379:6379"
   
   backend:
-    build: /backend
+    build: ./backend
     container_name: backend
     ports:
       - '8080:8080'
