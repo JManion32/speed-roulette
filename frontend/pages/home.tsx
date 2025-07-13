@@ -26,7 +26,8 @@ function Home() {
   const startGame = useStartGame(nickname, setNickname);
   
     return (
-      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}>
+      <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
+          data-cy="main-app-div">
         {/* Header */}
         <div className="p-4 flex top-0">
           <p className={`font-bold transition duration-200 ${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
@@ -42,6 +43,7 @@ function Home() {
             <input 
               type="text" 
               id="nickname-enter-form"
+              data-cy="nickname-enter-form"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               onKeyDown={(e) => {
@@ -57,6 +59,7 @@ function Home() {
             />
             <Link to="">
               <button
+                data-cy="play-button"
                 onClick={() => {
                   startGame();
                 }}
@@ -79,7 +82,8 @@ function Home() {
               <Link to="" className="inline-block"> {/*This link has no functiomality, however, the dark mode transition is different from the other buttons without it*/}
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
                 w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}
-                onClick={() => setShowModal(true)}>
+                onClick={() => setShowModal(true)}
+                data-cy="open-about-modal">
                     <img
                       src={about}
                       alt="About"
@@ -89,7 +93,8 @@ function Home() {
               </Link>
               <Link to="/leaderboard" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}>
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}
+                data-cy="open-leaderboard-page">
                   <img
                     src={trophy}
                     alt="Trophy"
@@ -99,7 +104,8 @@ function Home() {
               </Link>
               <Link to="/stats" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110`}>
+                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110`}
+                data-cy="open-stats-page">
                   <img
                     src={stats}
                     alt="Statistics"

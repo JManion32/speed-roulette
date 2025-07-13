@@ -95,6 +95,22 @@ jobs:
         run: npm ci
         working-directory: frontend
 
+      - name: Generate dev .env
+        run: |
+          cat > .env <<'EOF'
+          POSTGRES_USERNAME=postgres
+          POSTGRES_PASSWORD=postgres
+          POSTGRES_DB_NAME=speedroulette
+          POSTGRES_DB_HOST=db
+          POSTGRES_DB_PORT=5432
+          REDIS_ADDRESS=redis:6379
+          REDIS_PASSWORD=
+          REDIS_DB=0
+          ENV=development
+          BUILD_MODE=nginxserver
+          FRONTEND_PORT=80
+          EOF
+
       - name: Start app with Docker Compose
         run: docker compose up -d
 

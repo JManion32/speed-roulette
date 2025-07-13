@@ -18,6 +18,7 @@ export default function HomeButton() {
   return (
     <button
       onClick={handleClick}
+      data-cy="home-button"
       className={`
         absolute right-24 rounded-full w-15 h-15 
         flex justify-center items-center 

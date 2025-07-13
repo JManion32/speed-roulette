@@ -46,7 +46,8 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
       >
         <button 
           className="absolute right-4 top-4 bg-red-600 hover:bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold"
-          onClick={closeModal}>
+          onClick={closeModal}
+          data-cy="close-about-modal">
           X
         </button>
 

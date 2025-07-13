@@ -9,7 +9,8 @@ export default function DarkModeToggle() {
     <button 
         className={`duration-200 absolute right-6 rounded-full w-15 h-15 hover:scale-110
           ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-2 border-black'}`}
-        onClick={() => setIsDarkMode(!isDarkMode)}>
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        data-cy="dark-mode-toggle">
         <img
           src={isDarkMode ? moon : sun}
           alt={isDarkMode ? "Moon" : "Sun"}
