@@ -34,6 +34,7 @@ export default function GameStatsBar({
                   : isDarkMode
                   ? '!bg-gray-600'
                   : '!bg-white'}`}
+              data-cy="balance-display"
             >
               ${animatedBalance.toFixed(2)}
             </button>
@@ -45,6 +46,7 @@ export default function GameStatsBar({
             <button
               className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
+              data-cy="bet-display"
             >
               ${totalBet.toFixed(2)}
             </button>
@@ -56,7 +58,7 @@ export default function GameStatsBar({
             <button
               className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
-            >
+              data-cy="timer-display">
               {timeLeft}
             </button>
           </div>
@@ -67,7 +69,7 @@ export default function GameStatsBar({
             <button
               className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
-            >
+              data-cy="spins-display">
               {remSpins}
             </button>
           </div>

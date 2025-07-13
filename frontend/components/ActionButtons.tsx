@@ -53,6 +53,7 @@ export default function ActionButtons({
         <button 
           className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 duration-200 hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
           onClick={gridBlock ? undefined : handleClearBets}
+          data-cy="clear-button"
         >
           Clear
         </button>
@@ -61,6 +62,7 @@ export default function ActionButtons({
           className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 duration-200 hover:scale-105 ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
           onClick={gridBlock ? undefined : handleUndoBet}
           disabled={betActions.length === 0}
+          data-cy="undo-button"
         >
           Undo
         </button>
@@ -71,6 +73,7 @@ export default function ActionButtons({
               ? `cursor-not-allowed ${isDarkMode ? 'bg-gray-600 text-gray-500' : 'bg-gray-300 text-gray-400 cursor-not-allowed'}`
               : `hover:scale-105 ${isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-250 hover:bg-green-350'}`
           }`}
+          data-cy="submit-button"
           onClick={async () => {
             if (bets.length === 0 || remSpins === 0 || isPaused) return;
 

@@ -91,10 +91,12 @@ jobs:
         with:
           node-version: '22'
 
+      # -------- Front-end deps (same as in the frontend job) --------
       - name: Install frontend deps
         run: npm ci
         working-directory: frontend
 
+      # -------- Generate the .env file for docker -------
       - name: Generate dev .env
         run: |
           cat > .env <<'EOF'
@@ -108,22 +110,21 @@ jobs:
           REDIS_DB=0
           ENV=development
           BUILD_MODE=nginxserver
-          FRONTEND_PORT=80
+          FRONTEND_PORT=5173
           EOF
 
-      - name: Start app with Docker Compose
-        run: docker compose up -d
+      # -------- Bring up the backend & db containers ---------------
+      - name: Start backend stack
+        run: docker compose up -d db redis backend
 
-      - name: Wait for frontend
-        uses: jakejarvis/wait-action@master
-        with:
-          url: http://localhost:5173
-          timeout: 60
-
-      - name: Run Cypress tests
+      # -------- Run Cypress --------------
+      - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           working-directory: frontend
+          start: npm run dev
+          wait-on: 'http://localhost:5173'
+          wait-on-timeout: 90
 
   docker:
     name: Docker Build Check
