@@ -23,8 +23,9 @@ export default function ResultHeader({
         {[...Array(9)].map((_, i) => {
           const result = resultNums[i];
           return (
-            <span
+            <button
               key={i}
+              aria-label={`Previous result: ${result}`}
               className={`h-10 w-10 ml-2 rounded-md font-bold border-2 transition duration-200 ${
               isDarkMode ? 'border-white' : 'border-black'
               } ${
@@ -34,7 +35,7 @@ export default function ResultHeader({
             }`}
             >
               {result ?? ''}
-            </span>
+            </button>
           );
         })}
       </span>
