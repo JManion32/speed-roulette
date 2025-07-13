@@ -39,12 +39,12 @@ func TestDozenAndRowBuckets(t *testing.T) {
 		wantDozen int
 		wantRow   int
 	}{
-		{0,  -1, -1},   // 0 pocket
-		{37, -1, -1},   // 00 pocket
-		{1,   0, 2},    // first dozen, bottom
-		{14,  1, 1},    // second dozen, **middle** row  ✔
-		{29, 2, 1},  // third dozen, middle (mod 3 = 2)
-		{36,  2, 0},    // third dozen, top
+		{0, -1, -1},  // 0 pocket
+		{37, -1, -1}, // 00 pocket
+		{1, 0, 2},    // first dozen, bottom
+		{14, 1, 1},   // second dozen, **middle** row  ✔
+		{29, 2, 1},   // third dozen, middle (mod 3 = 2)
+		{36, 2, 0},   // third dozen, top
 	}
 
 	for _, tc := range tests {
@@ -67,10 +67,10 @@ func TestDozenAndRowBuckets(t *testing.T) {
       Then picks one spin representative for each branch.
 ───────────────────────────────────────────────────────────── */
 type branch struct {
-	label string       // human description
-	idx   int          // grid index to bet on
-	spin  int          // spin result we expect to hit
-	want  float64      // expected multiplier
+	label string  // human description
+	idx   int     // grid index to bet on
+	spin  int     // spin result we expect to hit
+	want  float64 // expected multiplier
 }
 
 func discoverBranches(t *testing.T) []branch {

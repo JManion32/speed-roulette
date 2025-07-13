@@ -3,7 +3,7 @@ package utils
 import "speed-roulette/backend/models"
 
 // Indexes of each number in the grid starting from index [1] ([0] is not a number, [1] = 92, [2] = 46, etc)
-var indexes [38]int = [38]int {
+var indexes [38]int = [38]int{
 	0, 92, 46, 0, 94, 48, 2, 96, 50, 4, 98, 52, 6, 100, 54, 8, 102, 56, 10,
 	104, 58, 12, 106, 60, 14, 108, 62, 16, 110, 64, 18, 112, 66, 20, 114, 68, 22,
 }

@@ -1,7 +1,7 @@
 package tests
 
 import (
-    "reflect"
+	"reflect"
 	"testing"
 
 	"speed-roulette/backend/models"
