@@ -40,6 +40,7 @@ export default function ChipControls({
         return (
           <button
             key={value}
+            data-cy={`chip-${value}`}
             disabled={!canAfford}
             className={`chip-button mr-2 transition duration-200 ${
               isCurrent ? (isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''
