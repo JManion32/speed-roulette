@@ -135,7 +135,7 @@ jobs:
           REDIS_DB=0
           ENV=development
           BUILD_MODE=nginxserver
-          FRONTEND_PORT=5173
+          FRONTEND_PORT=80
           VITE_BACKEND_URL=http://backend:8080
           EOF
 
