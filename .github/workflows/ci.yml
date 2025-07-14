@@ -148,7 +148,9 @@ jobs:
 
       - name: Run Cypress specs
         uses: cypress-io/github-action@v6
-        with: { working-directory: frontend }
+        with: 
+          working-directory: frontend
+          config: baseUrl=http://localhost:80
 
       - name: Stop stack
         if: always()
