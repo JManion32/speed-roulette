@@ -11,21 +11,10 @@ describe('Navigation and Static UI', () => {
     });
 
     it('dark mode toggle is working', () => {
-        // Accept any of the common serialisations we see in browsers/CI
-        const darkRegex = /(oklch|rgb).*?(21|233)/i;        // dark background
-        const lightRegex = /(oklch|rgb).*?(242|233)/i;      // light background
-
-        cy.get('[data-cy="main-app-div"]')
-            .invoke('css', 'background-color')
-            .should('match', darkRegex);
-
+        cy.get('[data-cy="main-app-div"]').should('have.css', 'background-color', 'oklch(0.21 0.034 264.665)'); // bg-gray-900
         cy.get('[data-cy="dark-mode-toggle"]').click();
-
-        cy.get('[data-cy="main-app-div"]')
-            .invoke('css', 'background-color')
-            .should('match', lightRegex);
-
-        cy.get('[data-cy="dark-mode-toggle"]').click(); // back to dark
+        cy.get('[data-cy="main-app-div"]').should('have.css', 'background-color', 'rgb(233, 238, 243)');
+        cy.get('[data-cy="dark-mode-toggle"]').click();
     });
 
     it('opens About modal and navigates tabs', () => {
