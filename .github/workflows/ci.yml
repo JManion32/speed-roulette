@@ -151,8 +151,8 @@ jobs:
         with: 
           working-directory: frontend
           config: baseUrl=http://localhost:80
-          wait-on: http://localhost:80
-          wait-on-timeout: 60
+          wait-on: http://localhost:80/index.html
+          wait-on-timeout: 120
 
       - name: Stop stack
         if: always()
