@@ -101,7 +101,7 @@ jobs:
           REDIS_DB=0
           ENV=development
           BUILD_MODE=nginxserver
-          FRONTEND_PORT=5173
+          FRONTEND_PORT=80
           VITE_BACKEND_URL=http://backend:8080
           EOF
 
@@ -152,7 +152,7 @@ jobs:
           working-directory: frontend
           config: baseUrl=http://localhost:80
           wait-on: http://localhost:80
-          wait-on-timeout: 90
+          wait-on-timeout: 60
 
       - name: Stop stack
         if: always()
