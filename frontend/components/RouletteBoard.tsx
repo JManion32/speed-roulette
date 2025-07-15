@@ -122,6 +122,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'inner')}
                     className="board-grid relative"
+                    data-cy={`inner-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid red' : 'none',
                       backgroundColor: showGrid ? 'rgba(255, 0, 0, 0.2)' : 'transparent',
@@ -150,6 +151,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'zeros-split')}
                     className="board-grid relative"
+                    data-cy={`zero-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid orange' : 'none',
                       backgroundColor: showGrid ? 'rgba(225, 232, 25, 0)' : 'transparent',
@@ -176,6 +178,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'zeros')}
                     className="board-grid relative"
+                    data-cy={`zero-split-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid yellow' : 'none',
                       backgroundColor: showGrid ? 'rgba(25, 83, 232, 0)' : 'transparent',
@@ -204,6 +207,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'dozens')}
                     className="board-grid relative"
+                    data-cy={`dozen-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid green' : 'none',
                       backgroundColor: showGrid ? 'rgba(199, 128, 6, 0)' : 'transparent',
@@ -231,6 +235,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'rows')}
                     className="board-grid relative"
+                    data-cy={`row-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid blue' : 'none',
                       backgroundColor: showGrid ? 'rgba(104, 36, 230, 0)' : 'transparent',
@@ -259,6 +264,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={() => handleGridCellClick(index, 'outer')}
                     className="board-grid relative"
+                    data-cy={`outer-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid purple' : 'none',
                       backgroundColor: showGrid ? 'rgba(61, 47, 6, 0)' : 'transparent',

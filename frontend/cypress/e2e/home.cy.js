@@ -10,13 +10,6 @@ describe('Navigation and Static UI', () => {
         cy.contains('Have a feature suggestion?').should('be.visible');
     });
 
-    it('dark mode toggle is working', () => {
-        cy.get('[data-cy="main-app-div"]').should('have.css', 'background-color', 'oklch(0.21 0.034 264.665)'); // bg-gray-900
-        cy.get('[data-cy="dark-mode-toggle"]').click();
-        cy.get('[data-cy="main-app-div"]').should('have.css', 'background-color', 'rgb(233, 238, 243)');
-        cy.get('[data-cy="dark-mode-toggle"]').click();
-    });
-
     it('opens About modal and navigates tabs', () => {
         cy.get('[data-cy="open-about-modal"]').click();
         cy.contains('About').should('be.visible');

@@ -52,5 +52,39 @@ describe('Game', () => {
         cy.wait(2000); // timer should not tick until first spin
         cy.get('[data-cy="timer-display"]').should('have.text', '60');
         cy.get('[data-cy="spins-display"]').should('have.text', '10');
+        cy.get('[data-cy="chip-0.5"]').click();
+        cy.get('[data-cy="chip-1"]').click();
+        cy.get('[data-cy="chip-2"]').click();
+        cy.get('[data-cy="chip-5"]').click();
+        cy.get('[data-cy="chip-10"]').click();
+        cy.get('[data-cy="chip-20"]').click();
+    });
+
+    it('shows correct initial game state', () => {
+        cy.get('[data-cy="nickname-enter-form"]')
+            .clear()
+            .type('cypress');
+        cy.get('[data-cy="play-button"]').click();
+        cy.get('[data-cy="chip-0.5"]').click();
+        cy.get('[data-cy="outer-0"]').click();
+        cy.get('[data-cy="outer-1"]').click();
+        cy.get('[data-cy="outer-2"]').click();
+        cy.get('[data-cy="outer-3"]').click();
+        cy.get('[data-cy="outer-4"]').click();
+        cy.get('[data-cy="outer-5"]').click();
+
+        cy.get('[data-cy="clear-button"]').click();
+
+        cy.get('[data-cy="dozen-0"]').click();
+        cy.get('[data-cy="dozen-1"]').click();
+        cy.get('[data-cy="dozen-2"]').click();
+
+        cy.get('[data-cy="clear-button"]').click();
+
+        cy.get('[data-cy="row-0"]').click();
+        cy.get('[data-cy="row-1"]').click();
+        cy.get('[data-cy="row-2"]').click();
+
+        cy.get('[data-cy="clear-button"]').click();
     });
 });
