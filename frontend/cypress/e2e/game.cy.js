@@ -13,6 +13,7 @@ describe('Game', () => {
 
         cy.intercept('DELETE', '/api/logout', { statusCode: 204 }).as('logout');
 
+        cy.viewport(1920, 1080);
         cy.visit('/');
     });
 
@@ -60,31 +61,117 @@ describe('Game', () => {
         cy.get('[data-cy="chip-20"]').click();
     });
 
-    it('shows correct initial game state', () => {
+    it('outer bet placements + dynamic balance & bet amount + clear & undo', () => {
         cy.get('[data-cy="nickname-enter-form"]')
             .clear()
             .type('cypress');
         cy.get('[data-cy="play-button"]').click();
         cy.get('[data-cy="chip-0.5"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
         cy.get('[data-cy="outer-0"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$19.50');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.50');
         cy.get('[data-cy="outer-1"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$19.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$1.00');
         cy.get('[data-cy="outer-2"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$18.50');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$1.50');
         cy.get('[data-cy="outer-3"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$18.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$2.00');
         cy.get('[data-cy="outer-4"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$17.50');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$2.50');
         cy.get('[data-cy="outer-5"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$17.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$3.00');
 
         cy.get('[data-cy="clear-button"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
 
+        cy.get('[data-cy="chip-1"]').click();
         cy.get('[data-cy="dozen-0"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$19.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$1.00');
         cy.get('[data-cy="dozen-1"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$18.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$2.00');
         cy.get('[data-cy="dozen-2"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$17.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$3.00');
 
         cy.get('[data-cy="clear-button"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
 
+        cy.get('[data-cy="chip-2"]').click();
         cy.get('[data-cy="row-0"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$18.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$2.00');
         cy.get('[data-cy="row-1"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$16.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$4.00');
         cy.get('[data-cy="row-2"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$14.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$6.00');
 
         cy.get('[data-cy="clear-button"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
+
+        cy.get('[data-cy="chip-5"]').click();
+        cy.get('[data-cy="zero-0"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$15.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$5.00');
+        cy.get('[data-cy="zero-1"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$10.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$10.00');
+        cy.get('[data-cy="zero-2"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$5.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$15.00');
+        cy.get('[data-cy="clear-button"]').click();
+        cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
+
+        cy.get('[data-cy="chip-1"]').click();
+        for (let i = 0; i <= 7; i++) {
+            cy.get(`[data-cy="zero-split-${i}"]`).click();
+        }
+        cy.get('[data-cy="balance-display"]').should('have.text', '$12.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$8.00');
+        for (let i = 0; i <= 7; i++) {
+            cy.get('[data-cy="undo-button"]').click();
+        }
+        cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
+    });
+
+    // ensure all inner cells on the roulette board are interactive
+    it('all inner bet placements', () => {
+        cy.get('[data-cy="nickname-enter-form"]')
+            .clear()
+            .type('cypress');
+        cy.get('[data-cy="play-button"]').click();
+        cy.get('[data-cy="chip-0.5"]').click();
+        for (let i = 0; i <= 137; i++) {
+            cy.get(`[data-cy="inner-${i}"]`).click();
+            if ((i + 1) % 39 === 0) {
+                cy.get('[data-cy="clear-button"]').click();
+            }
+        }
+    });
+
+    it('simulate game', () => {
+        cy.get('[data-cy="nickname-enter-form"]')
+            .clear()
+            .type('cypress');
+        cy.get('[data-cy="play-button"]').click();
+        cy.get('[data-cy="chip-5"]').click();
+        cy.get('[data-cy="outer-2"]').click();
+        cy.get('[data-cy="submit-button"]').click();
+        cy.wait(63000);
     });
 });

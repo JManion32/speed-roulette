@@ -1,6 +1,9 @@
 // Tests everything outside of the game: modals, pages, dark-mode, etc.
 describe('Navigation and Static UI', () => {
-    beforeEach(() => cy.visit('/'));
+    beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.visit('/');
+    });
 
     it('displays the game title', () => {
         cy.contains('Speed Roulette').should('be.visible');

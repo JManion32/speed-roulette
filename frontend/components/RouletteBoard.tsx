@@ -134,7 +134,7 @@ export default function RouletteBoard({
                 ))}
               </div>
 
-              {/*Zeros (Number and Split)*/}
+              {/* Zeros and Numbers Split Bet */}
               <div 
                 className="absolute top-0 left-0"
                 style={{ 
@@ -151,7 +151,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'zeros-split')}
                     className="board-grid relative"
-                    data-cy={`zero-${index}`}
+                    data-cy={`zero-split-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid orange' : 'none',
                       backgroundColor: showGrid ? 'rgba(225, 232, 25, 0)' : 'transparent',
@@ -163,7 +163,7 @@ export default function RouletteBoard({
                 ))}
               </div>
 
-              {/*Zeros and Numbers Split Bet*/}
+              {/* Zeros */}
               <div 
                 className="absolute top-0"
                 style={{ 
@@ -178,7 +178,7 @@ export default function RouletteBoard({
                     key={index}
                     onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'zeros')}
                     className="board-grid relative"
-                    data-cy={`zero-split-${index}`}
+                    data-cy={`zero-${index}`}
                     style={{ 
                       border: showGrid ? '1px solid yellow' : 'none',
                       backgroundColor: showGrid ? 'rgba(25, 83, 232, 0)' : 'transparent',
