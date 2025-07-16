@@ -262,7 +262,7 @@ export default function RouletteBoard({
                 {Array(6 * 1).fill(null).map((_, index) => (
                   <div 
                     key={index}
-                    onClick={() => handleGridCellClick(index, 'outer')}
+                    onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, 'outer')}
                     className="board-grid relative"
                     data-cy={`outer-${index}`}
                     style={{ 
