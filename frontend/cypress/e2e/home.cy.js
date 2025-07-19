@@ -10,6 +10,18 @@ describe('Navigation and Static UI', () => {
     });
 
     it('displays feature suggestion', () => {
+        cy.get('[data-cy="dark-mode-toggle"]').click();
+        cy.wait(1000);
+        cy.get('[data-cy="dark-mode-toggle"]').click();
+        cy.wait(1000);
+        cy.get('[data-cy="dark-mode-toggle"]').click();
+        cy.wait(1000);
+        cy.get('[data-cy="dark-mode-toggle"]').click();
+        cy.wait(1000);
+        cy.get('[data-cy="dark-mode-toggle"]').click();
+    });
+
+    it('toggle dark mode', () => {
         cy.contains('Have a feature suggestion?').should('be.visible');
     });
 

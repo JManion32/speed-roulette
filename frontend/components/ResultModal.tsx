@@ -57,23 +57,28 @@ export default function ResultModal({
           </h1>
 
           <div className="grid grid-cols-[12.5rem_1fr] gap-x-24 gap-y-6 mb-5">
+
+            <p className="text-[1.5rem] font-bold">Final Balance:</p>
+            <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
+            data-cy="result-balance">
+              ${userBalance.toFixed(2)}
+            </button>
+
             <p className="text-[1.5rem] font-bold">Time Remaining:</p>
-            <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}>
+            <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
+            data-cy="result-time">
               {timeLeft}
             </button>
 
             <p className="text-[1.5rem] font-bold">Spins Remaining:</p>
-            <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}>
+            <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
+            data-cy="result-spins">
               {remSpins}
             </button>
 
-            <p className="text-[1.5rem] font-bold">Final Balance:</p>
-            <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}>
-              ${userBalance.toFixed(2)}
-            </button>
-
             <p className="text-[1.875rem] font-bold mt-6">Daily Rank:</p>
-            <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}>
+            <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] mt-6 pointer-events-none ${isDarkMode ? 'bg-gray-600 text-yellow-500' : 'bg-white text-yellow-700'}`}
+            data-cy="user-rank">
               {userBalance > 0 && rank !== null ? `#${rank}` : "Unranked"}
             </button>
           </div>
@@ -83,6 +88,7 @@ export default function ResultModal({
               className={`h-12 w-45 rounded-md font-bold text-[1.25rem] mr-25 transition-transform transform hover:scale-105 ${
                 isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-250 hover:bg-green-350'
               }`}
+              data-cy="result-play-again"
               onClick={async () => {
                 if (!nickname) {
                   alert("Nickname missing. Please reload the page.");

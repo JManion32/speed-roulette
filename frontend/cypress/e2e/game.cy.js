@@ -13,6 +13,33 @@ describe('Game', () => {
 
         cy.intercept('DELETE', '/api/logout', { statusCode: 204 }).as('logout');
 
+        cy.intercept('POST', '/api/round', (req) => {
+            expect(req.body).to.have.property('bets');
+            expect(Array.isArray(req.body.bets)).to.be.true;
+            expect(req.body.bets.length).to.be.greaterThan(0);
+            expect(req.body.bets[0]).to.have.all.keys('gridIndex', 'gridId', 'chipValue', 'chipColor');
+
+            req.reply({
+                statusCode: 200,
+                body: {
+                    number: 7,
+                    payout: 10
+                }
+            });
+        }).as('round');
+
+        cy.intercept('POST', '/api/game', (req) => {
+            expect(req.body).to.have.all.keys('final_balance', 'nickname', 'rem_spins', 'rem_time');
+
+            req.reply({
+                statusCode: 200,
+                body: {
+                    status: 'success',
+                    rank: 1
+                }
+            });
+        }).as('round');
+
         cy.viewport(1920, 1080);
         cy.visit('/');
     });
@@ -38,6 +65,29 @@ describe('Game', () => {
         cy.contains('Speed Roulette').should('be.visible');
         cy.window().its('localStorage.nickname').should('be.undefined');
         cy.window().its('localStorage.token').should('be.undefined');
+    });
+
+    it('simulate full game', () => {
+        cy.get('[data-cy="nickname-enter-form"]')
+            .clear()
+            .type('cypress');
+        cy.get('[data-cy="play-button"]').click();
+        cy.get('[data-cy="chip-5"]').click();
+        cy.get('[data-cy="outer-2"]').click();
+        cy.get('[data-cy="submit-button"]').click();
+        cy.wait(5000);
+        cy.get('[data-cy="balance-display"]').should('have.text', '$25.00');
+        cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
+        cy.get('[data-cy="spins-display"]').should('have.text', '9');
+        cy.wait(60000);
+        cy.contains('ROUND FINISHED!').should('be.visible');
+        cy.get('[data-cy="result-balance"]').should('have.text', '$25.00');
+        cy.get('[data-cy="result-time"]').should('have.text', '0');
+        cy.get('[data-cy="result-spins"]').should('have.text', '9');
+        cy.get('[data-cy="user-rank"]').should('have.text', '#1');
+        cy.get('[data-cy="result-play-again"]').click();
+        cy.contains('cypress').should('be.visible');
+        cy.get('[data-cy="home-button"]').click();
     });
 
     it('shows correct initial game state', () => {
@@ -162,16 +212,5 @@ describe('Game', () => {
                 cy.get('[data-cy="clear-button"]').click();
             }
         }
-    });
-
-    it('simulate game', () => {
-        cy.get('[data-cy="nickname-enter-form"]')
-            .clear()
-            .type('cypress');
-        cy.get('[data-cy="play-button"]').click();
-        cy.get('[data-cy="chip-5"]').click();
-        cy.get('[data-cy="outer-2"]').click();
-        cy.get('[data-cy="submit-button"]').click();
-        cy.wait(63000);
     });
 });
