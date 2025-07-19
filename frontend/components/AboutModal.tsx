@@ -120,7 +120,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
             <>
               <p className="text-[2rem] mb-10">
                 <span className="font-bold">Inquiries:</span>{' '}
-                <a href="mailto:jman32@speedroulette.io" className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}>jman32@speedroulette.io</a>
+                <a href="mailto:jman32business@gmail.com" className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}>jman32business@gmail.com</a>
               </p>
               {/*
               <button 
