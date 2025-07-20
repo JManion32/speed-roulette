@@ -130,20 +130,21 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
                 YouTube
               </button><br />
               */}
+
+              <button 
+                className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8 mb-10"
+                onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
+              >
+                <img src="/assets/github-white.png" alt="GitHub" className="w-16 h-16" />
+                GitHub
+              </button>
+
               <button 
                 className="h-25 w-150 bg-linkedin hover:bg-linkedin-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8"
                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
               >
                 <img src="/assets/linkedin-white.png" alt="LinkedIn" className="w-16 h-16" />
                 LinkedIn
-              </button>
-
-              <button 
-                className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8 mt-10"
-                onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
-              >
-                <img src="/assets/github-white.png" alt="GitHub" className="w-16 h-16" />
-                GitHub
               </button>
             </>
           )}
