@@ -43,8 +43,6 @@ services:
       args:
         BUILD_MODE: ${BUILD_MODE}
     container_name: frontend
-    ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     depends_on:
       - backend
 
@@ -52,7 +50,7 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - "80:80"
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     volumes:
       - ./frontend/dist:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
