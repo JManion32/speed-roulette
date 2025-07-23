@@ -1,6 +1,8 @@
 // src/components/AboutModal.tsx
 import { useDarkMode } from "../contexts/DarkModeContext";
 import { useState, useEffect } from "react";
+import github_white from '../assets/github-white.png';
+import linkedin_white from '../assets/linkedin-white.png';
 
 type ModalProps = {
   isOpen: boolean;
@@ -135,7 +137,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
                 className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8 mb-10"
                 onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
               >
-                <img src="/assets/github-white.png" alt="GitHub" className="w-16 h-16" />
+                <img src={github_white} alt="GitHub" className="w-16 h-16" />
                 GitHub
               </button>
 
@@ -143,7 +145,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
                 className="h-25 w-150 bg-linkedin hover:bg-linkedin-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8"
                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
               >
-                <img src="/assets/linkedin-white.png" alt="LinkedIn" className="w-16 h-16" />
+                <img src={linkedin_white} alt="LinkedIn" className="w-16 h-16" />
                 LinkedIn
               </button>
             </>
