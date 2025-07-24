@@ -16,6 +16,7 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
+    command: ["redis-server", "--bind", "127.0.0.1"]
   
   backend:
     build: ./backend
