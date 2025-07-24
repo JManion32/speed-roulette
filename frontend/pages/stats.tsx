@@ -54,24 +54,24 @@ function StatDisplay() {
         <h1 className="transition duration-200 text-[4rem] font-bold mt-8 mb-8">Site Statistics</h1>
 
         <div className="flex border-b border-gray-700 mb-8 space-x-6">
-          {['today', 'week', 'month', 'allTime'].map((tabKey) => (
+          {['today', 'week', 'month', 'allTime'].map((tab) => (
             <button
-              key={tabKey}
-              className={`py-2 px-6 text-xl transition duration-200 ${
-                activeTab === tabKey
+              key={tab}
+              className={`py-2 px-6 text-xl transition duration-200 font-bold ${
+                activeTab === tab
                   ? isDarkMode
-                    ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
-                    : 'text-yellow-700 font-bold border-b-2 border-yellow-700'
+                    ? 'text-yellow-500 border-b-2 border-yellow-500'
+                    : 'text-yellow-700 border-b-2 border-yellow-700'
                   : isDarkMode
-                  ? 'hover:text-yellow-500'
-                  : 'hover:text-yellow-700'
+                    ? 'hover:text-white text-gray-400'
+                    : 'hover:text-black text-gray-500'
               }`}
-              onClick={() => setActiveTab(tabKey as typeof activeTab)}
+              onClick={() => setActiveTab(tab as typeof activeTab)}
             >
-              {tabKey === 'today' && 'Today'}
-              {tabKey === 'week' && 'This Week'}
-              {tabKey === 'month' && 'This Month'}
-              {tabKey === 'allTime' && 'All Time'}
+              {tab === 'today' && 'Today'}
+              {tab === 'week' && 'This Week'}
+              {tab === 'month' && 'This Month'}
+              {tab === 'allTime' && 'All Time'}
             </button>
           ))}
         </div>

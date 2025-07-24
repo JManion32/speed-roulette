@@ -20,7 +20,7 @@ export default function HomeButton() {
       onClick={handleClick}
       data-cy="home-button"
       className={`
-        absolute right-24 rounded-full w-15 h-15 
+        absolute right-21 rounded-full w-15 h-15 
         flex justify-center items-center 
         duration-200 hover:scale-110
         ${isDarkMode 

@@ -30,7 +30,7 @@ function Home() {
           data-cy="main-app-div">
         {/* Header */}
         <div className="p-4 flex top-0">
-          <p className={`font-bold transition duration-200 ${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}
+          <p className={`font-bold transition duration-200 hover:text-purple-500 ${isDarkMode ? 'text-blue-500' : 'text-blue-700'} underline`}
            onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
           <DarkModeToggle />
         </div>

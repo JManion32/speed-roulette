@@ -57,14 +57,14 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {['about', 'rules', 'contact'].map((tab) => (
             <button
               key={tab}
-              className={`py-2 px-6 text-[1.75rem] ${
+              className={`py-2 px-6 text-[1.75rem] font-bold transition-colors ${
                 activeTab === tab
                   ? isDarkMode
-                    ? 'text-yellow-500 font-bold border-b-2 border-yellow-500'
-                    : 'text-yellow-700 font-bold border-b-2 border-yellow-700'
+                    ? 'text-yellow-500 border-b-2 border-yellow-500'
+                    : 'text-yellow-700 border-b-2 border-yellow-700'
                   : isDarkMode
-                    ? 'hover:text-yellow-500'
-                    : 'hover:text-yellow-700'
+                    ? 'hover:text-white text-gray-400'
+                    : 'hover:text-black text-gray-500'
               }`}
               onClick={() => setActiveTab(tab)}
             >
@@ -121,8 +121,8 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
           {activeTab === 'contact' && (
             <>
               <p className="text-[2rem] mb-10">
-                <span className="font-bold">Inquiries:</span>{' '}
-                <a href="mailto:jman32business@gmail.com" className={`${isDarkMode ? 'text-blue-500 hover:text-blue-400' : 'text-blue-700 hover:text-purple-500'} underline`}>jman32business@gmail.com</a>
+                <span className="font-semibold">Inquiries:</span>{' '}
+                <a href="mailto:jman32business@gmail.com" className={`${isDarkMode ? 'text-blue-500' : 'text-blue-700'} underline hover:text-purple-500 transition-colors duration-100`}>jman32business@gmail.com</a>
               </p>
               {/*
               <button 

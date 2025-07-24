@@ -48,6 +48,7 @@
 html {
     font-size: 16px; /* Base: 1920px */
     background-color: var(--color-light-mode);
+    transition: background-color 0.2s;
 }
 
 /* Dark mode html background override */
@@ -137,6 +138,10 @@ html.dark body {
     html {
         font-size: 24px;
     }
+}
+
+html {
+  scrollbar-gutter: stable both-edges;
 }
 
 /* ───────────────────────────────
