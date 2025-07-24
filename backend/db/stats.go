@@ -15,22 +15,23 @@ func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
 	}
 	defer db.Close()
 
+	loc, _ := time.LoadLocation("America/New_York")
+	now := time.Now().In(loc)
 	var timeBoundary string
-	now := time.Now()
-	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 
 	switch rangeParam {
 	case "today":
-		timeBoundary = today.Format("2006-01-02")
+		today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, loc).UTC()
+		timeBoundary = today.Format("2006-01-02 15:04:05")
 
 	case "week":
-		offset := (int(today.Weekday()) + 6) % 7 // Monday = 0
-		weekStart := today.AddDate(0, 0, -offset)
-		timeBoundary = weekStart.Format("2006-01-02")
+		offset := (int(now.Weekday()) + 6) % 7
+		weekStart := time.Date(now.Year(), now.Month(), now.Day()-offset, 0, 0, 0, 0, loc).UTC()
+		timeBoundary = weekStart.Format("2006-01-02 15:04:05")
 
 	case "month":
-		monthStart := time.Date(today.Year(), today.Month(), 1, 0, 0, 0, 0, today.Location())
-		timeBoundary = monthStart.Format("2006-01-02")
+		monthStart := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, loc).UTC()
+		timeBoundary = monthStart.Format("2006-01-02 15:04:05")
 
 	case "allTime":
 		timeBoundary = ""
@@ -179,8 +180,9 @@ func GetPlayerRank(balance float64) (int, error) {
 	}
 	defer db.Close()
 
-	now := time.Now()
-	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location()).Format("2006-01-02")
+	loc, _ := time.LoadLocation("America/New_York")
+	now := time.Now().In(loc)
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, loc).UTC().Format("2006-01-02 15:04:05")
 
 	var rank int
 	err = db.QueryRow(`
