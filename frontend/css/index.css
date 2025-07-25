@@ -140,23 +140,23 @@ html.dark body {
 }
 
 html {
-  scrollbar-gutter: stable both-edges;
+    scrollbar-gutter: stable both-edges;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* background behind the thumb */
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(92, 92, 92, 0.5); /* scrollbar handle */
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+    background-color: rgba(92, 92, 92, 0.5);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
 }
 
 /* ───────────────────────────────
