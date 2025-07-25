@@ -35,11 +35,10 @@ export default function PrivacyModal({ isOpen, onClose }: ModalProps) {
     >
       <div
         className={`
-          relative rounded-3xl w-[50rem] max-w-[90%] max-h-[90vh] p-8 
-          overflow-y-auto scrollbar-thin scrollbar-track-transparent
+          relative rounded-3xl w-[50rem] max-w-[90%] max-h-[90vh] p-8 overflow-y-auto
           ${isDarkMode
-            ? "bg-gray-800 text-white scrollbar-thumb-gray-600"
-            : "bg-light-mode text-black scrollbar-thumb-gray-400"
+            ? "bg-gray-800 text-white"
+            : "bg-light-mode text-black"
           } 
           ${isClosing ? "slide-down" : "slide-up"}
         `}

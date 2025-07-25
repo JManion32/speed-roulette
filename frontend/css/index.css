@@ -25,7 +25,6 @@
 /* ───────────────────────────────
    Plugins
 ──────────────────────────────── */
-@plugin 'tailwind-scrollbar';
 
 /* ───────────────────────────────
    Base Font & Smoothing
@@ -142,6 +141,22 @@ html.dark body {
 
 html {
   scrollbar-gutter: stable both-edges;
+}
+
+::-webkit-scrollbar {
+  width: 8px;  /* vertical scrollbar */
+  height: 8px; /* horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* background behind the thumb */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5); /* scrollbar handle */
+  border-radius: 10px;
+  border: 2px solid transparent; /* gives padding-like effect */
+  background-clip: content-box;
 }
 
 /* ───────────────────────────────
