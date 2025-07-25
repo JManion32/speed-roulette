@@ -144,8 +144,8 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;  /* vertical scrollbar */
-  height: 8px; /* horizontal scrollbar */
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -153,9 +153,9 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.5); /* scrollbar handle */
+  background-color: rgba(92, 92, 92, 0.5); /* scrollbar handle */
   border-radius: 10px;
-  border: 2px solid transparent; /* gives padding-like effect */
+  border: 2px solid transparent;
   background-clip: content-box;
 }
 
