@@ -84,7 +84,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               </p>
               <p className="font-bold mb-4">Note from the developer:</p>
               <p>
-                I hope you enjoy this website! It has been a dream come true to create this. Remember: anything is possible if you put your mind to it. Best of luck!
+                I hope you enjoy my website! It has been a dream come true to create this. Remember: anything is possible if you put your mind to it. Best of luck!
               </p>
             </>
           )}
