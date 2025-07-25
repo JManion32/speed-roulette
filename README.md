@@ -17,8 +17,8 @@ big payouts.
 
 ### Frontend  
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ### Backend 
@@ -30,7 +30,10 @@ big payouts.
 
 ### Infrastructure & DevOps 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![DigitalOcean](https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)
+![Route 53](https://img.shields.io/badge/AWS_Route_53-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)  
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![Certbot](https://img.shields.io/badge/Certbot-003A70?style=for-the-badge&logo=letsencrypt&logoColor=white)
 
 ### Tooling / Dev Dependencies
 ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
@@ -40,12 +43,6 @@ big payouts.
 ![golangci-lint](https://img.shields.io/badge/golangci--lint-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![gofmt](https://img.shields.io/badge/gofmt-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Go Test](https://img.shields.io/badge/go--test-00ADD8?style=for-the-badge&logo=go&logoColor=white)
- 
-### Deployment & Cloud Infrastructure
-![AWS](https://img.shields.io/badge/Elastic%20Beanstalk-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
-![AWS](https://img.shields.io/badge/Amazon%20RDS-527FFF?style=for-the-badge&logo=amazonaws&logoColor=white)
-![AWS](https://img.shields.io/badge/ElastiCache-DC382D?style=for-the-badge&logo=amazonaws&logoColor=white)
-![AWS](https://img.shields.io/badge/Route%2053-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 ---
 
