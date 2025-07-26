@@ -18,7 +18,7 @@ interface ActionButtonsProps {
   setShowModal: (v: boolean) => void;
   setWinningNumber: (v: string | null) => void;
   setUserBalance: (v: number) => void;
-  resetTable: () => void;
+  resetTable: (v: number) => void;
   addResultNum: (v: string) => void;
   handleClearBets: () => void;
   handleUndoBet: () => void;
@@ -91,7 +91,7 @@ export default function ActionButtons({
               const result = data.number;
               const payout = data.payout;
 
-              const newBalance = userBalance + payout;
+              const newBalance: number = userBalance + payout;
               const displayResult = result === 37 ? "00" : result.toString();
               setWinningNumber(displayResult);
 
@@ -102,7 +102,7 @@ export default function ActionButtons({
                   setUserBalance(newBalance);
                   return;
                 }
-                resetTable();
+                resetTable(newBalance);
                 addResultNum(displayResult);
                 setWinningNumber("");
                 setIsPaused(false);

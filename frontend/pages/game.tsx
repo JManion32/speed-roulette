@@ -56,11 +56,11 @@ function Game() {
     const [isSelected, setIsSelected] = useState(false);
 
     const {
-        selectedChip, setSelectedChip,
+        selectedChip,
         bets, betActions,
         userBalance, totalBet,
         handleChipSelect, handleGridCellClick, handleUndoBet,
-        hasBet, getBet,
+        resetSelectedChip, adjustSelectedChip, hasBet, getBet,
         setUserBalance, setTotalBet, setBets, setBetActions,
     } = useBetting({ setIsPaused });
 
@@ -76,10 +76,11 @@ function Game() {
     };
 
     // In between rounds of a match
-    const resetTable = () => {
+    const resetTable = (newBalance: number) => {
         setTotalBet(0);
         setBetActions([]);
         setIsSubmitting(true);
+        adjustSelectedChip(selectedChip!, newBalance);
         setTimeout(() => {
             setBets([]);
             setIsSubmitting(false);
@@ -97,8 +98,7 @@ function Game() {
         setResultNums([]);
         setWinningNumber(null);
         setGridBlock(false);
-        setIsSelected(false);
-        setSelectedChip(null);
+        resetSelectedChip(selectedChip!);
     };
 
     // Render a chip component for the grid

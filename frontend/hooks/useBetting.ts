@@ -8,17 +8,62 @@ export function useBetting({
     setIsPaused: (val: boolean) => void;
 }) {
     const [selectedChip, setSelectedChip] = useState<Chip | null>(null);
-    const [isSelected, setIsSelected] = useState(false);
-    const [bets, setBets] = useState<Bet[]>([]);
-    const [betActions, setBetActions] = useState<BetAction[]>([]);
-    const [userBalance, setUserBalance] = useState<number>(20);
-    const [totalBet, setTotalBet] = useState<number>(0);
 
+    // Set selected chip to highest available amount
+    const resetSelectedChip = (chip: Chip) => {
+        if(chip.value > 20) {
+            chip.value = 20;
+            chip.color = "#06B6D4";
+        }
+
+        setSelectedChip(chip);
+    };
+
+    // Set selected chip to highest available between rounds
+    const adjustSelectedChip = (chip: Chip, balance: number) => {
+        if (balance > chip.value) {
+            return;
+        }
+        chip.color = updateChipColor(balance);
+        if (balance < 500) {
+            chip.value = 100;
+        }
+        if (balance < 100) {
+            chip.value = 50;
+        }
+        if (balance < 50) {
+            chip.value = 20;
+        }
+        if (balance < 20) {
+            chip.value = 10;
+        }
+        if (balance < 10) {
+            chip.value = 5;
+        }
+        if (balance < 5) {
+            chip.value = 2;
+        }
+        if (balance < 2) {
+            chip.value = 1;
+        }
+        if (balance < 1) {
+            chip.value = 0.5;
+        }
+        setSelectedChip(chip);
+    };
+
+    // User selecting chips in game
     const handleChipSelect = (value: number, color: string) => {
         if (userBalance >= value) {
             setSelectedChip({ value, color });
         }
     };
+
+    const [isSelected, setIsSelected] = useState(false);
+    const [bets, setBets] = useState<Bet[]>([]);
+    const [betActions, setBetActions] = useState<BetAction[]>([]);
+    const [userBalance, setUserBalance] = useState<number>(20);
+    const [totalBet, setTotalBet] = useState<number>(0);
 
     const handleGridCellClick = useCallback(
         (index: number, gridId: string) => {
@@ -102,6 +147,8 @@ export function useBetting({
     return {
         selectedChip,
         setSelectedChip,
+        resetSelectedChip,
+        adjustSelectedChip,
         isSelected,
         setIsSelected,
         bets,
