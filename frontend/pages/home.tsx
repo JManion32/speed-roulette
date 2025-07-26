@@ -24,14 +24,19 @@ function Home() {
 
   const [nickname, setNickname] = useState("");
   const startGame = useStartGame(nickname, setNickname);
+
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText("https://speedroulette.io");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000); // revert after 2 seconds
+  };
   
     return (
       <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
           data-cy="main-app-div">
         {/* Header */}
         <div className="p-4 flex top-0">
-          <p className={`font-bold transition duration-200 hover:text-purple-500 ${isDarkMode ? 'text-blue-500' : 'text-blue-700'} underline`}
-           onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
           <DarkModeToggle />
         </div>
   
@@ -120,12 +125,18 @@ function Home() {
   
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
-            <p
-              className="font-bold text-purple-700 hover:text-purple-500 duration-200"
-              onClick={() => setShowPrivacy(true)}
-            >
-              Privacy
+            <p className="inline font-bold text-purple-700 hover:text-purple-500 duration-200" onClick={() => setShowPrivacy(true)}>
+              Privacy Policy
             </p>
+            <span className="inline ml-3 mr-3"> | </span>
+            <p
+              className="inline cursor-pointer font-bold text-purple-700 hover:text-purple-500 transition duration-200"
+              onClick={handleCopy}
+            >
+              {copied ? "Copied!" : "Share"}
+            </p>
+            <span className="inline ml-3 mr-3"> | </span>
+            <p className="inline font-bold text-purple-700 hover:text-purple-500 duration-200" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
         </div>
         <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       </div>

@@ -25,7 +25,7 @@ export default function RouletteBoard({
  return (
     <>
       {/* Main roulette table with grid overlay */}
-      <div className="relative">
+      <div className="relative mr-10 ml-10 mb-10">
         <table className="border-collapse">
           <tbody>
             {/* Zero row that spans 3 rows */}

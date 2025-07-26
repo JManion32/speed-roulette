@@ -1,8 +1,8 @@
 // src/components/AboutModal.tsx
 import { useDarkMode } from "../contexts/DarkModeContext";
 import { useState, useEffect } from "react";
-import github_white from '../assets/github-white.png';
-import linkedin_white from '../assets/linkedin-white.png';
+import github_white from '../assets/github_white.png';
+import linkedin_white from '../assets/linkedin_white.png';
 
 type ModalProps = {
   isOpen: boolean;
