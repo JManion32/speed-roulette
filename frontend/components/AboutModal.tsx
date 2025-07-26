@@ -120,7 +120,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
 
           {activeTab === 'contact' && (
             <>
-              <p className="text-[2rem] mb-10">
+              <p className="transition-color duration-200 text-[2rem] mb-10">
                 <span className="font-semibold">Inquiries:</span>{' '}
                 <a href="mailto:jman32business@gmail.com" className={`${isDarkMode ? 'text-blue-500' : 'text-blue-700'} underline hover:text-purple-500 transition-colors duration-100`}>jman32business@gmail.com</a>
               </p>
@@ -134,7 +134,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               */}
 
               <button 
-                className="h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8 mb-10"
+                className="transition-color duration-200 h-25 w-150 bg-github hover:bg-github-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8 mb-10"
                 onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
               >
                 <img src={github_white} alt="GitHub" className="w-16 h-16" />
@@ -142,7 +142,7 @@ export default function AboutModal({ isOpen, onClose }: ModalProps) {
               </button>
 
               <button 
-                className="h-25 w-150 bg-linkedin hover:bg-linkedin-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8"
+                className="transition-color duration-200 h-25 w-150 bg-linkedin hover:bg-linkedin-h font-bold text-[4rem] text-white rounded-md flex items-center justify-start gap-24 pl-8"
                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
               >
                 <img src={linkedin_white} alt="LinkedIn" className="w-16 h-16" />

@@ -125,18 +125,18 @@ function Home() {
   
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
-            <p className="inline font-bold text-purple-700 hover:text-purple-500 duration-200" onClick={() => setShowPrivacy(true)}>
+            <p className="transition duration-200 inline font-bold text-purple-700 hover:text-purple-500" onClick={() => setShowPrivacy(true)}>
               Privacy Policy
             </p>
             <span className="inline ml-3 mr-3"> | </span>
             <p
-              className="inline cursor-pointer font-bold text-purple-700 hover:text-purple-500 transition duration-200"
+              className="transition duration-200 inline cursor-pointer font-bold text-purple-700 hover:text-purple-500"
               onClick={handleCopy}
             >
               {copied ? "Copied!" : "Share"}
             </p>
             <span className="inline ml-3 mr-3"> | </span>
-            <p className="inline font-bold text-purple-700 hover:text-purple-500 duration-200" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
+            <p className="transition duration-200 inline font-bold text-purple-700 hover:text-purple-500" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
         </div>
         <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       </div>
