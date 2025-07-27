@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import type { RoundStats } from "../types/RoundStats";
+import type { AllStats } from "../types/AllStats";
 
 type Range = "today" | "week" | "month" | "allTime";
 
 export function useStatData(): {
-    data: Record<Range, RoundStats>;
+    data: Record<Range, AllStats>;
     loading: boolean;
 } {
-    const [allStats, setAllStats] = useState<Record<Range, RoundStats>>({
+    const [allStats, setAllStats] = useState<Record<Range, AllStats>>({
         today: {
             colorCounts: {},
             parityCounts: {},
@@ -18,6 +18,9 @@ export function useStatData(): {
             rowCounts: {},
             hottestNumbers: [],
             coldestNumbers: [],
+            numSpins: 0,
+            completedGames: 0,
+            totalWon: 0,
         },
         week: {
             colorCounts: {},
@@ -27,6 +30,9 @@ export function useStatData(): {
             rowCounts: {},
             hottestNumbers: [],
             coldestNumbers: [],
+            numSpins: 0,
+            completedGames: 0,
+            totalWon: 0,
         },
         month: {
             colorCounts: {},
@@ -36,6 +42,9 @@ export function useStatData(): {
             rowCounts: {},
             hottestNumbers: [],
             coldestNumbers: [],
+            numSpins: 0,
+            completedGames: 0,
+            totalWon: 0,
         },
         allTime: {
             colorCounts: {},
@@ -45,6 +54,9 @@ export function useStatData(): {
             rowCounts: {},
             hottestNumbers: [],
             coldestNumbers: [],
+            numSpins: 0,
+            completedGames: 0,
+            totalWon: 0,
         },
     });
 

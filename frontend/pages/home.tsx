@@ -84,21 +84,19 @@ function Home() {
             </Link>
 
             <div className="flex justify-center gap-4">
-              <Link to="" className="inline-block"> {/*This link has no functiomality, however, the dark mode transition is different from the other buttons without it*/}
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}
-                onClick={() => setShowModal(true)}
-                data-cy="open-about-modal">
-                    <img
-                      src={about}
-                      alt="About"
-                      className="w-20 h-20"
-                      draggable="false"/>
-                </button>
-              </Link>
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
+              w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-2`}
+              onClick={() => setShowModal(true)}
+              data-cy="open-about-modal">
+                  <img
+                    src={about}
+                    alt="About"
+                    className="w-20 h-20"
+                    draggable="false"/>
+              </button>
               <Link to="/leaderboard" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110`}
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-2`}
                 data-cy="open-leaderboard-page">
                   <img
                     src={trophy}
@@ -108,8 +106,8 @@ function Home() {
                 </button>
               </Link>
               <Link to="/stats" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-black border-2'}
-                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110`}
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
+                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 border-2`}
                 data-cy="open-stats-page">
                   <img
                     src={stats}
@@ -125,18 +123,32 @@ function Home() {
   
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
-            <p className="transition duration-200 inline font-bold text-purple-700 hover:text-purple-500" onClick={() => setShowPrivacy(true)}>
-              Privacy Policy
-            </p>
-            <span className="inline ml-3 mr-3"> | </span>
-            <p
-              className="transition duration-200 inline cursor-pointer font-bold text-purple-700 hover:text-purple-500"
-              onClick={handleCopy}
-            >
-              {copied ? "Copied!" : "Share"}
-            </p>
-            <span className="inline ml-3 mr-3"> | </span>
-            <p className="transition duration-200 inline font-bold text-purple-700 hover:text-purple-500" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog', '_blank')}>Have a feature suggestion?</p>
+          <p
+            className="transition duration-200 inline-block font-bold text-purple-700 hover:text-purple-500 mr-[0.3rem]"
+            onClick={() => setShowPrivacy(true)}
+          >
+            Privacy Policy
+          </p>
+
+          <span className="inline-block mx-[1.2rem]">|</span>
+
+          <p
+            className="transition duration-200 inline-block min-w-[3.7rem] text-center cursor-pointer font-bold text-purple-700 hover:text-purple-500"
+            onClick={handleCopy}
+          >
+            {copied ? "Copied!" : "Share"}
+          </p>
+
+          <span className="inline-block mx-[1.2rem]">|</span>
+
+          <p
+            className="transition duration-200 inline-block font-bold text-purple-700 hover:text-purple-500 ml-[0.3rem]"
+            onClick={() =>
+              window.open('https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog','_blank')
+            }
+          >
+            Have a feature suggestion?
+          </p>
         </div>
         <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       </div>

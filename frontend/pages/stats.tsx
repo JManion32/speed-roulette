@@ -80,79 +80,107 @@ function StatDisplay() {
           <div className="space-y-8">
             <div className="space-y-8">
               
-        <div className="flex items-center gap-6">
-          <h2 className="transition duration-200 w-48 text-2xl font-semibold whitespace-nowrap glow-hot-header">
-            🔥 Hottest Numbers:
-          </h2>
-          <div className="flex flex-wrap gap-4 ml-12">
-            {stats.hottestNumbers.map((n, i) => (
-              <div
-                key={i}
-                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold ${
-                  getColorClass(n.number === 37 ? '00' : n.number.toString())
-                }`}
-              >
-                <div className="absolute top-0 right-0 text-[12px] text-yellow-300 font-extrabold px-1 translate-x-[-2px] translate-y-[-2px]">
-                  ×{n.count ?? 0}
+              <div className="flex flex-wrap items-center gap-6 sm:gap-x-16 mb-12">
+                
+                <div className="flex items-center gap-x-4 whitespace-nowrap">
+                  <button
+                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-2 ${
+                      isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-2 border-black'}`}
+                  >
+                    Spins: {stats.numSpins}
+                  </button>
                 </div>
-                {n.number === 37 ? '00' : n.number}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6">
-          <h2 className="transition duration-200 w-48 text-2xl font-semibold whitespace-nowrap glow-cold-header">
-            ❄️ Coldest Numbers:
-          </h2>
-          <div className="flex flex-wrap gap-4 ml-12">
-            {stats.coldestNumbers.map((n, i) => (
-              <div
-                key={i}
-                className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold ${
-                  getColorClass(n.number === 37 ? '00' : n.number.toString())
-                }`}
-              >
-                <div className="absolute top-0 right-0 text-[12px] text-yellow-300 font-extrabold px-1 translate-x-[-2px] translate-y-[-2px]">
-                  ×{n.count ?? 0}
+                
+                <div className="flex items-center gap-x-4 whitespace-nowrap">
+                  <button
+                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-2 ${
+                      isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-black'}`}
+                  >
+                    Games Completed: {stats.completedGames}
+                  </button>
                 </div>
-                {n.number === 37 ? '00' : n.number}
+
+                <div className="flex items-center gap-x-4 whitespace-nowrap">
+                  <button
+                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-2 ${
+                      isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-black'}`}
+                  >
+                    Total Won: ${stats.totalWon.toFixed(2)}
+                  </button>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-        </div>
-          </div>
-          <div>
-            <div className="h-12">
-              <Bar data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black', 'neither'])} options={stackedBarOptions} />
+            
+            <div className="flex items-center gap-6">
+              <h2 className="transition duration-200 w-48 text-2xl font-semibold whitespace-nowrap glow-hot-header">
+                🔥 Hottest Numbers:
+              </h2>
+              <div className="flex flex-wrap gap-4 ml-12">
+                {stats.hottestNumbers.map((n, i) => (
+                  <div
+                    key={i}
+                    className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold
+                      ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
+                  >
+                    <div className="absolute top-0 right-0 text-[12px] text-yellow-300 font-extrabold px-1 translate-x-[-2px] translate-y-[-2px]">
+                      ×{n.count ?? 0}
+                    </div>
+                    {n.number === 37 ? '00' : n.number}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <div className="h-12">
-              <Bar data={createStackedBarData(stats.parityCounts, ['even', 'neither', 'odd'])} options={stackedBarOptions} />
+            <div className="flex items-center gap-6">
+              <h2 className="transition duration-200 w-48 text-2xl font-semibold whitespace-nowrap glow-cold-header">
+                ❄️ Coldest Numbers:
+              </h2>
+              <div className="flex flex-wrap gap-4 ml-12">
+                {stats.coldestNumbers.map((n, i) => (
+                  <div
+                    key={i}
+                    className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold
+                      ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
+                  >
+                    <div className="absolute top-0 right-0 text-[12px] text-yellow-300 font-extrabold px-1 translate-x-[-2px] translate-y-[-2px]">
+                      ×{n.count ?? 0}
+                    </div>
+                    {n.number === 37 ? '00' : n.number}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+            </div>
+              </div>
+              <div>
+                <div className="h-12">
+                  <Bar data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black', 'neither'])} options={stackedBarOptions} />
+                </div>
+              </div>
 
-          <div>
-            <div className="h-12">
-              <Bar data={createStackedBarData(stats.halfCounts, ['low', 'neither', 'high'])} options={stackedBarOptions} />
-            </div>
-          </div>
+              <div>
+                <div className="h-12">
+                  <Bar data={createStackedBarData(stats.parityCounts, ['even', 'neither', 'odd'])} options={stackedBarOptions} />
+                </div>
+              </div>
 
-          <div>
-            <div className="h-12">
-              <Bar data={createStackedBarData(stats.dozenCounts, ['first', 'second', 'third', 'neither'])} options={stackedBarOptions} />
-            </div>
-          </div>
+              <div>
+                <div className="h-12">
+                  <Bar data={createStackedBarData(stats.halfCounts, ['low', 'neither', 'high'])} options={stackedBarOptions} />
+                </div>
+              </div>
 
-          <div>
-            <div className="h-12">
-              <Bar data={createStackedBarData(stats.rowCounts, ['top', 'middle', 'bottom', 'neither'])} options={stackedBarOptions} />
-            </div>
+              <div>
+                <div className="h-12">
+                  <Bar data={createStackedBarData(stats.dozenCounts, ['first', 'second', 'third', 'neither'])} options={stackedBarOptions} />
+                </div>
+              </div>
+
+              <div>
+                <div className="h-12">
+                  <Bar data={createStackedBarData(stats.rowCounts, ['top', 'middle', 'bottom', 'neither'])} options={stackedBarOptions} />
+                </div>
+              </div>
           </div>
-        </div>
         <div className="h-14"></div>
       </div>
     </div>

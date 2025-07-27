@@ -21,13 +21,13 @@ func HandleAllStats(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	today, err1 := db.GetRoundsStats("today")
-	week, err2 := db.GetRoundsStats("week")
-	month, err3 := db.GetRoundsStats("month")
-	allTime, err4 := db.GetRoundsStats("allTime")
+	today, err1 := db.GetAllStats("today")
+	week, err2 := db.GetAllStats("week")
+	month, err3 := db.GetAllStats("month")
+	allTime, err4 := db.GetAllStats("allTime")
 
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
-		http.Error(w, "Failed to load round stats", http.StatusInternalServerError)
+		http.Error(w, "Failed to load stats", http.StatusInternalServerError)
 		return
 	}
 

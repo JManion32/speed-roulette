@@ -7,8 +7,8 @@ import (
 	"speed-roulette/backend/models"
 )
 
-// GetRoundsStats queries all numbers and their properties within each range (Today, This Week, This Month, This Year)
-func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
+// GetAllStats queries all numbers and their properties within each range (Today, This Week, This Month, This Year)
+func GetAllStats(rangeParam string) (*models.AllStats, error) {
 	db, err := Connect()
 	if err != nil {
 		return nil, err
@@ -58,7 +58,7 @@ func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
 	}
 	defer rows.Close()
 
-	stats := &models.RoundStats{
+	stats := &models.AllStats{
 		ColorCounts:    make(map[string]int),
 		ParityCounts:   make(map[string]int),
 		HalfCounts:     make(map[string]int),
@@ -66,6 +66,9 @@ func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
 		RowCounts:      make(map[string]int),
 		HottestNumbers: []models.NumberCount{},
 		ColdestNumbers: []models.NumberCount{},
+		NumSpins:       0,
+		CompletedGames: 0,
+		TotalWon:       0,
 	}
 
 	numCounts := make(map[int]int)
@@ -83,9 +86,35 @@ func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
 		stats.DozenCounts[dozen]++
 		stats.RowCounts[row]++
 		numCounts[number]++
+		stats.NumSpins++
 	}
 
-	// Step 1: Get hottest numbers
+	// Count completed games
+	var gamesQuery string
+	if timeBoundary == "" {
+		gamesQuery = `SELECT COUNT(*) FROM games`
+	} else {
+		gamesQuery = fmt.Sprintf(`SELECT COUNT(*) FROM games WHERE game_date_time >= '%s'`, timeBoundary)
+	}
+
+	err = db.QueryRow(gamesQuery).Scan(&stats.CompletedGames)
+	if err != nil {
+		return nil, err
+	}
+
+	var totalQuery string
+	if timeBoundary == "" {
+		totalQuery = `SELECT COALESCE(SUM(final_balance), 0) FROM games`
+	} else {
+		totalQuery = fmt.Sprintf(`SELECT COALESCE(SUM(final_balance), 0) FROM games WHERE game_date_time >= '%s'`, timeBoundary)
+	}
+
+	err = db.QueryRow(totalQuery).Scan(&stats.TotalWon)
+	if err != nil {
+		return nil, err
+	}
+
+	// Get hottest numbers
 	var hottestQuery string
 	if timeBoundary == "" {
 		hottestQuery = `
@@ -126,7 +155,7 @@ func GetRoundsStats(rangeParam string) (*models.RoundStats, error) {
 	}
 	rows.Close()
 
-	// Step 2: Coldest numbers (excluding hottest)
+	// Coldest numbers (excluding hottest)
 	var coldestQuery string
 	if timeBoundary == "" {
 		coldestQuery = `

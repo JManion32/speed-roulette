@@ -1,4 +1,4 @@
-export interface RoundStats {
+export interface AllStats {
     colorCounts: Record<string, number>;
     parityCounts: Record<string, number>;
     halfCounts: Record<string, number>;
@@ -6,4 +6,7 @@ export interface RoundStats {
     rowCounts: Record<string, number>;
     hottestNumbers: { number: number; count: number }[];
     coldestNumbers: { number: number; count: number }[];
+    numSpins: number;
+    completedGames: number;
+    totalWon: number;
 }

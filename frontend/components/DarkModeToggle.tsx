@@ -7,8 +7,8 @@ export default function DarkModeToggle() {
 
   return (
     <button 
-        className={`duration-200 absolute right-3 rounded-full w-15 h-15 hover:scale-110
-          ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300 border-2 border-black'}`}
+        className={`duration-200 absolute right-3 rounded-full w-15 h-15 hover:scale-110 border-2
+          ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}`}
         onClick={() => setIsDarkMode(!isDarkMode)}
         data-cy="dark-mode-toggle">
         <img

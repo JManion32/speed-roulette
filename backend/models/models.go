@@ -66,8 +66,8 @@ type NumberCount struct {
 	Count  int `json:"count"`
 }
 
-// RoundStats stores all round data including numbers and their properties
-type RoundStats struct {
+// AllStats stores all round data including numbers and their properties, as well as winnings and matches played
+type AllStats struct {
 	ColorCounts    map[string]int `json:"colorCounts"`
 	ParityCounts   map[string]int `json:"parityCounts"`
 	HalfCounts     map[string]int `json:"halfCounts"`
@@ -75,4 +75,7 @@ type RoundStats struct {
 	RowCounts      map[string]int `json:"rowCounts"`
 	HottestNumbers []NumberCount  `json:"hottestNumbers"`
 	ColdestNumbers []NumberCount  `json:"coldestNumbers"`
+	NumSpins       int			  `json:"numSpins"`
+	CompletedGames int			  `json:"completedGames"`
+	TotalWon	   float64		  `json:"totalWon"`
 }
