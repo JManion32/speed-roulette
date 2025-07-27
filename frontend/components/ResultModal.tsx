@@ -79,7 +79,10 @@ export default function ResultModal({
             <p className="text-[1.5rem] font-bold">Final Balance:</p>
             <button className={`h-10 w-45 rounded-md font-bold text-[1.25rem] pointer-events-none ${isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
             data-cy="result-balance">
-              ${userBalance.toFixed(2)}
+              ${userBalance.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
             </button>
 
             <p className="text-[1.5rem] font-bold">Time Remaining:</p>

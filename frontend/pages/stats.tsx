@@ -87,7 +87,7 @@ function StatDisplay() {
                     className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-2 ${
                       isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-2 border-black'}`}
                   >
-                    Spins: {stats.numSpins}
+                    Spins: {stats.numSpins.toLocaleString()}
                   </button>
                 </div>
                 
@@ -96,7 +96,7 @@ function StatDisplay() {
                     className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-2 ${
                       isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-black'}`}
                   >
-                    Games Completed: {stats.completedGames}
+                    Games Completed: {stats.completedGames.toLocaleString()}
                   </button>
                 </div>
 
@@ -105,7 +105,10 @@ function StatDisplay() {
                     className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-2 ${
                       isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-black'}`}
                   >
-                    Total Won: ${stats.totalWon.toFixed(2)}
+                    Total Won: ${stats.totalWon.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </button>
                 </div>
               </div>

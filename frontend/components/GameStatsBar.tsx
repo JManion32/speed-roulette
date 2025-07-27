@@ -36,7 +36,10 @@ export default function GameStatsBar({
                   : '!bg-white'}`}
               data-cy="balance-display"
             >
-              ${animatedBalance.toFixed(2)}
+              ${animatedBalance.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
             </button>
           </div>
 
@@ -48,7 +51,10 @@ export default function GameStatsBar({
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
               data-cy="bet-display"
             >
-              ${totalBet.toFixed(2)}
+              ${totalBet.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
             </button>
           </div>
 

@@ -111,7 +111,10 @@ function Leaderboard() {
                     <td className="pr-10 py-2">{entry.nickname ?? 'Unknown'}</td>
                     <td className="pr-16 py-2">
                       {typeof entry.final_balance === 'number'
-                        ? `$${entry.final_balance.toFixed(2)}`
+                        ? `$${entry.final_balance.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}`
                         : '—'}
                     </td>
                     <td className="pr-10 py-2">
