@@ -105,8 +105,8 @@ function Game() {
     const renderChip = (bet: Bet) => (
         <div 
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
-            justify-center text-white text-[20px] font-bold z-20"
-            style={{ width: '40px', height: '40px', backgroundColor: bet.chipColor}}>
+            justify-center text-white text-[1.25rem] font-bold z-20"
+            style={{ width: '2.5rem', height: '2.5rem', backgroundColor: bet.chipColor}}>
             {formatBetValue(bet.chipValue)}
         </div>
     );

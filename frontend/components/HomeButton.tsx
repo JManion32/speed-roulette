@@ -22,7 +22,7 @@ export default function HomeButton() {
       className={`
         absolute right-21 rounded-full w-15 h-15 
         flex justify-center items-center 
-        duration-200 hover:scale-110 border-2
+        duration-200 hover:scale-110 border-[0.125rem]
         ${isDarkMode 
           ? 'bg-gray-700 hover:bg-gray-600 border-transparent' 
           : 'bg-white hover:bg-gray-300 border-black'}

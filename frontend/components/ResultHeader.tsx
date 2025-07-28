@@ -26,7 +26,7 @@ export default function ResultHeader({
             <button
               key={i}
               aria-label={`Previous result: ${result}`}
-              className={`h-10 w-10 ml-2 rounded-md font-bold border-2 transition duration-200 ${
+              className={`h-10 w-10 ml-2 rounded-md font-bold border-[0.125rem] transition duration-200 ${
               isDarkMode ? 'border-white' : 'border-black'
               } ${
               result !== undefined 

@@ -45,7 +45,6 @@
 
 /* Set html fallback background early */
 html {
-    font-size: 16px; /* Base: 1920px */
     background-color: var(--color-light-mode);
     transition: background-color 0.2s;
 }
@@ -70,73 +69,81 @@ html.dark body {
 /* ───────────────────────────────
    Responsive Font Scaling
 ──────────────────────────────── */
-
-/* Scale down for smaller screens */
-@media (max-width: 30rem) {
-    html {
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 40rem) {
-    html {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 48rem) {
-    html {
-        font-size: 14px;
-    }
+html {
+    font-size: 16px;
 }
 
 /* Fluid scale up for larger screens */
-@media (min-width: 127.5rem) {
+@media (min-width: 1920px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+
+@media (min-width: 2040px) {
     html {
         font-size: 17px;
     }
 }
 
-@media (min-width: 135rem) {
+
+@media (min-width: 2160px) {
     html {
         font-size: 18px;
     }
 }
 
-@media (min-width: 147.5rem) {
+
+@media (min-width: 2360px) {
     html {
         font-size: 19px;
     }
 }
 
-@media (min-width: 160rem) {
+
+@media (min-width: 2560px) {
     html {
         font-size: 20px;
     }
 }
 
-@media (min-width: 180rem) {
+
+@media (min-width: 2880px) {
     html {
         font-size: 21px;
     }
 }
 
-@media (min-width: 200rem) {
+
+@media (min-width: 3200px) {
     html {
         font-size: 22px;
     }
 }
 
-@media (min-width: 220rem) {
+
+@media (min-width: 3520px) {
     html {
         font-size: 23px;
     }
 }
 
-@media (min-width: 240rem) {
+
+@media (min-width: 3840px) {
     html {
         font-size: 24px;
     }
+}
+
+/* Responsive scaling for smaller screens */
+@media (max-width: 1023px) {
+  html {
+    font-size: min(
+      clamp(8px, 1.2vw, 24px),
+      clamp(8px, 1.2vh, 24px)
+    );
+  }
 }
 
 html {
@@ -165,12 +172,12 @@ html {
 
 .glow-hot-header {
     text-shadow:
-        0 0 1.5px #fb923c,
-        0 0 3px #f97316;
+    0 0 0.1125rem #fb923c,
+    0 0 0.225rem #f97316;
 }
 
 .glow-cold-header {
     text-shadow:
-        0 0 1.5px #67e8f9,
-        0 0 3px #22d3ee;
+    0 0 0.1125rem #67e8f9,
+    0 0 0.225rem #22d3ee;
 }

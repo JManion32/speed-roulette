@@ -41,7 +41,7 @@ function Home() {
         </div>
   
         {/* Center content - using absolute positioning */}
-        <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mb-4">
           <h1 className={`text-[6.5rem] mb-4 whitespace-nowrap font-bold fade-in transition duration-200 ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
           <div className="flex flex-col items-center">
             <p className="text-red-500 font-bold font-size: 4rem mb-1" id="profanity-error">Please choose a clean nickname!</p>
@@ -58,7 +58,7 @@ function Home() {
                 }
               }}
               maxLength={20}
-              className={`transition duration-200 pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-2 border-black'} mb-6 rounded-md w-100 h-10`} 
+              className={`transition duration-200 pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-[0.125rem] border-black'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
               title="Enter your nickname"
             />
@@ -75,7 +75,7 @@ function Home() {
                       : 'bg-gray-300 text-gray-400 cursor-not-allowed'
                     : isDarkMode
                       ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
-                      : 'bg-green-250 hover:bg-green-350 transform hover:scale-105 border-2'
+                      : 'bg-green-250 hover:bg-green-350 transform hover:scale-105 border-[0.125rem]'
                 }`}
                 disabled={nickname === ""}
               >
@@ -85,7 +85,7 @@ function Home() {
 
             <div className="flex justify-center gap-4">
               <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
-              w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-2`}
+              w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-[0.125rem]`}
               onClick={() => setShowModal(true)}
               data-cy="open-about-modal">
                   <img
@@ -96,7 +96,7 @@ function Home() {
               </button>
               <Link to="/leaderboard" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-2`}
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-[0.125rem]`}
                 data-cy="open-leaderboard-page">
                   <img
                     src={trophy}
@@ -107,7 +107,7 @@ function Home() {
               </Link>
               <Link to="/stats" className="inline-block">
                 <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
-                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 border-2`}
+                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 border-[0.125rem]`}
                 data-cy="open-stats-page">
                   <img
                     src={stats}

@@ -101,7 +101,7 @@ export default function ResultModal({
           <hr className={`w-[32rem] mb-4 ${isDarkMode ? 'border-gray-600' : 'border-gray-400'}`}/>
           <div className="grid grid-cols-[12.5rem_1fr] gap-x-24 gap-y-6">
             <p className="text-[1.875rem] font-bold">Daily Rank:</p>
-            <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] pointer-events-none border-2 ${isDarkMode ? 'bg-gray-600 text-yellow-500 border-yellow-500' : 'bg-white text-yellow-700 border-yellow-700'}`}
+            <button className={`h-12 w-45 rounded-md font-bold text-[1.75rem] pointer-events-none border-[0.125rem] ${isDarkMode ? 'bg-gray-600 text-yellow-500 border-yellow-500' : 'bg-white text-yellow-700 border-yellow-700'}`}
             data-cy="user-rank">
               {userBalance > 0 && rank !== null ? `#${rank}` : "Unranked"}
             </button>
