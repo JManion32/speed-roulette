@@ -82,7 +82,7 @@ describe('Game', () => {
         cy.wait(60000);
         cy.contains('ROUND FINISHED!').should('be.visible');
         cy.get('[data-cy="result-balance"]').should('have.text', '$25.00');
-        cy.get('[data-cy="result-time"]').should('have.text', '0');
+        cy.get('[data-cy="result-time"]').should('have.text', '0s');
         cy.get('[data-cy="result-spins"]').should('have.text', '9');
         cy.get('[data-cy="user-rank"]').should('have.text', '#1');
         cy.get('[data-cy="result-play-again"]').click();
@@ -99,9 +99,9 @@ describe('Game', () => {
         cy.contains('cypress').should('be.visible');
         cy.get('[data-cy="balance-display"]').should('have.text', '$20.00');
         cy.get('[data-cy="bet-display"]').should('have.text', '$0.00');
-        cy.get('[data-cy="timer-display"]').should('have.text', '60');
+        cy.get('[data-cy="timer-display"]').should('have.text', '60s');
         cy.wait(2000); // timer should not tick until first spin
-        cy.get('[data-cy="timer-display"]').should('have.text', '60');
+        cy.get('[data-cy="timer-display"]').should('have.text', '60s');
         cy.get('[data-cy="spins-display"]').should('have.text', '10');
         cy.get('[data-cy="chip-0.5"]').click();
         cy.get('[data-cy="chip-1"]').click();
