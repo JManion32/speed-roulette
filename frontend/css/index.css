@@ -80,13 +80,11 @@ html {
     }
 }
 
-
 @media (min-width: 2040px) {
     html {
         font-size: 17px;
     }
 }
-
 
 @media (min-width: 2160px) {
     html {
@@ -94,13 +92,11 @@ html {
     }
 }
 
-
 @media (min-width: 2360px) {
     html {
         font-size: 19px;
     }
 }
-
 
 @media (min-width: 2560px) {
     html {
@@ -108,13 +104,11 @@ html {
     }
 }
 
-
 @media (min-width: 2880px) {
     html {
         font-size: 21px;
     }
 }
-
 
 @media (min-width: 3200px) {
     html {
@@ -122,13 +116,11 @@ html {
     }
 }
 
-
 @media (min-width: 3520px) {
     html {
         font-size: 23px;
     }
 }
-
 
 @media (min-width: 3840px) {
     html {
@@ -138,12 +130,9 @@ html {
 
 /* Responsive scaling for smaller screens */
 @media (max-width: 1023px) {
-  html {
-    font-size: min(
-      clamp(8px, 1.2vw, 24px),
-      clamp(8px, 1.2vh, 24px)
-    );
-  }
+    html {
+        font-size: min(clamp(8px, 1.2vw, 24px), clamp(8px, 1.2vh, 24px));
+    }
 }
 
 html {
@@ -172,12 +161,12 @@ html {
 
 .glow-hot-header {
     text-shadow:
-    0 0 0.1125rem #fb923c,
-    0 0 0.225rem #f97316;
+        0 0 0.1125rem #fb923c,
+        0 0 0.225rem #f97316;
 }
 
 .glow-cold-header {
     text-shadow:
-    0 0 0.1125rem #67e8f9,
-    0 0 0.225rem #22d3ee;
+        0 0 0.1125rem #67e8f9,
+        0 0 0.225rem #22d3ee;
 }

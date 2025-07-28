@@ -75,7 +75,7 @@ type AllStats struct {
 	RowCounts      map[string]int `json:"rowCounts"`
 	HottestNumbers []NumberCount  `json:"hottestNumbers"`
 	ColdestNumbers []NumberCount  `json:"coldestNumbers"`
-	NumSpins       int			  `json:"numSpins"`
-	CompletedGames int			  `json:"completedGames"`
-	TotalWon	   float64		  `json:"totalWon"`
+	NumSpins       int            `json:"numSpins"`
+	CompletedGames int            `json:"completedGames"`
+	TotalWon       float64        `json:"totalWon"`
 }

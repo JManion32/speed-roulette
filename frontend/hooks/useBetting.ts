@@ -11,7 +11,7 @@ export function useBetting({
 
     // Set selected chip to highest available amount
     const resetSelectedChip = (chip: Chip) => {
-        if(chip.value > 20) {
+        if (chip.value > 20) {
             chip.value = 20;
             chip.color = "#06B6D4";
         }

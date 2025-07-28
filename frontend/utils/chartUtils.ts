@@ -101,7 +101,10 @@ export const stackedBarOptions = {
             color: "#ffffff",
             font: {
                 weight: "bold" as const,
-                size: parseFloat(getComputedStyle(document.documentElement).fontSize) * 1.5,
+                size:
+                    parseFloat(
+                        getComputedStyle(document.documentElement).fontSize,
+                    ) * 1.5,
                 family: "'Inter', sans-serif",
             },
             anchor: "center" as const,
