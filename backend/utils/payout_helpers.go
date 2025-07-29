@@ -2,9 +2,9 @@ package utils
 
 import "speed-roulette/backend/models"
 
-// Indexes of each number in the grid starting from index [1] ([0] is not a number, [1] = 92, [2] = 46, etc)
+// Indexes of each number in the grid starting from index [1] ([0] is not a number, just a filler - [1] = 92, [2] = 46, etc)
 var indexes [38]int = [38]int{
-	0, 92, 46, 0, 94, 48, 2, 96, 50, 4, 98, 52, 6, 100, 54, 8, 102, 56, 10,
+	-1, 92, 46, 0, 94, 48, 2, 96, 50, 4, 98, 52, 6, 100, 54, 8, 102, 56, 10,
 	104, 58, 12, 106, 60, 14, 108, 62, 16, 110, 64, 18, 112, 66, 20, 114, 68, 22,
 }
 
@@ -27,17 +27,29 @@ func GetNum(index int) int {
 func GetMultiplier(bet models.Bet, result int) float64 {
 	var index int
 
+	if bet.GridIndex == GetGridIndex(result) {
+		return 36
+	}
+
+	// If the bet was an exact number, we have no reason to continue - already checked
+	if GetNum(bet.GridIndex) != -1 {
+		return 0
+	}
+
 	if bet.GridIndex < 114 {
+		// If its a 4 number bet, determine the multiplier by checking each of the numbers
 		if bet.GridIndex%2 == 0 {
 			if result == GetNum(bet.GridIndex-24) || result == GetNum(bet.GridIndex-22) ||
 				result == GetNum(bet.GridIndex+22) || result == GetNum(bet.GridIndex+24) {
 				return 9
 			}
 		} else {
+			// Vertical 2 number bet
 			if (bet.GridIndex >= 23 && bet.GridIndex <= 45) || (bet.GridIndex >= 69 && bet.GridIndex <= 91) {
 				if GetGridIndex(result) == bet.GridIndex-23 || GetGridIndex(result) == bet.GridIndex+23 {
 					return 18
 				}
+				// Horizontal 2 number bet
 			} else {
 				if GetGridIndex(result) == bet.GridIndex-1 || GetGridIndex(result) == bet.GridIndex+1 {
 					return 18

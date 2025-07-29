@@ -8,10 +8,10 @@ func Payout(bets []models.Bet, result int) float64 {
 	for _, bet := range bets {
 		switch bet.GridID {
 		case "inner":
-			if bet.GridIndex == GetGridIndex(result) {
-				payout += bet.ChipValue * 36
+			// 0 and 00 are not part of the inner bets
+			if result != 0 && result != 37 {
+				payout += bet.ChipValue * GetMultiplier(bet, result)
 			}
-			payout += bet.ChipValue * GetMultiplier(bet, result)
 		case "zeros-split":
 			switch bet.GridIndex {
 			// 0, 3

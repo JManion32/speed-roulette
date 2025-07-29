@@ -14,3 +14,11 @@ func GenerateNum() int {
 	}
 	return int(n.Int64())
 }
+
+/*
+// Debugging number generator
+func GenerateNum() int {
+	return 3
+}
+
+*/
