@@ -1,2 +1,13 @@
-node_modules
 .env
+.git
+.gitignore
+*.pem
+*.key
+*.crt
+*.sqlite3
+*.log
+Dockerfile
+compose.yml
+node_modules
+LICENSE
+README.md

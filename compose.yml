@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB_NAME}
     ports:
-      - "5432:5432"
+      - '127.0.0.1:5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -15,13 +15,13 @@ services:
     image: redis:latest
     container_name: redis
     ports:
-      - "6379:6379"
+      - '127.0.0.1:6379:6379'
   
   backend:
     build: ./backend
     container_name: backend
     ports:
-      - '8080:8080'
+      - '127.0.0.1:8080:8080'
     environment:
       - ENV=${ENV}
       - POSTGRES_USERNAME=${POSTGRES_USERNAME}
