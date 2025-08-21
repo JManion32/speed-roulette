@@ -26,7 +26,7 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[12.5rem] whitespace-nowrap">
             <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Balance:</p>
             <button
-              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none transition duration-200
+              className={`h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none transition duration-200 shadow-md
                 ${balanceChangeDirection === 'up'
                   ? 'bg-green-400'
                   : balanceChangeDirection === 'down'
@@ -47,7 +47,7 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[10rem] whitespace-nowrap">
             <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Bet:</p>
             <button
-              className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
+              className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none shadow-md ${
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
               data-cy="bet-display"
             >
@@ -62,7 +62,7 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[9rem] whitespace-nowrap">
             <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Time:</p>
             <button
-              className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
+              className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none shadow-md ${
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
               data-cy="timer-display">
               {timeLeft}
@@ -73,7 +73,7 @@ export default function GameStatsBar({
           <div className="flex items-center min-w-[8rem] whitespace-nowrap">
             <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Spins:</p>
             <button
-              className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none ${
+              className={`transition duration-200 h-10 px-3 rounded-md font-bold text-[1.25rem] pointer-events-none shadow-md ${
                 isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
               data-cy="spins-display">
               {remSpins}

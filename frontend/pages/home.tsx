@@ -58,7 +58,7 @@ function Home() {
                 }
               }}
               maxLength={20}
-              className={`transition duration-200 pl-4 font-bold ${isDarkMode ? 'bg-indigo-950 text-white border-1' : 'bg-white text-black border-[0.125rem] border-black'} mb-6 rounded-md w-100 h-10`} 
+              className={`transition duration-200 pl-4 font-bold shadow-md border-[0.125rem] ${isDarkMode ? 'bg-indigo-950 text-white border-gray-600' : 'bg-white text-black border-gray-400'} mb-6 rounded-md w-100 h-10`} 
               placeholder="Enter Nickname"
               title="Enter your nickname"
             />
@@ -68,14 +68,14 @@ function Home() {
                 onClick={() => {
                   startGame();
                 }}
-                className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 ${
+                className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 shadow-md ${
                   nickname === ""
                     ? isDarkMode
                       ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                       : 'bg-gray-300 text-gray-400 cursor-not-allowed'
                     : isDarkMode
                       ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
-                      : 'bg-green-250 hover:bg-green-350 transform hover:scale-105 border-[0.125rem]'
+                      : 'bg-green-250 hover:bg-green-350 transform hover:scale-105'
                 }`}
                 disabled={nickname === ""}
               >
@@ -84,8 +84,8 @@ function Home() {
             </Link>
 
             <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
-              w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-[0.125rem]`}
+              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
+              w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 shadow-md`}
               onClick={() => setShowModal(true)}
               data-cy="open-about-modal">
                   <img
@@ -95,8 +95,8 @@ function Home() {
                     draggable="false"/>
               </button>
               <Link to="/leaderboard" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 border-[0.125rem]`}
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
+                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 shadow-md`}
                 data-cy="open-leaderboard-page">
                   <img
                     src={trophy}
@@ -106,8 +106,8 @@ function Home() {
                 </button>
               </Link>
               <Link to="/stats" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 border-transparent' : 'bg-white hover:bg-gray-300 border-black'}
-                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 border-[0.125rem]`}
+                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
+                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 shadow-md`}
                 data-cy="open-stats-page">
                   <img
                     src={stats}

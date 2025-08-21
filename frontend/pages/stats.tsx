@@ -84,8 +84,8 @@ function StatDisplay() {
                 
                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                   <button
-                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-[0.125rem] ${
-                      isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-[0.125rem] border-black'}`}
+                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
+                      isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
                   >
                     Spins: {stats.numSpins.toLocaleString()}
                   </button>
@@ -93,8 +93,8 @@ function StatDisplay() {
                 
                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                   <button
-                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-[0.125rem] ${
-                      isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-black'}`}
+                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
+                      isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
                   >
                     Games Completed: {stats.completedGames.toLocaleString()}
                   </button>
@@ -102,8 +102,8 @@ function StatDisplay() {
 
                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                   <button
-                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none border-[0.125rem] ${
-                      isDarkMode ? 'text-white bg-gray-600 border-transparent' : 'bg-white text-black border-black'}`}
+                    className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
+                      isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'}`}
                   >
                     Total Won: ${stats.totalWon.toLocaleString(undefined, {
                       minimumFractionDigits: 2,
@@ -121,7 +121,7 @@ function StatDisplay() {
                 {stats.hottestNumbers.map((n, i) => (
                   <div
                     key={i}
-                    className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold
+                    className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow
                       ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
                   >
                     <div className="absolute top-0 right-0 text-[0.75rem] text-yellow-300 font-extrabold translate-x-[-2px] px-1 translate-y-[-2px]">
@@ -141,7 +141,7 @@ function StatDisplay() {
                 {stats.coldestNumbers.map((n, i) => (
                   <div
                     key={i}
-                    className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold
+                    className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow
                       ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
                   >
                     <div className="absolute top-0 right-0 text-[0.75rem] text-yellow-300 font-extrabold translate-x-[-2px] px-1 translate-y-[-2px]">
