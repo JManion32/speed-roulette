@@ -15,7 +15,10 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import PrivacyModal from "../components/PrivacyModal";
 
 // Hooks
-import { useStartGame } from "../hooks/useStartGame"; // adjust path if needed
+import { useStartGame } from "../hooks/useStartGame";
+
+// Utils
+import { generateSplashText } from "../utils/generateSplashText";
 
 function Home() {
   const { isDarkMode } = useDarkMode();
@@ -31,6 +34,8 @@ function Home() {
     setCopied(true);
     setTimeout(() => setCopied(false), 3000); // revert after 2 seconds
   };
+
+  const splashText = generateSplashText();
   
     return (
       <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
@@ -42,7 +47,8 @@ function Home() {
   
         {/* Center content - using absolute positioning */}
         <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mb-4">
-          <h1 className={`text-[6.5rem] mb-4 whitespace-nowrap font-bold fade-in transition duration-200 ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
+          <h1 className={`text-[6.5rem] whitespace-nowrap font-bold fade-in transition duration-200 ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>Speed Roulette</h1>
+          <p className={`text-[1rem] mb-2 whitespace-nowrap font-bold fade-in transition duration-200 ${isDarkMode ? 'constant-glow' : 'light-glow'}`}>{splashText}</p>
           <div className="flex flex-col items-center">
             <p className="text-red-500 font-bold font-size: 4rem mb-1" id="profanity-error">Please choose a clean nickname!</p>
             <input 
