@@ -35,7 +35,7 @@ function Home() {
     setTimeout(() => setCopied(false), 3000); // revert after 2 seconds
   };
 
-  const splashText = generateSplashText();
+  const [splashText] = useState(() => generateSplashText());
   
     return (
       <div className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
