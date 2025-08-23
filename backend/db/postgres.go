@@ -104,12 +104,6 @@ func InitDB() {
 
 	// Indexes to speed up stats queries on the rounds table
 	createIndexes := []string{
-		`CREATE INDEX IF NOT EXISTS idx_rounds_number ON rounds(number);`,
-		`CREATE INDEX IF NOT EXISTS idx_rounds_color ON rounds(color);`,
-		`CREATE INDEX IF NOT EXISTS idx_rounds_parity ON rounds(parity);`,
-		`CREATE INDEX IF NOT EXISTS idx_rounds_half ON rounds(half);`,
-		`CREATE INDEX IF NOT EXISTS idx_rounds_dozen ON rounds(dozen);`,
-		`CREATE INDEX IF NOT EXISTS idx_rounds_row ON rounds(row);`,
 		`CREATE INDEX IF NOT EXISTS idx_rounds_date ON rounds(round_date_time);`,
 	}
 
