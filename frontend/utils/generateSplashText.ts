@@ -3,7 +3,7 @@ export function generateSplashText(): string {
     "Welcome back!",
     "Keep it simple.",
     "Make as much as you can in 10 spins!",
-    "Beat $6,700 for the site record!",
+    "Beat $10,000 for the site record!",
     "Feeling lucky today?",
     "Double or nothing!",
     "Spin to win!",
