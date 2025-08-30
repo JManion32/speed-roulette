@@ -20,6 +20,7 @@ const CHIP_OPTIONS = [
   { value: 50, color: '#10B981', bg: 'bg-emerald-500 hover:bg-emerald-400 border-emerald-400' },
   { value: 100, color: '#EAB308', bg: 'bg-yellow-500 hover:bg-yellow-400 border-yellow-400' },
   { value: 500, color: '#F97316', bg: 'bg-orange-500 hover:bg-orange-400 border-orange-400' },
+  { value: -1, color: '#DC2626', isMax: true, bg: 'bg-red-600 hover:bg-red-500 border-red-500' },
 ];
 
 export default function ChipControls({
@@ -33,13 +34,22 @@ export default function ChipControls({
 
   return (
     <div className="flex flex-wrap gap-2 justify-center mb-5">
-      {CHIP_OPTIONS.map(({ value, color, bg }) => {
+      {CHIP_OPTIONS.map(({ value, color, isMax, bg }) => {
         const isCurrent = selectedChip?.value === value;
+
+        let betValue: number;
+        if (isMax) {
+          betValue = userBalance;
+        }
+        else {
+          betValue = value;
+        }
+
         const canAfford = userBalance >= value;
 
         return (
           <button
-            key={value}
+            key={isMax ? 'MAX' : value}
             data-cy={`chip-${value}`}
             disabled={!canAfford}
             className={`chip-button mr-2 transition duration-200 ${
@@ -48,13 +58,15 @@ export default function ChipControls({
               !isSelected && canAfford ? (isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light') : ''
             } ${
               !canAfford ? (isDarkMode ? 'bg-gray-900' : 'bg-gray-400') + ' cursor-not-allowed opacity-50' : bg
-            }`}
+            } ${
+              isMax ? 'text-[1.70rem]' : 'text-[2rem]'}
+            `}
             onClick={() => {
-              handleChipSelect(value, color);
+              handleChipSelect(betValue, color, isMax);
               setIsSelected(true);
             }}
           >
-            {value}
+            {isMax ? 'MAX' : value}
           </button>
         );
       })}
