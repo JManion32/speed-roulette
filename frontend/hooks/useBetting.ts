@@ -53,7 +53,7 @@ export function useBetting({
     };
 
     // User selecting chips in game
-    const handleChipSelect = (value: number, color: string) => {
+    const handleChipSelect = (value: number, color: string, isMax?: boolean) => {
         if (userBalance >= value) {
             setSelectedChip({ value, color });
         }

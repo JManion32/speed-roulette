@@ -2,6 +2,7 @@
 export interface Chip {
     value: number;
     color: string;
+    isMax?: boolean;
 }
 
 // Define Bet

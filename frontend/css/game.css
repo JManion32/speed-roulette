@@ -93,7 +93,6 @@
     justify-content: center;
     border-width: 0.125rem;
     transition: background-color 0.2s;
-    font-size: 2rem;
     cursor: pointer;
     user-select: none;
 }
