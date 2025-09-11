@@ -1,8 +1,5 @@
 import '../css/index.css'
 import '../css/home.css'
-import about from "../assets/about.png";
-import stats from "../assets/stats.png";
-import trophy from "../assets/trophy.png";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,9 +7,10 @@ import { Link } from 'react-router-dom';
 import { useDarkMode } from "../contexts/DarkModeContext";
 
 // Components
-import AboutModal from "../components/AboutModal";
 import DarkModeToggle from "../components/DarkModeToggle";
+import HomeActionButtons from "../components/HomeActionButtons";
 import PrivacyModal from "../components/PrivacyModal";
+import AboutModal from "../components/AboutModal";
 
 // Hooks
 import { useStartGame } from "../hooks/useStartGame";
@@ -21,8 +19,8 @@ import { useStartGame } from "../hooks/useStartGame";
 import { generateSplashText } from "../utils/generateSplashText";
 
 function Home() {
-  const { isDarkMode } = useDarkMode();
   const [showModal, setShowModal] = useState(false);
+  const { isDarkMode } = useDarkMode();
   const [showPrivacy, setShowPrivacy] = useState(false);
 
   const [nickname, setNickname] = useState("");
@@ -88,45 +86,11 @@ function Home() {
                 Play
               </button>
             </Link>
-
-            <div className="flex justify-center gap-4">
-              <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-              w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 shadow-md`}
-              onClick={() => setShowModal(true)}
-              data-cy="open-about-modal">
-                  <img
-                    src={about}
-                    alt="About"
-                    className="w-20 h-20"
-                    draggable="false"/>
-              </button>
-              <Link to="/leaderboard" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-                w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 shadow-md`}
-                data-cy="open-leaderboard-page">
-                  <img
-                    src={trophy}
-                    alt="Trophy"
-                    className="w-20 h-20"
-                    draggable="false"/>
-                </button>
-              </Link>
-              <Link to="/stats" className="inline-block">
-                <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-                w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 shadow-md`}
-                data-cy="open-stats-page">
-                  <img
-                    src={stats}
-                    alt="Statistics"
-                    className="w-20 h-20"
-                    draggable="false"/>
-                </button>
-              </Link>
-            </div>
           </div>
+          <HomeActionButtons
+          setShowModal={setShowModal}/>
         </div>
         <AboutModal isOpen={showModal} onClose={() => setShowModal(false)} />
-  
         {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 text-center">
           <p
