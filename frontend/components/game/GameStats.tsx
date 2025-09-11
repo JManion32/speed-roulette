@@ -1,4 +1,4 @@
-import { useDarkMode } from '../contexts/DarkModeContext';
+import { useDarkMode } from '../../contexts/DarkModeContext';
 
 interface GameStatsBarProps {
   totalBet: number;

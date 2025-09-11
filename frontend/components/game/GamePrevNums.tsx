@@ -1,5 +1,5 @@
-import DarkModeToggle from './DarkModeToggle';
-import HomeButton from './HomeButton';
+import DarkModeToggle from '../DarkModeToggle';
+import HomeButton from '../HomeButton';
 
 interface ResultHeaderProps {
   nickname: string;

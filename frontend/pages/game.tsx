@@ -6,12 +6,12 @@ import '../css/game.css'
 import { useDarkMode } from "../contexts/DarkModeContext";
 
 // Components
-import ActionButtons from '../components/ActionButtons';
-import BettingChips from '../components/BettingChips';
-import GameStatsBar from "../components/GameStatsBar";
-import ResultHeader from "../components/ResultHeader";
+import ActionButtons from '../components/game/GameActions';
+import BettingChips from '../components/game/GameChips';
+import GameStatsBar from "../components/game/GameStats";
+import ResultHeader from "../components/game/GamePrevNums";
 import ResultModal from "../components/ResultModal";
-import RouletteBoard from '../components/RouletteBoard';
+import RouletteBoard from '../components/game/GameBoard';
 
 // Hooks
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';

@@ -1,6 +1,6 @@
 // frontend/components/ChipControls.tsx
-import { useDarkMode } from '../contexts/DarkModeContext';
-import type { Chip } from '../types/chips';
+import { useDarkMode } from '../../contexts/DarkModeContext';
+import type { Chip } from '../../types/chips';
 
 interface ChipControlsProps {
   selectedChip: Chip | null;

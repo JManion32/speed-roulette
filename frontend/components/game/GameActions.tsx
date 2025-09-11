@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDarkMode } from '../contexts/DarkModeContext';
-import { secureFetch } from "../utils/secureFetch";
-import type { Bet, BetAction } from "../types/chips";
+import { useDarkMode } from '../../contexts/DarkModeContext';
+import { secureFetch } from "../../utils/secureFetch";
+import type { Bet, BetAction } from "../../types/chips";
 
 interface ActionButtonsProps {
   bets: Bet[];

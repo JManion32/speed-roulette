@@ -1,4 +1,4 @@
-import type { Bet } from "../types/chips";
+import type { Bet } from "../../types/chips";
 import { JSX } from 'react';
 
 interface RouletteBoardProps {
