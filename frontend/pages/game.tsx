@@ -10,8 +10,9 @@ import ActionButtons from '../components/game/GameActions';
 import BettingChips from '../components/game/GameChips';
 import GameStatsBar from "../components/game/GameStats";
 import ResultHeader from "../components/game/GamePrevNums";
-import ResultModal from "../components/ResultModal";
 import RouletteBoard from '../components/game/GameBoard';
+
+import ResultModal from "../components/ResultModal";
 
 // Hooks
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
