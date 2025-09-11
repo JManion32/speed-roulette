@@ -145,7 +145,7 @@ function Leaderboard() {
               </tbody>
             </table>
           ) : (
-            <p className="text-xl mt-4 text-center transition duration-200">No entries yet.</p>
+            <p className="text-xl mt-4 text-center transition duration-200 font-bold italic">No entries yet.</p>
           )}
         </div>
       </div>

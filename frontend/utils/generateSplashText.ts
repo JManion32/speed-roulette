@@ -11,7 +11,7 @@ export function generateSplashText(): string {
         "Go big or go broke.",
         "Place your bets!",
         "Hot streaks don't last forever, neither do cold ones!",
-        "Straight-up numbers pay 35x but are risky.",
+        "Straight-up numbers pay 36x but are risky.",
         "Today could be the day.",
         "Fortune favors the bold.",
         "One spin could change it all.",
