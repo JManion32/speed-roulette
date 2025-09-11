@@ -30,3 +30,20 @@
 #profanity-error {
     visibility: hidden;
 }
+
+.home-action-btn {
+  width: 7.5rem;              /* w-30 */
+  height: 7.5rem;             /* h-30 */
+  border-radius: 9999px;      /* rounded-full */
+  display: flex;              /* flex */
+  justify-content: center;    /* justify-center */
+  align-items: center;        /* items-center */
+  transition-duration: 200ms; /* duration-200 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+              0 2px 4px rgba(0, 0, 0, 0.06); /* shadow-md */
+}
+
+/* Hover effect */
+.home-action-btn:hover {
+  transform: scale(1.10); /* hover:scale-110 */
+}

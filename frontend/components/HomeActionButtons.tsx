@@ -20,7 +20,7 @@ export default function HomeActionButtons({
     <div>
         <div className="flex justify-center gap-4">
             <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-            w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 shadow-md`}
+            home-action-btn mr-10`}
             onClick={() => setShowModal(true)}
             data-cy="open-about-modal">
                 <img
@@ -31,7 +31,7 @@ export default function HomeActionButtons({
             </button>
             <Link to="/leaderboard" className="inline-block">
             <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-            w-30 h-30 rounded-full flex justify-center items-center mr-10 duration-200 hover:scale-110 shadow-md`}
+            home-action-btn mr-10`}
             data-cy="open-leaderboard-page">
                 <img
                 src={trophy}
@@ -42,7 +42,7 @@ export default function HomeActionButtons({
             </Link>
             <Link to="/stats" className="inline-block">
             <button className={`${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-            w-30 h-30 rounded-full flex justify-center items-center duration-200 hover:scale-110 shadow-md`}
+            home-action-btn`}
             data-cy="open-stats-page">
                 <img
                 src={stats}
