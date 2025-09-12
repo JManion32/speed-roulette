@@ -33,7 +33,7 @@ jobs:
         working-directory: frontend
 
       - name: Run Prettier
-        run: npx prettier --check "**/*.{ts,css}"
+        run: npx prettier --check "."
         working-directory: frontend
 
       - name: Build frontend
