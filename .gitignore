@@ -19,7 +19,7 @@ pnpm-debug.log*
 *.out
 *.exe
 *.test
-backend/server/
+server/server/
 
 # Misc
 *.local

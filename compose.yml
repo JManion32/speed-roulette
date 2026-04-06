@@ -9,7 +9,7 @@ services:
     ports:
       - '127.0.0.1:5432:5432'
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql
 
   redis:
     image: redis:latest
@@ -17,9 +17,9 @@ services:
     ports:
       - '127.0.0.1:6379:6379'
   
-  backend:
-    build: ./backend
-    container_name: backend
+  server:
+    build: ./server
+    container_name: server
     ports:
       - '127.0.0.1:8080:8080'
     environment:
@@ -36,17 +36,17 @@ services:
       - db
       - redis
 
-  frontend:
+  site:
     build:
-      context: ./frontend
+      context: ./site
       dockerfile: Dockerfile
       args:
         BUILD_MODE: ${BUILD_MODE}
-    container_name: frontend
+    container_name: site
     ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+      - "${SITE_PORT}:${SITE_PORT}"
     depends_on:
-      - backend
+      - server
 
 volumes:
   postgres_data:
