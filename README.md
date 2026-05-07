@@ -64,7 +64,6 @@ Create a `.env` file in the root directory:
 
 ```bash
 ENV=development
-BUILD_MODE=devserver
 FRONTEND_PORT=5173
 CORS_ORIGIN=http://localhost:5173 
 

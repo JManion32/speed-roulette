@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:latest
-    container_name: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -13,7 +12,6 @@ services:
 
   redis:
     image: redis:latest
-    container_name: redis
     ports:
       - '127.0.0.1:6379:6379'
   
@@ -41,10 +39,9 @@ services:
       context: ./site
       dockerfile: Dockerfile
       args:
-        BUILD_MODE: ${BUILD_MODE}
-    container_name: site
+        NGINX_CONF: ${NGINX_CONF}
     ports:
-      - "${SITE_PORT}:${SITE_PORT}"
+      - "${SITE_HOST_PORT}:${SITE_CONTAINER_PORT}"
     depends_on:
       - server
 

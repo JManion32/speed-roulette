@@ -3,7 +3,7 @@ node_modules/
 dist/
 .vite/
 .env
-.env.*
+.env
 
 # Logs
 npm-debug.log*
@@ -14,6 +14,7 @@ pnpm-debug.log*
 .DS_Store
 .vscode/
 .idea/
+speed-roulette.code-workspace
 
 # Go
 *.out
