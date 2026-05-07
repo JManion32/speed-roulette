@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { LeaderboardEntry } from "../types/leaderboard";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LeaderboardEntry } from '../types/leaderboard';
 
-type Range = "today" | "week" | "month" | "allTime";
+type Range = 'today' | 'week' | 'month' | 'allTime';
 
 // No parameter since it loads all at once
 export function useAllLeaderboards(): {
@@ -21,22 +21,19 @@ export function useAllLeaderboards(): {
     useEffect(() => {
         const fetchAllLeaderboards = async () => {
             try {
-                const res = await fetch("/api/leaderboards");
+                const res = await fetch('/api/leaderboards');
 
                 if (res.status === 429) {
-                    alert(
-                        "You're making requests too quickly. Please wait a moment.",
-                    );
-                    navigate("/");
+                    alert("You're making requests too quickly. Please wait a moment.");
+                    navigate('/');
                     return;
                 }
 
-                if (!res.ok)
-                    throw new Error(`HTTP error! Status: ${res.status}`);
+                if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
                 const result = await res.json();
 
-                if (typeof result === "object" && result !== null) {
+                if (typeof result === 'object' && result !== null) {
                     setAllData({
                         today: result.today ?? [],
                         week: result.week ?? [],
@@ -45,7 +42,7 @@ export function useAllLeaderboards(): {
                     });
                 }
             } catch (err) {
-                console.error("Failed to fetch all leaderboards:", err);
+                console.error('Failed to fetch all leaderboards:', err);
             } finally {
                 setLoading(false);
             }

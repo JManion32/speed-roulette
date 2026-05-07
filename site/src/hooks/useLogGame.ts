@@ -1,27 +1,22 @@
-import { useState } from "react";
-import { secureFetch } from "../utils/secureFetch";
+import { useState } from 'react';
+import { secureFetch } from '../utils/secureFetch';
 
 export function useLogGame() {
     const [rank, setRank] = useState<number | null>(null);
 
-    const logGame = async (
-        nickname: string,
-        userBalance: number,
-        remSpins: number,
-        timeLeft: number,
-    ) => {
-        const token = localStorage.getItem("token");
+    const logGame = async (nickname: string, userBalance: number, remSpins: number, timeLeft: number) => {
+        const token = localStorage.getItem('token');
 
         if (!token) {
-            console.warn("No token found. User might be logged out.");
+            console.warn('No token found. User might be logged out.');
             return;
         }
 
         try {
-            const res = await secureFetch("/api/game", {
-                method: "POST",
+            const res = await secureFetch('/api/game', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
@@ -35,7 +30,7 @@ export function useLogGame() {
             const data = await res.json();
             setRank(data.rank);
         } catch (err) {
-            console.error("Failed to log game and get rank:", err);
+            console.error('Failed to log game and get rank:', err);
         }
     };
 

@@ -1,11 +1,11 @@
-import { useDarkMode } from "../../contexts/DarkModeContext";
+import { useDarkMode } from '../../contexts/DarkModeContext';
 
 interface GameStatsBarProps {
     totalBet: number;
     timeLeft: number;
     remSpins: number;
     animatedBalance: number;
-    balanceChangeDirection: "up" | "down" | null;
+    balanceChangeDirection: 'up' | 'down' | null;
 }
 
 export default function GameStatsBar({
@@ -24,19 +24,17 @@ export default function GameStatsBar({
                 <div className="flex justify-center mb-5 w-full space-x-12">
                     {/* Balance */}
                     <div className="flex items-center min-w-[12.5rem] whitespace-nowrap">
-                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">
-                            Balance:
-                        </p>
+                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Balance:</p>
                         <button
                             className={`game-stat-btn
                 ${
-                    balanceChangeDirection === "up"
-                        ? "bg-green-400"
-                        : balanceChangeDirection === "down"
-                          ? "bg-red-400"
+                    balanceChangeDirection === 'up'
+                        ? 'bg-green-400'
+                        : balanceChangeDirection === 'down'
+                          ? 'bg-red-400'
                           : isDarkMode
-                            ? "!bg-gray-600"
-                            : "!bg-white"
+                            ? '!bg-gray-600'
+                            : '!bg-white'
                 }`}
                             data-cy="balance-display"
                         >
@@ -50,13 +48,9 @@ export default function GameStatsBar({
 
                     {/* Bet */}
                     <div className="flex items-center min-w-[10rem] whitespace-nowrap">
-                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">
-                            Bet:
-                        </p>
+                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Bet:</p>
                         <button
-                            className={`game-stat-btn ${
-                                isDarkMode ? "bg-gray-600" : "bg-white"
-                            }`}
+                            className={`game-stat-btn ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
                             data-cy="bet-display"
                         >
                             $
@@ -69,13 +63,9 @@ export default function GameStatsBar({
 
                     {/* Timer */}
                     <div className="flex items-center min-w-[9rem] whitespace-nowrap">
-                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">
-                            Time:
-                        </p>
+                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Time:</p>
                         <button
-                            className={`game-stat-btn ${
-                                isDarkMode ? "bg-gray-600" : "bg-white"
-                            }`}
+                            className={`game-stat-btn ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
                             data-cy="timer-display"
                         >
                             {timeLeft}
@@ -84,13 +74,9 @@ export default function GameStatsBar({
 
                     {/* Spins */}
                     <div className="flex items-center min-w-[8rem] whitespace-nowrap">
-                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">
-                            Spins:
-                        </p>
+                        <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Spins:</p>
                         <button
-                            className={`game-stat-btn ${
-                                isDarkMode ? "bg-gray-600" : "bg-white"
-                            }`}
+                            className={`game-stat-btn ${isDarkMode ? 'bg-gray-600' : 'bg-white'}`}
                             data-cy="spins-display"
                         >
                             {remSpins}

@@ -1,14 +1,10 @@
-export async function secureFetch(
-    url: string,
-    options: RequestInit = {},
-    onExpire?: () => void,
-) {
-    const token = localStorage.getItem("token");
+export async function secureFetch(url: string, options: RequestInit = {}, onExpire?: () => void) {
+    const token = localStorage.getItem('token');
 
     const mergedOptions: RequestInit = {
         ...options,
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             ...(options.headers || {}),
             Authorization: `Bearer ${token}`,
         },
@@ -19,11 +15,11 @@ export async function secureFetch(
     if (res.status === 401 || res.status === 403) {
         if (onExpire) onExpire();
         else {
-            alert("Session expired. Please start a new game.");
-            localStorage.removeItem("token");
-            window.location.href = "/";
+            alert('Session expired. Please start a new game.');
+            localStorage.removeItem('token');
+            window.location.href = '/';
         }
-        throw new Error("Unauthorized");
+        throw new Error('Unauthorized');
     }
 
     return res;

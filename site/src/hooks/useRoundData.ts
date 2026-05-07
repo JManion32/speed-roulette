@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface RoundEntry {
     number: number;
@@ -11,7 +11,7 @@ export interface RoundEntry {
     played_at: string;
 }
 
-type Range = "today" | "week" | "month" | "allTime";
+type Range = 'today' | 'week' | 'month' | 'allTime';
 
 export function useRoundData(): {
     data: Record<Range, RoundEntry[]>;
@@ -29,22 +29,19 @@ export function useRoundData(): {
     useEffect(() => {
         const fetchRounds = async () => {
             try {
-                const res = await fetch("/api/stats");
+                const res = await fetch('/api/stats');
 
                 if (res.status === 429) {
-                    alert(
-                        "You're making requests too quickly. Please wait a moment.",
-                    );
-                    navigate("/");
+                    alert("You're making requests too quickly. Please wait a moment.");
+                    navigate('/');
                     return;
                 }
 
-                if (!res.ok)
-                    throw new Error(`HTTP error! Status: ${res.status}`);
+                if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
                 const result = await res.json();
 
-                if (typeof result === "object" && result !== null) {
+                if (typeof result === 'object' && result !== null) {
                     setAllData({
                         today: result.today ?? [],
                         week: result.week ?? [],
@@ -53,7 +50,7 @@ export function useRoundData(): {
                     });
                 }
             } catch (err) {
-                console.error("Failed to fetch round data:", err);
+                console.error('Failed to fetch round data:', err);
             } finally {
                 setLoading(false);
             }

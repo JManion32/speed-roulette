@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-type Direction = "up" | "down" | null;
+type Direction = 'up' | 'down' | null;
 
 export function useAnimatedBalance(userBalance: number) {
     const [animatedBalance, setAnimatedBalance] = useState<number>(userBalance);
-    const [balanceChangeDirection, setBalanceChangeDirection] =
-        useState<Direction>(null);
+    const [balanceChangeDirection, setBalanceChangeDirection] = useState<Direction>(null);
 
     useEffect(() => {
         const duration = 750;
@@ -18,8 +17,8 @@ export function useAnimatedBalance(userBalance: number) {
         const diff = end - start;
 
         // Set direction immediately
-        if (diff > 0) setBalanceChangeDirection("up");
-        else if (diff < 0) setBalanceChangeDirection("down");
+        if (diff > 0) setBalanceChangeDirection('up');
+        else if (diff < 0) setBalanceChangeDirection('down');
         else setBalanceChangeDirection(null);
 
         const animate = () => {

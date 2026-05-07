@@ -1,14 +1,12 @@
-import { Filter as BadWordsFilter } from "bad-words";
-import leoProfanity from "leo-profanity";
+import { Filter as BadWordsFilter } from 'bad-words';
+import leoProfanity from 'leo-profanity';
 
 // Initialize dictionaries
 const badWordsFilter = new BadWordsFilter();
-leoProfanity.loadDictionary("en");
+leoProfanity.loadDictionary('en');
 
 // Narrow the type safely using a type assertion
-const leoWords = (
-    leoProfanity as unknown as { getDictionary: () => string[] }
-).getDictionary();
+const leoWords = (leoProfanity as unknown as { getDictionary: () => string[] }).getDictionary();
 
 const allBannedWords = new Set([
     ...badWordsFilter.list.map((w) => w.toLowerCase()),
@@ -19,7 +17,7 @@ const allBannedWords = new Set([
  * Normalize nickname: strip non-alphanumerics and lowercase everything
  */
 function normalize(nickname: string): string {
-    return nickname.replace(/[^a-z0-9]/gi, "").toLowerCase();
+    return nickname.replace(/[^a-z0-9]/gi, '').toLowerCase();
 }
 
 /**

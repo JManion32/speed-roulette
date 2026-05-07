@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // Types
-import type { ResultNum } from "../types/WinningNum";
+import type { ResultNum } from '../types/WinningNum';
 
 export function useResultNums() {
     const [winningNumber, setWinningNumber] = useState<string | null>(null);

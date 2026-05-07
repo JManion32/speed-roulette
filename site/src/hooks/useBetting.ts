@@ -1,19 +1,15 @@
-import { useState, useCallback } from "react";
-import type { Bet, BetAction, Chip } from "../types/chips";
-import { updateChipColor } from "../utils/chipFormatting";
+import { useState, useCallback } from 'react';
+import type { Bet, BetAction, Chip } from '../types/chips';
+import { updateChipColor } from '../utils/chipFormatting';
 
-export function useBetting({
-    setIsPaused,
-}: {
-    setIsPaused: (val: boolean) => void;
-}) {
+export function useBetting({ setIsPaused }: { setIsPaused: (val: boolean) => void }) {
     const [selectedChip, setSelectedChip] = useState<Chip | null>(null);
 
     // Set selected chip to highest available amount
     const resetSelectedChip = (chip: Chip) => {
         if (chip.value > 20) {
             chip.value = 20;
-            chip.color = "#06B6D4";
+            chip.color = '#06B6D4';
         }
 
         setSelectedChip(chip);
@@ -71,16 +67,11 @@ export function useBetting({
 
             setIsPaused(false);
 
-            setBetActions((prev) => [
-                ...prev,
-                { gridIndex: index, gridId, chipValue: selectedChip.value },
-            ]);
+            setBetActions((prev) => [...prev, { gridIndex: index, gridId, chipValue: selectedChip.value }]);
             setTotalBet((prev) => prev + selectedChip.value);
             setUserBalance((prev) => prev - selectedChip.value);
 
-            const existingBetIndex = bets.findIndex(
-                (bet) => bet.gridIndex === index && bet.gridId === gridId,
-            );
+            const existingBetIndex = bets.findIndex((bet) => bet.gridIndex === index && bet.gridId === gridId);
 
             if (existingBetIndex === -1) {
                 setBets((prev) => [
@@ -103,7 +94,7 @@ export function useBetting({
                 });
             }
         },
-        [selectedChip, userBalance, bets],
+        [selectedChip, userBalance, bets]
     );
 
     const handleUndoBet = () => {
@@ -114,9 +105,7 @@ export function useBetting({
         setUserBalance((prev) => prev + last.chipValue);
         setTotalBet((prev) => prev - last.chipValue);
 
-        const idx = bets.findIndex(
-            (b) => b.gridIndex === last.gridIndex && b.gridId === last.gridId,
-        );
+        const idx = bets.findIndex((b) => b.gridIndex === last.gridIndex && b.gridId === last.gridId);
         if (idx !== -1) {
             setBets((prev) => {
                 const newBets = [...prev];
@@ -133,15 +122,11 @@ export function useBetting({
     };
 
     const hasBet = (index: number, gridId: string) => {
-        return bets.some(
-            (bet) => bet.gridIndex === index && bet.gridId === gridId,
-        );
+        return bets.some((bet) => bet.gridIndex === index && bet.gridId === gridId);
     };
 
     const getBet = (index: number, gridId: string) => {
-        return bets.find(
-            (bet) => bet.gridIndex === index && bet.gridId === gridId,
-        );
+        return bets.find((bet) => bet.gridIndex === index && bet.gridId === gridId);
     };
 
     return {

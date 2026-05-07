@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface HomeFooterProps {
     setShowPrivacy: (v: boolean) => void;
@@ -7,7 +7,7 @@ interface HomeFooterProps {
 export default function HomeFooter({ setShowPrivacy }: HomeFooterProps) {
     const [copied, setCopied] = useState(false);
     const handleCopy = () => {
-        navigator.clipboard.writeText("https://speedroulette.io");
+        navigator.clipboard.writeText('https://speedroulette.io');
         setCopied(true);
         setTimeout(() => setCopied(false), 3000); // revert after 2 seconds
     };
@@ -26,7 +26,7 @@ export default function HomeFooter({ setShowPrivacy }: HomeFooterProps) {
                 className="transition duration-200 inline-block min-w-[3.7rem] text-center cursor-pointer font-bold text-purple-700 hover:text-purple-500"
                 onClick={handleCopy}
             >
-                {copied ? "Copied!" : "Share"}
+                {copied ? 'Copied!' : 'Share'}
             </p>
 
             <span className="inline-block mx-[1.2rem]">|</span>
@@ -35,8 +35,8 @@ export default function HomeFooter({ setShowPrivacy }: HomeFooterProps) {
                 className="transition duration-200 inline-block font-bold text-purple-700 hover:text-purple-500 ml-[0.3rem]"
                 onClick={() =>
                     window.open(
-                        "https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog",
-                        "_blank",
+                        'https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog',
+                        '_blank'
                     )
                 }
             >

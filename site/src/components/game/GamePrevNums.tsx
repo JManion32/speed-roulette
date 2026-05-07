@@ -1,5 +1,5 @@
-import DarkModeToggle from "../DarkModeToggle";
-import HomeButton from "../HomeButton";
+import DarkModeToggle from '../DarkModeToggle';
+import HomeButton from '../HomeButton';
 
 interface ResultHeaderProps {
     nickname: string;
@@ -8,16 +8,11 @@ interface ResultHeaderProps {
     getColorClass: (num: string) => string;
 }
 
-export default function ResultHeader({
-    nickname,
-    resultNums,
-    isDarkMode,
-    getColorClass,
-}: ResultHeaderProps) {
+export default function ResultHeader({ nickname, resultNums, isDarkMode, getColorClass }: ResultHeaderProps) {
     return (
         <div className="p-4 flex top-0">
             <p
-                className={`transition duration-200 absolute top-7 left-5 font-bold text-[1.5rem] ${isDarkMode ? "text-white" : "text-black"}`}
+                className={`transition duration-200 absolute top-7 left-5 font-bold text-[1.5rem] ${isDarkMode ? 'text-white' : 'text-black'}`}
             >
                 {nickname}
             </p>
@@ -29,16 +24,16 @@ export default function ResultHeader({
                             key={i}
                             aria-label={`Previous result: ${result}`}
                             className={`h-10 w-10 ml-2 rounded-md font-bold border-[0.125rem] transition duration-200 ${
-                                isDarkMode ? "border-white" : "border-black"
+                                isDarkMode ? 'border-white' : 'border-black'
                             } ${
                                 result !== undefined
                                     ? getColorClass(result)
                                     : isDarkMode
-                                      ? "bg-gray-700"
-                                      : "bg-gray-300"
+                                      ? 'bg-gray-700'
+                                      : 'bg-gray-300'
                             }`}
                         >
-                            {result ?? ""}
+                            {result ?? ''}
                         </button>
                     );
                 })}

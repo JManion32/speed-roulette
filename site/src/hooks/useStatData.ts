@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import type { AllStats } from "../types/AllStats";
+import type { AllStats } from '../types/AllStats';
 
-type Range = "today" | "week" | "month" | "allTime";
+type Range = 'today' | 'week' | 'month' | 'allTime';
 
 export function useStatData(): {
     data: Record<Range, AllStats>;
@@ -66,22 +66,19 @@ export function useStatData(): {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const res = await fetch("/api/stats");
+                const res = await fetch('/api/stats');
 
                 if (res.status === 429) {
-                    alert(
-                        "You're making requests too quickly. Please wait a moment.",
-                    );
-                    navigate("/");
+                    alert("You're making requests too quickly. Please wait a moment.");
+                    navigate('/');
                     return;
                 }
 
-                if (!res.ok)
-                    throw new Error(`HTTP error! Status: ${res.status}`);
+                if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
                 const result = await res.json();
 
-                if (typeof result === "object" && result !== null) {
+                if (typeof result === 'object' && result !== null) {
                     setAllStats({
                         today: result.today ?? allStats.today,
                         week: result.week ?? allStats.week,
@@ -90,7 +87,7 @@ export function useStatData(): {
                     });
                 }
             } catch (err) {
-                console.error("Failed to fetch stats:", err);
+                console.error('Failed to fetch stats:', err);
             } finally {
                 setLoading(false);
             }

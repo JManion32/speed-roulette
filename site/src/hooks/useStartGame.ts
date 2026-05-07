@@ -1,43 +1,40 @@
-import { useNavigate } from "react-router-dom";
-import { checkName } from "../utils/checkName";
+import { useNavigate } from 'react-router-dom';
+import { checkName } from '../utils/checkName';
 
-export function useStartGame(
-    nickname: string,
-    setNickname: (val: string) => void,
-) {
+export function useStartGame(nickname: string, setNickname: (val: string) => void) {
     const navigate = useNavigate();
 
     const startGame = async () => {
-        const errorEl = document.getElementById("profanity-error");
+        const errorEl = document.getElementById('profanity-error');
 
         if (checkName(nickname)) {
-            errorEl!.style.visibility = "visible";
-            localStorage.removeItem("nickname");
-            localStorage.removeItem("token");
-            setNickname("");
+            errorEl!.style.visibility = 'visible';
+            localStorage.removeItem('nickname');
+            localStorage.removeItem('token');
+            setNickname('');
             return;
         }
 
         try {
-            const res = await fetch("/api/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
+            const res = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nickname }),
             });
 
-            if (!res.ok) throw new Error("Registration failed");
+            if (!res.ok) throw new Error('Registration failed');
 
             const { token } = await res.json();
 
-            localStorage.setItem("nickname", nickname);
-            localStorage.setItem("token", token);
-            errorEl!.style.visibility = "hidden";
+            localStorage.setItem('nickname', nickname);
+            localStorage.setItem('token', token);
+            errorEl!.style.visibility = 'hidden';
 
-            navigate("/game");
+            navigate('/game');
         } catch (err) {
             const error = err as Error;
-            console.error("Error registering user:", error.message || error);
-            alert("There was a problem starting your game. Try again.");
+            console.error('Error registering user:', error.message || error);
+            alert('There was a problem starting your game. Try again.');
         }
     };
 

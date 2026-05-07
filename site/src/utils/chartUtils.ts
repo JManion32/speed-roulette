@@ -1,28 +1,25 @@
 let totalCount: number = 0;
 
-export const createStackedBarData = (
-    counts: Record<string, number>,
-    customOrder?: string[],
-) => {
+export const createStackedBarData = (counts: Record<string, number>, customOrder?: string[]) => {
     totalCount = Object.values(counts).reduce((sum, val) => sum + val, 0);
     const order = customOrder ?? Object.keys(counts);
 
     const colors: Record<string, string> = {
-        red: "#dc2626",
-        black: "#000000",
-        green: "#008000",
-        even: "#3b82f6",
-        odd: "#d17614",
-        high: "#8b5cf6",
-        low: "#33b78c",
-        first: "#069ab1",
-        second: "#c1a038",
-        third: "#f472b6",
-        top: "#7c3aed",
-        middle: "#f87171",
-        bottom: "#0ca947",
-        zero: "#14b8a6",
-        neither: "#9ca3af",
+        red: '#dc2626',
+        black: '#000000',
+        green: '#008000',
+        even: '#3b82f6',
+        odd: '#d17614',
+        high: '#8b5cf6',
+        low: '#33b78c',
+        first: '#069ab1',
+        second: '#c1a038',
+        third: '#f472b6',
+        top: '#7c3aed',
+        middle: '#f87171',
+        bottom: '#0ca947',
+        zero: '#14b8a6',
+        neither: '#9ca3af',
     };
 
     let filledPercent = 0;
@@ -30,7 +27,7 @@ export const createStackedBarData = (
     const datasets = order.map((label) => {
         let percent: number;
 
-        if (label === "neither") {
+        if (label === 'neither') {
             // Temporarily set to 0, will update after loop
             percent = 0;
         } else {
@@ -69,19 +66,19 @@ export const createStackedBarData = (
     // Now replace the 'none' placeholder with actual remainder %
     const remaining = 100 - filledPercent;
     for (const ds of datasets) {
-        if (ds.label === "neither") {
+        if (ds.label === 'neither') {
             ds.data = [remaining > 0 ? remaining : 0];
         }
     }
 
     return {
-        labels: [""],
+        labels: [''],
         datasets,
     };
 };
 
 export const stackedBarOptions = {
-    indexAxis: "y" as const,
+    indexAxis: 'y' as const,
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -93,29 +90,25 @@ export const stackedBarOptions = {
         tooltip: {
             callbacks: {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                label: (ctx: any) =>
-                    `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}%`,
+                label: (ctx: any) => `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}%`,
             },
         },
         datalabels: {
-            color: "#ffffff",
+            color: '#ffffff',
             font: {
-                weight: "bold" as const,
-                size:
-                    parseFloat(
-                        getComputedStyle(document.documentElement).fontSize,
-                    ) * 1.5,
+                weight: 'bold' as const,
+                size: parseFloat(getComputedStyle(document.documentElement).fontSize) * 1.5,
                 family: "'Inter', sans-serif",
             },
-            anchor: "center" as const,
-            align: "center" as const,
+            anchor: 'center' as const,
+            align: 'center' as const,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             formatter: (_value: number, context: any) => {
                 const label = context.dataset.label;
-                if (label === "neither" && _value == 100) {
-                    return "No data available";
+                if (label === 'neither' && _value == 100) {
+                    return 'No data available';
                 }
-                if (label === "neither" || label === "green") return "";
+                if (label === 'neither' || label === 'green') return '';
                 if (_value !== 0) return label.toUpperCase();
                 return null;
             },

@@ -1,8 +1,8 @@
 /* ───────────────────────────────
    Tailwind & Global Theme Imports
 ──────────────────────────────── */
-@import "tailwindcss";
-@import "./colors.css";
+@import 'tailwindcss';
+@import './colors.css';
 
 /* ───────────────────────────────
    Theme Variables
