@@ -24,10 +24,7 @@
         />
         <meta property="og:url" content="https://speedroulette.io/" />
         <meta property="og:type" content="website" />
-        <meta
-            property="og:image"
-            content="https://speedroulette.io/preview.png"
-        />
+        <meta property="og:image" content="https://speedroulette.io/preview.png" />
         <meta property="og:image:alt" content="Speed Roulette Preview Image" />
 
         <!-- Twitter Card -->
@@ -37,21 +34,15 @@
             name="twitter:description"
             content="Quick thinking meets high-stakes action in this fast-paced roulette twist! Play bold, win big, and climb the leaderboard!"
         />
-        <meta
-            name="twitter:image"
-            content="https://speedroulette.io/preview.png"
-        />
+        <meta name="twitter:image" content="https://speedroulette.io/preview.png" />
 
         <!-- Prevent white flash before React loads -->
         <script>
             try {
-                const prefersDark = window.matchMedia(
-                    "(prefers-color-scheme: dark)",
-                ).matches;
-                const stored = localStorage.getItem("darkMode");
-                const isDark =
-                    stored === "true" || (stored === null && prefersDark);
-                if (isDark) document.documentElement.classList.add("dark");
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const stored = localStorage.getItem('darkMode');
+                const isDark = stored === 'true' || (stored === null && prefersDark);
+                if (isDark) document.documentElement.classList.add('dark');
             } catch (_) {}
         </script>
 

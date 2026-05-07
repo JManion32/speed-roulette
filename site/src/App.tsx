@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DarkModeProvider } from "./contexts/DarkModeContext";
-import Home from "./pages/home";
-import Game from "./pages/game";
-import Leaderboard from "./pages/leaderboard";
-import Stats from "./pages/stats";
+import Home from "./pages/Home";
+import Game from "./pages/Game";
+import Leaderboard from "./pages/Leaderboard";
+import Stats from "./pages/Stats";
 
 function App() {
     return (

@@ -1,35 +1,35 @@
-import { useState, useEffect } from "react";
-import "../css/index.css";
-import "../css/game.css";
+import { useState, useEffect } from 'react';
+import '../css/index.css';
+import '../css/game.css';
 
-import { useDarkMode } from "../contexts/DarkModeContext";
+import { useDarkMode } from '../contexts/DarkModeContext';
 
-import ActionButtons from "../components/game/GameActions";
-import BettingChips from "../components/game/GameChips";
-import GameStatsBar from "../components/game/GameStats";
-import ResultHeader from "../components/game/GamePrevNums";
-import RouletteBoard from "../components/game/GameBoard";
+import ActionButtons from '../components/game/GameActions';
+import BettingChips from '../components/game/GameChips';
+import GameStatsBar from '../components/game/GameStats';
+import ResultHeader from '../components/game/GamePrevNums';
+import RouletteBoard from '../components/game/GameBoard';
 
-import ResultModal from "../components/ResultModal";
+import ResultModal from '../components/ResultModal';
 
-import { useAnimatedBalance } from "../hooks/useAnimatedBalance";
-import { useTimer, useRemSpins } from "../hooks/useGameFlow";
-import { useResultModal } from "../hooks/useResultModal";
-import { useResultNums } from "../hooks/useResultNums";
-import { useBetting } from "../hooks/useBetting";
+import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
+import { useTimer, useRemSpins } from '../hooks/useGameFlow';
+import { useResultModal } from '../hooks/useResultModal';
+import { useResultNums } from '../hooks/useResultNums';
+import { useBetting } from '../hooks/useBetting';
 
-import type { Bet } from "../types/chips";
+import type { Bet } from '../types/chips';
 
-import { getColorClass } from "../utils/recentNumColor";
-import { formatBetValue } from "../utils/chipFormatting";
+import { getColorClass } from '../utils/recentNumColor';
+import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
     const { isDarkMode } = useDarkMode();
 
     // Nickname state
-    const [nickname, setNickname] = useState<string>("");
+    const [nickname, setNickname] = useState<string>('');
     useEffect(() => {
-        setNickname(localStorage.getItem("nickname") ?? "");
+        setNickname(localStorage.getItem('nickname') ?? '');
     }, []);
 
     const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(() => {
@@ -41,13 +41,7 @@ function Game() {
 
     const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
 
-    const {
-        setWinningNumber,
-        isWinning,
-        resultNums,
-        setResultNums,
-        addResultNum,
-    } = useResultNums();
+    const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
 
     const [showGrid] = useState(false);
     const [gridBlock, setGridBlock] = useState(false);
@@ -73,8 +67,7 @@ function Game() {
         setBetActions,
     } = useBetting({ setIsPaused });
 
-    const { animatedBalance, balanceChangeDirection } =
-        useAnimatedBalance(userBalance);
+    const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -117,8 +110,8 @@ function Game() {
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
             justify-center text-white text-[1.25rem] font-bold z-20"
             style={{
-                width: "2.5rem",
-                height: "2.5rem",
+                width: '2.5rem',
+                height: '2.5rem',
                 backgroundColor: bet.chipColor,
             }}
         >
@@ -128,7 +121,7 @@ function Game() {
 
     return (
         <div
-            className={`h-screen transition duration-200 select-none ${isDarkMode ? "bg-gray-900 text-white" : "bg-light-mode text-black"}`}
+            className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
         >
             <ResultHeader
                 nickname={nickname}
