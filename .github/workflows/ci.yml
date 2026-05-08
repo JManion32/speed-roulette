@@ -11,6 +11,10 @@ jobs:
         name: Stylelint
         runs-on: ubuntu-latest
 
+        defaults:
+            run:
+                working-directory: site
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -34,6 +38,10 @@ jobs:
     prettier:
         name: Prettier
         runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: site
 
         steps:
             - name: Checkout code
@@ -59,6 +67,10 @@ jobs:
         name: ESLint
         runs-on: ubuntu-latest
 
+        defaults:
+            run:
+                working-directory: site
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -75,7 +87,6 @@ jobs:
 
             - name: Run ESLint
               run: npx eslint .
-              working-directory:
 
             - name: Build Web UI
               run: npm run build
@@ -107,6 +118,10 @@ jobs:
         name: Go Format
         runs-on: ubuntu-latest
 
+        defaults:
+            run:
+                working-directory: server
+
         steps:
           - name: Checkout code
             uses: actions/checkout@v4
@@ -118,7 +133,6 @@ jobs:
 
           - name: Install Go dependencies
             run: go mod download
-            working-directory: server
 
           - name: Check Go Formatting
             run: |
@@ -128,11 +142,14 @@ jobs:
                 echo "$fmt_out"
                 exit 1
               fi
-            working-directory: server
 
     go-unit:
         name: Go Unit
         runs-on: ubuntu-latest
+      
+        defaults:
+            run:
+                working-directory: server
 
         steps:
           - name: Checkout code
@@ -145,11 +162,9 @@ jobs:
 
           - name: Install Go dependencies
             run: go mod download
-            working-directory: server
 
           - name: Run Go Unit Tests
             run: go test -v ./...
-            working-directory: server
 
     docker-build:
       name: Docker Build Test
@@ -192,8 +207,8 @@ jobs:
           with: { node-version: '22' }
 
         - name: Install Cypress & deps
-          run: npm ci
           working-directory: site
+          run: npm ci
 
         - name: Generate dev .env
           run: |
@@ -221,7 +236,8 @@ jobs:
           with: { url: http://localhost:5173, timeout: 60 }
 
         - name: Run Cypress
-          run: npx cypress run --spec "site/cypress/e2e/home.cy.ts"
+          working-directory: site
+          run: npx cypress run --spec "cypress/e2e/home.cy.ts"
 
         - name: Stop stack
           if: always()
@@ -237,8 +253,8 @@ jobs:
           with: { node-version: '22' }
 
         - name: Install Cypress & dependencies
-          run: npm ci
           working-directory: site
+          run: npm ci
 
         - name: Generate dev .env
           run: |
@@ -266,7 +282,8 @@ jobs:
           with: { url: http://localhost:5173, timeout: 60 }
 
         - name: Run Cypress
-          run: npx cypress run --spec "site/cypress/e2e/game.cy.ts"
+          working-directory: site
+          run: npx cypress run --spec "cypress/e2e/game.cy.ts"
 
         - name: Stop stack
           if: always()
