@@ -1,4 +1,5 @@
 # ♟️ Speed Roulette
+[![CI](https://github.com/JManion32/speed-roulette/actions/workflows/ci.yml/badge.svg)](https://github.com/JManion32/speed-roulette/actions/workflows/ci.yml)
 
 **A fast-paced browser game that puts a twist on classic casino roulette.**
 
