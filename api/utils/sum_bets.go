@@ -1,6 +1,6 @@
 package utils
 
-import "speed-roulette/server/models"
+import "speed-roulette/api/models"
 
 // SumBets gets the sum of the bets to ensure it doesn't exceed the user's current balance
 func SumBets(bets []models.Bet) float64 {

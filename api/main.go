@@ -6,14 +6,14 @@ import (
 	"net/http"
 
 	"github.com/rs/cors"
-	"speed-roulette/server/db"
-	"speed-roulette/server/handlers"
-	"speed-roulette/server/middleware"
-	"speed-roulette/server/redis"
+	"speed-roulette/api/db"
+	"speed-roulette/api/handlers"
+	"speed-roulette/api/middleware"
+	"speed-roulette/api/redis"
 )
 
 func main() {
-	fmt.Println("Starting Speed Roulette backend server...")
+	fmt.Println("Starting Speed Roulette backend...")
 
 	db.InitDB()
 	redis.InitRedis()

@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"speed-roulette/server/auth"
-	"speed-roulette/server/middleware"
-	"speed-roulette/server/redis"
+	"speed-roulette/api/auth"
+	"speed-roulette/api/middleware"
+	"speed-roulette/api/redis"
 )
 
 // HandleLogout ensures token and balance associated with the user is cleared

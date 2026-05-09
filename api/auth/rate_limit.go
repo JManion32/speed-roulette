@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"speed-roulette/server/redis"
+	"speed-roulette/api/redis"
 )
 
 const rateLimitTTL = 2 * time.Second

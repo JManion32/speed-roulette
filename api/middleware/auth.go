@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"speed-roulette/server/redis"
+	"speed-roulette/api/redis"
 )
 
 // RequireAuth protects API endpoints in the game by ensuring tokens are valid

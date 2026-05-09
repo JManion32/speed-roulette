@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"speed-roulette/server/models"
+	"speed-roulette/api/models"
 )
 
 // GetNumProperties returns the properties of the number in model form

@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"speed-roulette/server/auth"
-	"speed-roulette/server/models"
-	"speed-roulette/server/redis"
+	"speed-roulette/api/auth"
+	"speed-roulette/api/models"
+	"speed-roulette/api/redis"
 )
 
 // HandleRegister generates a user token and sets its expiration

@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"speed-roulette/server/models"
-	"speed-roulette/server/utils"
+	"speed-roulette/api/models"
+	"speed-roulette/api/utils"
 )
 
 // helper: build expected struct in one line

@@ -1,6 +1,6 @@
 package utils
 
-import "speed-roulette/server/models"
+import "speed-roulette/api/models"
 
 // Indexes of each number in the grid starting from index [1] ([0] is not a number, just a filler - [1] = 92, [2] = 46, etc)
 var indexes [38]int = [38]int{

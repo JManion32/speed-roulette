@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"speed-roulette/server/redis"
+	"speed-roulette/api/redis"
 	"strings"
 )
 

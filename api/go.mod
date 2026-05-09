@@ -1,4 +1,4 @@
-module speed-roulette/server
+module speed-roulette/api
 
 go 1.24.1
 

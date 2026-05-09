@@ -3,8 +3,8 @@ package tests
 import (
 	"testing"
 
-	"speed-roulette/server/models"
-	"speed-roulette/server/utils"
+	"speed-roulette/api/models"
+	"speed-roulette/api/utils"
 )
 
 /* ────────────────────────────────────────────────────────────

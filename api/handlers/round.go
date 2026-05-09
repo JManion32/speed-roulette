@@ -5,12 +5,12 @@ import (
 	"log"
 	"net/http"
 
-	"speed-roulette/server/auth"
-	"speed-roulette/server/db"
-	"speed-roulette/server/middleware"
-	"speed-roulette/server/models"
-	"speed-roulette/server/redis"
-	"speed-roulette/server/utils"
+	"speed-roulette/api/auth"
+	"speed-roulette/api/db"
+	"speed-roulette/api/middleware"
+	"speed-roulette/api/models"
+	"speed-roulette/api/redis"
+	"speed-roulette/api/utils"
 )
 
 // HandleRound handles the logging, validation, rate limiting, and payouts for each round

@@ -20,7 +20,6 @@ speed-roulette.code-workspace
 *.out
 *.exe
 *.test
-server/server/
 
 # Misc
 *.local

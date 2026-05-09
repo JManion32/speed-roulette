@@ -56,6 +56,10 @@ function Home() {
                         id="nickname-enter-form"
                         data-cy="nickname-enter-form"
                         value={nickname}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
                         onChange={(e) => setNickname(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter' && nickname) {

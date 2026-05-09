@@ -5,9 +5,9 @@ import (
 	"math"
 	"net/http"
 
-	"speed-roulette/server/auth"
-	"speed-roulette/server/db"
-	"speed-roulette/server/models"
+	"speed-roulette/api/auth"
+	"speed-roulette/api/db"
+	"speed-roulette/api/models"
 )
 
 // HandleGame manages the validation and logging of the game when it is completed

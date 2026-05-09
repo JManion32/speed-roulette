@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	"speed-roulette/server/utils"
+	"speed-roulette/api/utils"
 	"testing"
 )
 

@@ -1,6 +1,6 @@
 package utils
 
-import "speed-roulette/server/models"
+import "speed-roulette/api/models"
 
 // Payout determines the payout based on the result num and the betting placements on the grid
 func Payout(bets []models.Bet, result int) float64 {

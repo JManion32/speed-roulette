@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"speed-roulette/server/models"
+	"speed-roulette/api/models"
 )
 
 // GetLeaderboard returns a query for each date range (Today, This Week, This Month, This Year)

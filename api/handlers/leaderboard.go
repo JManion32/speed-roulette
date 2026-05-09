@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"speed-roulette/server/auth"
-	"speed-roulette/server/db"
+	"speed-roulette/api/auth"
+	"speed-roulette/api/db"
 )
 
-// HandleAllStats handles the rate limiting and display of the Site Stats page
-func HandleAllStats(w http.ResponseWriter, r *http.Request) {
+// HandleAllLeaderboards handles rate limiting and displaying the leaderboard page
+func HandleAllLeaderboards(w http.ResponseWriter, r *http.Request) {
 	ip := auth.GetClientIP(r)
-	if err := auth.CheckIPStatsLimit(ip); err != nil {
+	if err := auth.CheckIPLeaderboardLimit(ip); err != nil {
 		http.Error(w, err.Error(), http.StatusTooManyRequests)
 		return
 	}
@@ -21,13 +21,13 @@ func HandleAllStats(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	today, err1 := db.GetAllStats("today")
-	week, err2 := db.GetAllStats("week")
-	month, err3 := db.GetAllStats("month")
-	allTime, err4 := db.GetAllStats("allTime")
+	today, err1 := db.GetLeaderboard("today")
+	week, err2 := db.GetLeaderboard("week")
+	month, err3 := db.GetLeaderboard("month")
+	allTime, err4 := db.GetLeaderboard("allTime")
 
 	if err1 != nil || err2 != nil || err3 != nil || err4 != nil {
-		http.Error(w, "Failed to load stats", http.StatusInternalServerError)
+		http.Error(w, "Failed to load leaderboards", http.StatusInternalServerError)
 		return
 	}
 
