@@ -104,7 +104,7 @@ npx stylelint . --fix
 npx eslint . --fix
 ```
 
-### Running Prettier (or --check)
+### Prettier (or --check)
 
 ```bash
 npx prettier . --write
