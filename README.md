@@ -92,31 +92,31 @@ _If using a non-default `.env`: `http://localhost:<SITE_HTTP_PORT>/`_
 ---
 
 ## Continuous Integration
-### Running Stylelint (optional --fix)
+### Stylelint (optional --fix)
 
 ```bash
 npx stylelint . --fix
 ```
 
-### Running ESLint
+### ESLint (optional --fix)
 
 ```bash
 npx eslint . --fix
 ```
 
-### Running Prettier (use --check to not apply changes)
+### Running Prettier (or --check)
 
 ```bash
 npx prettier . --write
 ```
 
-### Run all Linters (fix)
+### Stylelint, ESLint, and Prettier (fix)
 
 ```bash
 npm run lint-fix
 ```
 
-### Cypress E2E Testing
+### Cypress E2E Testing Interface
 ```bash
 npx cypress open
 ```
