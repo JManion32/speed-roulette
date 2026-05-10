@@ -1,20 +1,22 @@
-# ♟️ Speed Roulette
+# Speed Roulette
 [![CI](https://github.com/JManion32/speed-roulette/actions/workflows/ci.yml/badge.svg)](https://github.com/JManion32/speed-roulette/actions/workflows/ci.yml)
 
 A fast-paced browser game that puts a twist on classic casino roulette.
 
 ---
 
-## 🚀 About
+## About
 
 Inspired by the intensity of speed chess, Speed Roulette puts an interesting twist on the beloved high-stakes casino game. Players start with 
-20 dollars, 10 possible spins, and just 60 seconds on the clock. When bets are submitted, the winning number is revealed, earnings are paid out, and 
-the clock starts ticking again 2.5 seconds later. Compete for a spot on the daily leaderboard by making quick decisions, taking bold risks, and hitting 
-big payouts.
+**20** dollars, **10** possible spins, and just **60** seconds on the clock. When bets are submitted, the winning number is revealed, earnings are paid out, and 
+the clock starts ticking again just **2.5** seconds later.
+
+Compete for a spot on the daily leaderboard by making quick decisions, taking bold risks, and hitting 
+big payouts!
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 ### Frontend  
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
@@ -45,44 +47,91 @@ big payouts.
 ![gofmt](https://img.shields.io/badge/gofmt-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Go Test](https://img.shields.io/badge/go--test-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 
+
 ---
 
-## 🧪 Running the Project Locally
+## Running the Project Locally
 
-### Requirements
+### 1. Requirements
 - Docker installed and running
-- Docker Compose (v2 recommended)
 
-### 1. Clone the repository
+**[OPTIONAL]**
+_For interacting with npm or Go environments locally (such as running CI tests):_
+- Node.js (v18 or newer)
+- npm (comes bundled with Node.js)
+- Go (v1.21 or newer)
 
-```bash
+### 2. Clone the repository
+
+```
 git clone https://github.com/JManion32/speed-roulette.git
-cd speed-roulette
+```
+or
+```
+git clone git@github.com:JManion32/speed-roulette.git
 ```
 
-### 2. Configure the Environment
-Create a `.env` file in the root directory:
-
-```bash
-ENV=development
-FRONTEND_PORT=5173
-CORS_ORIGIN=http://localhost:5173 
-
-# PostgreSQL
-POSTGRES_USERNAME=user
-POSTGRES_PASSWORD=pass
-POSTGRES_DB_NAME=speed-roulette
-POSTGRES_DB_HOST=db
-POSTGRES_DB_PORT=5432
-
-# Redis
-REDIS_ADDRESS=redis:6379
-REDIS_PASSWORD=
-REDIS_DB=0
+### 3. Create a `.env` file
+For a development build:
+```
+cp .env.example .env
 ```
 
-### 3. Start the Full Stack
-
-```bash
+### 4. Run the full stack
+```
 docker compose up --build
+```
+
+### 5. Accessing the site
+Visit:
+```
+http://localhost:5173/
+```
+_If using a non-default `.env`: `http://localhost:<SITE_HTTP_PORT>/`_
+
+---
+
+## Continuous Integration
+### Running Stylelint (optional --fix)
+
+```bash
+npx stylelint . --fix
+```
+
+### Running ESLint
+
+```bash
+npx eslint . --fix
+```
+
+### Running Prettier (use --check to not apply changes)
+
+```bash
+npx prettier . --write
+```
+
+### Run all Linters (fix)
+
+```bash
+npm run lint-fix
+```
+
+### Cypress E2E Testing
+```bash
+npx cypress open
+```
+
+### Go Format
+```bash
+gofmt -w .
+```
+
+### Go Lint
+```bash
+golint ./...
+```
+
+### Go Unit Tests
+```bash
+go test -v ./...
 ```
