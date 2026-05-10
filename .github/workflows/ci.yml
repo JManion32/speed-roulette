@@ -185,7 +185,6 @@ jobs:
             ENV=development
             SITE_HTTP_PORT=5173
             SITE_HTTPS_PORT=4433
-            NGINX_CONF=nginx.local.conf
             CORS_ORIGIN=http://localhost:5173 
             POSTGRES_USERNAME=user
             POSTGRES_PASSWORD=pass
@@ -231,7 +230,6 @@ jobs:
             ENV=development
             SITE_HTTP_PORT=5173
             SITE_HTTPS_PORT=4433
-            NGINX_CONF=nginx.local.conf
             CORS_ORIGIN=http://localhost:5173 
             POSTGRES_USERNAME=user
             POSTGRES_PASSWORD=pass
@@ -274,7 +272,6 @@ jobs:
             ENV=development
             SITE_HTTP_PORT=5173
             SITE_HTTPS_PORT=4433
-            NGINX_CONF=nginx.local.conf
             CORS_ORIGIN=http://localhost:5173 
             POSTGRES_USERNAME=user
             POSTGRES_PASSWORD=pass
