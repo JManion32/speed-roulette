@@ -1,10 +1,7 @@
 import { useState } from 'react';
+import PrivacyModal from './modals/PrivacyModal.tsx';
 
-interface HomeFooterProps {
-    setShowPrivacy: (v: boolean) => void;
-}
-
-export default function HomeFooter({ setShowPrivacy }: HomeFooterProps) {
+export default function HomeFooter() {
     const [copied, setCopied] = useState(false);
     const handleCopy = () => {
         navigator.clipboard.writeText('https://speedroulette.io');
@@ -13,12 +10,7 @@ export default function HomeFooter({ setShowPrivacy }: HomeFooterProps) {
     };
     return (
         <div className="absolute bottom-0 w-full p-4 text-center">
-            <p
-                className="transition duration-200 inline-block font-bold text-purple-700 hover:text-purple-500 mr-[0.3rem]"
-                onClick={() => setShowPrivacy(true)}
-            >
-                Privacy Policy
-            </p>
+            <PrivacyModal />
 
             <span className="inline-block mx-[1.2rem]">|</span>
 
