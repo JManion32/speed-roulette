@@ -6,7 +6,6 @@ import Leaderboard from './pages/Leaderboard';
 import Stats from './pages/Stats';
 
 function App() {
-
     return (
         <ThemeProvider>
             <BrowserRouter>

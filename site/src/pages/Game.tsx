@@ -121,13 +121,9 @@ function Game() {
 
     return (
         <div
-            className={`h-screen transition duration-200 select-none ${theme==='dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
+            className={`h-screen transition duration-200 select-none ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
         >
-            <ResultHeader
-                nickname={nickname}
-                resultNums={resultNums}
-                getColorClass={getColorClass}
-            />
+            <ResultHeader nickname={nickname} resultNums={resultNums} getColorClass={getColorClass} />
 
             <div className="absolute top-2/17 w-full">
                 <div className="flex flex-col items-center gap-4">

@@ -13,7 +13,7 @@ export default function AboutModal() {
         <Modal
             trigger={
                 <button
-                    className={`${theme==='dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn mr-10`}
+                    className={`${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn mr-10`}
                     data-cy="open-about-modal"
                 >
                     <img src={about} alt="About" className="w-20 h-20" draggable="false" />
@@ -26,10 +26,10 @@ export default function AboutModal() {
                         key={tab}
                         className={`py-2 px-6 text-[1.75rem] font-bold transition-colors ${
                             activeTab === tab
-                                ? theme==='dark'
+                                ? theme === 'dark'
                                     ? 'text-yellow-500 border-b-2 border-yellow-500'
                                     : 'text-yellow-700 border-b-2 border-yellow-700'
-                                : theme==='dark'
+                                : theme === 'dark'
                                   ? 'hover:text-white text-gray-400'
                                   : 'hover:text-black text-gray-500'
                         }`}
@@ -117,7 +117,7 @@ export default function AboutModal() {
                             <span className="font-semibold">Inquiries:</span>{' '}
                             <a
                                 href="mailto:jman32business@gmail.com"
-                                className={`${theme==='dark' ? 'text-blue-500' : 'text-blue-700'} underline hover:text-purple-500 transition-colors duration-100`}
+                                className={`${theme === 'dark' ? 'text-blue-500' : 'text-blue-700'} underline hover:text-purple-500 transition-colors duration-100`}
                             >
                                 jman32business@gmail.com
                             </a>

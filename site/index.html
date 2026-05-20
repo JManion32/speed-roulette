@@ -41,10 +41,7 @@
             try {
                 const storedTheme = localStorage.getItem('site_theme');
 
-                document.documentElement.setAttribute(
-                    'data-theme',
-                    storedTheme === 'light' ? 'light' : 'dark'
-                );
+                document.documentElement.setAttribute('data-theme', storedTheme === 'light' ? 'light' : 'dark');
             } catch (_) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }

@@ -78,10 +78,10 @@ export default function ChipControls({
                         data-cy={`chip-${value}`}
                         disabled={!canAfford}
                         className={`chip-button mr-2 transition duration-200 ${
-                            isCurrent ? (theme==='dark' ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''
-                        } ${!isSelected && canAfford ? (theme==='dark' ? 'glow-pulse-dark' : 'glow-pulse-light') : ''} ${
+                            isCurrent ? (theme === 'dark' ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''
+                        } ${!isSelected && canAfford ? (theme === 'dark' ? 'glow-pulse-dark' : 'glow-pulse-light') : ''} ${
                             !canAfford
-                                ? (theme==='dark' ? 'bg-gray-900' : 'bg-gray-400') + ' cursor-not-allowed opacity-50'
+                                ? (theme === 'dark' ? 'bg-gray-900' : 'bg-gray-400') + ' cursor-not-allowed opacity-50'
                                 : bg
                         }`}
                         onClick={() => {

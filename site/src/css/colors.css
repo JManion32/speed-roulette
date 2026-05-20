@@ -4,11 +4,10 @@
     --roulette-red: #ff0000;
     --roulette-green: #008000;
     --winning-number: #ffd700;
-
 }
 
 /* Root is dark mode, light mode is for accessibility. */
-[data-theme="dark"] {
+[data-theme='dark'] {
     /* ========== Master ========== */
     --sr-master-light: #e9eef3;
     --sr-master-dark: #111827; /* gray-900 */
@@ -24,7 +23,6 @@
     --green-350: #40e88d;
 
     /* ========== Game ========== */
-
 
     /* ========== Leaderboard ========== */
     --leaderboard-tabs-border: #374151;
@@ -44,7 +42,7 @@
 }
 
 /* Secondary theme mode. */
-[data-theme="light"] {
+[data-theme='light'] {
     /* ========== Master ========== */
     --sr-master: #e9eef3; /* Source: neetcode.io in light mode */
     --standard-text: #000;
@@ -58,7 +56,6 @@
     --green-350: #40e88d;
 
     /* ========== Game ========== */
-
 
     /* ========== Leaderboard ========== */
     --leaderboard-tabs-border: #000000;
@@ -75,5 +72,4 @@
     --github-color-hover: #171b1f;
     --linkedin-color: #0177b5;
     --linkedin-color-hover: #1a8cd3;
-    
 }

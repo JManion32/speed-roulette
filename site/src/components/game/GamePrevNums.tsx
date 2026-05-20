@@ -13,7 +13,7 @@ export default function ResultHeader({ nickname, resultNums, getColorClass }: Re
     return (
         <div className="p-4 flex top-0">
             <p
-                className={`transition duration-200 absolute top-7 left-5 font-bold text-[1.5rem] ${theme==='dark' ? 'text-white' : 'text-black'}`}
+                className={`transition duration-200 absolute top-7 left-5 font-bold text-[1.5rem] ${theme === 'dark' ? 'text-white' : 'text-black'}`}
             >
                 {nickname}
             </p>
@@ -25,11 +25,11 @@ export default function ResultHeader({ nickname, resultNums, getColorClass }: Re
                             key={i}
                             aria-label={`Previous result: ${result}`}
                             className={`h-10 w-10 ml-2 rounded-md font-bold border-[0.125rem] transition duration-200 ${
-                                theme==='dark' ? 'border-white' : 'border-black'
+                                theme === 'dark' ? 'border-white' : 'border-black'
                             } ${
                                 result !== undefined
                                     ? getColorClass(result)
-                                    : theme==='dark'
+                                    : theme === 'dark'
                                       ? 'bg-gray-700'
                                       : 'bg-gray-300'
                             }`}

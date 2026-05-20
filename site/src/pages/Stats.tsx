@@ -33,7 +33,7 @@ function Stats() {
     return (
         <div
             className={`p-4 flex flex-col items-center transition duration-200 select-none h-screen ${
-                theme==='dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
+                theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
             }`}
         >
             <div className="w-full flex justify-between px-4 mb-4">
@@ -49,10 +49,10 @@ function Stats() {
                             key={tab}
                             className={`py-2 px-6 text-xl transition duration-200 font-bold ${
                                 activeTab === tab
-                                    ? theme==='dark'
+                                    ? theme === 'dark'
                                         ? 'text-yellow-500 border-b-2 border-yellow-500'
                                         : 'text-yellow-700 border-b-2 border-yellow-700'
-                                    : theme==='dark'
+                                    : theme === 'dark'
                                       ? 'hover:text-white text-gray-400'
                                       : 'hover:text-black text-gray-500'
                             }`}
@@ -73,7 +73,7 @@ function Stats() {
                                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                                     <button
                                         className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            theme==='dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
+                                            theme === 'dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
                                         }`}
                                     >
                                         Spins: {stats.numSpins.toLocaleString()}
@@ -83,7 +83,7 @@ function Stats() {
                                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                                     <button
                                         className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            theme==='dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
+                                            theme === 'dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
                                         }`}
                                     >
                                         Games Completed: {stats.completedGames.toLocaleString()}
@@ -93,7 +93,7 @@ function Stats() {
                                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                                     <button
                                         className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            theme==='dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
+                                            theme === 'dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
                                         }`}
                                     >
                                         Total Won: $

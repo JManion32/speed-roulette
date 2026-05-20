@@ -31,7 +31,7 @@ function Modal({ canOutsideClick = true, trigger, children }: Props) {
         >
             <div
                 className={`relative rounded-3xl w-[50rem] max-w-[90%] max-h-[90vh] p-8 overflow-y-auto
-                    ${theme==='dark' ? 'bg-gray-800 text-white' : 'bg-light-mode text-black'} 
+                    ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-light-mode text-black'} 
                     ${isClosing ? 'slide-down' : 'slide-up'}
                 `}
                 onClick={(e) => e.stopPropagation()}

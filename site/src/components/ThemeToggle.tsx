@@ -8,10 +8,7 @@ export default function ThemeToggle() {
     return (
         <button
             className={`duration-200 absolute right-3 rounded-full w-15 h-15 hover:scale-110 shadow-md
-            ${theme === 'dark'
-                ? 'bg-gray-700 hover:bg-gray-600'
-                : 'bg-white hover:bg-gray-300'
-            }`}
+            ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}`}
             onClick={toggleTheme}
             data-cy="dark-mode-toggle"
         >

@@ -32,7 +32,7 @@ export default function GameStatsBar({
                         ? 'bg-green-400'
                         : balanceChangeDirection === 'down'
                           ? 'bg-red-400'
-                          : theme==='dark'
+                          : theme === 'dark'
                             ? '!bg-gray-600'
                             : '!bg-white'
                 }`}
@@ -50,7 +50,7 @@ export default function GameStatsBar({
                     <div className="flex items-center min-w-[10rem] whitespace-nowrap">
                         <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Bet:</p>
                         <button
-                            className={`game-stat-btn ${theme==='dark' ? 'bg-gray-600' : 'bg-white'}`}
+                            className={`game-stat-btn ${theme === 'dark' ? 'bg-gray-600' : 'bg-white'}`}
                             data-cy="bet-display"
                         >
                             $
@@ -65,7 +65,7 @@ export default function GameStatsBar({
                     <div className="flex items-center min-w-[9rem] whitespace-nowrap">
                         <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Time:</p>
                         <button
-                            className={`game-stat-btn ${theme==='dark' ? 'bg-gray-600' : 'bg-white'}`}
+                            className={`game-stat-btn ${theme === 'dark' ? 'bg-gray-600' : 'bg-white'}`}
                             data-cy="timer-display"
                         >
                             {timeLeft}
@@ -76,7 +76,7 @@ export default function GameStatsBar({
                     <div className="flex items-center min-w-[8rem] whitespace-nowrap">
                         <p className="transition duration-200 text-[1.5rem] font-bold mr-2">Spins:</p>
                         <button
-                            className={`game-stat-btn ${theme==='dark' ? 'bg-gray-600' : 'bg-white'}`}
+                            className={`game-stat-btn ${theme === 'dark' ? 'bg-gray-600' : 'bg-white'}`}
                             data-cy="spins-display"
                         >
                             {remSpins}

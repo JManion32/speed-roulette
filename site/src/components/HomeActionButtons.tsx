@@ -17,7 +17,7 @@ export default function HomeActionButtons() {
                 <AboutModal />
                 <Link to="/leaderboard" className="inline-block">
                     <button
-                        className={`${theme==='dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn mr-10`}
+                        className={`${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn mr-10`}
                         data-cy="open-leaderboard-page"
                     >
                         <img src={trophy} alt="Trophy" className="w-20 h-20" draggable="false" />
@@ -25,7 +25,7 @@ export default function HomeActionButtons() {
                 </Link>
                 <Link to="/stats" className="inline-block">
                     <button
-                        className={`${theme==='dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn`}
+                        className={`${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn`}
                         data-cy="open-stats-page"
                     >
                         <img src={stats} alt="Statistics" className="w-20 h-20" draggable="false" />

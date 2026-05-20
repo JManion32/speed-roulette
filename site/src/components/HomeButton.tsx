@@ -23,10 +23,10 @@ export default function HomeButton() {
         absolute right-21 rounded-full w-15 h-15 
         flex justify-center items-center 
         duration-200 hover:scale-110 shadow-md
-        ${theme==='dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
+        ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
       `}
         >
-            <img src={theme==='dark' ? home_white : home} alt="Home" className="w-12 h-12" draggable="false" />
+            <img src={theme === 'dark' ? home_white : home} alt="Home" className="w-12 h-12" draggable="false" />
         </button>
     );
 }

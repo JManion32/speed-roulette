@@ -40,7 +40,7 @@ function Leaderboard() {
                     {(['today', 'week', 'month', 'allTime'] as Range[]).map((tab) => (
                         <button
                             key={tab}
-                            className={`tab-button ${theme==='dark' ? 'dark' : 'light'} ${activeTab === tab ? 'active' : 'inactive'}`}
+                            className={`tab-button ${theme === 'dark' ? 'dark' : 'light'} ${activeTab === tab ? 'active' : 'inactive'}`}
                             onClick={() => setActiveTab(tab)}
                         >
                             {tab === 'today' && 'Today'}
@@ -69,13 +69,13 @@ function Leaderboard() {
                                 {leaderboard.map((entry, i) => {
                                     let rowClass = '';
                                     if (i === 0) {
-                                        rowClass = `rank-1 ${theme==='dark' ? '' : 'light'}`;
+                                        rowClass = `rank-1 ${theme === 'dark' ? '' : 'light'}`;
                                     } else if (i === 1) {
-                                        rowClass = `rank-2 ${theme==='dark' ? '' : 'light'}`;
+                                        rowClass = `rank-2 ${theme === 'dark' ? '' : 'light'}`;
                                     } else if (i === 2) {
-                                        rowClass = `rank-3 ${theme==='dark' ? '' : 'light'}`;
+                                        rowClass = `rank-3 ${theme === 'dark' ? '' : 'light'}`;
                                     } else {
-                                        rowClass = `${i % 2 === 0 ? 'even' : 'odd'} ${theme==='dark' ? '' : 'light'}`;
+                                        rowClass = `${i % 2 === 0 ? 'even' : 'odd'} ${theme === 'dark' ? '' : 'light'}`;
                                     }
 
                                     return (
