@@ -39,20 +39,24 @@
         <!-- Prevent white flash before React loads -->
         <script>
             try {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const stored = localStorage.getItem('darkMode');
-                const isDark = stored === 'true' || (stored === null && prefersDark);
-                if (isDark) document.documentElement.classList.add('dark');
-            } catch (_) {}
+                const storedTheme = localStorage.getItem('site_theme');
+
+                document.documentElement.setAttribute(
+                    'data-theme',
+                    storedTheme === 'light' ? 'light' : 'dark'
+                );
+            } catch (_) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
         </script>
 
-        <!-- Paint background color immediately -->
         <style>
-            html {
+            html[data-theme='dark'] {
                 background-color: #111827;
                 color: white;
             }
-            html:not(.dark) {
+
+            html[data-theme='light'] {
                 background-color: #e9eef3;
                 color: black;
             }

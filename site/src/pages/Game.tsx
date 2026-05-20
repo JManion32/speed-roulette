@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../css/index.css';
 import '../css/game.css';
 
-import { useDarkMode } from '../contexts/DarkModeContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 import ActionButtons from '../components/game/GameActions';
 import BettingChips from '../components/game/GameChips';
@@ -24,7 +24,7 @@ import { getColorClass } from '../utils/recentNumColor';
 import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
-    const { isDarkMode } = useDarkMode();
+    const { theme } = useTheme();
 
     // Nickname state
     const [nickname, setNickname] = useState<string>('');
@@ -121,12 +121,11 @@ function Game() {
 
     return (
         <div
-            className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
+            className={`h-screen transition duration-200 select-none ${theme==='dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
         >
             <ResultHeader
                 nickname={nickname}
                 resultNums={resultNums}
-                isDarkMode={isDarkMode}
                 getColorClass={getColorClass}
             />
 

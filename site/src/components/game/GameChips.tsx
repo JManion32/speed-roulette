@@ -1,4 +1,4 @@
-import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import type { Chip } from '../../types/chips';
 
 interface ChipControlsProps {
@@ -64,7 +64,7 @@ export default function ChipControls({
     handleChipSelect,
     setIsSelected,
 }: ChipControlsProps) {
-    const { isDarkMode } = useDarkMode();
+    const { theme } = useTheme();
 
     return (
         <div className="flex flex-wrap gap-2 justify-center mb-5">
@@ -78,10 +78,10 @@ export default function ChipControls({
                         data-cy={`chip-${value}`}
                         disabled={!canAfford}
                         className={`chip-button mr-2 transition duration-200 ${
-                            isCurrent ? (isDarkMode ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''
-                        } ${!isSelected && canAfford ? (isDarkMode ? 'glow-pulse-dark' : 'glow-pulse-light') : ''} ${
+                            isCurrent ? (theme==='dark' ? 'ring-4 ring-white' : 'ring-4 ring-yellow-500') : ''
+                        } ${!isSelected && canAfford ? (theme==='dark' ? 'glow-pulse-dark' : 'glow-pulse-light') : ''} ${
                             !canAfford
-                                ? (isDarkMode ? 'bg-gray-900' : 'bg-gray-400') + ' cursor-not-allowed opacity-50'
+                                ? (theme==='dark' ? 'bg-gray-900' : 'bg-gray-400') + ' cursor-not-allowed opacity-50'
                                 : bg
                         }`}
                         onClick={() => {

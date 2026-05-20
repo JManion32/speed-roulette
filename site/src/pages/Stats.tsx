@@ -1,7 +1,8 @@
 import '../css/index.css';
+import '../css/stats.css';
 import { useState } from 'react';
-import { useDarkMode } from '../contexts/DarkModeContext';
-import DarkModeToggle from '../components/DarkModeToggle';
+import { useTheme } from '../contexts/ThemeContext';
+import DarkModeToggle from '../components/ThemeToggle';
 import HomeButton from '../components/HomeButton';
 import { useStatData } from '../hooks/useStatData';
 import { getColorClass } from '../utils/recentNumColor';
@@ -15,7 +16,7 @@ import { createStackedBarData, stackedBarOptions } from '../utils/chartUtils';
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartDataLabels);
 
 function Stats() {
-    const { isDarkMode } = useDarkMode();
+    const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState<'today' | 'week' | 'month' | 'allTime'>('today');
     const { data: allStats, loading } = useStatData();
 
@@ -32,7 +33,7 @@ function Stats() {
     return (
         <div
             className={`p-4 flex flex-col items-center transition duration-200 select-none h-screen ${
-                isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
+                theme==='dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
             }`}
         >
             <div className="w-full flex justify-between px-4 mb-4">
@@ -48,10 +49,10 @@ function Stats() {
                             key={tab}
                             className={`py-2 px-6 text-xl transition duration-200 font-bold ${
                                 activeTab === tab
-                                    ? isDarkMode
+                                    ? theme==='dark'
                                         ? 'text-yellow-500 border-b-2 border-yellow-500'
                                         : 'text-yellow-700 border-b-2 border-yellow-700'
-                                    : isDarkMode
+                                    : theme==='dark'
                                       ? 'hover:text-white text-gray-400'
                                       : 'hover:text-black text-gray-500'
                             }`}
@@ -72,7 +73,7 @@ function Stats() {
                                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                                     <button
                                         className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'
+                                            theme==='dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
                                         }`}
                                     >
                                         Spins: {stats.numSpins.toLocaleString()}
@@ -82,7 +83,7 @@ function Stats() {
                                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                                     <button
                                         className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'
+                                            theme==='dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
                                         }`}
                                     >
                                         Games Completed: {stats.completedGames.toLocaleString()}
@@ -92,7 +93,7 @@ function Stats() {
                                 <div className="flex items-center gap-x-4 whitespace-nowrap">
                                     <button
                                         className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'
+                                            theme==='dark' ? 'text-white bg-gray-600' : 'bg-white text-black'
                                         }`}
                                     >
                                         Total Won: $

@@ -1,0 +1,11 @@
+.glow-hot-header {
+    text-shadow:
+        0 0 0.1125rem #fb923c,
+        0 0 0.225rem #f97316;
+}
+
+.glow-cold-header {
+    text-shadow:
+        0 0 0.1125rem #67e8f9,
+        0 0 0.225rem #22d3ee;
+}

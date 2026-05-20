@@ -44,25 +44,14 @@
 
 /* Set html fallback background early */
 html {
-    background-color: var(--color-light-mode);
+    background-color: var(--sr-master);
     transition: background-color 0.2s;
-}
-
-/* Dark mode html background override */
-html.dark {
-    background-color: var(--sr-master-dark);
 }
 
 /* Light mode body styles */
 body {
-    background-color: var(--color-light-mode);
-    color: black;
-}
-
-/* Dark mode body override */
-html.dark body {
-    background-color: var(--sr-master-dark);
-    color: white;
+    background-color: var(--sr-master);
+    color: var(--standard-text);
 }
 
 /* ───────────────────────────────
@@ -152,20 +141,4 @@ html {
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: content-box;
-}
-
-/* ───────────────────────────────
-   Stats Page
-──────────────────────────────── */
-
-.glow-hot-header {
-    text-shadow:
-        0 0 0.1125rem #fb923c,
-        0 0 0.225rem #f97316;
-}
-
-.glow-cold-header {
-    text-shadow:
-        0 0 0.1125rem #67e8f9,
-        0 0 0.225rem #22d3ee;
 }

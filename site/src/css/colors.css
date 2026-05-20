@@ -1,7 +1,20 @@
+/* Global, non-theme constants */
 :root {
+    /* ========== Game ========== */
+    --roulette-red: #ff0000;
+    --roulette-green: #008000;
+    --winning-number: #ffd700;
+
+}
+
+/* Root is dark mode, light mode is for accessibility. */
+[data-theme="dark"] {
     /* ========== Master ========== */
-    --sr-master-light: #e9eef3; /* Source: neetcode.io in light mode */
+    --sr-master-light: #e9eef3;
     --sr-master-dark: #111827; /* gray-900 */
+    --sr-master: #111827;
+    --standard-text: #fff;
+    --active-tab: #eab308;
 
     /* ========== Standard ========== */
     --standard-black: #000;
@@ -11,13 +24,56 @@
     --green-350: #40e88d;
 
     /* ========== Game ========== */
-    --roulette-red: #ff0000;
-    --roulette-green: #008000;
-    --winning-number: #ffd700;
+
+
+    /* ========== Leaderboard ========== */
+    --leaderboard-tabs-border: #374151;
+    --leaderboard-tab-inactive: #9ca3af;
+    --leaderboard-table-body-top: #e5e7eb;
+    --rank-1: #7b4d14;
+    --rank-2: #374151;
+    --rank-3: #7c2d12;
+    --even-row: #111827;
+    --odd-row: #1f2937;
 
     /* ========== About Modal ========== */
     --github-color: #0d1117;
     --github-color-hover: #171b1f;
     --linkedin-color: #0177b5;
     --linkedin-color-hover: #1a8cd3;
+}
+
+/* Secondary theme mode. */
+[data-theme="light"] {
+    /* ========== Master ========== */
+    --sr-master: #e9eef3; /* Source: neetcode.io in light mode */
+    --standard-text: #000;
+    --active-tab: #b45309;
+
+    /* ========== Standard ========== */
+    --standard-black: #000;
+    --standard-white: #fff;
+    --gray-350: #b7bcc5;
+    --green-250: #9af4bc;
+    --green-350: #40e88d;
+
+    /* ========== Game ========== */
+
+
+    /* ========== Leaderboard ========== */
+    --leaderboard-tabs-border: #000000;
+    --leaderboard-tab-inactive: #6a7282;
+    --leaderboard-table-body-top: #000;
+    --rank-1: #fef08a;
+    --rank-2: #d1d5db;
+    --rank-3: #fed7aa;
+    --even-row: #f3f4f6;
+    --odd-row: #eaeef2;
+
+    /* ========== About Modal ========== */
+    --github-color: #0d1117;
+    --github-color-hover: #171b1f;
+    --linkedin-color: #0177b5;
+    --linkedin-color-hover: #1a8cd3;
+    
 }

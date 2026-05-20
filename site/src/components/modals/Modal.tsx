@@ -1,4 +1,4 @@
-import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 function Modal({ canOutsideClick = true, trigger, children }: Props) {
-    const { isDarkMode } = useDarkMode();
+    const { theme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -31,7 +31,7 @@ function Modal({ canOutsideClick = true, trigger, children }: Props) {
         >
             <div
                 className={`relative rounded-3xl w-[50rem] max-w-[90%] max-h-[90vh] p-8 overflow-y-auto
-                    ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-light-mode text-black'} 
+                    ${theme==='dark' ? 'bg-gray-800 text-white' : 'bg-light-mode text-black'} 
                     ${isClosing ? 'slide-down' : 'slide-up'}
                 `}
                 onClick={(e) => e.stopPropagation()}

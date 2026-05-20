@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { secureFetch } from '../../utils/secureFetch';
 import type { Bet, BetAction } from '../../types/chips';
 
@@ -44,14 +44,14 @@ export default function ActionButtons({
     handleClearBets,
     handleUndoBet,
 }: ActionButtonsProps) {
-    const { isDarkMode } = useDarkMode();
+    const { theme } = useTheme();
 
     return (
         <>
             {/* Action buttons section */}
             <div className="flex gap-2 justify-center w-full mb-5">
                 <button
-                    className={`game-action-btn mr-25 hover:scale-105 shadow-md ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
+                    className={`game-action-btn mr-25 hover:scale-105 shadow-md ${theme==='dark' ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
                     onClick={gridBlock ? undefined : handleClearBets}
                     data-cy="clear-button"
                 >
@@ -59,7 +59,7 @@ export default function ActionButtons({
                 </button>
 
                 <button
-                    className={`game-action-btn mr-25 hover:scale-105 shadow-md ${isDarkMode ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
+                    className={`game-action-btn mr-25 hover:scale-105 shadow-md ${theme==='dark' ? 'text-white bg-gray-600 hover:bg-gray-500' : 'text-black bg-gray-300 hover:bg-gray-350'}`}
                     onClick={gridBlock ? undefined : handleUndoBet}
                     disabled={betActions.length === 0}
                     data-cy="undo-button"
@@ -70,8 +70,8 @@ export default function ActionButtons({
                 <button
                     className={`game-action-btn ${
                         bets.length === 0 || remSpins === 0 || isPaused || isSubmitting
-                            ? `cursor-not-allowed ${isDarkMode ? 'bg-gray-600 text-gray-500' : 'bg-gray-300 text-gray-400 cursor-not-allowed'}`
-                            : `hover:scale-105 ${isDarkMode ? 'bg-green-500 hover:bg-green-400' : 'bg-green-250 hover:bg-green-350'}`
+                            ? `cursor-not-allowed ${theme==='dark' ? 'bg-gray-600 text-gray-500' : 'bg-gray-300 text-gray-400 cursor-not-allowed'}`
+                            : `hover:scale-105 ${theme==='dark' ? 'bg-green-500 hover:bg-green-400' : 'bg-green-250 hover:bg-green-350'}`
                     }`}
                     data-cy="submit-button"
                     onClick={async () => {
