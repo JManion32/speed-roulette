@@ -1,4 +1,3 @@
-// frontend/components/ChipControls.tsx
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import type { Chip } from '../../types/chips';
 
