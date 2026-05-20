@@ -16,9 +16,8 @@ func GenerateNum() int {
 }
 
 /*
-// Debugging number generator
+// For debugging the number generator
 func GenerateNum() int {
 	return 3
 }
-
 */

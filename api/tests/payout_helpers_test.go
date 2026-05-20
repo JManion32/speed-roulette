@@ -7,19 +7,16 @@ import (
 	"speed-roulette/api/utils"
 )
 
-/* ────────────────────────────────────────────────────────────
-   HELPERS
-───────────────────────────────────────────────────────────── */
+// ────────────────────────────────────────────────────────────
+//   HELPERS
+// ────────────────────────────────────────────────────────────
 
 // convenient Bet constructor (only GridIndex matters for payouts)
 func chip(idx int) models.Bet { return models.Bet{GridIndex: idx} }
 
-/*
-	────────────────────────────────────────────────────────────
-	  1. GRID ↔ NUMBER ROUND-TRIP
-
-─────────────────────────────────────────────────────────────
-*/
+// ────────────────────────────────────────────────────────────
+//   GRID Round Trip
+// ────────────────────────────────────────────────────────────
 func TestRoundTripGridIndex(t *testing.T) {
 	for n := 0; n <= 36; n++ {
 		idx := utils.GetGridIndex(n)
@@ -33,12 +30,9 @@ func TestRoundTripGridIndex(t *testing.T) {
 	}
 }
 
-/*
-	────────────────────────────────────────────────────────────
-	  2. DOZEN + ROW BUCKETS
-
-─────────────────────────────────────────────────────────────
-*/
+// ────────────────────────────────────────────────────────────
+//   Dozen and Row Buckets
+// ────────────────────────────────────────────────────────────
 func TestDozenAndRowBuckets(t *testing.T) {
 	tests := []struct {
 		num       int
@@ -63,18 +57,15 @@ func TestDozenAndRowBuckets(t *testing.T) {
 	}
 }
 
-/*
-	────────────────────────────────────────────────────────────
-	  3. MULTIPLIER BRANCHES — automatic discovery
-	     ---------------------------------------------------------
+/* ────────────────────────────────────────────────────────────
+   	    MULTIPLIER BRANCHES — automatic discovery
+	    ---------------------------------------------------------
 	     The test walks every grid index once and records:
 	       • even / odd
 	       • <114 or ≥114
 	       • which spin numbers yield a non-zero multiplier
 	     Then picks one spin representative for each branch.
-
-─────────────────────────────────────────────────────────────
-*/
+   ──────────────────────────────────────────────────────────── */
 type branch struct {
 	label string  // human description
 	idx   int     // grid index to bet on
