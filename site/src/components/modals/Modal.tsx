@@ -27,6 +27,7 @@ function Modal({ canOutsideClick = true, trigger, children }: Props) {
             onClick={canOutsideClick ? closeModal : undefined}
             aria-modal="true"
             role="dialog"
+            data-cy="modal-bg"
         >
             <div
                 className={`relative rounded-3xl w-[50rem] max-w-[90%] max-h-[90vh] p-8 overflow-y-auto

@@ -1,6 +1,6 @@
 import type { Bet } from '../../types/chips';
 import { JSX } from 'react';
-import GameBoardTable from "./GameBoardTable.tsx"
+import GameBoardTable from './GameBoardTable.tsx';
 
 interface RouletteBoardProps {
     isWinning: (num: string) => boolean;
@@ -28,7 +28,7 @@ export default function RouletteBoard({
         <>
             {/* Main roulette table with grid overlay */}
             <div className="relative mr-10 ml-10 mb-10">
-                <GameBoardTable isWinning={isWinning}/>
+                <GameBoardTable isWinning={isWinning} />
 
                 {/* ALL GRIDS FOR BET PLACEMENT */}
                 {/* All inner bets + Streets / Avenues / Basket */}

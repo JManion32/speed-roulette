@@ -35,7 +35,7 @@ describe('Navigation and Static UI', () => {
         cy.contains('Contact').click();
         cy.contains('Inquiries').should('be.visible');
 
-        cy.get('[data-cy="close-about-modal"]').click();
+        cy.get('[data-cy="modal-bg"]').click();
     });
 
     it('loads leaderboard page', () => {
