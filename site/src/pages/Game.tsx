@@ -10,7 +10,7 @@ import GameStatsBar from '../components/game/GameStats';
 import ResultHeader from '../components/game/GamePrevNums';
 import RouletteBoard from '../components/game/GameBoard';
 
-import ResultModal from '../components/ResultModal';
+import ResultModal from '../components/modals/ResultModal';
 
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 import { useTimer, useRemSpins } from '../hooks/useGameFlow';

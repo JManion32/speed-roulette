@@ -7,8 +7,6 @@ import { useDarkMode } from '../contexts/DarkModeContext';
 
 import DarkModeToggle from '../components/DarkModeToggle';
 import HomeActionButtons from '../components/HomeActionButtons';
-import PrivacyModal from '../components/PrivacyModal';
-import AboutModal from '../components/AboutModal';
 import HomeFooter from '../components/HomeFooter';
 
 import { useStartGame } from '../hooks/useStartGame';
@@ -16,13 +14,9 @@ import { useStartGame } from '../hooks/useStartGame';
 import { generateSplashText } from '../utils/generateSplashText';
 
 function Home() {
-    const [showModal, setShowModal] = useState(false);
     const { isDarkMode } = useDarkMode();
-    const [showPrivacy, setShowPrivacy] = useState(false);
-
     const [nickname, setNickname] = useState('');
     const startGame = useStartGame(nickname, setNickname);
-
     const [splashText] = useState(() => generateSplashText());
 
     return (
@@ -93,12 +87,9 @@ function Home() {
                         </button>
                     </Link>
                 </div>
-                <HomeActionButtons setShowModal={setShowModal} />
+                <HomeActionButtons />
             </div>
-            <HomeFooter setShowPrivacy={setShowPrivacy} />
-
-            <AboutModal isOpen={showModal} onClose={() => setShowModal(false)} />
-            <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
+            <HomeFooter />
         </div>
     );
 }

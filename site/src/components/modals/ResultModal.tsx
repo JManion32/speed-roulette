@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDarkMode } from '../contexts/DarkModeContext';
-import { useLogGame } from '../hooks/useLogGame';
-import { useLogout } from '../hooks/useLogout';
-import { usePlayAgain } from '../hooks/usePlayAgain';
+import { useDarkMode } from '../../contexts/DarkModeContext';
+import { useLogGame } from '../../hooks/useLogGame';
+import { useLogout } from '../../hooks/useLogout';
+import { usePlayAgain } from '../../hooks/usePlayAgain';
 
 interface ResultModalProps {
     showModal: boolean;
