@@ -123,7 +123,7 @@
     align-items: center;
     justify-content: center;
     border-width: 0.125rem;
-    transition: background-color 0.2s;
+    transition: background-color var(--theme-transition);
     font-size: 2rem;
     cursor: pointer;
     user-select: none;

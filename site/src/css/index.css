@@ -45,7 +45,7 @@
 /* Set html fallback background early */
 html {
     background-color: var(--sr-master);
-    transition: background-color 0.2s;
+    transition: background-color var(--theme-transition);
 }
 
 /* Light mode body styles */

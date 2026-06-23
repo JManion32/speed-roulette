@@ -27,9 +27,7 @@
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    transition:
-        background-color 200ms,
-        color 200ms;
+    transition: background-color var(--theme-transition), color var(--theme-transition);
     user-select: none;
     scrollbar-gutter: stable;
 }
@@ -58,7 +56,7 @@
     font-weight: bold;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    transition: color 200ms;
+    transition: color var(--theme-transition);
 }
 
 .leaderboard-tabs {
@@ -71,7 +69,7 @@
 .tab-button {
     padding: 0.5rem 1.5rem;
     font-size: 1.25rem;
-    transition: color 200ms;
+    transition: color var(--theme-transition);
     font-weight: bold;
     border: none;
     background: none;
@@ -102,9 +100,7 @@
     text-align: left;
     border-collapse: collapse;
     margin-top: 1rem;
-    transition:
-        background-color 200ms,
-        color 200ms;
+    transition: background-color var(--theme-transition), color var(--theme-transition);
     table-layout: auto;
 }
 
@@ -112,7 +108,7 @@
     padding: 0.5rem;
     text-align: left;
     font-size: 1.25rem;
-    transition: color 200ms;
+    transition: color var(--theme-transition);
 }
 
 .leaderboard-table td {
@@ -162,7 +158,7 @@
 
 .leaderboard-table thead tr {
     font-size: 1.25rem;
-    transition: color 200ms;
+    transition: color var(--theme-transition);
 }
 
 .leaderboard-table th:nth-child(1) {
@@ -194,9 +190,7 @@
 .leaderboard-table tbody tr {
     font-size: 1.125rem;
     border-top: 1px solid var(--leaderboard-table-body-top);
-    transition:
-        background-color 200ms,
-        color 200ms;
+    transition: background-color var(--theme-transition), color var(--theme-transition);
 }
 
 .leaderboard-table tbody tr.rank-1 {
@@ -249,7 +243,7 @@
     font-size: 1.25rem;
     margin-top: 1rem;
     text-align: center;
-    transition: color 200ms;
+    transition: color var(--theme-transition);
     font-weight: bold;
     font-style: italic;
 }

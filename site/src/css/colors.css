@@ -1,10 +1,14 @@
-/* Global, non-theme constants */
+/* Constants not related to themes */
 :root {
     /* ========== Game ========== */
     --roulette-red: #ff0000;
+    --roulette-black: #000;
     --roulette-green: #008000;
     --winning-number: #ffd700;
+
+    --theme-transition: 0.25s;
 }
+
 
 /* Root is dark mode, light mode is for accessibility. */
 [data-theme='dark'] {
@@ -38,6 +42,7 @@
     --linkedin-color: #0177b5;
     --linkedin-color-hover: #1a8cd3;
 }
+
 
 /* Secondary theme mode. */
 [data-theme='light'] {
