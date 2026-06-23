@@ -13,7 +13,9 @@
     --sr-master-dark: #111827; /* gray-900 */
     --sr-master: #111827;
     --standard-text: #fff;
-    --active-tab: #eab308;
+    --active-tab: oklch(79.5% 0.184 86.047);
+    --inactive-tab-border: #374151;
+    --inactive-tab: #9ca3af;
 
     /* ========== Standard ========== */
     --standard-black: #000;
@@ -22,11 +24,7 @@
     --green-250: #9af4bc;
     --green-350: #40e88d;
 
-    /* ========== Game ========== */
-
     /* ========== Leaderboard ========== */
-    --leaderboard-tabs-border: #374151;
-    --leaderboard-tab-inactive: #9ca3af;
     --leaderboard-table-body-top: #e5e7eb;
     --rank-1: #7b4d14;
     --rank-2: #374151;
@@ -47,6 +45,8 @@
     --sr-master: #e9eef3; /* Source: neetcode.io in light mode */
     --standard-text: #000;
     --active-tab: #b45309;
+    --inactive-tab-border: #000000;
+    --inactive-tab: #6a7282;
 
     /* ========== Standard ========== */
     --standard-black: #000;
@@ -55,11 +55,7 @@
     --green-250: #9af4bc;
     --green-350: #40e88d;
 
-    /* ========== Game ========== */
-
     /* ========== Leaderboard ========== */
-    --leaderboard-tabs-border: #000000;
-    --leaderboard-tab-inactive: #6a7282;
     --leaderboard-table-body-top: #000;
     --rank-1: #fef08a;
     --rank-2: #d1d5db;

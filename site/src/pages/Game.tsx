@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import '../css/index.css';
 import '../css/game.css';
 
 import { useTheme } from '../contexts/ThemeContext';

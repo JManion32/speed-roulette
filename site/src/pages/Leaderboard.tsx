@@ -1,4 +1,3 @@
-import '../css/index.css';
 import '../css/leaderboard.css';
 import { useState } from 'react';
 
@@ -117,7 +116,6 @@ function Leaderboard() {
                     )}
                 </div>
             </div>
-
             <div className="leaderboard-footer"></div>
         </div>
     );

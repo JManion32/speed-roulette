@@ -1,3 +1,18 @@
+.stats-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 4px solid #f59e0b;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: stats-spin 1s linear infinite;
+}
+
+@keyframes stats-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .glow-hot-header {
     text-shadow:
         0 0 0.1125rem #fb923c,
@@ -8,4 +23,208 @@
     text-shadow:
         0 0 0.1125rem #67e8f9,
         0 0 0.225rem #22d3ee;
+}
+
+.stats-page {
+    background-color: var(--sr-master);
+    color: var(--standard-text);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 200ms ease-in-out;
+    user-select: none;
+    min-height: 100vh;
+}
+
+.stats-header-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.stats-container {
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.stats-title {
+    transition: all 200ms ease-in-out;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stats-tab-list {
+    display: flex;
+    gap: 1.5rem;
+    border-bottom: 1px solid #374151;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.stats-tab-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.125rem;
+    transition: all 200ms ease-in-out;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.stats-tab-active-dark {
+    color: #f59e0b;
+    border-bottom: 2px solid #f59e0b;
+}
+
+.stats-tab-active-light {
+    color: #b45309;
+    border-bottom: 2px solid #b45309;
+}
+
+.stats-tab-inactive-dark {
+    color: #9ca3af;
+}
+
+.stats-tab-inactive-dark:hover {
+    color: #ffffff;
+}
+
+.stats-tab-inactive-light {
+    color: #6b7280;
+}
+
+.stats-tab-inactive-light:hover {
+    color: #000000;
+}
+
+.stats-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.stats-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stats-section-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stats-metric-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+    .stats-metric-row {
+        gap: 4rem;
+    }
+}
+
+.stats-metric-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+.stats-metric-button {
+    transition: all 200ms ease-in-out;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    font-size: 1.35rem;
+    pointer-events: none;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-metric-button-dark {
+    color: #ffffff;
+    background-color: #4b5563;
+}
+
+.stats-metric-button-light {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.stats-number-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-number-heading {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 12rem;
+    transition: all 200ms ease-in-out;
+}
+
+.stats-number-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-left: 3rem;
+}
+
+.stats-number-card {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    font-weight: 700;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-number-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75rem;
+    color: #fbbf24;
+    font-weight: 800;
+    transform: translate(0.125rem, -0.125rem);
+    padding: 0 0.25rem;
+}
+
+.stats-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10rem;
+}
+
+.stats-chart-row {
+    margin-bottom: 1.5rem;
+}
+
+.stats-chart-cell {
+    min-height: 3rem;
+}
+
+.stats-footer-gap {
+    height: 3.5rem;
 }

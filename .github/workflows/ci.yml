@@ -6,6 +6,22 @@ on:
   pull_request:
     branches: [main]
 
+x-env-setup: &env-setup |
+    cat > .env <<'EOF'
+    ENV=development
+    SITE_HTTP_PORT=5173
+    SITE_HTTPS_PORT=4433
+    CORS_ORIGIN=http://localhost:5173
+    POSTGRES_USERNAME=user
+    POSTGRES_PASSWORD=pass
+    POSTGRES_DB_NAME=speed-roulette
+    POSTGRES_DB_HOST=db
+    POSTGRES_DB_PORT=5432
+    REDIS_ADDRESS=redis:6379
+    REDIS_PASSWORD=
+    REDIS_DB=0
+    EOF
+
 jobs:
     stylelint:
         name: Stylelint
@@ -30,10 +46,7 @@ jobs:
               run: npm ci
 
             - name: Run Stylelint
-              run: npx stylelint "**/*.css"
-
-            - name: Build Web UI
-              run: npm run build
+              run: npx stylelint .
 
     prettier:
         name: Prettier
@@ -58,10 +71,7 @@ jobs:
               run: npm ci
 
             - name: Run Prettier
-              run: npx prettier --check "."
-
-            - name: Build Web UI
-              run: npm run build
+              run: npx prettier --check .
 
     eslint:
         name: ESLint
@@ -87,9 +97,6 @@ jobs:
 
             - name: Run ESLint
               run: npx eslint .
-
-            - name: Build Web UI
-              run: npm run build
 
     go-lint:
         name: Go Lint
@@ -180,21 +187,7 @@ jobs:
           run: npm ci
 
         - name: Generate dev .env
-          run: |
-            cat > .env <<'EOF'
-            ENV=development
-            SITE_HTTP_PORT=5173
-            SITE_HTTPS_PORT=4433
-            CORS_ORIGIN=http://localhost:5173 
-            POSTGRES_USERNAME=user
-            POSTGRES_PASSWORD=pass
-            POSTGRES_DB_NAME=speed-roulette
-            POSTGRES_DB_HOST=db
-            POSTGRES_DB_PORT=5432
-            REDIS_ADDRESS=redis:6379
-            REDIS_PASSWORD=
-            REDIS_DB=0
-            EOF
+          run: *env-setup
 
         - name: Start stack
           run: docker compose -f compose.yml up -d
@@ -225,21 +218,7 @@ jobs:
           run: npm ci
 
         - name: Generate dev .env
-          run: |
-            cat > .env <<'EOF'
-            ENV=development
-            SITE_HTTP_PORT=5173
-            SITE_HTTPS_PORT=4433
-            CORS_ORIGIN=http://localhost:5173 
-            POSTGRES_USERNAME=user
-            POSTGRES_PASSWORD=pass
-            POSTGRES_DB_NAME=speed-roulette
-            POSTGRES_DB_HOST=db
-            POSTGRES_DB_PORT=5432
-            REDIS_ADDRESS=redis:6379
-            REDIS_PASSWORD=
-            REDIS_DB=0
-            EOF
+          run: *env-setup
 
         - name: Start stack
           run: docker compose -f compose.yml up -d
@@ -267,21 +246,7 @@ jobs:
           uses: docker/setup-buildx-action@v3
 
         - name: Generate dev .env
-          run: |
-            cat > .env <<'EOF'
-            ENV=development
-            SITE_HTTP_PORT=5173
-            SITE_HTTPS_PORT=4433
-            CORS_ORIGIN=http://localhost:5173 
-            POSTGRES_USERNAME=user
-            POSTGRES_PASSWORD=pass
-            POSTGRES_DB_NAME=speed-roulette
-            POSTGRES_DB_HOST=db
-            POSTGRES_DB_PORT=5432
-            REDIS_ADDRESS=redis:6379
-            REDIS_PASSWORD=
-            REDIS_DB=0
-            EOF
+          run: *env-setup
 
         - name: Build images
           run: docker compose -f compose.yml build
@@ -290,6 +255,8 @@ jobs:
         name: Publish Docker Image
         runs-on: ubuntu-latest
         needs: [stylelint, prettier, eslint, go-lint, go-fmt, go-unit, cypress-home, cypress-game, docker-build]
+
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
         permissions:
             contents: read
@@ -329,7 +296,8 @@ jobs:
         name: Deploy
         runs-on: ubuntu-latest
         needs: docker-publish
-        if: github.ref == 'refs/heads/main'
+
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
         steps:
             - name: Deploy to droplet
@@ -339,10 +307,7 @@ jobs:
                   username: root
                   key: ${{ secrets.DROPLET_SSH_KEY }}
                   script: |
-                      cd ~/speed-roulette
-
+                      cd ~/prod
                       docker compose -f compose.prod.yml pull
-
                       docker compose -f compose.prod.yml up -d
-
                       docker image prune -af
