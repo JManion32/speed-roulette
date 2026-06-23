@@ -50,7 +50,8 @@ function Home() {
                         id="nickname-enter-form"
                         data-cy="nickname-enter-form"
                         value={nickname}
-                        autoComplete="off"
+                        name="nickname"
+                        autoComplete="nickname"
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck={false}
