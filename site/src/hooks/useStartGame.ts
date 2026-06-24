@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { checkName } from '../utils/checkName';
+import { register } from '../api/api';
 
 export function useStartGame(nickname: string, setNickname: (val: string) => void) {
     const navigate = useNavigate();
@@ -16,18 +17,10 @@ export function useStartGame(nickname: string, setNickname: (val: string) => voi
         }
 
         try {
-            const res = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nickname }),
-            });
-
-            if (!res.ok) throw new Error('Registration failed');
-
-            const { token } = await res.json();
+            const res = await register(nickname);
 
             localStorage.setItem('nickname', nickname);
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', res);
             errorEl!.style.visibility = 'hidden';
 
             navigate('/game');

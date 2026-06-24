@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getStats } from '../api/api';
 
 import type { AllStats } from '../types/AllStats';
 
@@ -66,17 +67,7 @@ export function useStatData(): {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const res = await fetch('/api/stats');
-
-                if (res.status === 429) {
-                    alert("You're making requests too quickly. Please wait a moment.");
-                    navigate('/');
-                    return;
-                }
-
-                if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-
-                const result = await res.json();
+                const result = await getStats();
 
                 if (typeof result === 'object' && result !== null) {
                     setAllStats({
@@ -87,6 +78,11 @@ export function useStatData(): {
                     });
                 }
             } catch (err) {
+                if (err instanceof Error && err.message === 'Rate limited') {
+                    alert("You're making requests too quickly. Please wait a moment.");
+                    navigate('/');
+                    return;
+                }
                 console.error('Failed to fetch stats:', err);
             } finally {
                 setLoading(false);

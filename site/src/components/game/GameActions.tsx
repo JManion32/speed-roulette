@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
-import { secureFetch } from '../../utils/secureFetch';
 import type { Bet, BetAction } from '../../types/chips';
+import { logRound } from '../../api/api';
 
 interface ActionButtonsProps {
     bets: Bet[];
@@ -82,14 +82,9 @@ export default function ActionButtons({
                         setGridBlock(true);
 
                         try {
-                            const res = await secureFetch('/api/round', {
-                                method: 'POST',
-                                body: JSON.stringify({ bets }),
-                            });
-
-                            const data = await res.json();
-                            const result = data.number;
-                            const payout = data.payout;
+                            const res = await logRound(JSON.stringify({ bets }))
+                            const result = res.number;
+                            const payout = res.payout;
 
                             const newBalance: number = userBalance + payout;
                             const displayResult = result === 37 ? '00' : result.toString();

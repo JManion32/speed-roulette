@@ -1,10 +1,12 @@
-export async function secureFetch(url: string, options: RequestInit = {}, onExpire?: () => void) {
+export default async function secureFetch(url: string, options: RequestInit = {}, onExpire?: () => void) {
     const token = localStorage.getItem('token');
 
     const mergedOptions: RequestInit = {
         ...options,
         headers: {
-            'Content-Type': 'application/json',
+            ...(options.body && {
+                'Content-Type': 'application/json',
+            }),
             ...(options.headers || {}),
             Authorization: `Bearer ${token}`,
         },
@@ -20,6 +22,9 @@ export async function secureFetch(url: string, options: RequestInit = {}, onExpi
             window.location.href = '/';
         }
         throw new Error('Unauthorized');
+    }
+    if (res.status === 429) {
+        throw new Error('Rate limited');
     }
 
     return res;
