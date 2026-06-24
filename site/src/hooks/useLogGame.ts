@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { logGame as logGameApi } from '../api/api';
+import api from '../api';
 
 export function useLogGame() {
     const [rank, setRank] = useState<number | null>(null);
@@ -13,7 +13,7 @@ export function useLogGame() {
         }
 
         try {
-            const res = await logGameApi(nickname, userBalance, remSpins, timeLeft);
+            const res = await api.logGame(nickname, userBalance, remSpins, timeLeft);
             setRank(res.rank);
         } catch (err) {
             console.error('Failed to log game and get rank:', err);

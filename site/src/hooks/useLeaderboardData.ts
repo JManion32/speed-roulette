@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LeaderboardEntry } from '../types/leaderboard';
-import { getLeaderboard } from '../api/api';
+import api from '../api';
 
 type Range = 'today' | 'week' | 'month' | 'allTime';
 
@@ -22,7 +22,7 @@ export function useAllLeaderboards(): {
     useEffect(() => {
         const fetchAllLeaderboards = async () => {
             try {
-                const result = await getLeaderboard();
+                const result = await api.getLeaderboard();
 
                 if (typeof result === 'object' && result !== null) {
                     setAllData({

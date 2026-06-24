@@ -1,9 +1,9 @@
-import { register } from '../api/api';
+import api from '../api';
 
 export function usePlayAgain() {
     return async (nickname: string): Promise<string | null> => {
         try {
-            const res = await register(nickname);
+            const res = await api.register(nickname);
             localStorage.setItem('token', res.token);
             return res;
         } catch (err) {

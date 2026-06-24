@@ -1,4 +1,4 @@
-import { logout as logoutApi } from '../api/api';
+import api from '../api';
 
 export function useLogout() {
     return async function logout() {
@@ -6,7 +6,7 @@ export function useLogout() {
 
         if (token) {
             try {
-                await logoutApi();
+                await api.logout();
             } catch (err) {
                 console.error('Token cleanup failed:', err);
             }

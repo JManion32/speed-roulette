@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import type { Bet, BetAction } from '../../types/chips';
-import { logRound } from '../../api/api';
+import api from '../../api';
 
 interface ActionButtonsProps {
     bets: Bet[];
@@ -82,7 +82,7 @@ export default function ActionButtons({
                         setGridBlock(true);
 
                         try {
-                            const res = await logRound(JSON.stringify({ bets }))
+                            const res = await api.logRound(JSON.stringify({ bets }))
                             const result = res.number;
                             const payout = res.payout;
 

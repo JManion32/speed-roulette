@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getStats } from '../api/api';
+import api from '../api';
 
 import type { AllStats } from '../types/AllStats';
 
@@ -67,7 +67,7 @@ export function useStatData(): {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const result = await getStats();
+                const result = await api.getStats();
 
                 if (typeof result === 'object' && result !== null) {
                     setAllStats({
