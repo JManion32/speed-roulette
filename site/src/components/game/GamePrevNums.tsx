@@ -10,9 +10,7 @@ interface ResultHeaderProps {
 export default function ResultHeader({ nickname, resultNums, getColorClass }: ResultHeaderProps) {
     return (
         <div className="result-header">
-            <p className="result-header-nickname">
-                {nickname}
-            </p>
+            <p className="result-header-nickname">{nickname}</p>
 
             <span className="result-header-results">
                 {[...Array(9)].map((_, i) => {
@@ -23,9 +21,7 @@ export default function ResultHeader({ nickname, resultNums, getColorClass }: Re
                             key={i}
                             aria-label={`Previous result: ${result}`}
                             className={`result-header-result ${
-                                result !== undefined
-                                    ? getColorClass(result)
-                                    : 'result-header-result-empty'
+                                result !== undefined ? getColorClass(result) : 'result-header-result-empty'
                             }`}
                         >
                             {result ?? ''}

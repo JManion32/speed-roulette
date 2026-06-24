@@ -17,10 +17,7 @@ export default function HomeFooter() {
 
             <span className="home-footer-divider">|</span>
 
-            <p
-                className="home-footer-link home-footer-share"
-                onClick={handleCopy}
-            >
+            <p className="home-footer-link home-footer-share" onClick={handleCopy}>
                 {copied ? 'Copied!' : 'Share'}
             </p>
 

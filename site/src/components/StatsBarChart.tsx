@@ -9,10 +9,7 @@ interface StatsBarChartProps {
 export function StatsBarChart({ counts, labels }: StatsBarChartProps) {
     return (
         <div className="stats-chart-cell">
-                <Bar
-                    data={createStackedBarData(counts, labels)}
-                    options={stackedBarOptions}
-                />
+            <Bar data={createStackedBarData(counts, labels)} options={stackedBarOptions} />
         </div>
     );
 }

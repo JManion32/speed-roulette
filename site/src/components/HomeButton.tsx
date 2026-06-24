@@ -17,17 +17,8 @@ export default function HomeButton() {
     };
 
     return (
-        <button
-            onClick={handleClick}
-            data-cy="home-button"
-            className={`home-button`}
-        >
-            <img
-                src={theme === 'dark' ? home_white : home}
-                alt="Home"
-                className="home-button-icon"
-                draggable="false"
-            />
+        <button onClick={handleClick} data-cy="home-button" className={`home-button`}>
+            <img src={theme === 'dark' ? home_white : home} alt="Home" className="home-button-icon" draggable="false" />
         </button>
     );
 }

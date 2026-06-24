@@ -10,15 +10,7 @@ export default function AboutModal() {
     const [activeTab, setActiveTab] = useState('about');
 
     return (
-        <Modal
-            trigger={
-                <HomeNavButton
-                    image={about}
-                    alt="About"
-                    testId="open-about-modal"
-                />
-            }
-        >
+        <Modal trigger={<HomeNavButton image={about} alt="About" testId="open-about-modal" />}>
             <Tabs
                 tabs={[
                     { value: 'about', label: 'About' },
@@ -40,9 +32,7 @@ export default function AboutModal() {
                             the daily leaderboard by making quick decisions, taking bold risks, and hitting big payouts.
                         </p>
 
-                        <p className="about-note-title">
-                            Note from the developer:
-                        </p>
+                        <p className="about-note-title">Note from the developer:</p>
 
                         <p>
                             I hope you enjoy my website! It has been a dream come true to create this. Remember:
@@ -54,9 +44,7 @@ export default function AboutModal() {
                 {activeTab === 'rules' && (
                     <>
                         <p className="about-section-spacing">
-                            <span className="rules-payout-bold">
-                                Standard Roulette Rules:
-                            </span>
+                            <span className="rules-payout-bold">Standard Roulette Rules:</span>
                             <br />
                             Bet on what the winning number will be by placing chips on the betting table.
                         </p>
@@ -93,22 +81,21 @@ export default function AboutModal() {
                         </p>
 
                         <p>
-                            <span className="rules-payout-bold">
-                                Speed Roulette Twist:
-                            </span>
+                            <span className="rules-payout-bold">Speed Roulette Twist:</span>
                             <br />
 
                             <ul className="rules-list">
                                 <li>Start with $20, 10 spins, and 60 seconds on the clock.</li>
                                 <li>The timer begins when you place your first bet.</li>
                                 <li>
-                                    When bets are submitted, there is a 2.5-second pause before the next round where
-                                    the number is revealed and winnings are paid out.
+                                    When bets are submitted, there is a 2.5-second pause before the next round where the
+                                    number is revealed and winnings are paid out.
                                 </li>
                             </ul>
 
                             <i>
-                                Make as much as you can before you run out of <b>time</b>, <b>spins</b>, or <b>money</b>!
+                                Make as much as you can before you run out of <b>time</b>, <b>spins</b>, or <b>money</b>
+                                !
                             </i>
                         </p>
                     </>
@@ -118,48 +105,25 @@ export default function AboutModal() {
                     <>
                         <div className="socials-container">
                             <p className="contact-title">
-                                <span className="contact-title-label">
-                                    Inquiries:
-                                </span>{' '}
-                                <a
-                                    href="mailto:jman32business@gmail.com"
-                                    className="about-contact-email"
-                                >
+                                <span className="contact-title-label">Inquiries:</span>{' '}
+                                <a href="mailto:jman32business@gmail.com" className="about-contact-email">
                                     jman32business@gmail.com
                                 </a>
                             </p>
 
                             <button
                                 className="social-button social-button-github"
-                                onClick={() =>
-                                    window.open(
-                                        'https://github.com/JManion32/speed-roulette',
-                                        '_blank'
-                                    )
-                                }
+                                onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
                             >
-                                <img
-                                    src={github_white}
-                                    alt="GitHub"
-                                    className="social-button-icon"
-                                />
+                                <img src={github_white} alt="GitHub" className="social-button-icon" />
                                 GitHub
                             </button>
 
                             <button
                                 className="social-button social-button-linkedin"
-                                onClick={() =>
-                                    window.open(
-                                        'https://linkedin.com/in/jmanion32',
-                                        '_blank'
-                                    )
-                                }
+                                onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
                             >
-                                <img
-                                    src={linkedin_white}
-                                    alt="LinkedIn"
-                                    className="social-button-icon"
-                                />
+                                <img src={linkedin_white} alt="LinkedIn" className="social-button-icon" />
                                 LinkedIn
                             </button>
                         </div>

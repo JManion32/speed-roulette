@@ -63,29 +63,15 @@ export default function ResultModal({
     };
 
     return (
-        <div
-            className="modal-overlay"
-            onClick={handleOutsideClick}
-        >
-            <div
-                className={`result-modal ${
-                    isClosing ? 'slide-down' : 'slide-up'
-                }`}
-            >
+        <div className="modal-overlay" onClick={handleOutsideClick}>
+            <div className={`result-modal ${isClosing ? 'slide-down' : 'slide-up'}`}>
                 <div className="result-modal-content">
-                    <h1 className="result-modal-title">
-                        ROUND FINISHED!
-                    </h1>
+                    <h1 className="result-modal-title">ROUND FINISHED!</h1>
 
                     <div className="result-modal-stats-container">
-                        <p className="result-modal-label">
-                            Final Balance:
-                        </p>
+                        <p className="result-modal-label">Final Balance:</p>
 
-                        <button
-                            className="result-modal-value"
-                            data-cy="result-balance"
-                        >
+                        <button className="result-modal-value" data-cy="result-balance">
                             $
                             {userBalance.toLocaleString(undefined, {
                                 minimumFractionDigits: 2,
@@ -93,25 +79,15 @@ export default function ResultModal({
                             })}
                         </button>
 
-                        <p className="result-modal-label">
-                            Time Remaining:
-                        </p>
+                        <p className="result-modal-label">Time Remaining:</p>
 
-                        <button
-                            className="result-modal-value"
-                            data-cy="result-time"
-                        >
+                        <button className="result-modal-value" data-cy="result-time">
                             {timeLeft}s
                         </button>
 
-                        <p className="result-modal-label">
-                            Spins Remaining:
-                        </p>
+                        <p className="result-modal-label">Spins Remaining:</p>
 
-                        <button
-                            className="result-modal-value"
-                            data-cy="result-spins"
-                        >
+                        <button className="result-modal-value" data-cy="result-spins">
                             {remSpins}
                         </button>
                     </div>
@@ -119,17 +95,10 @@ export default function ResultModal({
                     <hr className="result-modal-divider result-modal-divider-top" />
 
                     <div className="result-modal-rank-container">
-                        <p className="result-modal-rank-label">
-                            Daily Rank:
-                        </p>
+                        <p className="result-modal-rank-label">Daily Rank:</p>
 
-                        <button
-                            className="result-modal-rank-value"
-                            data-cy="user-rank"
-                        >
-                            {userBalance > 0 && rank !== null
-                                ? `#${rank}`
-                                : 'Unranked'}
+                        <button className="result-modal-rank-value" data-cy="user-rank">
+                            {userBalance > 0 && rank !== null ? `#${rank}` : 'Unranked'}
                         </button>
                     </div>
 
@@ -148,9 +117,7 @@ export default function ResultModal({
                                 const token = await playAgain(nickname);
 
                                 if (!token) {
-                                    alert(
-                                        'Could not start new game. Try refreshing the page.'
-                                    );
+                                    alert('Could not start new game. Try refreshing the page.');
                                     return;
                                 }
 
@@ -174,9 +141,7 @@ export default function ResultModal({
                 </div>
             </div>
 
-            <p className="result-modal-hint">
-                Click anywhere to play again!
-            </p>
+            <p className="result-modal-hint">Click anywhere to play again!</p>
         </div>
     );
 }

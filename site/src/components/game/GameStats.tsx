@@ -18,17 +18,15 @@ export default function GameStatsBar({
             <div className="game-stats-row">
                 {/* Balance */}
                 <div className="game-stat-item game-stat-balance">
-                    <p className="game-stat-label">
-                        Balance:
-                    </p>
+                    <p className="game-stat-label">Balance:</p>
 
                     <button
                         className={`game-stat-btn ${
                             balanceChangeDirection === 'up'
                                 ? 'game-stat-positive'
                                 : balanceChangeDirection === 'down'
-                                ? 'game-stat-negative'
-                                : ''
+                                  ? 'game-stat-negative'
+                                  : ''
                         }`}
                         data-cy="balance-display"
                     >
@@ -42,14 +40,9 @@ export default function GameStatsBar({
 
                 {/* Bet */}
                 <div className="game-stat-item game-stat-bet">
-                    <p className="game-stat-label">
-                        Bet:
-                    </p>
+                    <p className="game-stat-label">Bet:</p>
 
-                    <button
-                        className="game-stat-btn"
-                        data-cy="bet-display"
-                    >
+                    <button className="game-stat-btn" data-cy="bet-display">
                         $
                         {totalBet.toLocaleString(undefined, {
                             minimumFractionDigits: 2,
@@ -60,28 +53,18 @@ export default function GameStatsBar({
 
                 {/* Timer */}
                 <div className="game-stat-item game-stat-basic">
-                    <p className="game-stat-label">
-                        Time:
-                    </p>
+                    <p className="game-stat-label">Time:</p>
 
-                    <button
-                        className="game-stat-btn"
-                        data-cy="timer-display"
-                    >
+                    <button className="game-stat-btn" data-cy="timer-display">
                         {timeLeft}
                     </button>
                 </div>
 
                 {/* Spins */}
                 <div className="game-stat-item game-stat-basic">
-                    <p className="game-stat-label">
-                        Spins:
-                    </p>
+                    <p className="game-stat-label">Spins:</p>
 
-                    <button
-                        className="game-stat-btn"
-                        data-cy="spins-display"
-                    >
+                    <button className="game-stat-btn" data-cy="spins-display">
                         {remSpins}
                     </button>
                 </div>

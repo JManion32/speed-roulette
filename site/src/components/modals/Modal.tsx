@@ -29,9 +29,7 @@ function Modal({ canOutsideClick = true, trigger, children }: Props) {
             data-cy="modal-bg"
         >
             <div
-                className={`modal-content ${
-                    isClosing ? 'slide-down' : 'slide-up'
-                }`}
+                className={`modal-content ${isClosing ? 'slide-down' : 'slide-up'}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {children}

@@ -16,28 +16,18 @@ function Home() {
     const [splashText] = useState(() => generateSplashText());
 
     return (
-        <div
-            className="home-page"
-            data-cy="main-app-div"
-        >
+        <div className="home-page" data-cy="main-app-div">
             <div className="home-header">
                 <DarkModeToggle />
             </div>
 
             <div className="home-content">
-                <h1 className="home-title fade-in">
-                    Speed Roulette
-                </h1>
+                <h1 className="home-title fade-in">Speed Roulette</h1>
 
-                <p className="home-splash-text fade-in">
-                    {splashText}
-                </p>
+                <p className="home-splash-text fade-in">{splashText}</p>
 
                 <div className="home-form">
-                    <p
-                        className="home-error-message"
-                        id="profanity-error"
-                    >
+                    <p className="home-error-message" id="profanity-error">
                         Please choose a clean nickname!
                     </p>
 
@@ -69,9 +59,7 @@ function Home() {
                             data-cy="play-button"
                             onClick={startGame}
                             className={`home-play-button ${
-                                nickname === ''
-                                    ? 'home-play-button-disabled'
-                                    : 'home-play-button-enabled'
+                                nickname === '' ? 'home-play-button-disabled' : 'home-play-button-enabled'
                             }`}
                             disabled={nickname === ''}
                         >
@@ -83,19 +71,9 @@ function Home() {
                 <div className="home-navigation-container">
                     <AboutModal />
 
-                    <HomeNavButton
-                        to="/leaderboard"
-                        image={trophy}
-                        alt="Trophy"
-                        testId="open-leaderboard-page"
-                    />
+                    <HomeNavButton to="/leaderboard" image={trophy} alt="Trophy" testId="open-leaderboard-page" />
 
-                    <HomeNavButton
-                        to="/stats"
-                        image={stats}
-                        alt="Statistics"
-                        testId="open-stats-page"
-                    />
+                    <HomeNavButton to="/stats" image={stats} alt="Statistics" testId="open-stats-page" />
                 </div>
             </div>
 

@@ -30,9 +30,7 @@ function Stats() {
                 <DarkModeToggle />
             </div>
             <div className="stats-container">
-                <h1 className="page-title">
-                    Site Statistics
-                </h1>
+                <h1 className="page-title">Site Statistics</h1>
 
                 <Tabs
                     tabs={[
@@ -50,25 +48,19 @@ function Stats() {
                         <div className="stats-section-inner">
                             <div className="stats-metric-row">
                                 <div className="stats-metric-item">
-                                    <button
-                                        className={`stats-metric-button`}
-                                    >
+                                    <button className={`stats-metric-button`}>
                                         Spins: {stats.numSpins.toLocaleString()}
                                     </button>
                                 </div>
 
                                 <div className="stats-metric-item">
-                                    <button
-                                        className={`stats-metric-button`}
-                                    >
+                                    <button className={`stats-metric-button`}>
                                         Games Completed: {stats.completedGames.toLocaleString()}
                                     </button>
                                 </div>
 
                                 <div className="stats-metric-item">
-                                    <button
-                                        className={`stats-metric-button`}
-                                    >
+                                    <button className={`stats-metric-button`}>
                                         Total Won: $
                                         {stats.totalWon.toLocaleString(undefined, {
                                             minimumFractionDigits: 2,
@@ -79,18 +71,14 @@ function Stats() {
                             </div>
 
                             <div className="stats-number-section">
-                                <h2 className="glow-hot-header">
-                                    🔥 Hottest Numbers:
-                                </h2>
+                                <h2 className="glow-hot-header">🔥 Hottest Numbers:</h2>
                                 <div className="stats-number-list">
                                     {stats.hottestNumbers.map((n, i) => (
                                         <div
                                             key={i}
                                             className={`stats-number-card ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
                                         >
-                                            <div className="stats-number-badge">
-                                                ×{n.count ?? 0}
-                                            </div>
+                                            <div className="stats-number-badge">×{n.count ?? 0}</div>
                                             {n.number === 37 ? '00' : n.number}
                                         </div>
                                     ))}
@@ -98,18 +86,14 @@ function Stats() {
                             </div>
 
                             <div className="stats-number-section">
-                                <h2 className="glow-cold-header">
-                                    ❄️ Coldest Numbers:
-                                </h2>
+                                <h2 className="glow-cold-header">❄️ Coldest Numbers:</h2>
                                 <div className="stats-number-list">
                                     {stats.coldestNumbers.map((n, i) => (
                                         <div
                                             key={i}
                                             className={`stats-number-card ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
                                         >
-                                            <div className="stats-number-badge">
-                                                ×{n.count ?? 0}
-                                            </div>
+                                            <div className="stats-number-badge">×{n.count ?? 0}</div>
                                             {n.number === 37 ? '00' : n.number}
                                         </div>
                                     ))}
@@ -117,30 +101,15 @@ function Stats() {
                             </div>
                         </div>
                     </div>
-                    <StatsBarChart
-                        counts={stats.colorCounts}
-                        labels={['red', 'green', 'black', 'neither']}
-                    />
+                    <StatsBarChart counts={stats.colorCounts} labels={['red', 'green', 'black', 'neither']} />
 
-                    <StatsBarChart
-                        counts={stats.parityCounts}
-                        labels={['even', 'neither', 'odd']}
-                    />
+                    <StatsBarChart counts={stats.parityCounts} labels={['even', 'neither', 'odd']} />
 
-                    <StatsBarChart
-                        counts={stats.halfCounts}
-                        labels={['low', 'neither', 'high']}
-                    />
+                    <StatsBarChart counts={stats.halfCounts} labels={['low', 'neither', 'high']} />
 
-                    <StatsBarChart
-                        counts={stats.dozenCounts}
-                        labels={['first', 'second', 'third', 'neither']}
-                    />
+                    <StatsBarChart counts={stats.dozenCounts} labels={['first', 'second', 'third', 'neither']} />
 
-                    <StatsBarChart
-                        counts={stats.rowCounts}
-                        labels={['top', 'middle', 'bottom', 'neither']}
-                    />
+                    <StatsBarChart counts={stats.rowCounts} labels={['top', 'middle', 'bottom', 'neither']} />
                 </div>
                 <div className="stats-footer-gap"></div>
             </div>

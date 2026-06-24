@@ -47,10 +47,8 @@ export default function RouletteBoard({
                         top: 0,
                         left: '5.9375rem',
                         zIndex: 1,
-                        gridTemplateColumns:
-                            '4.125rem repeat(10, 1.25rem 4.125rem) 1.25rem 4.8125rem',
-                        gridTemplateRows:
-                            '4.6875rem 1.25rem 4.125rem 1.25rem 4.125rem 1.25rem',
+                        gridTemplateColumns: '4.125rem repeat(10, 1.25rem 4.125rem) 1.25rem 4.8125rem',
+                        gridTemplateRows: '4.6875rem 1.25rem 4.125rem 1.25rem 4.125rem 1.25rem',
                     }}
                 />
 
@@ -72,8 +70,7 @@ export default function RouletteBoard({
                         left: '4.6875rem',
                         zIndex: 2,
                         gridTemplateColumns: '1.25rem',
-                        gridTemplateRows:
-                            '4.6875rem 1.25rem 1.5rem 1.25rem 1.5rem 1.25rem 4.0625rem 1.1875rem',
+                        gridTemplateRows: '4.6875rem 1.25rem 1.5rem 1.25rem 1.5rem 1.25rem 4.0625rem 1.1875rem',
                     }}
                 />
 

@@ -17,7 +17,7 @@
 
 .theme-toggle:hover {
     transform: scale(1.1);
-    background: var(--btn-hover)
+    background: var(--btn-hover);
 }
 
 .theme-toggle-icon {

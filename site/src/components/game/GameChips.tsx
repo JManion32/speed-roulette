@@ -63,7 +63,6 @@ export default function ChipControls({
     handleChipSelect,
     setIsSelected,
 }: ChipControlsProps) {
-
     return (
         <div className="chip-controls">
             {CHIP_OPTIONS.map(({ value, color, className }) => {

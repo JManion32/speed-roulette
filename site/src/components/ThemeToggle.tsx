@@ -7,11 +7,7 @@ export default function ThemeToggle() {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            data-cy="dark-mode-toggle"
-        >
+        <button className="theme-toggle" onClick={toggleTheme} data-cy="dark-mode-toggle">
             <img
                 src={theme === 'dark' ? moon : sun}
                 alt={theme === 'dark' ? 'Dark Mode' : 'Light Mode'}

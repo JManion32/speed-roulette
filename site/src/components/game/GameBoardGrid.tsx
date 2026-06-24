@@ -36,10 +36,7 @@ export default function BoardGrid({
     renderChip,
 }: BoardGridProps) {
     return (
-        <div
-            className="board-grid-container"
-            style={containerStyle}
-        >
+        <div className="board-grid-container" style={containerStyle}>
             {Array(count)
                 .fill(null)
                 .map((_, index) => (
@@ -47,23 +44,14 @@ export default function BoardGrid({
                         key={index}
                         className="board-grid"
                         data-cy={`${dataCyPrefix}-${index}`}
-                        onClick={
-                            remSpins === 0 || gridBlock
-                                ? undefined
-                                : () => handleGridCellClick(index, gridId)
-                        }
+                        onClick={remSpins === 0 || gridBlock ? undefined : () => handleGridCellClick(index, gridId)}
                         style={{
-                            border: showGrid
-                                ? `1px solid ${borderColor}`
-                                : 'none',
-                            backgroundColor: showGrid
-                                ? backgroundColor
-                                : 'transparent',
+                            border: showGrid ? `1px solid ${borderColor}` : 'none',
+                            backgroundColor: showGrid ? backgroundColor : 'transparent',
                         }}
                     >
                         {showGrid && index}
-                        {hasBet(index, gridId) &&
-                            renderChip(getBet(index, gridId)!)}
+                        {hasBet(index, gridId) && renderChip(getBet(index, gridId)!)}
                     </div>
                 ))}
         </div>

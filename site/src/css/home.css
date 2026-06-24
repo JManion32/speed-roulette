@@ -33,7 +33,9 @@
 }
 
 /* ========================================= */
+
 /* MAIN HOME PAGE */
+
 /* ========================================= */
 .home-page {
     height: 100vh;
@@ -70,16 +72,15 @@
 }
 
 [data-theme='light'] .home-title {
-    text-shadow:
-        0 0 6px rgb(0 0 0 / 15%);
+    text-shadow: 0 0 6px rgb(0 0 0 / 15%);
 }
 
 .home-splash-text {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.5rem;
     font-size: 1.15rem;
     font-weight: 700;
     white-space: nowrap;
-    text-shadow: var(--home-splash-text-shadow)
+    text-shadow: var(--home-splash-text-shadow);
 }
 
 .home-form {
@@ -144,7 +145,9 @@
 }
 
 /* ========================================= */
+
 /* HOME NAVIGATION BUTTONS */
+
 /* ========================================= */
 .home-navigation-container {
     display: flex;
@@ -178,14 +181,16 @@
 }
 
 .home-navigation-button-icon {
-    width: 5rem;   /* w-20 */
+    width: 5rem; /* w-20 */
     height: 5rem;
     user-select: none;
     pointer-events: none;
 }
 
 /* ========================================= */
+
 /* HOME FOOTER */
+
 /* ========================================= */
 .home-footer {
     position: absolute;

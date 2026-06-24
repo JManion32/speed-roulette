@@ -98,9 +98,7 @@ function Game() {
     );
 
     return (
-        <div
-            className={`game-page`}
-        >
+        <div className={`game-page`}>
             <ResultHeader nickname={nickname} resultNums={resultNums} getColorClass={getColorClass} />
 
             <div className="game-content">

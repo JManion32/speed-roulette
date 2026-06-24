@@ -85,7 +85,9 @@
 }
 
 /* ========================================= */
+
 /* MAIN GAME PAGE */
+
 /* ========================================= */
 
 .game-page {
@@ -127,7 +129,9 @@
 }
 
 /* ========================================= */
+
 /* GAME PREV NUMS */
+
 /* ========================================= */
 .result-header {
     display: flex;
@@ -172,7 +176,7 @@
 }
 
 .roulette-red {
-    background-color:var(--roulette-red);
+    background-color: var(--roulette-red);
     color: white;
 }
 
@@ -187,7 +191,9 @@
 }
 
 /* ========================================= */
+
 /* GAME STATS */
+
 /* ========================================= */
 .game-stat-btn {
     height: 2.5rem; /* h-10 */
@@ -202,6 +208,7 @@
     box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.1),
         0 2px 4px rgba(0, 0, 0, 0.06); /* shadow-md */
+
     border: none;
     background-color: var(--btn-bg);
     color: var(--btn-color);
@@ -258,7 +265,9 @@
 }
 
 /* ========================================= */
+
 /* GAME CHIPS */
+
 /* ========================================= */
 .chip-controls {
     display: flex;
@@ -400,7 +409,9 @@
 }
 
 /* ========================================= */
+
 /* GAME ACTION BUTTONS */
+
 /* ========================================= */
 .game-actions {
     display: flex;
@@ -443,7 +454,9 @@
 }
 
 /* ========================================= */
+
 /* GAME BOARD GRID AND CONTAINER */
+
 /* ========================================= */
 .roulette-board-container {
     position: relative;
@@ -468,8 +481,11 @@
 }
 
 /* ========================================= */
+
 /* GAME BOARD BUTTON */
+
 /* ========================================= */
+
 /* All buttons on the roulette board */
 .red-num,
 .black-num,
@@ -483,10 +499,8 @@
     margin: 0;
     padding: 0;
     padding-block: 0;
-    border: none;
     background: none;
     font: inherit;
-
     border: 0.125rem solid var(--standard-white);
     color: var(--standard-white);
     font-size: 1.75rem;

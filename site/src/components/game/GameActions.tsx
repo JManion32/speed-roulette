@@ -87,11 +87,7 @@ export default function ActionButtons({
                             setWinningNumber(displayResult);
 
                             setTimeout(() => {
-                                if (
-                                    remSpins === 1 ||
-                                    timeLeft === 0 ||
-                                    newBalance === 0
-                                ) {
+                                if (remSpins === 1 || timeLeft === 0 || newBalance === 0) {
                                     setShowModal(true);
                                     setWinningNumber(null);
                                     setUserBalance(newBalance);
