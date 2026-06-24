@@ -6,22 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-x-env-setup: &env-setup |
-    cat > .env <<'EOF'
-    ENV=development
-    SITE_HTTP_PORT=5173
-    SITE_HTTPS_PORT=4433
-    CORS_ORIGIN=http://localhost:5173
-    POSTGRES_USERNAME=user
-    POSTGRES_PASSWORD=pass
-    POSTGRES_DB_NAME=speed-roulette
-    POSTGRES_DB_HOST=db
-    POSTGRES_DB_PORT=5432
-    REDIS_ADDRESS=redis:6379
-    REDIS_PASSWORD=
-    REDIS_DB=0
-    EOF
-
 jobs:
     stylelint:
         name: Stylelint
@@ -177,6 +161,8 @@ jobs:
       name: Cypress Home
       runs-on: ubuntu-latest
 
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-node@v4
@@ -187,7 +173,22 @@ jobs:
           run: npm ci
 
         - name: Generate dev .env
-          run: *env-setup
+          run: |
+            cat > .env <<'EOF'
+            ENV=development
+            VITE_MOCK_MODE=false
+            SITE_HTTP_PORT=5173
+            SITE_HTTPS_PORT=4433
+            CORS_ORIGIN=http://localhost:5173
+            POSTGRES_USERNAME=user
+            POSTGRES_PASSWORD=pass
+            POSTGRES_DB_NAME=speed-roulette
+            POSTGRES_DB_HOST=db
+            POSTGRES_DB_PORT=5432
+            REDIS_ADDRESS=redis:6379
+            REDIS_PASSWORD=
+            REDIS_DB=0
+            EOF
 
         - name: Start stack
           run: docker compose -f compose.yml up -d
@@ -208,6 +209,8 @@ jobs:
       name: Cypress Game
       runs-on: ubuntu-latest
 
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-node@v4
@@ -218,7 +221,22 @@ jobs:
           run: npm ci
 
         - name: Generate dev .env
-          run: *env-setup
+          run: |
+            cat > .env <<'EOF'
+            ENV=development
+            VITE_MOCK_MODE=false
+            SITE_HTTP_PORT=5173
+            SITE_HTTPS_PORT=4433
+            CORS_ORIGIN=http://localhost:5173
+            POSTGRES_USERNAME=user
+            POSTGRES_PASSWORD=pass
+            POSTGRES_DB_NAME=speed-roulette
+            POSTGRES_DB_HOST=db
+            POSTGRES_DB_PORT=5432
+            REDIS_ADDRESS=redis:6379
+            REDIS_PASSWORD=
+            REDIS_DB=0
+            EOF
 
         - name: Start stack
           run: docker compose -f compose.yml up -d
@@ -246,7 +264,22 @@ jobs:
           uses: docker/setup-buildx-action@v3
 
         - name: Generate dev .env
-          run: *env-setup
+          run: |
+            cat > .env <<'EOF'
+            ENV=development
+            VITE_MOCK_MODE=false
+            SITE_HTTP_PORT=5173
+            SITE_HTTPS_PORT=4433
+            CORS_ORIGIN=http://localhost:5173
+            POSTGRES_USERNAME=user
+            POSTGRES_PASSWORD=pass
+            POSTGRES_DB_NAME=speed-roulette
+            POSTGRES_DB_HOST=db
+            POSTGRES_DB_PORT=5432
+            REDIS_ADDRESS=redis:6379
+            REDIS_PASSWORD=
+            REDIS_DB=0
+            EOF
 
         - name: Build images
           run: docker compose -f compose.yml build
