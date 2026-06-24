@@ -35,7 +35,7 @@ type GameBoardBottomProps = {
 
 export function GameBoardBottom({ value, color }: GameBoardBottomProps) {
     return (
-        <td colSpan={2} className="p-0 border-0">
+        <td colSpan={2} className="game-board-row">
             <button className={`button-bottom-${color}`}>{value}</button>
         </td>
     );

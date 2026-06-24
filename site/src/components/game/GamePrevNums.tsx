@@ -1,6 +1,5 @@
 import DarkModeToggle from '../ThemeToggle';
 import HomeButton from '../HomeButton';
-import { useTheme } from '../../contexts/ThemeContext';
 
 interface ResultHeaderProps {
     nickname: string;
@@ -9,29 +8,24 @@ interface ResultHeaderProps {
 }
 
 export default function ResultHeader({ nickname, resultNums, getColorClass }: ResultHeaderProps) {
-    const { theme } = useTheme();
     return (
-        <div className="p-4 flex top-0">
-            <p
-                className={`transition duration-200 absolute top-7 left-5 font-bold text-[1.5rem] ${theme === 'dark' ? 'text-white' : 'text-black'}`}
-            >
+        <div className="result-header">
+            <p className="result-header-nickname">
                 {nickname}
             </p>
-            <span className="absolute top-7 right-44 flex flex-row">
+
+            <span className="result-header-results">
                 {[...Array(9)].map((_, i) => {
                     const result = resultNums[i];
+
                     return (
                         <button
                             key={i}
                             aria-label={`Previous result: ${result}`}
-                            className={`h-10 w-10 ml-2 rounded-md font-bold border-[0.125rem] transition duration-200 ${
-                                theme === 'dark' ? 'border-white' : 'border-black'
-                            } ${
+                            className={`result-header-result ${
                                 result !== undefined
                                     ? getColorClass(result)
-                                    : theme === 'dark'
-                                      ? 'bg-gray-700'
-                                      : 'bg-gray-300'
+                                    : 'result-header-result-empty'
                             }`}
                         >
                             {result ?? ''}
@@ -39,6 +33,7 @@ export default function ResultHeader({ nickname, resultNums, getColorClass }: Re
                     );
                 })}
             </span>
+
             <DarkModeToggle />
             <HomeButton />
         </div>

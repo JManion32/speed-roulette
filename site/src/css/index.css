@@ -1,29 +1,7 @@
 /* ───────────────────────────────
-   Tailwind & Global Theme Imports
+   Global Theme Imports
 ──────────────────────────────── */
-@import 'tailwindcss';
 @import './colors.css';
-
-/* ───────────────────────────────
-   Theme Variables
-──────────────────────────────── */
-@theme {
-    --color-light-mode: var(--sr-master-light);
-    --color-green: var(--roulette-green);
-    --color-red: var(--roulette-red);
-    --color-winning: var(--winning-number);
-    --color-gray-350: var(--gray-350);
-    --color-green-250: var(--green-250);
-    --color-green-350: var(--green-350);
-    --color-github: var(--github-color);
-    --color-github-h: var(--github-color-hover);
-    --color-linkedin: var(--linkedin-color);
-    --color-linkedin-h: var(--linkedin-color-hover);
-}
-
-/* ───────────────────────────────
-   Plugins
-──────────────────────────────── */
 
 /* ───────────────────────────────
    Base Font & Smoothing
@@ -37,6 +15,25 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+* {
+    outline: 1px solid red;
+}
+*/
 
 /* ───────────────────────────────
    Background & Text Colors
@@ -157,4 +154,24 @@ html {
     justify-content: space-between;
     padding: 0 1rem;
     margin-bottom: 1rem;
+}
+
+.roulette-green {
+    background-color: var(--roulette-green);
+    color: white;
+}
+
+.roulette-red {
+    background-color:var(--roulette-red);
+    color: white;
+}
+
+.roulette-black {
+    background-color: var(--roulette-black);
+    color: white;
+}
+
+.roulette-unknown {
+    background-color: #9ca3af;
+    color: white;
 }

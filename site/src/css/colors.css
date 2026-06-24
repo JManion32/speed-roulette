@@ -33,6 +33,7 @@
     --link-color: #3b82f6;
     --link-color-hover: #a855f7;
     --section-divider: #4b5563;
+    --selected-chip-shadow: 0 0 0 4px white;
 
     /* ========== Home ========== */
     --home-splash-text-shadow: 0 0 6px rgb(255 255 255 / 40%);
@@ -86,6 +87,7 @@
     --link-color: #1d4ed8;
     --link-color-hover: #a855f7;
     --section-divider: #9ca3af;
+    --selected-chip-shadow: 0 0 0 4px #eab308;
 
     /* ========== Home ========== */
     --home-splash-text-shadow: 0 0 4px rgb(0 0 0 / 10%);

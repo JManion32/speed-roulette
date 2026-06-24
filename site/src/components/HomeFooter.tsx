@@ -27,7 +27,7 @@ export default function HomeFooter() {
             <span className="home-footer-divider">|</span>
 
             <p
-                className="home-footer-link home-footer-suggestion"
+                className="home-footer-link"
                 onClick={() =>
                     window.open(
                         'https://docs.google.com/forms/d/e/1FAIpQLScB-K5IMt4Bx_MBvFxeSjfaMtgWF5M3HrxAREoMcictemvp0w/viewform?usp=dialog',

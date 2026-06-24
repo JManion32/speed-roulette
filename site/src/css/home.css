@@ -75,8 +75,8 @@
 }
 
 .home-splash-text {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.15rem;
     font-weight: 700;
     white-space: nowrap;
     text-shadow: var(--home-splash-text-shadow)
@@ -89,7 +89,7 @@
 }
 
 .home-error-message {
-    margin-bottom: 0.25rem;
+    margin: 0.25rem 0;
     color: var(--error-msg);
     font-weight: 700;
 }
@@ -97,6 +97,7 @@
 .home-nickname-input {
     width: 25rem;
     height: 2.5rem;
+    font-size: 1rem;
     margin-bottom: 1.5rem;
     padding-left: 1rem;
     border: 0.125rem solid;
@@ -123,6 +124,8 @@
     font-weight: 700;
     transition: all var(--theme-transition) ease;
     box-shadow: var(--button-shadow);
+    color: var(--standard-text);
+    font-size: 1.1rem;
 }
 
 .home-play-button-enabled {
@@ -130,7 +133,7 @@
 }
 
 .home-play-button-enabled:hover {
-    background-color: var(--btn-primary-hover-bg);
+    background-color: var(--btn-primary-hover);
     transform: scale(1.05);
 }
 
@@ -203,6 +206,7 @@
     color: var(--footer-link);
     cursor: pointer;
     transition: all var(--theme-transition) ease;
+    margin: 0;
 }
 
 .home-footer-link:hover {
@@ -212,8 +216,4 @@
 .home-footer-share {
     min-width: 4rem;
     text-align: center;
-}
-
-.home-footer-suggestion {
-    margin-left: 0.3rem;
 }

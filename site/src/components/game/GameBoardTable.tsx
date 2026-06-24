@@ -7,12 +7,12 @@ type GameBoardNumberProps = {
 export default function GameBoardTable({ isWinning }: GameBoardNumberProps) {
     return (
         <>
-            <table className="border-collapse">
+            <table className="game-board-table">
                 <tbody>
                     {/* Zero row that spans 3 rows */}
                     <tr>
-                        <td rowSpan={3} className="p-0 border-0">
-                            <div className="flex flex-col h-full">
+                        <td rowSpan={3} className="game-board-row">
+                            <div className="zeros-container">
                                 <button className={`green-num ${isWinning('0') ? 'winning-glow-effect' : ''}`}>
                                     0
                                 </button>
@@ -68,16 +68,16 @@ export default function GameBoardTable({ isWinning }: GameBoardNumberProps) {
 
                     {/* Dozen bets */}
                     <tr>
-                        <td className="p-0 border-0"></td>
+                        <td className="game-board-row"></td>
                         <GameBoardDozen range="1-12" />
                         <GameBoardDozen range="13-24" />
                         <GameBoardDozen range="25-36" />
-                        <td className="p-0 border-0"></td>
+                        <td className="gane-board-row"></td>
                     </tr>
 
                     {/* Outside bets */}
                     <tr>
-                        <td className="p-0 border-0"></td>
+                        <td className="game-board-row"></td>
                         <GameBoardBottom value="1-18" color="green" />
                         <GameBoardBottom value="EVEN" color="green" />
                         <GameBoardBottom value="RED" color="red" />
