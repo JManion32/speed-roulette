@@ -1,5 +1,6 @@
 export default async function secureFetch(url: string, options: RequestInit = {}, onExpire?: () => void) {
     const token = localStorage.getItem('token');
+    console.log('Token:', token);
 
     const mergedOptions: RequestInit = {
         ...options,

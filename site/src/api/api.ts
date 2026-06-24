@@ -28,6 +28,7 @@ export async function logRound(betsJson: string) {
 
 export async function logGame(nickname: string, userBalance: number, remSpins: number, timeLeft: number) {
     const res = await secureFetch('/api/game', {
+        method: 'POST',
         body: JSON.stringify({
             nickname,
             final_balance: userBalance,
@@ -39,9 +40,7 @@ export async function logGame(nickname: string, userBalance: number, remSpins: n
 }
 
 export async function logout() {
-    const res = await secureFetch('/api/logout', {
+    await secureFetch('/api/logout', {
         method: 'DELETE',
     });
-
-    return res.json();
 }

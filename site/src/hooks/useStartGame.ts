@@ -17,10 +17,10 @@ export function useStartGame(nickname: string, setNickname: (val: string) => voi
         }
 
         try {
-            const res = await register(nickname);
+            const { token } = await register(nickname);
 
             localStorage.setItem('nickname', nickname);
-            localStorage.setItem('token', res);
+            localStorage.setItem('token', token);
             errorEl!.style.visibility = 'hidden';
 
             navigate('/game');
