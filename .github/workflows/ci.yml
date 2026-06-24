@@ -30,7 +30,7 @@ jobs:
               run: npm ci
 
             - name: Run Stylelint
-              run: npx stylelint .
+              run: npx stylelint **/*.{css,scss}
 
     prettier:
         name: Prettier
