@@ -8,6 +8,8 @@
     --roulette-black: #000;
     --roulette-green: #008000;
     --winning-number: #ffd700;
+    --footer-link: #6d28d9;
+    --footer-link-hover: #8b5cf6;
 }
 
 
@@ -18,9 +20,6 @@
     --sr-master-dark: #111827; /* gray-900 */
     --sr-master: #111827;
     --standard-text: #fff;
-    --active-tab: oklch(79.5% 0.184 86.047);
-    --inactive-tab-border: #374151;
-    --inactive-tab: #9ca3af;
 
     /* ========== Standard ========== */
     --standard-black: #000;
@@ -40,6 +39,12 @@
     --even-row: #111827;
     --odd-row: #1f2937;
 
+    /* ========== Tabs ========== */
+    --active-tab: oklch(79.5% 0.184 86.047);
+    --inactive-tab-border: #374151;
+    --inactive-tab: #9ca3af;
+    --inactive-tab-hover: #fff;
+
     /* ========== About Modal ========== */
     --github-color: #0d1117;
     --github-color-hover: #171b1f;
@@ -53,9 +58,6 @@
     /* ========== Master ========== */
     --sr-master: #e9eef3; /* Source: neetcode.io in light mode */
     --standard-text: #000;
-    --active-tab: #b45309;
-    --inactive-tab-border: #000000;
-    --inactive-tab: #6a7282;
 
     /* ========== Standard ========== */
     --standard-black: #000;
@@ -74,6 +76,12 @@
     --rank-3: #fed7aa;
     --even-row: #f3f4f6;
     --odd-row: #eaeef2;
+
+    /* ========== Tabs ========== */
+    --active-tab: #b45309;
+    --inactive-tab-border: #000000;
+    --inactive-tab: #6a7282;
+    --inactive-tab-hover: #000;
 
     /* ========== About Modal ========== */
     --github-color: #0d1117;

@@ -16,28 +16,15 @@
     cursor: pointer;
 }
 
-.tab-active-dark {
-    color: #f0b100;
-    border-bottom-color: #f0b100;
+.tab-active {
+    color: var(--active-tab);
+    border-bottom-color: var(--active-tab);
 }
 
-.tab-active-light {
-    color: #b45309;
-    border-bottom-color: #b45309;
+.tab-inactive {
+    color: var(--inactive-tab);
 }
 
-.tab-inactive-dark {
-    color: #9ca3af;
-}
-
-.tab-inactive-dark:hover {
-    color: #ffffff;
-}
-
-.tab-inactive-light {
-    color: #6b7280;
-}
-
-.tab-inactive-light:hover {
-    color: #000000;
+.tab-inactive:hover {
+    color: var(--inactive-tab-hover);
 }

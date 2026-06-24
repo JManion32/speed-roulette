@@ -24,15 +24,7 @@ export function Tabs({
             {tabs.map((tab) => (
                 <button
                     key={tab.value}
-                    className={`tab-button ${
-                        activeTab === tab.value
-                            ? theme === 'dark'
-                                ? 'tab-active-dark'
-                                : 'tab-active-light'
-                            : theme === 'dark'
-                              ? 'tab-inactive-dark'
-                              : 'tab-inactive-light'
-                    }`}
+                    className={`tab-button ${activeTab === tab.value ? theme === 'dark' ? 'tab-active-dark' : 'tab-active-light' : theme === 'dark' ? 'tab-inactive-dark' : 'tab-inactive-light'}`}
                     onClick={() => onTabChange(tab.value)}
                 >
                     {tab.label}
