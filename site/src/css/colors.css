@@ -1,12 +1,13 @@
-/* Constants not related to themes */
+/* Constants not related to specific themes */
 :root {
+    --theme-transition: 0.25s;
+    --site-font: system-ui, Helvetica, Arial, sans-serif;
+
     /* ========== Game ========== */
     --roulette-red: #ff0000;
     --roulette-black: #000;
     --roulette-green: #008000;
     --winning-number: #ffd700;
-
-    --theme-transition: 0.25s;
 }
 
 
@@ -27,6 +28,9 @@
     --gray-350: #b7bcc5;
     --green-250: #9af4bc;
     --green-350: #40e88d;
+    --btn-bg: #374151;
+    --btn-hover: #4b5563;
+    --btn-color: #fff;
 
     /* ========== Leaderboard ========== */
     --leaderboard-table-body-top: #e5e7eb;
@@ -59,6 +63,9 @@
     --gray-350: #b7bcc5;
     --green-250: #9af4bc;
     --green-350: #40e88d;
+    --btn-bg: #fff;
+    --btn-hover: #d1d5db;
+    --btn-color: #000;
 
     /* ========== Leaderboard ========== */
     --leaderboard-table-body-top: #000;

@@ -3,6 +3,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useLogout } from '../hooks/useLogout';
 import home from '../assets/home.png';
 import home_white from '../assets/home_white.png';
+import '../css/components/home-button.css';
 
 export default function HomeButton() {
     const { theme } = useTheme();
@@ -19,14 +20,14 @@ export default function HomeButton() {
         <button
             onClick={handleClick}
             data-cy="home-button"
-            className={`
-        absolute right-21 rounded-full w-15 h-15 
-        flex justify-center items-center 
-        duration-200 hover:scale-110 shadow-md
-        ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'}
-      `}
+            className={`home-button`}
         >
-            <img src={theme === 'dark' ? home_white : home} alt="Home" className="w-12 h-12" draggable="false" />
+            <img
+                src={theme === 'dark' ? home_white : home}
+                alt="Home"
+                className="home-button-icon"
+                draggable="false"
+            />
         </button>
     );
 }

@@ -13,6 +13,16 @@
     }
 }
 
+.glow-hot-header,
+.glow-cold-header {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 12rem;
+    transition: color var(--theme-transition) ease-in-out;
+}
+
 .glow-hot-header {
     text-shadow:
         0 0 0.1125rem #fb923c,
@@ -32,75 +42,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all var(--theme-transition) ease-in-out;
     user-select: none;
     min-height: 100vh;
-}
-
-.stats-header-row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1rem;
-    margin-bottom: 1rem;
 }
 
 .stats-container {
     width: 100%;
     max-width: 64rem;
     margin: 0 auto;
-}
-
-.stats-title {
-    transition: all var(--theme-transition) ease-in-out;
-    font-size: 4rem;
-    font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.stats-tab-list {
-    display: flex;
-    gap: 1.5rem;
-    border-bottom: 1px solid #374151;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.stats-tab-button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1.125rem;
-    transition: all var(--theme-transition) ease-in-out;
-    font-weight: 700;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.stats-tab-active-dark {
-    color: #f59e0b;
-    border-bottom: 2px solid #f59e0b;
-}
-
-.stats-tab-active-light {
-    color: #b45309;
-    border-bottom: 2px solid #b45309;
-}
-
-.stats-tab-inactive-dark {
-    color: #9ca3af;
-}
-
-.stats-tab-inactive-dark:hover {
-    color: #ffffff;
-}
-
-.stats-tab-inactive-light {
-    color: #6b7280;
-}
-
-.stats-tab-inactive-light:hover {
-    color: #000000;
 }
 
 .stats-main {
@@ -122,17 +71,11 @@
 }
 
 .stats-metric-row {
+    margin-top: 2.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 640px) {
-    .stats-metric-row {
-        gap: 4rem;
-    }
+    gap: 3rem;
 }
 
 .stats-metric-item {
@@ -143,6 +86,8 @@
 }
 
 .stats-metric-button {
+    color: var(--btn-color);
+    background-color: var(--btn-bg);
     transition: all var(--theme-transition) ease-in-out;
     height: 3rem;
     padding: 0 1rem;
@@ -153,30 +98,10 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-.stats-metric-button-dark {
-    color: #ffffff;
-    background-color: #4b5563;
-}
-
-.stats-metric-button-light {
-    color: #000000;
-    background-color: #ffffff;
-}
-
 .stats-number-section {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.stats-number-heading {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    white-space: nowrap;
-    width: 12rem;
-    transition: all var(--theme-transition) ease-in-out;
 }
 
 .stats-number-list {
@@ -188,7 +113,7 @@
 
 .stats-number-card {
     position: relative;
-    width: 3rem;
+    width: 4rem;
     height: 3rem;
     border-radius: 0.75rem;
     display: flex;
@@ -204,10 +129,10 @@
     top: 0;
     right: 0;
     font-size: 0.75rem;
-    color: #fbbf24;
+    color: oklch(90.5% .182 98.111);
     font-weight: 800;
     transform: translate(0.125rem, -0.125rem);
-    padding: 0 0.25rem;
+    padding: 0 0.5rem;
 }
 
 .stats-loading {
@@ -217,12 +142,8 @@
     min-height: 10rem;
 }
 
-.stats-chart-row {
-    margin-bottom: 1.5rem;
-}
-
 .stats-chart-cell {
-    min-height: 3rem;
+    height: 3rem;
 }
 
 .stats-footer-gap {

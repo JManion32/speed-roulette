@@ -1,25 +1,3 @@
-.loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10rem;
-}
-
-.spinner {
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 4px solid var(--active-tab);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .leaderboard-page {
     padding: 1rem;
     display: flex;
@@ -37,59 +15,14 @@
     color: var(--standard-text);
 }
 
-.leaderboard-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1rem;
-    margin-bottom: 1rem;
-}
-
 .leaderboard-container {
     width: 100%;
     max-width: 72rem;
     margin: 0 auto;
 }
 
-.leaderboard-title {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    transition: color var(--theme-transition);
-}
-
-.leaderboard-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--leaderboard-tabs-border);
-    margin-bottom: 1.5rem;
-    gap: 1.5rem;
-}
-
-.tab-button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1.25rem;
-    transition: color var(--theme-transition);
-    font-weight: bold;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.tab-button.inactive {
-    color: var(--leaderboard-tab-inactive);
-}
-
-.tab-button.inactive:hover {
-    color: var(--standard-text);
-}
-
-.tab-button.active {
-    color: var(--active-tab);
-    border-bottom: 2px solid var(--active-tab);
-}
-
 .leaderboard-table-container {
+    margin-top: 2rem;
     width: 100%;
     max-width: 72rem;
     overflow-x: auto;

@@ -29,7 +29,7 @@
    Base Font & Smoothing
 ──────────────────────────────── */
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: var(--site-font);
     line-height: 1.5;
     font-weight: 400;
     font-synthesis: none;
@@ -141,4 +141,20 @@ html {
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: content-box;
+}
+
+.page-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    transition: color var(--theme-transition);
+}
+
+.page-header-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
 }

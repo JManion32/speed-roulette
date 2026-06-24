@@ -1,59 +1,49 @@
 import '../css/stats.css';
 import { useState } from 'react';
-import { useTheme } from '../contexts/ThemeContext';
+import { StatsBarChart } from '../components/StatsBarChart';
+import { Tabs } from '../components/Tabs';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 import DarkModeToggle from '../components/ThemeToggle';
 import HomeButton from '../components/HomeButton';
 import { useStatData } from '../hooks/useStatData';
 import { getColorClass } from '../utils/recentNumColor';
-import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-import { createStackedBarData, stackedBarOptions } from '../utils/chartUtils';
-
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartDataLabels);
 
 function Stats() {
-    const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState<'today' | 'week' | 'month' | 'allTime'>('today');
     const { data: allStats, loading } = useStatData();
 
     const stats = allStats[activeTab];
 
-    if (loading || !stats) {
-        return (
-            <div className="stats-loading">
-                <div className="stats-spinner" />
-            </div>
-        );
+    if (loading) {
+        return <LoadingSpinner />;
     }
 
     return (
-        <div className={`stats-page ${theme === 'dark' ? 'stats-page-dark' : 'stats-page-light'}`}>
-            <div className="stats-header-row">
+        <div className={`stats-page`}>
+            <div className="page-header-row">
                 <HomeButton />
                 <DarkModeToggle />
             </div>
             <div className="stats-container">
-                <h1 className="stats-title">
+                <h1 className="page-title">
                     Site Statistics
                 </h1>
 
-                <div className="stats-tab-list">
-                    {['today', 'week', 'month', 'allTime'].map((tab) => (
-                        <button
-                            key={tab}
-                            className={`stats-tab-button ${activeTab === tab ? (theme === 'dark' ? 'stats-tab-active-dark' : 'stats-tab-active-light') : (theme === 'dark' ? 'stats-tab-inactive-dark' : 'stats-tab-inactive-light')}`}
-                            onClick={() => setActiveTab(tab as typeof activeTab)}
-                        >
-                            {tab === 'today' && 'Today'}
-                            {tab === 'week' && 'This Week'}
-                            {tab === 'month' && 'This Month'}
-                            {tab === 'allTime' && 'All Time'}
-                        </button>
-                    ))}
-                </div>
+                <Tabs
+                    tabs={[
+                        { value: 'today', label: 'Today' },
+                        { value: 'week', label: 'This Week' },
+                        { value: 'month', label: 'This Month' },
+                        { value: 'allTime', label: 'All Time' },
+                    ]}
+                    activeTab={activeTab}
+                    onTabChange={(tab) => setActiveTab(tab as typeof activeTab)}
+                />
 
                 <div className="stats-main">
                     <div className="stats-section">
@@ -61,7 +51,7 @@ function Stats() {
                             <div className="stats-metric-row">
                                 <div className="stats-metric-item">
                                     <button
-                                        className={`stats-metric-button ${theme === 'dark' ? 'stats-metric-button-dark' : 'stats-metric-button-light'}`}
+                                        className={`stats-metric-button`}
                                     >
                                         Spins: {stats.numSpins.toLocaleString()}
                                     </button>
@@ -69,7 +59,7 @@ function Stats() {
 
                                 <div className="stats-metric-item">
                                     <button
-                                        className={`stats-metric-button ${theme === 'dark' ? 'stats-metric-button-dark' : 'stats-metric-button-light'}`}
+                                        className={`stats-metric-button`}
                                     >
                                         Games Completed: {stats.completedGames.toLocaleString()}
                                     </button>
@@ -77,7 +67,7 @@ function Stats() {
 
                                 <div className="stats-metric-item">
                                     <button
-                                        className={`stats-metric-button ${theme === 'dark' ? 'stats-metric-button-dark' : 'stats-metric-button-light'}`}
+                                        className={`stats-metric-button`}
                                     >
                                         Total Won: $
                                         {stats.totalWon.toLocaleString(undefined, {
@@ -89,7 +79,7 @@ function Stats() {
                             </div>
 
                             <div className="stats-number-section">
-                                <h2 className="stats-number-heading glow-hot-header">
+                                <h2 className="glow-hot-header">
                                     🔥 Hottest Numbers:
                                 </h2>
                                 <div className="stats-number-list">
@@ -108,7 +98,7 @@ function Stats() {
                             </div>
 
                             <div className="stats-number-section">
-                                <h2 className="stats-number-heading glow-cold-header">
+                                <h2 className="glow-cold-header">
                                     ❄️ Coldest Numbers:
                                 </h2>
                                 <div className="stats-number-list">
@@ -127,50 +117,30 @@ function Stats() {
                             </div>
                         </div>
                     </div>
-                    <div className="stats-chart-row">
-                        <div className="stats-chart-cell">
-                            <Bar
-                                data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black', 'neither'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart
+                        counts={stats.colorCounts}
+                        labels={['red', 'green', 'black', 'neither']}
+                    />
 
-                    <div className="stats-chart-row">
-                        <div className="stats-chart-cell">
-                            <Bar
-                                data={createStackedBarData(stats.parityCounts, ['even', 'neither', 'odd'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart
+                        counts={stats.parityCounts}
+                        labels={['even', 'neither', 'odd']}
+                    />
 
-                    <div className="stats-chart-row">
-                        <div className="stats-chart-cell">
-                            <Bar
-                                data={createStackedBarData(stats.halfCounts, ['low', 'neither', 'high'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart
+                        counts={stats.halfCounts}
+                        labels={['low', 'neither', 'high']}
+                    />
 
-                    <div className="stats-chart-row">
-                        <div className="stats-chart-cell">
-                            <Bar
-                                data={createStackedBarData(stats.dozenCounts, ['first', 'second', 'third', 'neither'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart
+                        counts={stats.dozenCounts}
+                        labels={['first', 'second', 'third', 'neither']}
+                    />
 
-                    <div className="stats-chart-row">
-                        <div className="stats-chart-cell">
-                            <Bar
-                                data={createStackedBarData(stats.rowCounts, ['top', 'middle', 'bottom', 'neither'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart
+                        counts={stats.rowCounts}
+                        labels={['top', 'middle', 'bottom', 'neither']}
+                    />
                 </div>
                 <div className="stats-footer-gap"></div>
             </div>

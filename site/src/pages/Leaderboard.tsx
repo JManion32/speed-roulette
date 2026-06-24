@@ -1,54 +1,42 @@
 import '../css/leaderboard.css';
 import { useState } from 'react';
-
-import { useTheme } from '../contexts/ThemeContext';
-
+import { Tabs } from '../components/Tabs';
 import ThemeToggle from '../components/ThemeToggle';
 import HomeButton from '../components/HomeButton';
-
+import { LoadingSpinner } from '../components/LoadingSpinner';
 import { useAllLeaderboards } from '../hooks/useLeaderboardData';
 
 type Range = 'today' | 'week' | 'month' | 'allTime';
 import { LeaderboardEntry } from '../types/leaderboard';
 
 function Leaderboard() {
-    const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState<Range>('today');
-
     const { data: allLeaderboards, loading } = useAllLeaderboards();
     const leaderboard: LeaderboardEntry[] = allLeaderboards[activeTab] || [];
 
     if (loading) {
-        return (
-            <div className="loading-container">
-                <div className="spinner"></div>
-            </div>
-        );
+        return <LoadingSpinner />;
     }
 
     return (
         <div className={`leaderboard-page`}>
-            <div className="leaderboard-header">
+            <div className="page-header-row">
                 <HomeButton />
                 <ThemeToggle />
             </div>
             <div className="leaderboard-container">
-                <h1 className="leaderboard-title">Leaderboard</h1>
+                <h1 className="page-title">Leaderboard</h1>
 
-                <div className="leaderboard-tabs">
-                    {(['today', 'week', 'month', 'allTime'] as Range[]).map((tab) => (
-                        <button
-                            key={tab}
-                            className={`tab-button ${theme === 'dark' ? 'dark' : 'light'} ${activeTab === tab ? 'active' : 'inactive'}`}
-                            onClick={() => setActiveTab(tab)}
-                        >
-                            {tab === 'today' && 'Today'}
-                            {tab === 'week' && 'This Week'}
-                            {tab === 'month' && 'This Month'}
-                            {tab === 'allTime' && 'All Time'}
-                        </button>
-                    ))}
-                </div>
+                <Tabs
+                    tabs={[
+                        { value: 'today', label: 'Today' },
+                        { value: 'week', label: 'This Week' },
+                        { value: 'month', label: 'This Month' },
+                        { value: 'allTime', label: 'All Time' },
+                    ]}
+                    activeTab={activeTab}
+                    onTabChange={(tab) => setActiveTab(tab as typeof activeTab)}
+                />
 
                 <div className="leaderboard-table-container">
                     {leaderboard.length > 0 ? (
@@ -68,13 +56,13 @@ function Leaderboard() {
                                 {leaderboard.map((entry, i) => {
                                     let rowClass = '';
                                     if (i === 0) {
-                                        rowClass = `rank-1 ${theme === 'dark' ? '' : 'light'}`;
+                                        rowClass = `rank-1`;
                                     } else if (i === 1) {
-                                        rowClass = `rank-2 ${theme === 'dark' ? '' : 'light'}`;
+                                        rowClass = `rank-2`;
                                     } else if (i === 2) {
-                                        rowClass = `rank-3 ${theme === 'dark' ? '' : 'light'}`;
+                                        rowClass = `rank-3`;
                                     } else {
-                                        rowClass = `${i % 2 === 0 ? 'even' : 'odd'} ${theme === 'dark' ? '' : 'light'}`;
+                                        rowClass = `${i % 2 === 0 ? 'even' : 'odd'}`;
                                     }
 
                                     return (
