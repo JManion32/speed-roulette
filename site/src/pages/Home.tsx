@@ -2,46 +2,45 @@ import '../css/home.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AboutModal from '../components/modals/AboutModal.tsx';
-import { useTheme } from '../contexts/ThemeContext';
 import DarkModeToggle from '../components/ThemeToggle';
 import HomeFooter from '../components/HomeFooter';
+import HomeNavButton from '../components/HomeNavButton';
 import stats from '../assets/stats.png';
 import trophy from '../assets/trophy.png';
 import { useStartGame } from '../hooks/useStartGame';
 import { generateSplashText } from '../utils/generateSplashText';
 
 function Home() {
-    const { theme } = useTheme();
     const [nickname, setNickname] = useState('');
     const startGame = useStartGame(nickname, setNickname);
     const [splashText] = useState(() => generateSplashText());
 
     return (
         <div
-            className={`h-screen transition duration-200 select-none ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
+            className="home-page"
             data-cy="main-app-div"
         >
-            {/* Header */}
-            <div className="p-4 flex top-0">
+            <div className="home-header">
                 <DarkModeToggle />
             </div>
 
-            {/* Center content - using absolute positioning */}
-            <div className="absolute top-5/11 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mb-4">
-                <h1
-                    className={`text-[6.5rem] whitespace-nowrap font-bold fade-in transition duration-200 ${theme === 'dark' ? 'constant-glow' : 'light-glow'}`}
-                >
+            <div className="home-content">
+                <h1 className="home-title fade-in">
                     Speed Roulette
                 </h1>
-                <p
-                    className={`text-[1rem] mb-2 whitespace-nowrap font-bold fade-in transition duration-200 ${theme === 'dark' ? 'constant-glow' : 'light-glow'}`}
-                >
+
+                <p className="home-splash-text fade-in">
                     {splashText}
                 </p>
-                <div className="flex flex-col items-center">
-                    <p className="text-red-500 font-bold font-size: 4rem mb-1" id="profanity-error">
+
+                <div className="home-form">
+                    <p
+                        className="home-error-message"
+                        id="profanity-error"
+                    >
                         Please choose a clean nickname!
                     </p>
+
                     <input
                         type="text"
                         id="nickname-enter-form"
@@ -60,24 +59,19 @@ function Home() {
                             }
                         }}
                         maxLength={20}
-                        className={`transition duration-200 pl-4 font-bold shadow-md border-[0.125rem] ${theme === 'dark' ? 'bg-indigo-950 text-white border-gray-600' : 'bg-white text-black border-gray-400'} mb-6 rounded-md w-100 h-10`}
+                        className="home-nickname-input"
                         placeholder="Enter Nickname"
                         title="Enter your nickname"
                     />
+
                     <Link to="">
                         <button
                             data-cy="play-button"
-                            onClick={() => {
-                                startGame();
-                            }}
-                            className={`transition duration-200 px-8 py-2 rounded-md h-10 w-30 font-bold mb-14 shadow-md ${
+                            onClick={startGame}
+                            className={`home-play-button ${
                                 nickname === ''
-                                    ? theme === 'dark'
-                                        ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                                        : 'bg-gray-300 text-gray-400 cursor-not-allowed'
-                                    : theme === 'dark'
-                                      ? 'bg-green-500 hover:bg-green-400 transform hover:scale-105'
-                                      : 'bg-green-250 hover:bg-green-350 transform hover:scale-105'
+                                    ? 'home-play-button-disabled'
+                                    : 'home-play-button-enabled'
                             }`}
                             disabled={nickname === ''}
                         >
@@ -85,26 +79,26 @@ function Home() {
                         </button>
                     </Link>
                 </div>
-                <div className="flex justify-center gap-4">
+
+                <div className="home-navigation-container">
                     <AboutModal />
-                    <Link to="/leaderboard" className="inline-block">
-                        <button
-                            className={`${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn mr-10`}
-                            data-cy="open-leaderboard-page"
-                        >
-                            <img src={trophy} alt="Trophy" className="w-20 h-20" draggable="false" />
-                        </button>
-                    </Link>
-                    <Link to="/stats" className="inline-block">
-                        <button
-                            className={`${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-300'} home-action-btn`}
-                            data-cy="open-stats-page"
-                        >
-                            <img src={stats} alt="Statistics" className="w-20 h-20" draggable="false" />
-                        </button>
-                    </Link>
+
+                    <HomeNavButton
+                        to="/leaderboard"
+                        image={trophy}
+                        alt="Trophy"
+                        testId="open-leaderboard-page"
+                    />
+
+                    <HomeNavButton
+                        to="/stats"
+                        image={stats}
+                        alt="Statistics"
+                        testId="open-stats-page"
+                    />
                 </div>
             </div>
+
             <HomeFooter />
         </div>
     );

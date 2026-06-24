@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PrivacyModal from './modals/PrivacyModal.tsx';
-import '../css/components/home-footer.css';
+import '../css/home.css';
 
 export default function HomeFooter() {
     const [copied, setCopied] = useState(false);

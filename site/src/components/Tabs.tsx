@@ -1,5 +1,4 @@
-import '../css/tabs.css';
-import { useTheme } from '../contexts/ThemeContext';
+import '../css/components/tabs.css';
 
 interface TabOption {
     value: string;
@@ -17,14 +16,17 @@ export function Tabs({
     activeTab,
     onTabChange,
 }: TabsProps) {
-    const { theme } = useTheme();
 
     return (
         <div className="tabs-container">
             {tabs.map((tab) => (
                 <button
                     key={tab.value}
-                    className={`tab-button ${activeTab === tab.value ? theme === 'dark' ? 'tab-active-dark' : 'tab-active-light' : theme === 'dark' ? 'tab-inactive-dark' : 'tab-inactive-light'}`}
+                    className={`tab-button ${
+                        activeTab === tab.value
+                            ? 'tab-active'
+                            : 'tab-inactive'
+                    }`}
                     onClick={() => onTabChange(tab.value)}
                 >
                     {tab.label}

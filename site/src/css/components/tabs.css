@@ -3,17 +3,18 @@
     gap: 1.5rem;
     border-bottom: 1px solid #374151;
     flex-wrap: wrap;
+    margin-bottom: 2.5rem;
 }
 
 .tab-button {
     padding: 0.5rem 1.5rem;
-    font-size: 1.25rem;
-    transition: all var(--theme-transition) ease-in-out;
+    font-size: 1.4rem;
     font-weight: 700;
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
     cursor: pointer;
+    transition: all var(--theme-transition) ease-in-out;
 }
 
 .tab-active {

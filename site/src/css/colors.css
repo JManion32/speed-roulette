@@ -1,6 +1,6 @@
 /* Constants not related to specific themes */
 :root {
-    --theme-transition: 0.25s;
+    --theme-transition: .25s; /* Also button transition in most cases */
     --site-font: system-ui, Helvetica, Arial, sans-serif;
 
     /* ========== Game ========== */
@@ -10,14 +10,12 @@
     --winning-number: #ffd700;
     --footer-link: #6d28d9;
     --footer-link-hover: #8b5cf6;
+    --error-msg: #ef4444;
 }
 
 
-/* Root is dark mode, light mode is for accessibility. */
 [data-theme='dark'] {
     /* ========== Master ========== */
-    --sr-master-light: #e9eef3;
-    --sr-master-dark: #111827; /* gray-900 */
     --sr-master: #111827;
     --standard-text: #fff;
 
@@ -25,11 +23,26 @@
     --standard-black: #000;
     --standard-white: #fff;
     --gray-350: #b7bcc5;
-    --green-250: #9af4bc;
-    --green-350: #40e88d;
+    --btn-primary-bg: #22c55e;
+    --btn-primary-hover: #4ade80;
+    --btn-disabled-bg: #4b5563;
+    --btn-disabled-text: #9ca3af;
     --btn-bg: #374151;
     --btn-hover: #4b5563;
     --btn-color: #fff;
+    --link-color: #3b82f6;
+    --link-color-hover: #a855f7;
+    --section-divider: #4b5563;
+
+    /* ========== Home ========== */
+    --home-splash-text-shadow: 0 0 6px rgb(255 255 255 / 40%);
+    --name-input-bg: #1e1a4d;
+    --name-input-color: #fff;
+    --name-input-border: #4b5563;
+
+    /* ========== Modals ========== */
+    --modal-bg: #1f2937;
+    --modal-bg-bg: rgb(17 24 39 / 80%);
 
     /* ========== Leaderboard ========== */
     --leaderboard-table-body-top: #e5e7eb;
@@ -46,10 +59,10 @@
     --inactive-tab-hover: #fff;
 
     /* ========== About Modal ========== */
-    --github-color: #0d1117;
-    --github-color-hover: #171b1f;
-    --linkedin-color: #0177b5;
-    --linkedin-color-hover: #1a8cd3;
+    --github: #0d1117;
+    --github-hover: #171b1f;
+    --linkedin: #0177b5;
+    --linkedin-hover: #1a8cd3;
 }
 
 
@@ -63,11 +76,26 @@
     --standard-black: #000;
     --standard-white: #fff;
     --gray-350: #b7bcc5;
-    --green-250: #9af4bc;
-    --green-350: #40e88d;
+    --btn-primary-bg: #9af4bc;
+    --btn-primary-hover: #40e88d;
+    --btn-disabled-bg: #d1d5db;
+    --btn-disabled-text: #9ca3af;
     --btn-bg: #fff;
     --btn-hover: #d1d5db;
     --btn-color: #000;
+    --link-color: #1d4ed8;
+    --link-color-hover: #a855f7;
+    --section-divider: #9ca3af;
+
+    /* ========== Home ========== */
+    --home-splash-text-shadow: 0 0 4px rgb(0 0 0 / 10%);
+    --name-input-bg: #fff;
+    --name-input-color: #000;
+    --name-input-border: #9ca3af;
+
+    /* ========== Modals ========== */
+    --modal-bg: var(--sr-master);
+    --modal-bg-bg: rgb(17 24 39 / 80%);
 
     /* ========== Leaderboard ========== */
     --leaderboard-table-body-top: #000;
@@ -84,8 +112,8 @@
     --inactive-tab-hover: #000;
 
     /* ========== About Modal ========== */
-    --github-color: #0d1117;
-    --github-color-hover: #171b1f;
-    --linkedin-color: #0177b5;
-    --linkedin-color-hover: #1a8cd3;
+    --github: #0d1117;
+    --github-hover: #171b1f;
+    --linkedin: #0177b5;
+    --linkedin-hover: #1a8cd3;
 }

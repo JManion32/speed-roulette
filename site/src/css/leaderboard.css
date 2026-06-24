@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    transition: background-color var(--theme-transition), color var(--theme-transition);
+    transition: all var(--theme-transition) ease;
     user-select: none;
     scrollbar-gutter: stable;
 }
@@ -22,7 +22,6 @@
 }
 
 .leaderboard-table-container {
-    margin-top: 2rem;
     width: 100%;
     max-width: 72rem;
     overflow-x: auto;
@@ -33,7 +32,7 @@
     text-align: left;
     border-collapse: collapse;
     margin-top: 1rem;
-    transition: background-color var(--theme-transition), color var(--theme-transition);
+    transition: all var(--theme-transition) ease;
     table-layout: auto;
 }
 
@@ -41,7 +40,7 @@
     padding: 0.5rem;
     text-align: left;
     font-size: 1.25rem;
-    transition: color var(--theme-transition);
+    transition: all var(--theme-transition) ease;
 }
 
 .leaderboard-table td {
@@ -91,7 +90,7 @@
 
 .leaderboard-table thead tr {
     font-size: 1.25rem;
-    transition: color var(--theme-transition);
+    transition: all var(--theme-transition) ease;
 }
 
 .leaderboard-table th:nth-child(1) {
@@ -123,7 +122,7 @@
 .leaderboard-table tbody tr {
     font-size: 1.125rem;
     border-top: 1px solid var(--leaderboard-table-body-top);
-    transition: background-color var(--theme-transition), color var(--theme-transition);
+    transition: all var(--theme-transition) ease;
 }
 
 .leaderboard-table tbody tr.rank-1 {
@@ -176,7 +175,7 @@
     font-size: 1.25rem;
     margin-top: 1rem;
     text-align: center;
-    transition: color var(--theme-transition);
+    transition: all var(--theme-transition) ease;
     font-weight: bold;
     font-style: italic;
 }

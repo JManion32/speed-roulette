@@ -205,3 +205,51 @@
     align-items: center;
     justify-content: center;
 }
+
+/* ========================================= */
+/* MAIN GAME PAGE */
+/* ========================================= */
+
+.game-page {
+    height: 100vh;
+    user-select: none;
+    transition: all 0.2s ease;
+    background-color: var(--sr-master);
+    color: var(--standard-text);
+}
+
+.game-content {
+    position: absolute;
+    top: 11.7647%; /* top-2/17 */
+    width: 100%;
+}
+
+.game-content-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.game-chip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 9999px;
+
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    z-index: 20;
+}

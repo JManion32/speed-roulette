@@ -32,20 +32,188 @@
     visibility: hidden;
 }
 
-.home-action-btn {
+/* ========================================= */
+/* MAIN HOME PAGE */
+/* ========================================= */
+.home-page {
+    height: 100vh;
+    user-select: none;
+    transition: all var(--theme-transition) ease;
+    background-color: var(--sr-master);
+    color: var(--standard-text);
+}
+
+.home-header {
+    display: flex;
+    padding: 1rem;
+}
+
+.home-content {
+    position: absolute;
+    top: 45.45%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+.home-title {
+    margin: 0;
+    font-size: 6.5rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+[data-theme='dark'] .home-title {
+    text-shadow:
+        0 0 6px rgb(255 255 255 / 40%),
+        0 0 10px rgb(255 255 255 / 20%);
+}
+
+[data-theme='light'] .home-title {
+    text-shadow:
+        0 0 6px rgb(0 0 0 / 15%);
+}
+
+.home-splash-text {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    text-shadow: var(--home-splash-text-shadow)
+}
+
+.home-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-error-message {
+    margin-bottom: 0.25rem;
+    color: var(--error-msg);
+    font-weight: 700;
+}
+
+.home-nickname-input {
+    width: 25rem;
+    height: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border: 0.125rem solid;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    box-shadow: var(--button-shadow);
+    transition: all var(--theme-transition) ease;
+    background-color: var(--name-input-bg);
+    color: var(--name-input-color);
+    border-color: var(--name-input-border);
+}
+
+.home-nickname-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.home-play-button {
+    width: 7.5rem;
+    height: 2.5rem;
+    margin-bottom: 3.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    transition: all var(--theme-transition) ease;
+    box-shadow: var(--button-shadow);
+}
+
+.home-play-button-enabled {
+    background-color: var(--btn-primary-bg);
+}
+
+.home-play-button-enabled:hover {
+    background-color: var(--btn-primary-hover-bg);
+    transform: scale(1.05);
+}
+
+.home-play-button-disabled {
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
+    cursor: not-allowed;
+}
+
+/* ========================================= */
+/* HOME NAVIGATION BUTTONS */
+/* ========================================= */
+.home-navigation-container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.home-navigation-button-link {
+    display: inline-block;
+}
+
+.home-navigation-button {
+    border: none;
+    cursor: pointer;
+    transition: all var(--theme-transition) ease;
+    background-color: var(--btn-bg);
     width: 7.5rem; /* w-30 */
     height: 7.5rem; /* h-30 */
     border-radius: 9999px; /* rounded-full */
     display: flex; /* flex */
     justify-content: center; /* justify-center */
     align-items: center; /* items-center */
-    transition-duration: 200ms; /* duration-200 */
     box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.1),
         0 2px 4px rgba(0, 0, 0, 0.06); /* shadow-md */
 }
 
-/* Hover effect */
-.home-action-btn:hover {
-    transform: scale(1.1); /* hover:scale-110 */
+.home-navigation-button:hover {
+    background-color: var(--btn-hover);
+    transform: scale(1.1);
+}
+
+.home-navigation-button-icon {
+    width: 5rem;   /* w-20 */
+    height: 5rem;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ========================================= */
+/* HOME FOOTER */
+/* ========================================= */
+.home-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.home-footer-divider {
+    display: inline-block;
+    margin: 0 1.2rem;
+}
+
+.home-footer-link {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--footer-link);
+    cursor: pointer;
+    transition: all var(--theme-transition) ease;
+}
+
+.home-footer-link:hover {
+    color: var(--footer-link-hover);
+}
+
+.home-footer-share {
+    min-width: 4rem;
+    text-align: center;
+}
+
+.home-footer-suggestion {
+    margin-left: 0.3rem;
 }
