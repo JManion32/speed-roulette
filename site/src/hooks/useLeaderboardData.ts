@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LeaderboardEntry } from '../types/leaderboard';
+import api from '../api';
 
 type Range = 'today' | 'week' | 'month' | 'allTime';
 
@@ -21,17 +22,7 @@ export function useAllLeaderboards(): {
     useEffect(() => {
         const fetchAllLeaderboards = async () => {
             try {
-                const res = await fetch('/api/leaderboards');
-
-                if (res.status === 429) {
-                    alert("You're making requests too quickly. Please wait a moment.");
-                    navigate('/');
-                    return;
-                }
-
-                if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-
-                const result = await res.json();
+                const result = await api.getLeaderboard();
 
                 if (typeof result === 'object' && result !== null) {
                     setAllData({
@@ -42,6 +33,11 @@ export function useAllLeaderboards(): {
                     });
                 }
             } catch (err) {
+                if (err instanceof Error && err.message === 'Rate limited') {
+                    alert("You're making requests too quickly. Please wait a moment.");
+                    navigate('/');
+                    return;
+                }
                 console.error('Failed to fetch all leaderboards:', err);
             } finally {
                 setLoading(false);
