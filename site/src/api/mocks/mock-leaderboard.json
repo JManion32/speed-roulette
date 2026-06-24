@@ -1,0 +1,715 @@
+{
+    "allTime": [
+        {
+            "nickname": "Jnol",
+            "final_balance": 34880,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-11-11T02:10:07.053571Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 25920,
+            "rem_time": 0,
+            "rem_spins": 8,
+            "played_at": "2025-11-11T02:02:05.422804Z"
+        },
+        {
+            "nickname": "[CW] Finley",
+            "final_balance": 12960,
+            "rem_time": 0,
+            "rem_spins": 6,
+            "played_at": "2025-11-10T19:20:52.698029Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 10000,
+            "rem_time": 3,
+            "rem_spins": 0,
+            "played_at": "2025-08-23T02:54:45.248096Z"
+        },
+        {
+            "nickname": "Jnol ",
+            "final_balance": 6700,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-07-29T23:49:30.080212Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 6000,
+            "rem_time": 16,
+            "rem_spins": 0,
+            "played_at": "2025-07-29T21:45:28.563349Z"
+        },
+        {
+            "nickname": "Jnolli",
+            "final_balance": 4640,
+            "rem_time": 14,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T00:33:15.767598Z"
+        },
+        {
+            "nickname": "Chris",
+            "final_balance": 3820,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-07-25T20:57:01.854218Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 3810,
+            "rem_time": 6,
+            "rem_spins": 0,
+            "played_at": "2025-11-11T03:45:25.250626Z"
+        },
+        {
+            "nickname": "[LC] Finley",
+            "final_balance": 3600,
+            "rem_time": 0,
+            "rem_spins": 6,
+            "played_at": "2026-04-10T09:02:11.466446Z"
+        },
+        {
+            "nickname": "[LC] Finley",
+            "final_balance": 3440,
+            "rem_time": 0,
+            "rem_spins": 6,
+            "played_at": "2026-04-06T06:44:46.586136Z"
+        },
+        {
+            "nickname": "monty",
+            "final_balance": 3120,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-08-28T22:30:10.586442Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 3120,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-11-11T03:56:25.299613Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 2700,
+            "rem_time": 28,
+            "rem_spins": 0,
+            "played_at": "2025-07-30T01:43:45.451219Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 2510,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-08-23T20:40:50.825262Z"
+        },
+        {
+            "nickname": "[CW] Finley",
+            "final_balance": 2500,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-11-10T19:17:41.536708Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 2470,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-07-30T02:02:57.906798Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 2300,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-08-07T21:52:41.325627Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 2238,
+            "rem_time": 14,
+            "rem_spins": 0,
+            "played_at": "2025-11-11T03:54:04.413173Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 2160,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-11-10T13:07:04.683604Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 2120,
+            "rem_time": 3,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T01:09:12.480385Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 1970,
+            "rem_time": 23,
+            "rem_spins": 0,
+            "played_at": "2025-07-29T19:13:56.729242Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 1820,
+            "rem_time": 8,
+            "rem_spins": 0,
+            "played_at": "2025-08-08T02:45:00.026611Z"
+        },
+        {
+            "nickname": "[CW] Ethan R",
+            "final_balance": 1760,
+            "rem_time": 22,
+            "rem_spins": 0,
+            "played_at": "2025-11-10T07:04:06.954034Z"
+        },
+        {
+            "nickname": "[LC]Bram",
+            "final_balance": 1720,
+            "rem_time": 15,
+            "rem_spins": 0,
+            "played_at": "2026-04-10T13:24:13.287723Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 1620,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-07-25T23:59:39.152313Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 1610,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-07-30T01:58:20.559948Z"
+        },
+        {
+            "nickname": "[LC] Finley",
+            "final_balance": 1600,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2026-04-10T08:54:38.582018Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 1520,
+            "rem_time": 20,
+            "rem_spins": 0,
+            "played_at": "2025-11-10T23:42:55.192787Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 1320,
+            "rem_time": 12,
+            "rem_spins": 0,
+            "played_at": "2025-11-10T23:38:48.245358Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 1270,
+            "rem_time": 15,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T00:44:40.369312Z"
+        },
+        {
+            "nickname": "[Torre] Andy",
+            "final_balance": 1240,
+            "rem_time": 0,
+            "rem_spins": 6,
+            "played_at": "2026-04-09T21:22:09.059931Z"
+        },
+        {
+            "nickname": "K8lynn",
+            "final_balance": 1220,
+            "rem_time": 4,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T01:00:42.474687Z"
+        },
+        {
+            "nickname": "[LC] Justin",
+            "final_balance": 1220,
+            "rem_time": 33,
+            "rem_spins": 0,
+            "played_at": "2026-04-10T09:07:24.704032Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 1220,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-08-07T21:44:43.582676Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 1120,
+            "rem_time": 28,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T15:15:22.02066Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 1110,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-08-23T20:24:49.92509Z"
+        },
+        {
+            "nickname": "[CW] Justin",
+            "final_balance": 1040,
+            "rem_time": 34,
+            "rem_spins": 0,
+            "played_at": "2025-11-12T04:07:09.738606Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 1010,
+            "rem_time": 19,
+            "rem_spins": 0,
+            "played_at": "2025-07-23T23:23:49.402708Z"
+        },
+        {
+            "nickname": "[LC] Finley",
+            "final_balance": 1000,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2026-04-10T08:41:15.909051Z"
+        },
+        {
+            "nickname": "[LC] Justin",
+            "final_balance": 1000,
+            "rem_time": 13,
+            "rem_spins": 0,
+            "played_at": "2026-04-06T05:27:40.213111Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 1000,
+            "rem_time": 39,
+            "rem_spins": 0,
+            "played_at": "2025-07-27T03:46:28.211355Z"
+        },
+        {
+            "nickname": "[Deverry] Raymond",
+            "final_balance": 960,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2026-04-07T18:49:37.41798Z"
+        },
+        {
+            "nickname": "Alex",
+            "final_balance": 820,
+            "rem_time": 20,
+            "rem_spins": 0,
+            "played_at": "2025-08-29T20:51:11.647509Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 800,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-08-24T19:33:25.48082Z"
+        },
+        {
+            "nickname": "[CW] Finley",
+            "final_balance": 800,
+            "rem_time": 1,
+            "rem_spins": 0,
+            "played_at": "2025-11-10T06:57:41.517292Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 740,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-07-27T21:35:53.425206Z"
+        },
+        {
+            "nickname": "[THines] Max",
+            "final_balance": 735,
+            "rem_time": 24,
+            "rem_spins": 0,
+            "played_at": "2025-11-11T02:28:15.770114Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 720,
+            "rem_time": 0,
+            "rem_spins": 9,
+            "played_at": "2025-08-07T21:37:47.309071Z"
+        },
+        {
+            "nickname": "[Deverry] Raymond",
+            "final_balance": 720,
+            "rem_time": 0,
+            "rem_spins": 6,
+            "played_at": "2026-04-10T04:32:28.40267Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 720,
+            "rem_time": 0,
+            "rem_spins": 9,
+            "played_at": "2025-10-18T03:59:28.569459Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 700,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-11-10T12:46:21.308754Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 700,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-08-24T03:04:41.576726Z"
+        },
+        {
+            "nickname": "b4lls",
+            "final_balance": 640,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2026-02-11T01:36:38.099615Z"
+        },
+        {
+            "nickname": "Harry",
+            "final_balance": 580,
+            "rem_time": 19,
+            "rem_spins": 0,
+            "played_at": "2025-11-18T08:11:38.666359Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 540,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-08-24T02:56:35.973317Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 540,
+            "rem_time": 46,
+            "rem_spins": 0,
+            "played_at": "2025-11-11T04:12:05.487895Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 520,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-07-23T23:54:32.72001Z"
+        },
+        {
+            "nickname": "K8lynn",
+            "final_balance": 460,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-24T00:58:07.576175Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 430,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-27T21:34:22.974438Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 420,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-27T03:40:35.333892Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 420,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-11-10T23:50:05.971524Z"
+        },
+        {
+            "nickname": "[Deverry] Raymond",
+            "final_balance": 410,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2026-04-06T19:15:10.676765Z"
+        },
+        {
+            "nickname": "jenna",
+            "final_balance": 400,
+            "rem_time": 4,
+            "rem_spins": 0,
+            "played_at": "2025-07-26T23:13:56.978853Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 390,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-07-27T03:33:34.366996Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 380,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-07-25T19:25:39.187211Z"
+        },
+        {
+            "nickname": "Alex",
+            "final_balance": 360,
+            "rem_time": 22,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T15:57:59.791591Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 360,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-07-23T23:48:40.19085Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 350,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-07-30T01:55:31.107214Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 345,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-07-27T03:27:56.033852Z"
+        },
+        {
+            "nickname": "[THines] Kai",
+            "final_balance": 320,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-11-11T03:48:31.604987Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 320,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-07-24T00:26:48.797063Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 310,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-28T05:05:21.559937Z"
+        },
+        {
+            "nickname": "K8lynn",
+            "final_balance": 310,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-24T00:56:38.535126Z"
+        },
+        {
+            "nickname": "jenna",
+            "final_balance": 300,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-26T04:24:14.911208Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 280,
+            "rem_time": 16,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T00:21:26.815713Z"
+        },
+        {
+            "nickname": "Harry",
+            "final_balance": 275,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-11-18T08:04:21.988629Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 270,
+            "rem_time": 29,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T17:59:36.599813Z"
+        },
+        {
+            "nickname": "[Deverry] Raymond",
+            "final_balance": 260,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2026-04-07T00:13:46.548421Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 260,
+            "rem_time": 0,
+            "rem_spins": 6,
+            "played_at": "2025-07-23T23:47:03.392913Z"
+        },
+        {
+            "nickname": "[CW] Madhav",
+            "final_balance": 240,
+            "rem_time": 4,
+            "rem_spins": 0,
+            "played_at": "2025-11-11T01:47:36.86671Z"
+        },
+        {
+            "nickname": "Jnol",
+            "final_balance": 235,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-07-23T23:41:20.852456Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 230,
+            "rem_time": 28,
+            "rem_spins": 0,
+            "played_at": "2025-07-27T22:34:11.844207Z"
+        },
+        {
+            "nickname": "Jnol",
+            "final_balance": 225,
+            "rem_time": 0,
+            "rem_spins": 9,
+            "played_at": "2025-07-26T17:15:23.490234Z"
+        },
+        {
+            "nickname": "krause",
+            "final_balance": 220,
+            "rem_time": 22,
+            "rem_spins": 0,
+            "played_at": "2025-07-23T23:15:17.42081Z"
+        },
+        {
+            "nickname": "[CW] Justin",
+            "final_balance": 220,
+            "rem_time": 32,
+            "rem_spins": 0,
+            "played_at": "2025-11-10T22:07:38.01837Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 220,
+            "rem_time": 7,
+            "rem_spins": 0,
+            "played_at": "2025-07-25T18:05:29.908224Z"
+        },
+        {
+            "nickname": "K8lynn",
+            "final_balance": 210,
+            "rem_time": 17,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T00:50:23.505323Z"
+        },
+        {
+            "nickname": "K8lynn",
+            "final_balance": 210,
+            "rem_time": 13,
+            "rem_spins": 0,
+            "played_at": "2025-07-24T00:45:23.608744Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 210,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-08-24T02:51:24.609901Z"
+        },
+        {
+            "nickname": "[LC] Justin",
+            "final_balance": 200,
+            "rem_time": 48,
+            "rem_spins": 0,
+            "played_at": "2026-04-06T20:23:43.496716Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 200,
+            "rem_time": 0,
+            "rem_spins": 2,
+            "played_at": "2025-07-27T03:31:46.695224Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 190,
+            "rem_time": 0,
+            "rem_spins": 4,
+            "played_at": "2025-07-26T03:56:13.198223Z"
+        },
+        {
+            "nickname": "JMan32",
+            "final_balance": 190,
+            "rem_time": 42,
+            "rem_spins": 0,
+            "played_at": "2025-07-23T23:09:46.334661Z"
+        },
+        {
+            "nickname": "Kevin",
+            "final_balance": 170,
+            "rem_time": 0,
+            "rem_spins": 1,
+            "played_at": "2025-08-25T03:14:28.728674Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 170,
+            "rem_time": 0,
+            "rem_spins": 3,
+            "played_at": "2025-07-23T23:43:37.815754Z"
+        },
+        {
+            "nickname": "JMAn32",
+            "final_balance": 160,
+            "rem_time": 25,
+            "rem_spins": 0,
+            "played_at": "2025-07-29T21:31:48.589228Z"
+        },
+        {
+            "nickname": "Geoff",
+            "final_balance": 150,
+            "rem_time": 11,
+            "rem_spins": 0,
+            "played_at": "2025-07-25T01:17:59.170321Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 140,
+            "rem_time": 9,
+            "rem_spins": 0,
+            "played_at": "2025-08-07T20:28:50.933329Z"
+        },
+        {
+            "nickname": "Mom",
+            "final_balance": 130,
+            "rem_time": 0,
+            "rem_spins": 5,
+            "played_at": "2025-07-25T02:31:56.079327Z"
+        }
+    ],
+    "month": [
+        {
+            "nickname": "Cody",
+            "final_balance": 15,
+            "rem_time": 8,
+            "rem_spins": 0,
+            "played_at": "2026-06-17T19:32:21.902312Z"
+        }
+    ],
+    "today": null,
+    "week": null
+}

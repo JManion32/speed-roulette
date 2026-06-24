@@ -1,0 +1,370 @@
+{
+    "allTime": {
+        "colorCounts": {
+            "black": 8241,
+            "green": 886,
+            "red": 8175
+        },
+        "parityCounts": {
+            "even": 8234,
+            "none": 886,
+            "odd": 8182
+        },
+        "halfCounts": {
+            "high": 8228,
+            "low": 8188,
+            "none": 886
+        },
+        "dozenCounts": {
+            "first": 5460,
+            "none": 886,
+            "second": 5444,
+            "third": 5512
+        },
+        "rowCounts": {
+            "bottom": 5529,
+            "middle": 5519,
+            "none": 886,
+            "top": 5368
+        },
+        "hottestNumbers": [
+            {
+                "number": 1,
+                "count": 492
+            },
+            {
+                "number": 11,
+                "count": 488
+            },
+            {
+                "number": 26,
+                "count": 487
+            },
+            {
+                "number": 34,
+                "count": 487
+            },
+            {
+                "number": 23,
+                "count": 486
+            },
+            {
+                "number": 16,
+                "count": 484
+            },
+            {
+                "number": 8,
+                "count": 481
+            }
+        ],
+        "coldestNumbers": [
+            {
+                "number": 21,
+                "count": 408
+            },
+            {
+                "number": 37,
+                "count": 415
+            },
+            {
+                "number": 6,
+                "count": 424
+            },
+            {
+                "number": 12,
+                "count": 425
+            },
+            {
+                "number": 20,
+                "count": 425
+            },
+            {
+                "number": 13,
+                "count": 428
+            },
+            {
+                "number": 32,
+                "count": 429
+            }
+        ],
+        "numSpins": 17302,
+        "completedGames": 219,
+        "totalWon": 197144
+    },
+    "month": {
+        "colorCounts": {
+            "black": 9,
+            "green": 1,
+            "red": 11
+        },
+        "parityCounts": {
+            "even": 11,
+            "none": 1,
+            "odd": 9
+        },
+        "halfCounts": {
+            "high": 10,
+            "low": 10,
+            "none": 1
+        },
+        "dozenCounts": {
+            "first": 7,
+            "none": 1,
+            "second": 6,
+            "third": 7
+        },
+        "rowCounts": {
+            "bottom": 5,
+            "middle": 7,
+            "none": 1,
+            "top": 8
+        },
+        "hottestNumbers": [
+            {
+                "number": 2,
+                "count": 2
+            },
+            {
+                "number": 18,
+                "count": 2
+            },
+            {
+                "number": 19,
+                "count": 2
+            },
+            {
+                "number": 30,
+                "count": 2
+            },
+            {
+                "number": 33,
+                "count": 2
+            },
+            {
+                "number": 37,
+                "count": 1
+            },
+            {
+                "number": 1,
+                "count": 1
+            }
+        ],
+        "coldestNumbers": [
+            {
+                "number": 0,
+                "count": 0
+            },
+            {
+                "number": 3,
+                "count": 0
+            },
+            {
+                "number": 7,
+                "count": 0
+            },
+            {
+                "number": 8,
+                "count": 0
+            },
+            {
+                "number": 9,
+                "count": 0
+            },
+            {
+                "number": 10,
+                "count": 0
+            },
+            {
+                "number": 12,
+                "count": 0
+            }
+        ],
+        "numSpins": 21,
+        "completedGames": 1,
+        "totalWon": 15
+    },
+    "today": {
+        "colorCounts": {
+            "black": 1,
+            "green": 1,
+            "red": 3
+        },
+        "parityCounts": {
+            "even": 3,
+            "none": 1,
+            "odd": 1
+        },
+        "halfCounts": {
+            "high": 2,
+            "low": 2,
+            "none": 1
+        },
+        "dozenCounts": {
+            "first": 1,
+            "none": 1,
+            "second": 2,
+            "third": 1
+        },
+        "rowCounts": {
+            "bottom": 1,
+            "middle": 1,
+            "none": 1,
+            "top": 2
+        },
+        "hottestNumbers": [
+            {
+                "number": 37,
+                "count": 1
+            },
+            {
+                "number": 2,
+                "count": 1
+            },
+            {
+                "number": 18,
+                "count": 1
+            },
+            {
+                "number": 19,
+                "count": 1
+            },
+            {
+                "number": 30,
+                "count": 1
+            },
+            {
+                "number": 0,
+                "count": 0
+            },
+            {
+                "number": 1,
+                "count": 0
+            }
+        ],
+        "coldestNumbers": [
+            {
+                "number": 3,
+                "count": 0
+            },
+            {
+                "number": 4,
+                "count": 0
+            },
+            {
+                "number": 5,
+                "count": 0
+            },
+            {
+                "number": 6,
+                "count": 0
+            },
+            {
+                "number": 7,
+                "count": 0
+            },
+            {
+                "number": 8,
+                "count": 0
+            },
+            {
+                "number": 9,
+                "count": 0
+            }
+        ],
+        "numSpins": 5,
+        "completedGames": 0,
+        "totalWon": 0
+    },
+    "week": {
+        "colorCounts": {
+            "black": 1,
+            "green": 1,
+            "red": 3
+        },
+        "parityCounts": {
+            "even": 3,
+            "none": 1,
+            "odd": 1
+        },
+        "halfCounts": {
+            "high": 2,
+            "low": 2,
+            "none": 1
+        },
+        "dozenCounts": {
+            "first": 1,
+            "none": 1,
+            "second": 2,
+            "third": 1
+        },
+        "rowCounts": {
+            "bottom": 1,
+            "middle": 1,
+            "none": 1,
+            "top": 2
+        },
+        "hottestNumbers": [
+            {
+                "number": 37,
+                "count": 1
+            },
+            {
+                "number": 2,
+                "count": 1
+            },
+            {
+                "number": 18,
+                "count": 1
+            },
+            {
+                "number": 19,
+                "count": 1
+            },
+            {
+                "number": 30,
+                "count": 1
+            },
+            {
+                "number": 0,
+                "count": 0
+            },
+            {
+                "number": 1,
+                "count": 0
+            }
+        ],
+        "coldestNumbers": [
+            {
+                "number": 3,
+                "count": 0
+            },
+            {
+                "number": 4,
+                "count": 0
+            },
+            {
+                "number": 5,
+                "count": 0
+            },
+            {
+                "number": 6,
+                "count": 0
+            },
+            {
+                "number": 7,
+                "count": 0
+            },
+            {
+                "number": 8,
+                "count": 0
+            },
+            {
+                "number": 9,
+                "count": 0
+            }
+        ],
+        "numSpins": 5,
+        "completedGames": 0,
+        "totalWon": 0
+    }
+}
