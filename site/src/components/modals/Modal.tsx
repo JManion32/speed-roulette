@@ -1,6 +1,6 @@
-import { useDarkMode } from '../../contexts/DarkModeContext';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import '../../css/components/modal.css';
 
 type Props = {
     canOutsideClick?: boolean;
@@ -9,7 +9,6 @@ type Props = {
 };
 
 function Modal({ canOutsideClick = true, trigger, children }: Props) {
-    const { isDarkMode } = useDarkMode();
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -23,17 +22,14 @@ function Modal({ canOutsideClick = true, trigger, children }: Props) {
 
     const modal = isOpen ? (
         <div
-            className="modal-overlay fixed inset-0 z-50 bg-gray-900/80 flex justify-center items-center"
+            className="modal-overlay"
             onClick={canOutsideClick ? closeModal : undefined}
             aria-modal="true"
             role="dialog"
             data-cy="modal-bg"
         >
             <div
-                className={`relative rounded-3xl w-[50rem] max-w-[90%] max-h-[90vh] p-8 overflow-y-auto
-                    ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-light-mode text-black'} 
-                    ${isClosing ? 'slide-down' : 'slide-up'}
-                `}
+                className={`modal-content ${isClosing ? 'slide-down' : 'slide-up'}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {children}

@@ -1,31 +1,21 @@
 import { useState, useEffect } from 'react';
-import '../css/index.css';
 import '../css/game.css';
-
-import { useDarkMode } from '../contexts/DarkModeContext';
-
 import ActionButtons from '../components/game/GameActions';
 import BettingChips from '../components/game/GameChips';
 import GameStatsBar from '../components/game/GameStats';
 import ResultHeader from '../components/game/GamePrevNums';
 import RouletteBoard from '../components/game/GameBoard';
-
 import ResultModal from '../components/modals/ResultModal';
-
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 import { useResultModal } from '../hooks/useResultModal';
 import { useResultNums } from '../hooks/useResultNums';
 import { useBetting } from '../hooks/useBetting';
-
 import type { Bet } from '../types/chips';
-
 import { getColorClass } from '../utils/recentNumColor';
 import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
-    const { isDarkMode } = useDarkMode();
-
     // Nickname state
     const [nickname, setNickname] = useState<string>('');
     useEffect(() => {
@@ -38,16 +28,11 @@ function Game() {
     });
 
     const { remSpins, setRemSpins } = useRemSpins();
-
     const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
-
     const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
-
     const [showGrid] = useState(false);
     const [gridBlock, setGridBlock] = useState(false);
-
     const [isSelected, setIsSelected] = useState(false);
-
     const {
         selectedChip,
         bets,
@@ -66,18 +51,14 @@ function Game() {
         setBets,
         setBetActions,
     } = useBetting({ setIsPaused });
-
     const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
-
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const handleClearBets = () => {
         setBets([]);
         setBetActions([]);
         setUserBalance((prev) => prev + totalBet);
         setTotalBet(0);
     };
-
     // In between rounds of a match
     const resetTable = (newBalance: number) => {
         setTotalBet(0);
@@ -107,11 +88,8 @@ function Game() {
     // Render a chip component for the grid
     const renderChip = (bet: Bet) => (
         <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center
-            justify-center text-white text-[1.25rem] font-bold z-20"
+            className="game-chip"
             style={{
-                width: '2.5rem',
-                height: '2.5rem',
                 backgroundColor: bet.chipColor,
             }}
         >
@@ -120,18 +98,11 @@ function Game() {
     );
 
     return (
-        <div
-            className={`h-screen transition duration-200 select-none ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'}`}
-        >
-            <ResultHeader
-                nickname={nickname}
-                resultNums={resultNums}
-                isDarkMode={isDarkMode}
-                getColorClass={getColorClass}
-            />
+        <div className={`game-page`}>
+            <ResultHeader nickname={nickname} resultNums={resultNums} getColorClass={getColorClass} />
 
-            <div className="absolute top-2/17 w-full">
-                <div className="flex flex-col items-center gap-4">
+            <div className="game-content">
+                <div className="game-content-inner">
                     <GameStatsBar
                         totalBet={totalBet}
                         timeLeft={timeLeft}

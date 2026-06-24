@@ -1,35 +1,13 @@
 /* ───────────────────────────────
-   Tailwind & Global Theme Imports
+   Global Theme Imports
 ──────────────────────────────── */
-@import 'tailwindcss';
 @import './colors.css';
-
-/* ───────────────────────────────
-   Theme Variables
-──────────────────────────────── */
-@theme {
-    --color-light-mode: var(--sr-master-light);
-    --color-green: var(--roulette-green);
-    --color-red: var(--roulette-red);
-    --color-winning: var(--winning-number);
-    --color-gray-350: var(--gray-350);
-    --color-green-250: var(--green-250);
-    --color-green-350: var(--green-350);
-    --color-github: var(--github-color);
-    --color-github-h: var(--github-color-hover);
-    --color-linkedin: var(--linkedin-color);
-    --color-linkedin-h: var(--linkedin-color-hover);
-}
-
-/* ───────────────────────────────
-   Plugins
-──────────────────────────────── */
 
 /* ───────────────────────────────
    Base Font & Smoothing
 ──────────────────────────────── */
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: var(--site-font);
     line-height: 1.5;
     font-weight: 400;
     font-synthesis: none;
@@ -38,31 +16,39 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+* {
+    outline: 1px solid red;
+}
+*/
+
 /* ───────────────────────────────
    Background & Text Colors
 ──────────────────────────────── */
 
 /* Set html fallback background early */
 html {
-    background-color: var(--color-light-mode);
-    transition: background-color 0.2s;
-}
-
-/* Dark mode html background override */
-html.dark {
-    background-color: var(--sr-master-dark);
+    background-color: var(--sr-master);
+    transition: background-color var(--theme-transition);
 }
 
 /* Light mode body styles */
 body {
-    background-color: var(--color-light-mode);
-    color: black;
-}
-
-/* Dark mode body override */
-html.dark body {
-    background-color: var(--sr-master-dark);
-    color: white;
+    background-color: var(--sr-master);
+    color: var(--standard-text);
 }
 
 /* ───────────────────────────────
@@ -154,18 +140,38 @@ html {
     background-clip: content-box;
 }
 
-/* ───────────────────────────────
-   Stats Page
-──────────────────────────────── */
-
-.glow-hot-header {
-    text-shadow:
-        0 0 0.1125rem #fb923c,
-        0 0 0.225rem #f97316;
+.page-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    transition: color var(--theme-transition);
 }
 
-.glow-cold-header {
-    text-shadow:
-        0 0 0.1125rem #67e8f9,
-        0 0 0.225rem #22d3ee;
+.page-header-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.roulette-green {
+    background-color: var(--roulette-green);
+    color: white;
+}
+
+.roulette-red {
+    background-color: var(--roulette-red);
+    color: white;
+}
+
+.roulette-black {
+    background-color: var(--roulette-black);
+    color: white;
+}
+
+.roulette-unknown {
+    background-color: #9ca3af;
+    color: white;
 }

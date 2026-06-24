@@ -1,0 +1,152 @@
+.stats-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 4px solid #f59e0b;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: stats-spin 1s linear infinite;
+}
+
+@keyframes stats-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.glow-hot-header,
+.glow-cold-header {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 12rem;
+    transition: all var(--theme-transition) ease;
+}
+
+.glow-hot-header {
+    text-shadow:
+        0 0 0.1125rem #fb923c,
+        0 0 0.225rem #f97316;
+}
+
+.glow-cold-header {
+    text-shadow:
+        0 0 0.1125rem #67e8f9,
+        0 0 0.225rem #22d3ee;
+}
+
+.stats-page {
+    background-color: var(--sr-master);
+    color: var(--standard-text);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    min-height: 100vh;
+    transition: all var(--theme-transition) ease;
+}
+
+.stats-container {
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.stats-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.stats-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stats-section-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stats-metric-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.stats-metric-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+.stats-metric-button {
+    color: var(--btn-color);
+    background-color: var(--btn-bg);
+    transition: all var(--theme-transition) ease;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    font-size: 1.35rem;
+    pointer-events: none;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.stats-number-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.stats-number-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-left: 3rem;
+}
+
+.stats-number-card {
+    position: relative;
+    width: 4rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-number-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75rem;
+    color: oklch(90.5% 0.182 98.111deg);
+    font-weight: 800;
+    padding: 0 0.5rem 0 0;
+}
+
+.stats-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10rem;
+}
+
+.stats-chart-cell {
+    height: 3rem;
+}
+
+.stats-footer-gap {
+    height: 3.5rem;
+}

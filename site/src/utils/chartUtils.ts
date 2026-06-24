@@ -63,7 +63,6 @@ export const createStackedBarData = (counts: Record<string, number>, customOrder
         };
     });
 
-    // Now replace the 'none' placeholder with actual remainder %
     const remaining = 100 - filledPercent;
     for (const ds of datasets) {
         if (ds.label === 'neither') {

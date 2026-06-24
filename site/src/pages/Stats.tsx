@@ -1,100 +1,66 @@
-import '../css/index.css';
+import '../css/stats.css';
 import { useState } from 'react';
-import { useDarkMode } from '../contexts/DarkModeContext';
-import DarkModeToggle from '../components/DarkModeToggle';
+import { StatsBarChart } from '../components/StatsBarChart';
+import { Tabs } from '../components/Tabs';
+import { LoadingSpinner } from '../components/LoadingSpinner';
+import DarkModeToggle from '../components/ThemeToggle';
 import HomeButton from '../components/HomeButton';
 import { useStatData } from '../hooks/useStatData';
 import { getColorClass } from '../utils/recentNumColor';
-import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-import { createStackedBarData, stackedBarOptions } from '../utils/chartUtils';
-
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartDataLabels);
 
 function Stats() {
-    const { isDarkMode } = useDarkMode();
     const [activeTab, setActiveTab] = useState<'today' | 'week' | 'month' | 'allTime'>('today');
     const { data: allStats, loading } = useStatData();
 
     const stats = allStats[activeTab];
 
-    if (loading || !stats) {
-        return (
-            <div className="flex justify-center items-center h-40">
-                <div className="w-10 h-10 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
-            </div>
-        );
+    if (loading) {
+        return <LoadingSpinner />;
     }
 
     return (
-        <div
-            className={`p-4 flex flex-col items-center transition duration-200 select-none h-screen ${
-                isDarkMode ? 'bg-gray-900 text-white' : 'bg-light-mode text-black'
-            }`}
-        >
-            <div className="w-full flex justify-between px-4 mb-4">
+        <div className={`stats-page`}>
+            <div className="page-header-row">
                 <HomeButton />
                 <DarkModeToggle />
             </div>
-            <div className="w-full max-w-5xl mx-auto">
-                <h1 className="transition duration-200 text-[4rem] font-bold mt-8 mb-8">Site Statistics</h1>
+            <div className="stats-container">
+                <h1 className="page-title">Site Statistics</h1>
 
-                <div className="flex border-b border-gray-700 mb-8 space-x-6">
-                    {['today', 'week', 'month', 'allTime'].map((tab) => (
-                        <button
-                            key={tab}
-                            className={`py-2 px-6 text-xl transition duration-200 font-bold ${
-                                activeTab === tab
-                                    ? isDarkMode
-                                        ? 'text-yellow-500 border-b-2 border-yellow-500'
-                                        : 'text-yellow-700 border-b-2 border-yellow-700'
-                                    : isDarkMode
-                                      ? 'hover:text-white text-gray-400'
-                                      : 'hover:text-black text-gray-500'
-                            }`}
-                            onClick={() => setActiveTab(tab as typeof activeTab)}
-                        >
-                            {tab === 'today' && 'Today'}
-                            {tab === 'week' && 'This Week'}
-                            {tab === 'month' && 'This Month'}
-                            {tab === 'allTime' && 'All Time'}
-                        </button>
-                    ))}
-                </div>
+                <Tabs
+                    tabs={[
+                        { value: 'today', label: 'Today' },
+                        { value: 'week', label: 'This Week' },
+                        { value: 'month', label: 'This Month' },
+                        { value: 'allTime', label: 'All Time' },
+                    ]}
+                    activeTab={activeTab}
+                    onTabChange={(tab) => setActiveTab(tab as typeof activeTab)}
+                />
 
-                <div className="w-full max-w-5xl space-y-10">
-                    <div className="space-y-8">
-                        <div className="space-y-8">
-                            <div className="flex flex-wrap items-center gap-6 sm:gap-x-16 mb-12">
-                                <div className="flex items-center gap-x-4 whitespace-nowrap">
-                                    <button
-                                        className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'
-                                        }`}
-                                    >
+                <div className="stats-main">
+                    <div className="stats-section">
+                        <div className="stats-section-inner">
+                            <div className="stats-metric-row">
+                                <div className="stats-metric-item">
+                                    <button className={`stats-metric-button`}>
                                         Spins: {stats.numSpins.toLocaleString()}
                                     </button>
                                 </div>
 
-                                <div className="flex items-center gap-x-4 whitespace-nowrap">
-                                    <button
-                                        className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'
-                                        }`}
-                                    >
+                                <div className="stats-metric-item">
+                                    <button className={`stats-metric-button`}>
                                         Games Completed: {stats.completedGames.toLocaleString()}
                                     </button>
                                 </div>
 
-                                <div className="flex items-center gap-x-4 whitespace-nowrap">
-                                    <button
-                                        className={`transition duration-200 h-12 px-4 rounded-md font-bold text-[1.35rem] pointer-events-none shadow-md ${
-                                            isDarkMode ? 'text-white bg-gray-600' : 'bg-white text-black'
-                                        }`}
-                                    >
+                                <div className="stats-metric-item">
+                                    <button className={`stats-metric-button`}>
                                         Total Won: $
                                         {stats.totalWon.toLocaleString(undefined, {
                                             minimumFractionDigits: 2,
@@ -104,40 +70,30 @@ function Stats() {
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-6">
-                                <h2 className="transition duration-200 w-48 text-2xl font-semibold whitespace-nowrap glow-hot-header">
-                                    🔥 Hottest Numbers:
-                                </h2>
-                                <div className="flex flex-wrap gap-4 ml-12">
+                            <div className="stats-number-section">
+                                <h2 className="glow-hot-header">🔥 Hottest Numbers:</h2>
+                                <div className="stats-number-list">
                                     {stats.hottestNumbers.map((n, i) => (
                                         <div
                                             key={i}
-                                            className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow
-                      ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
+                                            className={`stats-number-card ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
                                         >
-                                            <div className="absolute top-0 right-0 text-[0.75rem] text-yellow-300 font-extrabold translate-x-[-2px] px-1 translate-y-[-2px]">
-                                                ×{n.count ?? 0}
-                                            </div>
+                                            <div className="stats-number-badge">×{n.count ?? 0}</div>
                                             {n.number === 37 ? '00' : n.number}
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-6">
-                                <h2 className="transition duration-200 w-48 text-2xl font-semibold whitespace-nowrap glow-cold-header">
-                                    ❄️ Coldest Numbers:
-                                </h2>
-                                <div className="flex flex-wrap gap-4 ml-12">
+                            <div className="stats-number-section">
+                                <h2 className="glow-cold-header">❄️ Coldest Numbers:</h2>
+                                <div className="stats-number-list">
                                     {stats.coldestNumbers.map((n, i) => (
                                         <div
                                             key={i}
-                                            className={`relative w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold shadow
-                      ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
+                                            className={`stats-number-card ${getColorClass(n.number === 37 ? '00' : n.number.toString())}`}
                                         >
-                                            <div className="absolute top-0 right-0 text-[0.75rem] text-yellow-300 font-extrabold translate-x-[-2px] px-1 translate-y-[-2px]">
-                                                ×{n.count ?? 0}
-                                            </div>
+                                            <div className="stats-number-badge">×{n.count ?? 0}</div>
                                             {n.number === 37 ? '00' : n.number}
                                         </div>
                                     ))}
@@ -145,52 +101,17 @@ function Stats() {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div className="h-12">
-                            <Bar
-                                data={createStackedBarData(stats.colorCounts, ['red', 'green', 'black', 'neither'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart counts={stats.colorCounts} labels={['red', 'green', 'black', 'neither']} />
 
-                    <div>
-                        <div className="h-12">
-                            <Bar
-                                data={createStackedBarData(stats.parityCounts, ['even', 'neither', 'odd'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart counts={stats.parityCounts} labels={['even', 'neither', 'odd']} />
 
-                    <div>
-                        <div className="h-12">
-                            <Bar
-                                data={createStackedBarData(stats.halfCounts, ['low', 'neither', 'high'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart counts={stats.halfCounts} labels={['low', 'neither', 'high']} />
 
-                    <div>
-                        <div className="h-12">
-                            <Bar
-                                data={createStackedBarData(stats.dozenCounts, ['first', 'second', 'third', 'neither'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart counts={stats.dozenCounts} labels={['first', 'second', 'third', 'neither']} />
 
-                    <div>
-                        <div className="h-12">
-                            <Bar
-                                data={createStackedBarData(stats.rowCounts, ['top', 'middle', 'bottom', 'neither'])}
-                                options={stackedBarOptions}
-                            />
-                        </div>
-                    </div>
+                    <StatsBarChart counts={stats.rowCounts} labels={['top', 'middle', 'bottom', 'neither']} />
                 </div>
-                <div className="h-14"></div>
+                <div className="stats-footer-gap"></div>
             </div>
         </div>
     );

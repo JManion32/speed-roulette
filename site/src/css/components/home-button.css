@@ -1,0 +1,28 @@
+.home-button {
+    position: absolute;
+    right: 5.25rem; /* right-21 */
+    width: 3.75rem; /* w-15 */
+    height: 3.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    box-shadow: var(--button-shadow);
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    transition: all var(--theme-transition) ease;
+}
+
+.home-button:hover {
+    transform: scale(1.1);
+    background: var(--btn-hover);
+}
+
+.home-button-icon {
+    width: 3rem;
+    height: 3rem;
+    user-select: none;
+    pointer-events: none;
+}

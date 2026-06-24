@@ -1,0 +1,28 @@
+.theme-toggle {
+    position: absolute;
+    right: 0.75rem;
+    width: 3.75rem;
+    height: 3.75rem;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--button-shadow);
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    transition: all var(--theme-transition) ease-in-out;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: var(--btn-hover);
+}
+
+.theme-toggle-icon {
+    width: 4rem;
+    height: 4rem;
+    user-select: none;
+    pointer-events: none;
+}

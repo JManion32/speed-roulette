@@ -30,10 +30,7 @@ jobs:
               run: npm ci
 
             - name: Run Stylelint
-              run: npx stylelint "**/*.css"
-
-            - name: Build Web UI
-              run: npm run build
+              run: npx stylelint **/*.{css,scss}
 
     prettier:
         name: Prettier
@@ -58,10 +55,7 @@ jobs:
               run: npm ci
 
             - name: Run Prettier
-              run: npx prettier --check "."
-
-            - name: Build Web UI
-              run: npm run build
+              run: npx prettier --check .
 
     eslint:
         name: ESLint
@@ -87,9 +81,6 @@ jobs:
 
             - name: Run ESLint
               run: npx eslint .
-
-            - name: Build Web UI
-              run: npm run build
 
     go-lint:
         name: Go Lint
@@ -170,6 +161,8 @@ jobs:
       name: Cypress Home
       runs-on: ubuntu-latest
 
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-node@v4
@@ -183,9 +176,10 @@ jobs:
           run: |
             cat > .env <<'EOF'
             ENV=development
+            VITE_MOCK_MODE=false
             SITE_HTTP_PORT=5173
             SITE_HTTPS_PORT=4433
-            CORS_ORIGIN=http://localhost:5173 
+            CORS_ORIGIN=http://localhost:5173
             POSTGRES_USERNAME=user
             POSTGRES_PASSWORD=pass
             POSTGRES_DB_NAME=speed-roulette
@@ -215,6 +209,8 @@ jobs:
       name: Cypress Game
       runs-on: ubuntu-latest
 
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-node@v4
@@ -228,9 +224,10 @@ jobs:
           run: |
             cat > .env <<'EOF'
             ENV=development
+            VITE_MOCK_MODE=false
             SITE_HTTP_PORT=5173
             SITE_HTTPS_PORT=4433
-            CORS_ORIGIN=http://localhost:5173 
+            CORS_ORIGIN=http://localhost:5173
             POSTGRES_USERNAME=user
             POSTGRES_PASSWORD=pass
             POSTGRES_DB_NAME=speed-roulette
@@ -270,9 +267,10 @@ jobs:
           run: |
             cat > .env <<'EOF'
             ENV=development
+            VITE_MOCK_MODE=false
             SITE_HTTP_PORT=5173
             SITE_HTTPS_PORT=4433
-            CORS_ORIGIN=http://localhost:5173 
+            CORS_ORIGIN=http://localhost:5173
             POSTGRES_USERNAME=user
             POSTGRES_PASSWORD=pass
             POSTGRES_DB_NAME=speed-roulette
@@ -290,6 +288,8 @@ jobs:
         name: Publish Docker Image
         runs-on: ubuntu-latest
         needs: [stylelint, prettier, eslint, go-lint, go-fmt, go-unit, cypress-home, cypress-game, docker-build]
+
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
         permissions:
             contents: read
@@ -329,7 +329,8 @@ jobs:
         name: Deploy
         runs-on: ubuntu-latest
         needs: docker-publish
-        if: github.ref == 'refs/heads/main'
+
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
         steps:
             - name: Deploy to droplet
@@ -339,10 +340,7 @@ jobs:
                   username: root
                   key: ${{ secrets.DROPLET_SSH_KEY }}
                   script: |
-                      cd ~/speed-roulette
-
+                      cd ~/prod
                       docker compose -f compose.prod.yml pull
-
                       docker compose -f compose.prod.yml up -d
-
                       docker image prune -af

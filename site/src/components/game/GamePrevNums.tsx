@@ -1,36 +1,27 @@
-import DarkModeToggle from '../DarkModeToggle';
+import DarkModeToggle from '../ThemeToggle';
 import HomeButton from '../HomeButton';
 
 interface ResultHeaderProps {
     nickname: string;
     resultNums: string[];
-    isDarkMode: boolean;
     getColorClass: (num: string) => string;
 }
 
-export default function ResultHeader({ nickname, resultNums, isDarkMode, getColorClass }: ResultHeaderProps) {
+export default function ResultHeader({ nickname, resultNums, getColorClass }: ResultHeaderProps) {
     return (
-        <div className="p-4 flex top-0">
-            <p
-                className={`transition duration-200 absolute top-7 left-5 font-bold text-[1.5rem] ${isDarkMode ? 'text-white' : 'text-black'}`}
-            >
-                {nickname}
-            </p>
-            <span className="absolute top-7 right-44 flex flex-row">
+        <div className="result-header">
+            <p className="result-header-nickname">{nickname}</p>
+
+            <span className="result-header-results">
                 {[...Array(9)].map((_, i) => {
                     const result = resultNums[i];
+
                     return (
                         <button
                             key={i}
                             aria-label={`Previous result: ${result}`}
-                            className={`h-10 w-10 ml-2 rounded-md font-bold border-[0.125rem] transition duration-200 ${
-                                isDarkMode ? 'border-white' : 'border-black'
-                            } ${
-                                result !== undefined
-                                    ? getColorClass(result)
-                                    : isDarkMode
-                                      ? 'bg-gray-700'
-                                      : 'bg-gray-300'
+                            className={`result-header-result ${
+                                result !== undefined ? getColorClass(result) : 'result-header-result-empty'
                             }`}
                         >
                             {result ?? ''}
@@ -38,6 +29,7 @@ export default function ResultHeader({ nickname, resultNums, isDarkMode, getColo
                     );
                 })}
             </span>
+
             <DarkModeToggle />
             <HomeButton />
         </div>

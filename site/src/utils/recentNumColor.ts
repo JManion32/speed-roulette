@@ -43,10 +43,10 @@ const isBlack = new Set([
 ]);
 
 const getColorClass = (num: string) => {
-    if (num === '0' || num === '00') return 'bg-green text-white';
-    if (isRed.has(num)) return 'bg-red text-white';
-    if (isBlack.has(num)) return 'bg-black text-white';
-    return 'bg-gray-400'; // if input is unexpected
+    if (num === '0' || num === '00') return 'roulette-green';
+    if (isRed.has(num)) return 'roulette-red';
+    if (isBlack.has(num)) return 'roulette-black';
+    return 'roulette-unknown';
 };
 
 export { getColorClass };
