@@ -82,7 +82,7 @@ export default function ActionButtons({
                         setGridBlock(true);
 
                         try {
-                            const res = await api.logRound(JSON.stringify({ bets }))
+                            const res = await api.logRound(JSON.stringify({ bets }));
                             const result = res.number;
                             const payout = res.payout;
 

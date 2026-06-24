@@ -1,4 +1,4 @@
-import secureFetch from './secure-fetch.ts'
+import secureFetch from './secure-fetch.ts';
 
 export async function register(nickname: string) {
     const res = await secureFetch('/api/register', {
