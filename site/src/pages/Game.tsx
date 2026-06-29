@@ -1,27 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+/* CSS */
 import '../css/game.css';
+
+/* Components */
 import ActionButtons from '../components/game/GameActions';
 import BettingChips from '../components/game/GameChips';
 import GameStatsBar from '../components/game/GameStats';
-import ResultHeader from '../components/game/GamePrevNums';
+import ResultHeader from '../components/game/GameHeader';
 import RouletteBoard from '../components/game/GameBoard';
 import ResultModal from '../components/modals/ResultModal';
+
+/* Hooks */
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 import { useResultModal } from '../hooks/useResultModal';
 import { useResultNums } from '../hooks/useResultNums';
 import { useBetting } from '../hooks/useBetting';
+
+/* Types */
 import type { Bet } from '../types/chips';
-import { getColorClass } from '../utils/recentNumColor';
+
+/* Utils */
 import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
-    // Nickname state
-    const [nickname, setNickname] = useState<string>('');
-    useEffect(() => {
-        setNickname(localStorage.getItem('nickname') ?? '');
-    }, []);
-
     const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(() => {
         handleClearBets();
         setShowModal(true);
@@ -99,7 +102,7 @@ function Game() {
 
     return (
         <div className={`game-page`}>
-            <ResultHeader nickname={nickname} resultNums={resultNums} getColorClass={getColorClass} />
+            <ResultHeader resultNums={resultNums} />
 
             <div className="game-content">
                 <div className="game-content-inner">

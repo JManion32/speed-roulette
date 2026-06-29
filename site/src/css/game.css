@@ -130,22 +130,25 @@
 
 /* ========================================= */
 
-/* GAME PREV NUMS */
+/* GAME HEADER */
 
 /* ========================================= */
 .result-header {
     display: flex;
-    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+    height: 6rem;
 }
 
 .result-header-nickname {
     position: absolute;
     top: 1.75rem;
     left: 1.25rem;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     transition: all var(--theme-transition);
     color: var(--standard-text);
+    margin: 0;
 }
 
 .result-header-results {

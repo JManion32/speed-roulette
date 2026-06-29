@@ -1,13 +1,19 @@
+import { useState, useEffect } from 'react';
 import DarkModeToggle from '../ThemeToggle';
 import HomeButton from '../HomeButton';
+import { getColorClass } from '../../utils/recentNumColor';
 
-interface ResultHeaderProps {
-    nickname: string;
+interface GameHeaderProps {
     resultNums: string[];
-    getColorClass: (num: string) => string;
 }
 
-export default function ResultHeader({ nickname, resultNums, getColorClass }: ResultHeaderProps) {
+export default function GameHeader({ resultNums }: GameHeaderProps) {
+
+    const [nickname, setNickname] = useState<string>('');
+    useEffect(() => {
+        setNickname(localStorage.getItem('nickname') ?? '');
+    }, []);
+
     return (
         <div className="result-header">
             <p className="result-header-nickname">{nickname}</p>
