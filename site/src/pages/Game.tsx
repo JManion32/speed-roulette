@@ -75,7 +75,7 @@ function Game() {
         setShowModal(true);
         setWinningNumber(null);
         setUserBalance(newBalance);
-    }
+    };
 
     // The round is over, but the match can be continued
     const gameContinue = (newBalance: number, displayResult: string) => {
@@ -87,13 +87,13 @@ function Game() {
             setBets([]);
             setIsSubmitting(false);
         }, 50);
-    
+
         addResultNum(displayResult);
         setWinningNumber('');
         setIsPaused(false);
         setGridBlock(false);
         setUserBalance(newBalance);
-    }
+    };
 
     // When "Play Again" is selected
     const newGame = () => {

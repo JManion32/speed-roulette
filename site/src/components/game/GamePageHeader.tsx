@@ -8,7 +8,6 @@ interface GamePageHeaderProps {
 }
 
 export default function GamePageHeader({ resultNums }: GamePageHeaderProps) {
-
     const [nickname, setNickname] = useState<string>('');
     useEffect(() => {
         setNickname(localStorage.getItem('nickname') ?? '');

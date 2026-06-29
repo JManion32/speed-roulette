@@ -54,11 +54,7 @@ const CHIP_OPTIONS = [
     },
 ];
 
-export default function ChipControls({
-    selectedChip,
-    userBalance,
-    handleChipSelect,
-}: ChipControlsProps) {
+export default function ChipControls({ selectedChip, userBalance, handleChipSelect }: ChipControlsProps) {
     return (
         <div className="chip-controls">
             {CHIP_OPTIONS.map(({ value, color, className }) => {

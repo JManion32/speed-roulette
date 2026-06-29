@@ -19,7 +19,7 @@ function Leaderboard() {
 
     return (
         <div className={`leaderboard-page`}>
-            <PageHeader/>
+            <PageHeader />
             <div className="leaderboard-container">
                 <h1 className="page-title">Leaderboard</h1>
 

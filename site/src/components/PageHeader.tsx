@@ -9,7 +9,6 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader({ prevNums, home }: PageHeaderProps) {
-
     const [nickname, setNickname] = useState<string>('');
     useEffect(() => {
         setNickname(localStorage.getItem('nickname') ?? '');
@@ -17,7 +16,6 @@ export default function PageHeader({ prevNums, home }: PageHeaderProps) {
 
     return (
         <div className="page-header">
-
             {prevNums && (
                 <>
                     <p className="result-header-nickname">{nickname}</p>

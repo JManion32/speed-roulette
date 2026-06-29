@@ -4,8 +4,6 @@ import PageHeader from '../components/PageHeader';
 import { StatsBarChart } from '../components/StatsBarChart';
 import { Tabs } from '../components/Tabs';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import DarkModeToggle from '../components/ThemeToggle';
-import HomeButton from '../components/HomeButton';
 import { useStatData } from '../hooks/useStatData';
 import { getColorClass } from '../utils/recentNumColor';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
@@ -26,7 +24,7 @@ function Stats() {
 
     return (
         <div className={`stats-page`}>
-            <PageHeader/>
+            <PageHeader />
             <div className="stats-container">
                 <h1 className="page-title">Site Statistics</h1>
 

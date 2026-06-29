@@ -5,7 +5,6 @@ interface GamePageHeaderProps {
 }
 
 export default function GamePrevNums({ prevNums }: GamePageHeaderProps) {
-
     return (
         <span className="result-header-results">
             {[...Array(9)].map((_, i) => {

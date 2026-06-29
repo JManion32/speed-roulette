@@ -15,7 +15,6 @@ export default function GameStatus({
 }: GameStatusProps) {
     return (
         <div className="game-status-container">
-
             {/* Balance */}
             <div className="game-stat-item game-stat-balance">
                 <p className="game-stat-label">Balance:</p>
@@ -25,8 +24,8 @@ export default function GameStatus({
                         balanceChangeDirection === 'up'
                             ? 'game-stat-positive'
                             : balanceChangeDirection === 'down'
-                                ? 'game-stat-negative'
-                                : ''
+                              ? 'game-stat-negative'
+                              : ''
                     }`}
                     data-cy="balance-display"
                 >

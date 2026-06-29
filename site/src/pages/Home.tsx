@@ -17,7 +17,7 @@ function Home() {
 
     return (
         <div className="home-page" data-cy="main-app-div">
-            <PageHeader home={true}/>
+            <PageHeader home={true} />
 
             <div className="home-content">
                 <h1 className="home-title fade-in">Speed Roulette</h1>
