@@ -4,7 +4,7 @@ import { useState } from 'react';
 import '../css/game.css';
 
 /* Components */
-import ActionButtons from '../components/game/GameActions';
+import GameActionButtons from '../components/game/GameActionButtons';
 import BettingChips from '../components/game/GameChips';
 import GameStatsBar from '../components/game/GameStatus';
 import GamePageHeader from '../components/game/GamePageHeader';
@@ -73,6 +73,23 @@ function Game() {
         }, 50);
     };
 
+    // When the user loses due to balance, spins, or time.
+    const gameOver = (newBalance: number) => {
+        setShowModal(true);
+        setWinningNumber(null);
+        setUserBalance(newBalance);
+    }
+
+    // When the round concludes, and the user has resources to advance
+    const gameContinue = (newBalance: number, displayResult: string) => {
+        resetTable(newBalance);
+        addResultNum(displayResult);
+        setWinningNumber('');
+        setIsPaused(false);
+        setGridBlock(false);
+        setUserBalance(newBalance);
+    }
+
     // When the user selects "Play Again"
     const newGame = () => {
         setBets([]);
@@ -119,7 +136,7 @@ function Game() {
                         handleChipSelect={handleChipSelect}
                     />
 
-                    <ActionButtons
+                    <GameActionButtons
                         bets={bets}
                         remSpins={remSpins}
                         isPaused={isPaused}
@@ -131,7 +148,8 @@ function Game() {
                         setIsPaused={setIsPaused}
                         setRemSpins={setRemSpins}
                         setGridBlock={setGridBlock}
-                        setShowModal={setShowModal}
+                        gameOver={gameOver}
+                        gameContinue={gameContinue}
                         setWinningNumber={setWinningNumber}
                         setUserBalance={setUserBalance}
                         resetTable={resetTable}

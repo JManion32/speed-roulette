@@ -2,7 +2,7 @@ import React from 'react';
 import type { Bet, BetAction } from '../../types/chips';
 import api from '../../api';
 
-interface ActionButtonsProps {
+interface GameActionButtonsProps {
     bets: Bet[];
     remSpins: number;
     isPaused: boolean;
@@ -14,7 +14,8 @@ interface ActionButtonsProps {
     setIsPaused: (v: boolean) => void;
     setRemSpins: React.Dispatch<React.SetStateAction<number>>;
     setGridBlock: (v: boolean) => void;
-    setShowModal: (v: boolean) => void;
+    gameOver: (n: number) => void;
+    gameContinue: (n: number, s: string) => void;
     setWinningNumber: (v: string | null) => void;
     setUserBalance: (v: number) => void;
     resetTable: (v: number) => void;
@@ -23,7 +24,7 @@ interface ActionButtonsProps {
     handleUndoBet: () => void;
 }
 
-export default function ActionButtons({
+export default function GameActionButtons({
     bets,
     remSpins,
     isPaused,
@@ -35,14 +36,12 @@ export default function ActionButtons({
     setIsPaused,
     setRemSpins,
     setGridBlock,
-    setShowModal,
+    gameOver,
+    gameContinue,
     setWinningNumber,
-    setUserBalance,
-    resetTable,
-    addResultNum,
     handleClearBets,
     handleUndoBet,
-}: ActionButtonsProps) {
+}: GameActionButtonsProps) {
     return (
         <>
             {/* Action buttons section */}
@@ -81,25 +80,16 @@ export default function ActionButtons({
                             const res = await api.logRound(JSON.stringify({ bets }));
                             const result = res.number;
                             const payout = res.payout;
-
                             const newBalance: number = userBalance + payout;
                             const displayResult = result === 37 ? '00' : result.toString();
                             setWinningNumber(displayResult);
 
                             setTimeout(() => {
                                 if (remSpins === 1 || timeLeft === 0 || newBalance === 0) {
-                                    setShowModal(true);
-                                    setWinningNumber(null);
-                                    setUserBalance(newBalance);
+                                    gameOver(newBalance);
                                     return;
                                 }
-
-                                resetTable(newBalance);
-                                addResultNum(displayResult);
-                                setWinningNumber('');
-                                setIsPaused(false);
-                                setGridBlock(false);
-                                setUserBalance(newBalance);
+                                gameContinue(newBalance, displayResult);
                             }, 2500);
                         } catch (error) {
                             console.error('Round error:', error);
