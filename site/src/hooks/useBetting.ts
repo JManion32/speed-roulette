@@ -16,7 +16,7 @@ export function useBetting({ setIsPaused }: { setIsPaused: (val: boolean) => voi
     };
 
     // Set selected chip to highest available between rounds
-    const adjustSelectedChip = (chip: Chip, balance: number) => {
+    const selectHighestAffordableChip = (chip: Chip, balance: number) => {
         if (balance > chip.value) {
             return;
         }
@@ -55,7 +55,6 @@ export function useBetting({ setIsPaused }: { setIsPaused: (val: boolean) => voi
         }
     };
 
-    const [isSelected, setIsSelected] = useState(false);
     const [bets, setBets] = useState<Bet[]>([]);
     const [betActions, setBetActions] = useState<BetAction[]>([]);
     const [userBalance, setUserBalance] = useState<number>(20);
@@ -133,9 +132,7 @@ export function useBetting({ setIsPaused }: { setIsPaused: (val: boolean) => voi
         selectedChip,
         setSelectedChip,
         resetSelectedChip,
-        adjustSelectedChip,
-        isSelected,
-        setIsSelected,
+        selectHighestAffordableChip,
         bets,
         betActions,
         userBalance,

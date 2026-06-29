@@ -35,7 +35,6 @@ function Game() {
     const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
     const [showGrid] = useState(false);
     const [gridBlock, setGridBlock] = useState(false);
-    const [isSelected, setIsSelected] = useState(false);
     const {
         selectedChip,
         bets,
@@ -46,7 +45,7 @@ function Game() {
         handleGridCellClick,
         handleUndoBet,
         resetSelectedChip,
-        adjustSelectedChip,
+        selectHighestAffordableChip,
         hasBet,
         getBet,
         setUserBalance,
@@ -67,7 +66,7 @@ function Game() {
         setTotalBet(0);
         setBetActions([]);
         setIsSubmitting(true);
-        adjustSelectedChip(selectedChip!, newBalance);
+        selectHighestAffordableChip(selectedChip!, newBalance);
         setTimeout(() => {
             setBets([]);
             setIsSubmitting(false);
@@ -117,9 +116,7 @@ function Game() {
                     <BettingChips
                         selectedChip={selectedChip}
                         userBalance={userBalance}
-                        isSelected={isSelected}
                         handleChipSelect={handleChipSelect}
-                        setIsSelected={setIsSelected}
                     />
 
                     <ActionButtons
