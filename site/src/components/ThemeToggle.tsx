@@ -1,6 +1,6 @@
 import { useTheme } from '../contexts/ThemeContext';
 import sun from '../assets/sun.png';
-import moon from '../assets/moon_white.png';
+import moon from '../assets/moon-white.png';
 import '../css/components/theme-toggle.css';
 
 export default function ThemeToggle() {

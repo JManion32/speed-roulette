@@ -5,10 +5,10 @@ import '../css/game.css';
 
 /* Components */
 import GameActionButtons from '../components/game/GameActionButtons';
-import BettingChips from '../components/game/GameChips';
+import GameBettingChips from '../components/game/GameBettingChips';
 import GameStatsBar from '../components/game/GameStatus';
-import GamePageHeader from '../components/game/GamePageHeader';
-import RouletteBoard from '../components/game/GameBoard';
+import PageHeader from '../components/PageHeader';
+import GameBoard from '../components/game/GameBoard';
 import ResultModal from '../components/modals/ResultModal';
 
 /* Hooks */
@@ -25,16 +25,22 @@ import type { Bet } from '../types/chips';
 import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
+    // For debugging
+    const [showGrid] = useState(import.meta.env.VITE_SHOW_GAME_GRID === 'true');
+
+    const { remSpins, setRemSpins } = useRemSpins();
+    const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
+    const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
+    const [gridBlock, setGridBlock] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Game timer
     const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(() => {
         handleClearBets();
         setShowModal(true);
     });
 
-    const { remSpins, setRemSpins } = useRemSpins();
-    const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
-    const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
-    const [showGrid] = useState(false);
-    const [gridBlock, setGridBlock] = useState(false);
+    // Everything to do with betting
     const {
         selectedChip,
         bets,
@@ -53,16 +59,26 @@ function Game() {
         setBets,
         setBetActions,
     } = useBetting({ setIsPaused });
+
     const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // "Clear" seledted
     const handleClearBets = () => {
         setBets([]);
         setBetActions([]);
         setUserBalance((prev) => prev + totalBet);
         setTotalBet(0);
     };
-    // In between rounds of a match
-    const resetTable = (newBalance: number) => {
+
+    // The round is over, and the player has run out of one of: balance, time, or spins
+    const gameOver = (newBalance: number) => {
+        setShowModal(true);
+        setWinningNumber(null);
+        setUserBalance(newBalance);
+    }
+
+    // The round is over, but the match can be continued
+    const gameContinue = (newBalance: number, displayResult: string) => {
         setTotalBet(0);
         setBetActions([]);
         setIsSubmitting(true);
@@ -71,18 +87,7 @@ function Game() {
             setBets([]);
             setIsSubmitting(false);
         }, 50);
-    };
-
-    // When the user loses due to balance, spins, or time.
-    const gameOver = (newBalance: number) => {
-        setShowModal(true);
-        setWinningNumber(null);
-        setUserBalance(newBalance);
-    }
-
-    // When the round concludes, and the user has resources to advance
-    const gameContinue = (newBalance: number, displayResult: string) => {
-        resetTable(newBalance);
+    
         addResultNum(displayResult);
         setWinningNumber('');
         setIsPaused(false);
@@ -90,7 +95,7 @@ function Game() {
         setUserBalance(newBalance);
     }
 
-    // When the user selects "Play Again"
+    // When "Play Again" is selected
     const newGame = () => {
         setBets([]);
         setBetActions([]);
@@ -104,7 +109,7 @@ function Game() {
         resetSelectedChip(selectedChip!);
     };
 
-    // Render a chip component for the grid
+    // Render a chip component to place on the grid
     const renderChip = (bet: Bet) => (
         <div
             className="game-chip"
@@ -118,7 +123,7 @@ function Game() {
 
     return (
         <div className={`game-page`}>
-            <GamePageHeader resultNums={resultNums} />
+            <PageHeader prevNums={resultNums} />
 
             <div className="game-content">
                 <div className="game-content-inner">
@@ -130,7 +135,7 @@ function Game() {
                         balanceChangeDirection={balanceChangeDirection}
                     />
 
-                    <BettingChips
+                    <GameBettingChips
                         selectedChip={selectedChip}
                         userBalance={userBalance}
                         handleChipSelect={handleChipSelect}
@@ -151,14 +156,11 @@ function Game() {
                         gameOver={gameOver}
                         gameContinue={gameContinue}
                         setWinningNumber={setWinningNumber}
-                        setUserBalance={setUserBalance}
-                        resetTable={resetTable}
-                        addResultNum={addResultNum}
                         handleClearBets={handleClearBets}
                         handleUndoBet={handleUndoBet}
                     />
 
-                    <RouletteBoard
+                    <GameBoard
                         isWinning={isWinning}
                         remSpins={remSpins}
                         gridBlock={gridBlock}

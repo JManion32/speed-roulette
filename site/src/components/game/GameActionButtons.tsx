@@ -17,9 +17,6 @@ interface GameActionButtonsProps {
     gameOver: (n: number) => void;
     gameContinue: (n: number, s: string) => void;
     setWinningNumber: (v: string | null) => void;
-    setUserBalance: (v: number) => void;
-    resetTable: (v: number) => void;
-    addResultNum: (v: string) => void;
     handleClearBets: () => void;
     handleUndoBet: () => void;
 }

@@ -133,12 +133,6 @@
 /* GAME HEADER */
 
 /* ========================================= */
-.result-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 6rem;
-}
 
 .result-header-nickname {
     position: absolute;

@@ -3,7 +3,7 @@ import { JSX } from 'react';
 import GameBoardTable from './GameBoardTable.tsx';
 import GameBoardGrid from './GameBoardGrid.tsx';
 
-interface RouletteBoardProps {
+interface GameBoardProps {
     isWinning: (num: string) => boolean;
     remSpins: number;
     gridBlock: boolean;
@@ -14,7 +14,7 @@ interface RouletteBoardProps {
     renderChip: (bet: Bet) => JSX.Element;
 }
 
-export default function RouletteBoard({
+export default function GameBoard({
     isWinning,
     remSpins,
     gridBlock,
@@ -23,8 +23,8 @@ export default function RouletteBoard({
     hasBet,
     getBet,
     renderChip,
-}: RouletteBoardProps) {
-    // Main GameBoard component with grid overlayed on a table.
+}: GameBoardProps) {
+    // Main GameBoard component with GameBoardGrid overlayed on GameBoardTable.
     return (
         <>
             {/* Main roulette table with grid overlay */}
