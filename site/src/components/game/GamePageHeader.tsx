@@ -3,11 +3,11 @@ import DarkModeToggle from '../ThemeToggle';
 import HomeButton from '../HomeButton';
 import { getColorClass } from '../../utils/recentNumColor';
 
-interface GameHeaderProps {
+interface GamePageHeaderProps {
     resultNums: string[];
 }
 
-export default function GameHeader({ resultNums }: GameHeaderProps) {
+export default function GamePageHeader({ resultNums }: GamePageHeaderProps) {
 
     const [nickname, setNickname] = useState<string>('');
     useEffect(() => {

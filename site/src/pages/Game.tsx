@@ -6,8 +6,8 @@ import '../css/game.css';
 /* Components */
 import ActionButtons from '../components/game/GameActions';
 import BettingChips from '../components/game/GameChips';
-import GameStatsBar from '../components/game/GameStats';
-import ResultHeader from '../components/game/GameHeader';
+import GameStatsBar from '../components/game/GameStatus';
+import GamePageHeader from '../components/game/GamePageHeader';
 import RouletteBoard from '../components/game/GameBoard';
 import ResultModal from '../components/modals/ResultModal';
 
@@ -102,7 +102,7 @@ function Game() {
 
     return (
         <div className={`game-page`}>
-            <ResultHeader resultNums={resultNums} />
+            <GamePageHeader resultNums={resultNums} />
 
             <div className="game-content">
                 <div className="game-content-inner">

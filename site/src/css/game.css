@@ -195,7 +195,7 @@
 
 /* ========================================= */
 
-/* GAME STATS */
+/* GAME STATUSS */
 
 /* ========================================= */
 .game-stat-btn {
@@ -217,20 +217,14 @@
     color: var(--btn-color);
 }
 
-.game-stats-container {
+.game-status-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.game-stats-row {
-    display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 1.25rem;
     gap: 4rem;
+    margin: 2rem 0 1.5rem 0;
 }
 
 .game-stat-item {
