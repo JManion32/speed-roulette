@@ -1,8 +1,7 @@
 import '../css/leaderboard.css';
 import { useState } from 'react';
 import { Tabs } from '../components/Tabs';
-import ThemeToggle from '../components/ThemeToggle';
-import HomeButton from '../components/HomeButton';
+import PageHeader from '../components/PageHeader';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { useAllLeaderboards } from '../hooks/useLeaderboardData';
 
@@ -20,10 +19,7 @@ function Leaderboard() {
 
     return (
         <div className={`leaderboard-page`}>
-            <div className="page-header-row">
-                <HomeButton />
-                <ThemeToggle />
-            </div>
+            <PageHeader />
             <div className="leaderboard-container">
                 <h1 className="page-title">Leaderboard</h1>
 

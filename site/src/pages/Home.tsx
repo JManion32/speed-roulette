@@ -1,8 +1,8 @@
 import '../css/home.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
 import AboutModal from '../components/modals/AboutModal.tsx';
-import DarkModeToggle from '../components/ThemeToggle';
 import HomeFooter from '../components/HomeFooter';
 import HomeNavButton from '../components/HomeNavButton';
 import stats from '../assets/stats.png';
@@ -17,9 +17,7 @@ function Home() {
 
     return (
         <div className="home-page" data-cy="main-app-div">
-            <div className="home-header">
-                <DarkModeToggle />
-            </div>
+            <PageHeader home={true} />
 
             <div className="home-content">
                 <h1 className="home-title fade-in">Speed Roulette</h1>

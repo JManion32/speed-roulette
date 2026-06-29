@@ -1,38 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+/* CSS */
 import '../css/game.css';
-import ActionButtons from '../components/game/GameActions';
-import BettingChips from '../components/game/GameChips';
-import GameStatsBar from '../components/game/GameStats';
-import ResultHeader from '../components/game/GamePrevNums';
-import RouletteBoard from '../components/game/GameBoard';
+
+/* Components */
+import GameActionButtons from '../components/game/GameActionButtons';
+import GameBettingChips from '../components/game/GameBettingChips';
+import GameStatsBar from '../components/game/GameStatus';
+import PageHeader from '../components/PageHeader';
+import GameBoard from '../components/game/GameBoard';
 import ResultModal from '../components/modals/ResultModal';
+
+/* Hooks */
 import { useAnimatedBalance } from '../hooks/useAnimatedBalance';
 import { useTimer, useRemSpins } from '../hooks/useGameFlow';
 import { useResultModal } from '../hooks/useResultModal';
 import { useResultNums } from '../hooks/useResultNums';
 import { useBetting } from '../hooks/useBetting';
+
+/* Types */
 import type { Bet } from '../types/chips';
-import { getColorClass } from '../utils/recentNumColor';
+
+/* Utils */
 import { formatBetValue } from '../utils/chipFormatting';
 
 function Game() {
-    // Nickname state
-    const [nickname, setNickname] = useState<string>('');
-    useEffect(() => {
-        setNickname(localStorage.getItem('nickname') ?? '');
-    }, []);
+    // For debugging
+    const [showGrid] = useState(import.meta.env.VITE_SHOW_GAME_GRID === 'true');
 
+    const { remSpins, setRemSpins } = useRemSpins();
+    const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
+    const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
+    const [gridBlock, setGridBlock] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Game timer
     const { timeLeft, isPaused, setTimeLeft, setIsPaused } = useTimer(() => {
         handleClearBets();
         setShowModal(true);
     });
 
-    const { remSpins, setRemSpins } = useRemSpins();
-    const { showModal, setShowModal, isClosing, closeModal } = useResultModal();
-    const { setWinningNumber, isWinning, resultNums, setResultNums, addResultNum } = useResultNums();
-    const [showGrid] = useState(false);
-    const [gridBlock, setGridBlock] = useState(false);
-    const [isSelected, setIsSelected] = useState(false);
+    // Everything to do with betting
     const {
         selectedChip,
         bets,
@@ -43,7 +51,7 @@ function Game() {
         handleGridCellClick,
         handleUndoBet,
         resetSelectedChip,
-        adjustSelectedChip,
+        selectHighestAffordableChip,
         hasBet,
         getBet,
         setUserBalance,
@@ -51,27 +59,43 @@ function Game() {
         setBets,
         setBetActions,
     } = useBetting({ setIsPaused });
+
     const { animatedBalance, balanceChangeDirection } = useAnimatedBalance(userBalance);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // "Clear" seledted
     const handleClearBets = () => {
         setBets([]);
         setBetActions([]);
         setUserBalance((prev) => prev + totalBet);
         setTotalBet(0);
     };
-    // In between rounds of a match
-    const resetTable = (newBalance: number) => {
+
+    // The round is over, and the player has run out of one of: balance, time, or spins
+    const gameOver = (newBalance: number) => {
+        setShowModal(true);
+        setWinningNumber(null);
+        setUserBalance(newBalance);
+    };
+
+    // The round is over, but the match can be continued
+    const gameContinue = (newBalance: number, displayResult: string) => {
         setTotalBet(0);
         setBetActions([]);
         setIsSubmitting(true);
-        adjustSelectedChip(selectedChip!, newBalance);
+        selectHighestAffordableChip(selectedChip!, newBalance);
         setTimeout(() => {
             setBets([]);
             setIsSubmitting(false);
         }, 50);
+
+        addResultNum(displayResult);
+        setWinningNumber('');
+        setIsPaused(false);
+        setGridBlock(false);
+        setUserBalance(newBalance);
     };
 
-    // When the user selects "Play Again"
+    // When "Play Again" is selected
     const newGame = () => {
         setBets([]);
         setBetActions([]);
@@ -85,7 +109,7 @@ function Game() {
         resetSelectedChip(selectedChip!);
     };
 
-    // Render a chip component for the grid
+    // Render a chip component to place on the grid
     const renderChip = (bet: Bet) => (
         <div
             className="game-chip"
@@ -99,7 +123,7 @@ function Game() {
 
     return (
         <div className={`game-page`}>
-            <ResultHeader nickname={nickname} resultNums={resultNums} getColorClass={getColorClass} />
+            <PageHeader prevNums={resultNums} />
 
             <div className="game-content">
                 <div className="game-content-inner">
@@ -111,15 +135,13 @@ function Game() {
                         balanceChangeDirection={balanceChangeDirection}
                     />
 
-                    <BettingChips
+                    <GameBettingChips
                         selectedChip={selectedChip}
                         userBalance={userBalance}
-                        isSelected={isSelected}
                         handleChipSelect={handleChipSelect}
-                        setIsSelected={setIsSelected}
                     />
 
-                    <ActionButtons
+                    <GameActionButtons
                         bets={bets}
                         remSpins={remSpins}
                         isPaused={isPaused}
@@ -131,16 +153,14 @@ function Game() {
                         setIsPaused={setIsPaused}
                         setRemSpins={setRemSpins}
                         setGridBlock={setGridBlock}
-                        setShowModal={setShowModal}
+                        gameOver={gameOver}
+                        gameContinue={gameContinue}
                         setWinningNumber={setWinningNumber}
-                        setUserBalance={setUserBalance}
-                        resetTable={resetTable}
-                        addResultNum={addResultNum}
                         handleClearBets={handleClearBets}
                         handleUndoBet={handleUndoBet}
                     />
 
-                    <RouletteBoard
+                    <GameBoard
                         isWinning={isWinning}
                         remSpins={remSpins}
                         gridBlock={gridBlock}

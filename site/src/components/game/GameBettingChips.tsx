@@ -3,9 +3,7 @@ import type { Chip } from '../../types/chips';
 interface ChipControlsProps {
     selectedChip: Chip | null;
     userBalance: number;
-    isSelected: boolean;
     handleChipSelect: (value: number, color: string) => void;
-    setIsSelected: (selected: boolean) => void;
 }
 
 const CHIP_OPTIONS = [
@@ -56,13 +54,7 @@ const CHIP_OPTIONS = [
     },
 ];
 
-export default function ChipControls({
-    selectedChip,
-    userBalance,
-    isSelected,
-    handleChipSelect,
-    setIsSelected,
-}: ChipControlsProps) {
+export default function ChipControls({ selectedChip, userBalance, handleChipSelect }: ChipControlsProps) {
     return (
         <div className="chip-controls">
             {CHIP_OPTIONS.map(({ value, color, className }) => {
@@ -78,12 +70,11 @@ export default function ChipControls({
                             chip-button
                             chip-spacing
                             ${isCurrent ? 'chip-selected' : ''}
-                            ${!isSelected && canAfford ? 'chip-glow' : ''}
+                            ${!selectedChip && canAfford ? 'chip-glow' : ''}
                             ${!canAfford ? 'chip-disabled' : className}
                         `}
                         onClick={() => {
                             handleChipSelect(value, color);
-                            setIsSelected(true);
                         }}
                     >
                         {value}

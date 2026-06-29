@@ -130,22 +130,19 @@
 
 /* ========================================= */
 
-/* GAME PREV NUMS */
+/* GAME HEADER */
 
 /* ========================================= */
-.result-header {
-    display: flex;
-    padding: 1rem;
-}
 
 .result-header-nickname {
     position: absolute;
     top: 1.75rem;
     left: 1.25rem;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     transition: all var(--theme-transition);
     color: var(--standard-text);
+    margin: 0;
 }
 
 .result-header-results {
@@ -192,7 +189,7 @@
 
 /* ========================================= */
 
-/* GAME STATS */
+/* GAME STATUSS */
 
 /* ========================================= */
 .game-stat-btn {
@@ -214,20 +211,14 @@
     color: var(--btn-color);
 }
 
-.game-stats-container {
+.game-status-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.game-stats-row {
-    display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 1.25rem;
     gap: 4rem;
+    margin: 2rem 0 1.5rem;
 }
 
 .game-stat-item {

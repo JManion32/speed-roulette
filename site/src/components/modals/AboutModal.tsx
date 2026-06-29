@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import github_white from '../../assets/github_white.png';
-import linkedin_white from '../../assets/linkedin_white.png';
+import githubWhite from '../../assets/github-white.png';
+import linkedinWhite from '../../assets/linkedin-white.png';
 import about from '../../assets/about.png';
 import Modal from './Modal';
 import { Tabs } from '../Tabs';
@@ -115,7 +115,7 @@ export default function AboutModal() {
                                 className="social-button social-button-github"
                                 onClick={() => window.open('https://github.com/JManion32/speed-roulette', '_blank')}
                             >
-                                <img src={github_white} alt="GitHub" className="social-button-icon" />
+                                <img src={githubWhite} alt="GitHub" className="social-button-icon" />
                                 GitHub
                             </button>
 
@@ -123,7 +123,7 @@ export default function AboutModal() {
                                 className="social-button social-button-linkedin"
                                 onClick={() => window.open('https://linkedin.com/in/jmanion32', '_blank')}
                             >
-                                <img src={linkedin_white} alt="LinkedIn" className="social-button-icon" />
+                                <img src={linkedinWhite} alt="LinkedIn" className="social-button-icon" />
                                 LinkedIn
                             </button>
                         </div>

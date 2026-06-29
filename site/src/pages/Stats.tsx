@@ -1,10 +1,9 @@
 import '../css/stats.css';
 import { useState } from 'react';
+import PageHeader from '../components/PageHeader';
 import { StatsBarChart } from '../components/StatsBarChart';
 import { Tabs } from '../components/Tabs';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import DarkModeToggle from '../components/ThemeToggle';
-import HomeButton from '../components/HomeButton';
 import { useStatData } from '../hooks/useStatData';
 import { getColorClass } from '../utils/recentNumColor';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
@@ -25,10 +24,7 @@ function Stats() {
 
     return (
         <div className={`stats-page`}>
-            <div className="page-header-row">
-                <HomeButton />
-                <DarkModeToggle />
-            </div>
+            <PageHeader />
             <div className="stats-container">
                 <h1 className="page-title">Site Statistics</h1>
 
