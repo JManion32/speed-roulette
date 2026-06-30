@@ -143,8 +143,7 @@ html {
 .page-title {
     font-size: 4rem;
     font-weight: bold;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 0 0 2rem 0;
     transition: color var(--theme-transition);
 }
 
