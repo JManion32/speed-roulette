@@ -38,7 +38,6 @@
 .stats-page {
     background-color: var(--sr-master);
     color: var(--standard-text);
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
