@@ -29,3 +29,14 @@
 .tab-inactive:hover {
     color: var(--inactive-tab-hover);
 }
+
+@media (max-width: 599px) {
+    .tabs-container {
+        gap: 0;
+    }
+
+    .tab-button {
+        padding: 0.5rem 0.75rem;
+        font-size: 1.2rem;
+    }
+}

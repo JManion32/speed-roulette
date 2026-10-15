@@ -18,6 +18,7 @@
     width: 100%;
     max-width: 72rem;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .leaderboard-table-container {
@@ -181,4 +182,14 @@
 
 .leaderboard-footer {
     height: 4rem;
+}
+
+/* Narrow screens: drop the wide column spacing so the table fits (it still scrolls if needed) */
+@media (max-width: 899px) {
+    .leaderboard-table th:nth-child(n),
+    .leaderboard-table td:nth-child(n) {
+        padding: 0.5rem 0.75rem;
+        min-width: 0;
+        white-space: nowrap;
+    }
 }

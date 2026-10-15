@@ -3,7 +3,7 @@ import Modal from './Modal';
 export default function PrivacyModal() {
     return (
         <Modal trigger={<p className="privacy-trigger">Privacy Policy</p>}>
-            <h1 className="privacy-title">PRIVACY POLICY</h1>
+            <h1 className="modal-title">PRIVACY POLICY</h1>
 
             <div className="privacy-content">
                 <div className="privacy-section">
@@ -47,21 +47,9 @@ export default function PrivacyModal() {
                         intended solely for entertainment, learning, and portfolio demonstration.
                     </p>
                 </div>
-
-                <div className="privacy-section">
-                    <h2 className="privacy-section-title">6. Acceptance of Policy</h2>
-                    <p>
-                        By playing Speed Roulette, you agree to the terms of this privacy policy. If you have any
-                        concerns, please email{' '}
-                        <a href="mailto:jman32business@gmail.com" className="privacy-email">
-                            jman32business@gmail.com
-                        </a>
-                        .
-                    </p>
-                </div>
             </div>
 
-            <div className="privacy-last-updated">Last updated: 2025-07-24</div>
+            <div className="privacy-last-updated">Last updated: 2026-10-15</div>
         </Modal>
     );
 }

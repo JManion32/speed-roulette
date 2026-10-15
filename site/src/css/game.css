@@ -91,7 +91,8 @@
 /* ========================================= */
 
 .game-page {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     user-select: none;
     transition: all 0.2s ease;
     background-color: var(--sr-master);
@@ -99,8 +100,6 @@
 }
 
 .game-content {
-    position: absolute;
-    top: 11.7647%; /* top-2/17 */
     width: 100%;
 }
 
@@ -487,6 +486,7 @@
 .button-bottom-red,
 .button-bottom-black {
     appearance: none;
+    display: block;
     margin: 0;
     padding: 0;
     padding-block: 0;
@@ -504,7 +504,10 @@
 .outside-row {
     width: 5.375rem;
     height: 5.375rem;
-    transition: all 0.5s ease;
+    transition:
+        background-color 0.5s ease,
+        color 0.5s ease,
+        box-shadow 0.5s ease;
 }
 
 .red-num {
@@ -521,7 +524,10 @@
 
 .green-num {
     background-color: var(--roulette-green);
-    transition: all 0.5s ease;
+    transition:
+        background-color 0.5s ease,
+        color 0.5s ease,
+        box-shadow 0.5s ease;
     width: 5.375rem;
     height: 8.0625rem;
 }
@@ -559,6 +565,7 @@
 
 .game-board-table td {
     padding: 0;
+    vertical-align: top;
 }
 
 .game-board-row {
@@ -570,4 +577,86 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+/* ========================================= */
+
+/* SMALL SCREENS */
+
+/* ========================================= */
+
+/* Short screens (e.g. phones in landscape): tighten vertical spacing so the board fits */
+@media (max-height: 600px) {
+    .game-page .page-header {
+        height: 4rem;
+    }
+
+    .game-page .result-header-nickname,
+    .game-page .result-header-results {
+        top: 0.75rem;
+    }
+
+    .game-content-inner {
+        gap: 0.5rem;
+    }
+
+    .game-status-container {
+        margin: 0;
+    }
+
+    .chip-controls,
+    .game-actions {
+        margin-bottom: 0;
+    }
+
+    .roulette-board-container {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* The board is too wide to be playable on a portrait phone */
+.game-rotate-notice {
+    display: none;
+}
+
+@media (orientation: portrait) and (max-width: 599px) {
+    .game-rotate-notice {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 32px;
+        text-align: center;
+
+        /* px, not rem: the game's rem is scaled down to fit the board on these screens */
+        font-size: 20px;
+        font-weight: 700;
+        background-color: var(--sr-master);
+        color: var(--standard-text);
+    }
+
+    .game-rotate-notice-icon {
+        font-size: 64px;
+        animation: rotate-hint 2s ease-in-out infinite;
+    }
+}
+
+@keyframes rotate-hint {
+    0%,
+    20% {
+        transform: rotate(0deg);
+    }
+
+    50%,
+    70% {
+        transform: rotate(90deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }

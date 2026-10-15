@@ -18,11 +18,32 @@
     width: 50rem;
     max-width: 90%;
     height: 38rem;
-    padding: 2rem;
-    overflow-y: auto;
+    max-height: 90vh;
+    max-height: 90dvh;
+
+    /* Outer edge -> margin (this padding) -> scrollbar -> padding (.modal-inner) -> content */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem 1.5rem 0;
+    overflow: hidden;
     border-radius: 1.5rem;
     background-color: var(--modal-bg);
     color: var(--standard-text);
+}
+
+/* The scroll container, inset from the rounded corners so the scrollbar never touches them */
+.modal-inner {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding: 2rem;
+}
+
+.modal-title {
+    margin: 0 0 1rem;
+    font-size: 3.5rem;
+    font-weight: 800;
 }
 
 /* ========================================= */
@@ -31,8 +52,6 @@
 
 /* ========================================= */
 .about-modal-content {
-    max-height: 31.25rem;
-    overflow-y: auto;
     font-size: 1.125rem;
 }
 
@@ -161,17 +180,8 @@
     color: #a855f7;
 }
 
-.privacy-title {
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
-
 .privacy-content {
     width: 90%;
-    max-width: 40rem;
-    margin: 0 auto;
     font-size: 1.1rem;
     line-height: 1.625;
 }
@@ -210,6 +220,8 @@
     width: 45rem;
     height: 39rem;
     max-width: 90%;
+    max-height: 90vh;
+    max-height: 90dvh;
     position: relative;
     display: flex;
     flex-direction: column;

@@ -31,11 +31,15 @@ function Home() {
 
                     <input
                         type="text"
-                        id="nickname-enter-form"
+                        id="player-tag-input"
                         data-cy="nickname-enter-form"
                         value={nickname}
-                        name="nickname"
-                        autoComplete="nickname"
+                        name="player-tag"
+                        autoComplete="off"
+                        data-1p-ignore
+                        data-lpignore="true"
+                        data-bwignore
+                        data-form-type="other"
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck={false}

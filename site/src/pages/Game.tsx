@@ -172,6 +172,10 @@ function Game() {
                     />
                 </div>
             </div>
+            <div className="game-rotate-notice">
+                <span className="game-rotate-notice-icon">📱</span>
+                Rotate your device to play
+            </div>
             <ResultModal
                 showModal={showModal}
                 isClosing={isClosing}

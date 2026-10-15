@@ -32,7 +32,7 @@ function Modal({ canOutsideClick = true, trigger, children }: Props) {
                 className={`modal-content ${isClosing ? 'slide-down' : 'slide-up'}`}
                 onClick={(e) => e.stopPropagation()}
             >
-                {children}
+                <div className="modal-inner">{children}</div>
             </div>
         </div>
     ) : null;

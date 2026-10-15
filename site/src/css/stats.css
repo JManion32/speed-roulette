@@ -50,6 +50,7 @@
     width: 100%;
     max-width: 64rem;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .stats-main {
@@ -142,10 +143,29 @@
     min-height: 10rem;
 }
 
+/* Chart.js sizes its canvas from this box, so it must be relative and allowed to shrink */
 .stats-chart-cell {
+    position: relative;
+    min-width: 0;
     height: 3rem;
 }
 
 .stats-footer-gap {
     height: 3.5rem;
+}
+
+@media (max-width: 599px) {
+    .stats-metric-row {
+        gap: 1rem;
+    }
+
+    .stats-number-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .stats-number-list {
+        margin-left: 0;
+    }
 }

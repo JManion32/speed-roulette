@@ -53,75 +53,27 @@ body {
 
 /* ───────────────────────────────
    Responsive Font Scaling
+   Everything is sized in rem, so the root font-size is the one scaling knob:
+   16px from tablets through 1080p, growing with width on larger displays,
+   and shrinking on narrow or short screens so content still fits.
 ──────────────────────────────── */
 html {
-    font-size: 16px;
-}
-
-/* Fluid scale up for larger screens */
-@media (min-width: 1920px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 2040px) {
-    html {
-        font-size: 17px;
-    }
-}
-
-@media (min-width: 2160px) {
-    html {
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 2360px) {
-    html {
-        font-size: 19px;
-    }
-}
-
-@media (min-width: 2560px) {
-    html {
-        font-size: 20px;
-    }
-}
-
-@media (min-width: 2880px) {
-    html {
-        font-size: 21px;
-    }
-}
-
-@media (min-width: 3200px) {
-    html {
-        font-size: 22px;
-    }
-}
-
-@media (min-width: 3520px) {
-    html {
-        font-size: 23px;
-    }
-}
-
-@media (min-width: 3840px) {
-    html {
-        font-size: 24px;
-    }
-}
-
-/* Responsive scaling for smaller screens */
-@media (max-width: 1023px) {
-    html {
-        font-size: min(clamp(8px, 1.2vw, 24px), clamp(8px, 1.2vh, 24px));
-    }
-}
-
-html {
+    font-size: clamp(12px, min(max(16px, 0.8333vw), 1.5625vw, 2.5vh), 24px);
     scrollbar-gutter: stable both-edges;
+}
+
+/* The game is a fixed composition (~82rem wide, ~54rem tall), so size it to fit the viewport */
+html:has(.game-page) {
+    --game-height: 54;
+
+    font-size: clamp(6px, min(100vw / 82, 100vh / var(--game-height)), 32px);
+    font-size: clamp(6px, min(100vw / 82, 100dvh / var(--game-height)), 32px);
+}
+
+@media (max-height: 600px) {
+    html:has(.game-page) {
+        --game-height: 42;
+    }
 }
 
 ::-webkit-scrollbar {
@@ -180,4 +132,11 @@ html {
 .roulette-unknown {
     background-color: #9ca3af;
     color: white;
+}
+
+@media (max-width: 599px) {
+    .page-title {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
 }
