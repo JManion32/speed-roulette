@@ -3,7 +3,9 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+# Skip install scripts during ci (esbuild's can hit ETXTBSY racing parallel extraction,
+# and the Cypress binary isn't needed in the image), then run only the ones the build needs
+RUN npm ci --ignore-scripts && npm rebuild esbuild @swc/core
 
 COPY . .
 
