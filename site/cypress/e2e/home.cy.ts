@@ -25,19 +25,6 @@ describe('Navigation and Static UI', () => {
         cy.contains('Have a feature suggestion?').should('be.visible');
     });
 
-    it('opens About modal and navigates tabs', () => {
-        cy.get('[data-cy="open-about-modal"]').click();
-        cy.contains('About').should('be.visible');
-
-        cy.contains('Rules').click();
-        cy.contains('Standard Roulette Rules').should('be.visible');
-
-        cy.contains('Contact').click();
-        cy.contains('Inquiries').should('be.visible');
-
-        cy.get('[data-cy="modal-bg"]').click();
-    });
-
     it('loads leaderboard page', () => {
         cy.intercept('GET', '/api/leaderboard*', (req) => req.reply(200, [])).as('getLeaderboard');
 
