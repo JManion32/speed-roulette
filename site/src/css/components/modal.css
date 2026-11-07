@@ -24,7 +24,7 @@
     /* Outer edge -> margin (this padding) -> scrollbar -> padding (.modal-inner) -> content */
     display: flex;
     flex-direction: column;
-    padding: 1.5rem 1rem 1.5rem 0;
+    padding: 1.5rem 0 1.5rem 0;
     overflow: hidden;
     border-radius: 1.5rem;
     background-color: var(--modal-bg);
@@ -37,7 +37,7 @@
     min-height: 0;
     overflow-y: auto;
     scrollbar-gutter: stable;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }
 
 .modal-title {
